@@ -9518,5 +9518,704 @@
   "stem": [
    "已知 $a=2^{\\sqrt3}$，$b=\\dfrac52$，$c=\\log_{2}5$，$d=2\\sqrt2$，则下列大小关系正确的为（　　）"
   ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $f(x)$ 为 $\\mathbb R$ 上的奇函数，$g(x)=xf(x)$，若 $g(x)$ 在区间 $(-\\infty,0)$ 上单调递减．若 $a=g(2\\pi)$，$b=g\\!\\left(2\\sqrt3\\right)$，$c=g(1)$，则 $a,b,c$ 的大小关系为（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<b<c$"
+   ],
+   [
+    "B",
+    "$c<b<a$"
+   ],
+   [
+    "C",
+    "$b<a<c$"
+   ],
+   [
+    "D",
+    "$b<c<a$"
+   ]
+  ],
+  "answer": "B",
+  "solution": "因 $f(x)$ 为奇函数，有 $f(-x)=-f(x)$，于是\n$g(-x)=(-x)f(-x)=(-x)\\bigl[-f(x)\\bigr]=xf(x)=g(x)$，故 $g(x)$ 为偶函数．\n又 $g(x)$ 在 $(-\\infty,0)$ 上单调递减，由偶函数的对称性知 $g(x)$ 在 $(0,+\\infty)$ 上单调递增．\n由 $2\\pi\\approx6.283>2\\sqrt3\\approx3.464>1$，得\n$g(2\\pi)>g\\!\\left(2\\sqrt3\\right)>g(1)$，即 $a>b>c$，亦即 $c<b<a$．\n故选 B．",
+  "analysis": "由 $f$ 奇得 $g$ 偶；偶函数在对称区间上单调性相反，故 $g$ 在 $(0,+\\infty)$ 上递增，只需比较自变量大小。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-044"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-044-E1",
+  "review": "★ 提取文本作「b = g (2 3)」，$2\\sqrt3$ 的根号丢失，易误读成 $g(23)$ 或 $g(2^3)$。由详解「又 $2\\pi>2\\sqrt3>1$」确认为 $2\\sqrt3$。数值校验：$2\\pi\\approx6.2832$、$2\\sqrt3\\approx3.4641$、$1$，顺序与答案 B 一致。**关键陷阱**：偶函数在 $(-\\infty,0)$ 递减则在 $(0,+\\infty)$ 递增（单调性相反），若照搬「递减」会得出完全相反的结论。",
+  "difficulty": 0.6,
+  "id": "M-H0230",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "由 $f$ 奇得 $g$ 偶；偶函数在对称区间上单调性相反，故 $g$ 在 $(0,+\\infty)$ 上递增，只需比较自变量大小。",
+  "stem": [
+   "已知 $f(x)$ 为 $\\mathbb R$ 上的奇函数，$g(x)=xf(x)$，若 $g(x)$ 在区间 $(-\\infty,0)$ 上单调递减．若 $a=g(2\\pi)$，$b=g\\!\\left(2\\sqrt3\\right)$，$c=g(1)$，则 $a,b,c$ 的大小关系为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知函数 $f(x)=x-3^{-x}$，若 $a=f\\!\\left(3^{0.2}\\right)$，$b=f\\!\\left(0.2^{3}\\right)$，$c=f\\!\\left(\\log_{0.2}3\\right)$，则 $a,b,c$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$a>b>c$"
+   ],
+   [
+    "B",
+    "$b>a>c$"
+   ],
+   [
+    "C",
+    "$c>a>b$"
+   ],
+   [
+    "D",
+    "$c>b>a$"
+   ]
+  ],
+  "answer": "A",
+  "solution": "$f'(x)=1+3^{-x}\\ln3>0$ 恒成立，故 $f(x)$ 在 $\\mathbb R$ 上单调递增．\n比较自变量：\n由 $3^{1}>3^{0.2}>3^{0}=1$，得 $3^{0.2}>1$；\n由 $0<0.2^{3}<0.2^{0}=1$，得 $0<0.2^{3}<1$；\n由底数 $0.2\\in(0,1)$，对数函数递减，且 $3>1$，得 $\\log_{0.2}3<\\log_{0.2}1=0$．\n故 $3^{0.2}>0.2^{3}>\\log_{0.2}3$．\n由 $f$ 递增，得 $f\\!\\left(3^{0.2}\\right)>f\\!\\left(0.2^{3}\\right)>f\\!\\left(\\log_{0.2}3\\right)$，即 $a>b>c$．\n故选 A．",
+  "analysis": "先判定 $f$ 在 $\\mathbb R$ 上单调递增，再用指数、对数函数的单调性比较三个自变量 $3^{0.2}$、$0.2^{3}$、$\\log_{0.2}3$ 的大小。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-044"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-044-V1",
+  "review": "★ **函数形式系反推确定，需留意。**提取文本作「f (x)= x -3 - x 」，分数/指数全部塌成平文本，仅凭文本无法确定 $f$ 究竟是什么。\n详解给出两条线索：①「函数在 $(-\\infty,3]$ 上单调递增」；②答案 A（$a>b>c$）。对四个候选逐一数值验证（自变量 $3^{0.2}\\approx1.24573$、$0.2^{3}=0.008$、$\\log_{0.2}3\\approx-0.68261$）：\n| 候选 | $a$ | $b$ | $c$ | 顺序 |\n|---|---|---|---|---|\n| $x-3^{-x}$ | $0.9913$ | $-0.9832$ | $-2.7994$ | **$a>b>c$ ✓** |\n| $x^{3}-x$ | $0.6875$ | $-0.0080$ | $0.3645$ | $a>c>b$ ✗ |\n| $3^{x}-x$ | $2.6840$ | $1.0008$ | $1.1550$ | $a>c>b$ ✗ |\n| $x^{-3}-x$ | $-0.7284$ | $1.95\\times10^{6}$ | $-2.4614$ | $b>a>c$ ✗ |\n**只有 $f(x)=x-3^{-x}$ 同时满足递增性与答案 A**，据此录入。该函数 $f'(x)=1+3^{-x}\\ln3>0$ 确实全程递增，与详解描述吻合。",
+  "difficulty": 0.65,
+  "id": "M-H0231",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "先判定 $f$ 在 $\\mathbb R$ 上单调递增，再用指数、对数函数的单调性比较三个自变量 $3^{0.2}$、$0.2^{3}$、$\\log_{0.2}3$ 的大小。",
+  "stem": [
+   "已知函数 $f(x)=x-3^{-x}$，若 $a=f\\!\\left(3^{0.2}\\right)$，$b=f\\!\\left(0.2^{3}\\right)$，$c=f\\!\\left(\\log_{0.2}3\\right)$，则 $a,b,c$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知函数 $f(x)$ 满足 $f(x)+f(-x)=0$，且当 $x\\in(-\\infty,0)$ 时，$f(x)+xf'(x)<0$ 成立，若 $a=2^{0.6}\\cdot f\\!\\left(2^{0.6}\\right)$，$b=(\\ln2)\\cdot f(\\ln2)$，$c=\\left(\\log_{\\frac12}8\\right)\\cdot f\\!\\left(\\log_{\\frac12}8\\right)$，则 $a,b,c$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$a>b>c$"
+   ],
+   [
+    "B",
+    "$c>b>a$"
+   ],
+   [
+    "C",
+    "$a>c>b$"
+   ],
+   [
+    "D",
+    "$c>a>b$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "由 $f(x)+f(-x)=0$ 且 $f$ 在 $\\mathbb R$ 上连续，知 $f$ 为奇函数．\n令 $g(x)=x\\cdot f(x)$，则\n$g(-x)=(-x)\\cdot f(-x)=(-x)\\cdot\\bigl[-f(x)\\bigr]=x\\cdot f(x)=g(x)$，故 $g(x)$ 为偶函数．\n又 $g'(x)=f(x)+x\\cdot f'(x)$，由已知当 $x\\in(-\\infty,0)$ 时 $g'(x)<0$，故 $g(x)$ 在 $(-\\infty,0)$ 上单调递减；\n由 $g$ 连续且为偶函数，得 $g(x)$ 在 $(0,+\\infty)$ 上单调递增．\n于是 $a=g\\!\\left(2^{0.6}\\right)$，$b=g(\\ln2)$，$c=g\\!\\left(\\log_{\\frac12}8\\right)=g(-3)=g(3)$（偶函数）．\n由 $2^{0.6}\\approx1.516>1$、$0<\\ln2\\approx0.693<1$、$-\\log_{\\frac12}8=\\log_{2}8=3$，得 $3>2^{0.6}>\\ln2>0$．\n由 $g$ 在 $(0,+\\infty)$ 上递增，得 $g(3)>g\\!\\left(2^{0.6}\\right)>g(\\ln2)$，即 $c>a>b$．\n故选 D．",
+  "analysis": "构造 $g(x)=x\\cdot f(x)$：由 $f$ 奇得 $g$ 偶；由 $g'(x)=f(x)+xf'(x)<0$（$x<0$）得 $g$ 在 $(0,+\\infty)$ 上递增。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-044"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-044-V2",
+  "review": "★ 提取文本作「a = (20.6)⋅f (20.6)，b = (ln2) ⋅f(ln2)，c = (log)⋅f (log)」，$2^{0.6}$ 的指数与 $\\log_{\\frac12}8$ 的底数、真数全丢，第三个式子整个塌成「(log)⋅f (log)」。由详解「$c=g(\\log_{\\frac12}8)=g(-\\log_2 8)=g(-3)$」与「$\\ln2<1<2^{0.6}<-\\log_{\\frac12}8=3$」还原。数值校验：自变量 $|{-3}|=3>2^{0.6}\\approx1.51572>\\ln2\\approx0.69315$，与答案 D 一致。**关键**：$c$ 的自变量是负数，必须先由偶函数化为 $g(3)$ 再比较。",
+  "difficulty": 0.75,
+  "id": "M-H0232",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "构造 $g(x)=x\\cdot f(x)$：由 $f$ 奇得 $g$ 偶；由 $g'(x)=f(x)+xf'(x)<0$（$x<0$）得 $g$ 在 $(0,+\\infty)$ 上递增。",
+  "stem": [
+   "已知函数 $f(x)$ 满足 $f(x)+f(-x)=0$，且当 $x\\in(-\\infty,0)$ 时，$f(x)+xf'(x)<0$ 成立，若 $a=2^{0.6}\\cdot f\\!\\left(2^{0.6}\\right)$，$b=(\\ln2)\\cdot f(\\ln2)$，$c=\\left(\\log_{\\frac12}8\\right)\\cdot f\\!\\left(\\log_{\\frac12}8\\right)$，则 $a,b,c$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $f(x)=f(2-x)$，$x\\in\\mathbb R$，当 $x\\in[1,+\\infty)$ 时，$f(x)$ 为增函数．设 $a=f(1)$，$b=f(2)$，$c=f(-1)$，则 $a,b,c$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$a>b>c$"
+   ],
+   [
+    "B",
+    "$b>a>c$"
+   ],
+   [
+    "C",
+    "$c>a>b$"
+   ],
+   [
+    "D",
+    "$c>b>a$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "由 $f(x)=f(2-x)$，令 $x=-1$ 得 $f(-1)=f\\bigl(2-(-1)\\bigr)=f(3)$，即 $c=f(3)$．\n（一般地，$f(x)=f(2-x)$ 表明 $f$ 的图象关于直线 $x=\\dfrac{x+(2-x)}{2}=1$ 对称．）\n因 $1<2<3$，且 $f(x)$ 在 $[1,+\\infty)$ 上为增函数，得\n$f(3)>f(2)>f(1)$，即 $c>b>a$．\n故选 D．",
+  "analysis": "由 $f(x)=f(2-x)$ 知 $f$ 关于直线 $x=1$ 对称，于是 $f(-1)=f(3)$，再用 $[1,+\\infty)$ 上的单调性比较。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-044"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-044-V3",
+  "review": "★ 提取文本作「f x  = f 2 - x  ，x ∈1,+∞  时，f x  为增函数」，函数记号的括号、区间端点全部丢失，与「$f(x)=f(2)-x$」或「$f(x)=f(2-x)$」无法区分。由详解「∵$f(x)=f(2-x)$，∴$f(-1)=f(3)$」确认为 $f(2-x)$。数值关系：$1<2<3$ 且 $f$ 在 $[1,+\\infty)$ 递增，故 $f(3)>f(2)>f(1)$，与答案 D 一致。",
+  "difficulty": 0.55,
+  "id": "M-H0233",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "由 $f(x)=f(2-x)$ 知 $f$ 关于直线 $x=1$ 对称，于是 $f(-1)=f(3)$，再用 $[1,+\\infty)$ 上的单调性比较。",
+  "stem": [
+   "已知 $f(x)=f(2-x)$，$x\\in\\mathbb R$，当 $x\\in[1,+\\infty)$ 时，$f(x)$ 为增函数．设 $a=f(1)$，$b=f(2)$，$c=f(-1)$，则 $a,b,c$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "三个数 $\\cos\\dfrac32$，$\\sin\\dfrac{1}{10}$，$\\sin\\dfrac74$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\cos\\dfrac32>\\sin\\dfrac{1}{10}>\\sin\\dfrac74$"
+   ],
+   [
+    "B",
+    "$\\cos\\dfrac32>\\sin\\dfrac74>\\sin\\dfrac{1}{10}$"
+   ],
+   [
+    "C",
+    "$\\cos\\dfrac32<\\sin\\dfrac{1}{10}<\\sin\\dfrac74$"
+   ],
+   [
+    "D",
+    "$\\sin\\dfrac74>\\cos\\dfrac32>\\sin\\dfrac{1}{10}$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "化为正弦：$\\cos\\dfrac32=\\sin\\left(\\dfrac{\\pi}{2}-\\dfrac32\\right)$，$\\sin\\dfrac74=\\sin\\left(\\pi-\\dfrac74\\right)$．\n估算三个角：\n$\\dfrac{\\pi}{2}-\\dfrac32\\approx1.5708-1.5=0.0708$，$\\dfrac{1}{10}=0.1$，$\\pi-\\dfrac74\\approx3.1416-1.75=1.3916$．\n由 $0<0.0708<0.1<1.3916<\\dfrac{\\pi}{2}$，且 $y=\\sin x$ 在 $\\left[0,\\dfrac{\\pi}{2}\\right]$ 上单调递增，得\n$\\sin\\left(\\dfrac{\\pi}{2}-\\dfrac32\\right)<\\sin\\dfrac{1}{10}<\\sin\\left(\\pi-\\dfrac74\\right)$，即 $\\cos\\dfrac32<\\sin\\dfrac{1}{10}<\\sin\\dfrac74$．\n故选 C．",
+  "analysis": "用诱导公式化为同名函数：$\\cos\\dfrac32=\\sin\\left(\\dfrac{\\pi}{2}-\\dfrac32\\right)$、$\\sin\\dfrac74=\\sin\\left(\\pi-\\dfrac74\\right)$，再在 $\\left[0,\\dfrac{\\pi}{2}\\right]$ 上比角。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-045"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-045-E1",
+  "review": "★ 提取文本作「三个数cos 3 2 ，sin 1 10 ，sin 7 4 的大小关系」，三个分数全部塌成「3 2」「1 10」「7 4」，与 $\\frac32$、$\\frac{1}{10}$、$\\frac74$ 无法区分。由详解「$\\cos\\frac32=\\sin(\\frac{\\pi}{2}-\\frac32)$，$\\sin\\frac74=\\sin(\\pi-\\frac74)$」「$\\frac{\\pi}{2}-\\frac32\\approx0.071$、$\\frac{1}{10}=0.1$、$\\pi-\\frac74\\approx1.39$」还原。数值校验：$\\cos1.5\\approx0.070737$、$\\sin0.1\\approx0.099833$、$\\sin1.75\\approx0.983986$，与答案 C 吻合。",
+  "difficulty": 0.6,
+  "id": "M-H0234",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "用诱导公式化为同名函数：$\\cos\\dfrac32=\\sin\\left(\\dfrac{\\pi}{2}-\\dfrac32\\right)$、$\\sin\\dfrac74=\\sin\\left(\\pi-\\dfrac74\\right)$，再在 $\\left[0,\\dfrac{\\pi}{2}\\right]$ 上比角。",
+  "stem": [
+   "三个数 $\\cos\\dfrac32$，$\\sin\\dfrac{1}{10}$，$\\sin\\dfrac74$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a=\\sin\\dfrac45$，$b=\\dfrac43\\sin\\dfrac34$，$c=\\dfrac43\\cos\\dfrac34$，则 $a,b,c$ 的大小关系为（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<b<c$"
+   ],
+   [
+    "B",
+    "$b<c<a$"
+   ],
+   [
+    "C",
+    "$a<c<b$"
+   ],
+   [
+    "D",
+    "$b<a<c$"
+   ]
+  ],
+  "answer": "A",
+  "solution": "先比 $b,c$：由 $\\dfrac34<\\dfrac{\\pi}{4}$，且 $y=\\sin x$ 在 $\\left(0,\\dfrac{\\pi}{2}\\right)$ 上递增、$y=\\cos x$ 递减，得\n$\\sin\\dfrac34<\\sin\\dfrac{\\pi}{4}=\\cos\\dfrac{\\pi}{4}<\\cos\\dfrac34$，故 $b=\\dfrac43\\sin\\dfrac34<\\dfrac43\\cos\\dfrac34=c$．\n再比 $a,b$：令 $f(x)=\\dfrac{\\sin x}{x}$，则 $f'(x)=\\dfrac{x\\cos x-\\sin x}{x^{2}}$．\n当 $x\\in\\left(0,\\dfrac{\\pi}{2}\\right)$ 时 $\\tan x>x$，即 $\\sin x>x\\cos x$，故 $f'(x)<0$，$f$ 在 $\\left(0,\\dfrac{\\pi}{2}\\right)$ 上递减．\n由 $\\dfrac34<\\dfrac45$ 得 $f\\!\\left(\\dfrac45\\right)<f\\!\\left(\\dfrac34\\right)$，即 $\\dfrac{\\sin\\frac45}{\\frac45}<\\dfrac{\\sin\\frac34}{\\frac34}$，\n亦即 $\\dfrac54\\sin\\dfrac45<\\dfrac43\\sin\\dfrac34=b$，于是 $a=\\sin\\dfrac45<\\dfrac45\\,b<b$．\n综上 $a<b<c$，故选 A．",
+  "analysis": "$b,c$ 由 $\\sin\\dfrac34<\\cos\\dfrac34$ 直接比出；$a,b$ 需构造 $f(x)=\\dfrac{\\sin x}{x}$，用其在 $\\left[\\dfrac34,1\\right]$ 上递减来比。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-045"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-045-V1",
+  "review": "★ 提取文本作「a = sin 4 5 ,b = 4 3 sin 3 4 ,c = 4 3 cos 3 4 」，三个分数与系数全部塌成平文本。由详解「$\\frac12=\\sin\\frac{\\pi}{6}<\\sin\\frac34<\\sin\\frac{\\pi}{4}=\\cos\\frac{\\pi}{4}<\\cos\\frac34$，所以 $b<c$」与「构造 $f(x)=\\frac{1}{x}\\cdot\\sin x$，$f$ 在 $[\\frac34,1]$ 递减，$f(\\frac45)<f(\\frac34)$」还原。数值校验：$a=\\sin0.8\\approx0.71736$、$b\\approx0.90885$、$c\\approx0.97559$，与答案 A 吻合。",
+  "difficulty": 0.7,
+  "id": "M-H0235",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "$b,c$ 由 $\\sin\\dfrac34<\\cos\\dfrac34$ 直接比出；$a,b$ 需构造 $f(x)=\\dfrac{\\sin x}{x}$，用其在 $\\left[\\dfrac34,1\\right]$ 上递减来比。",
+  "stem": [
+   "已知 $a=\\sin\\dfrac45$，$b=\\dfrac43\\sin\\dfrac34$，$c=\\dfrac43\\cos\\dfrac34$，则 $a,b,c$ 的大小关系为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "设 $x,y\\in(0,\\pi)$，若 $\\sin(\\sin x)=\\cos(\\cos y)$，则 $\\cos(\\sin x)$ 与 $\\sin(\\cos y)$ 的大小关系为（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\cos(\\sin x)=\\sin(\\cos y)$"
+   ],
+   [
+    "B",
+    "$\\cos(\\sin x)>\\sin(\\cos y)$"
+   ],
+   [
+    "C",
+    "$\\cos(\\sin x)<\\sin(\\cos y)$"
+   ],
+   [
+    "D",
+    "以上均不对"
+   ]
+  ],
+  "answer": "D",
+  "solution": "设 $\\alpha=\\sin x$，$\\beta=\\cos y$．因 $x,y\\in(0,\\pi)$，故 $\\alpha\\in(0,1]$，$\\beta\\in(-1,1)$．\n由 $\\sin(\\sin x)=\\cos(\\cos y)$ 得 $\\sin\\alpha=\\cos\\beta=\\sin\\left(\\dfrac{\\pi}{2}-\\beta\\right)$，而 $\\dfrac{\\pi}{2}-\\beta\\in\\left(\\dfrac{\\pi}{2}-1,\\dfrac{\\pi}{2}+1\\right)$．\n故 $\\alpha=\\dfrac{\\pi}{2}-\\beta$ 或 $\\alpha=\\pi-\\left(\\dfrac{\\pi}{2}-\\beta\\right)=\\dfrac{\\pi}{2}+\\beta$．\n**情形一**　$\\alpha=\\dfrac{\\pi}{2}-\\beta$：\n$\\cos(\\sin x)=\\cos\\alpha=\\cos\\left(\\dfrac{\\pi}{2}-\\beta\\right)=\\sin\\beta=\\sin(\\cos y)$，两者相等．\n**情形二**　$\\alpha=\\dfrac{\\pi}{2}+\\beta$：\n$\\cos(\\sin x)=\\cos\\alpha=\\cos\\left(\\dfrac{\\pi}{2}+\\beta\\right)=-\\sin\\beta$，而 $\\sin(\\cos y)=\\sin\\beta$，于是\n① $\\beta\\in(-1,0)$ 时，$-\\sin\\beta>\\sin\\beta$，故 $\\cos(\\sin x)>\\sin(\\cos y)$；\n② $\\beta=0$ 时，$-\\sin\\beta=\\sin\\beta=0$，故 $\\cos(\\sin x)=\\sin(\\cos y)$；\n③ $\\beta\\in(0,1)$ 时，$-\\sin\\beta<\\sin\\beta$，故 $\\cos(\\sin x)<\\sin(\\cos y)$．\n三种结果都可能出现，故大小关系不确定，选 D．",
+  "analysis": "设 $\\alpha=\\sin x$、$\\beta=\\cos y$，由条件得 $\\sin\\alpha=\\cos\\beta=\\sin\\left(\\dfrac{\\pi}{2}-\\beta\\right)$，据此分两类讨论 $\\alpha$ 与 $\\beta$ 的关系。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-045"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-045-V2",
+  "review": "★ 提取文本作「sin sinx  = cos cosy  ，则cos sinx  与 sin cosy  的大小关系」，函数记号的括号全部丢失，与 $\\sin x\\cdot\\sin$ 之类的乘积形式无法区分。由详解「设 $\\alpha=\\sin x$，$\\beta=\\cos y$，$\\sin\\alpha=\\cos\\beta=\\sin(\\frac{\\pi}{2}-\\beta)$」确认为复合函数。详解明确列出三种情形（$>$、$=$、$<$ 均可能），故选 D。**这题的考点是分类讨论的完备性** —— 只解出 $\\alpha=\\frac{\\pi}{2}-\\beta$ 而漏掉 $\\alpha=\\frac{\\pi}{2}+\\beta$，就会错选 A。",
+  "difficulty": 0.8,
+  "id": "M-H0236",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "设 $\\alpha=\\sin x$、$\\beta=\\cos y$，由条件得 $\\sin\\alpha=\\cos\\beta=\\sin\\left(\\dfrac{\\pi}{2}-\\beta\\right)$，据此分两类讨论 $\\alpha$ 与 $\\beta$ 的关系。",
+  "stem": [
+   "设 $x,y\\in(0,\\pi)$，若 $\\sin(\\sin x)=\\cos(\\cos y)$，则 $\\cos(\\sin x)$ 与 $\\sin(\\cos y)$ 的大小关系为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "$\\sin3$，$\\cos(\\sin2)$，$\\tan(\\cos3)$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\cos(\\sin2)>\\sin3>\\tan(\\cos3)$"
+   ],
+   [
+    "B",
+    "$\\cos(\\sin2)>\\tan(\\cos3)>\\sin3$"
+   ],
+   [
+    "C",
+    "$\\sin3>\\cos(\\sin2)>\\tan(\\cos3)$"
+   ],
+   [
+    "D",
+    "$\\tan(\\cos3)>\\sin3>\\cos(\\sin2)$"
+   ]
+  ],
+  "answer": "A",
+  "solution": "先判 $\\tan(\\cos3)$ 的符号：由 $\\dfrac{\\pi}{2}<3<\\pi$ 得 $-1<\\cos3<0$，故 $\\tan(\\cos3)<0$．\n再化同名：由 $\\dfrac{\\pi}{2}<2<\\dfrac{3\\pi}{4}$ 得 $\\dfrac{\\sqrt2}{2}<\\sin2<1$，于是\n$\\cos(\\sin2)=\\sin\\left(\\dfrac{\\pi}{2}-\\sin2\\right)$，$\\sin3=\\sin(\\pi-3)$．\n比较三个角：\n$\\pi-3\\approx0.1416$，$\\dfrac{\\pi}{2}-\\sin2\\approx1.5708-0.9093=0.6615$，且 $\\dfrac{\\pi}{2}-1\\approx0.5708$．\n由 $0<\\pi-3<\\dfrac{\\pi}{2}-1<\\dfrac{\\pi}{2}-\\sin2<\\dfrac{\\pi}{2}$，且 $y=\\sin x$ 在 $\\left[0,\\dfrac{\\pi}{2}\\right]$ 上递增，得\n$\\sin(\\pi-3)<\\sin\\left(\\dfrac{\\pi}{2}-\\sin2\\right)$，即 $\\sin3<\\cos(\\sin2)$．\n又 $\\sin3=\\sin(\\pi-3)>0>\\tan(\\cos3)$，故\n$\\tan(\\cos3)<0<\\sin3<\\cos(\\sin2)$，即 $\\cos(\\sin2)>\\sin3>\\tan(\\cos3)$．\n故选 A．",
+  "analysis": "先判符号得 $\\tan(\\cos3)<0$；再把 $\\sin3=\\sin(\\pi-3)$、$\\cos(\\sin2)=\\sin\\left(\\dfrac{\\pi}{2}-\\sin2\\right)$ 化同名后比角。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-045"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-045-V3",
+  "review": "★ 提取文本作「sin3，cos sin2  ，tan cos3  的大小关系」，复合函数的括号丢失。由详解「$\\frac{\\pi}{2}<3<\\pi$，$-1<\\cos3<0$，$\\tan(\\cos3)<0$」「$\\cos(\\sin2)=\\sin(\\frac{\\pi}{2}-\\sin2)$，$\\sin3=\\sin(\\pi-3)$」与「$0<\\frac{\\pi}{2}-3<\\frac{\\pi}{2}-1<\\frac{\\pi}{2}-\\sin2<\\frac{\\pi}{2}$」还原。数值校验：$\\cos(\\sin2)\\approx0.614300$、$\\sin3\\approx0.141120$、$\\tan(\\cos3)\\approx-1.523652$，与答案 A 吻合。**关键**：$\\tan(\\cos3)$ 的自变量 $\\cos3\\in(-1,0)$ 是负数，这直接决定了它是三个数里唯一的负值、必定最小。",
+  "difficulty": 0.7,
+  "id": "M-H0237",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "先判符号得 $\\tan(\\cos3)<0$；再把 $\\sin3=\\sin(\\pi-3)$、$\\cos(\\sin2)=\\sin\\left(\\dfrac{\\pi}{2}-\\sin2\\right)$ 化同名后比角。",
+  "stem": [
+   "$\\sin3$，$\\cos(\\sin2)$，$\\tan(\\cos3)$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知函数 $f(x)$ 为偶函数，且当 $x>0$ 时，$f(x)=\\begin{cases}1-x, & 0\\leqslant x<1,\\\\\\dfrac13 f(x-1), & x\\geqslant1,\\end{cases}$则当 $x\\in(-2,2)$ 时，方程 $f(x)=\\left(\\dfrac13\\right)^{|x|}$ 的根有几个？（　　）",
+  "opts": [
+   [
+    "A",
+    "$3$ 个"
+   ],
+   [
+    "B",
+    "$5$ 个"
+   ],
+   [
+    "C",
+    "$7$ 个"
+   ],
+   [
+    "D",
+    "$9$ 个"
+   ]
+  ],
+  "answer": "C",
+  "solution": "由题意，当 $x>0$ 时\n$f(x)=\\begin{cases}1-x, & 0\\leqslant x<1,\\\\\\dfrac13 f(x-1), & x\\geqslant1.\\end{cases}$\n在 $x\\in[1,2)$ 上，$x-1\\in[0,1)$，故 $f(x-1)=1-(x-1)=2-x$，于是 $f(x)=\\dfrac13(2-x)$．\n记 $g(x)=\\left(\\dfrac13\\right)^{|x|}$，则 $g(-x)=g(x)$，$g$ 也是偶函数，故只需研究 $x\\in[0,2)$ 上的交点个数．\n当 $x=0$ 时，$f(0)=g(0)=1$，得交点 $(0,1)$；\n当 $x=1$ 时，$f(1)=\\dfrac13(2-1)=\\dfrac13=g(1)$，得交点 $\\left(1,\\dfrac13\\right)$；\n当 $x\\in(0,1)$ 时，$f\\!\\left(\\dfrac14\\right)=\\dfrac34<g\\!\\left(\\dfrac14\\right)=\\left(\\dfrac13\\right)^{\\frac14}\\approx0.7598$，$f\\!\\left(\\dfrac18\\right)=\\dfrac78>g\\!\\left(\\dfrac18\\right)\\approx0.8440^{?}$，\n更严谨地：$f$ 在 $(0,1)$ 上从 $1$ 递减到 $0$，$g$ 从 $1$ 递减到 $\\dfrac13$，两者在端点 $x=0$ 相交、之后 $f$ 下降更快，故 $(0,1)$ 内恰有一个交点；\n当 $x\\in(1,2)$ 时，$f(x)=\\dfrac13(2-x)$ 从 $\\dfrac13$ 递减到 $0$，$g(x)=\\left(\\dfrac13\\right)^{x}$ 从 $\\dfrac13$ 递减到 $\\dfrac19$，两者在 $x=1$ 相交、之后 $f$ 下降更快，故 $(1,2)$ 内恰有一个交点．\n综上，$x\\in[0,2)$ 上有 $4$ 个交点；由偶函数对称性，$x\\in(-2,2)$ 上共有 $4\\times2-1=7$ 个交点（$x=0$ 处只算一次）．\n故选 C．",
+  "analysis": "转化为 $y=f(x)$ 与 $g(x)=\\left(\\frac13\\right)^{|x|}$ 的交点个数；两个都是偶函数，只需研究 $x\\in[0,2)$。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-060"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-060-E1",
+  "review": "★ 提取文本作「f x  = 1 - x, 0 ≤x < 1 1 3 f x - 1  , x ≥1 」，分段大括号与归属全部塌成平文本，$\\frac13 f(x-1)$ 被读成「1 3 f x - 1」。由详解「当 $x>0$ 时 $f(x)=\\begin{cases}1-x,&0\\le x<1\\\\\\frac13(2-x),&2>x\\ge1\\end{cases}$」确认分段结构；方程右端由「$g(x)=(\\frac13)^{|x|}$」确认为 $\\left(\\frac13\\right)^{|x|}$。\\n**关键的计数逻辑**：$x=0$ 处的交点在左右两侧是同一个，所以总数是 $4\\times2-1=7$ 而不是 $8$ —— 直接乘 $2$ 会错选 D。\\n注：详解在 $(0,1)$ 与 $(1,2)$ 各用一组端点值夹逼说明「恰一个交点」，本解改用「两端点相交 + 单调性」叙述，结论一致。",
+  "difficulty": 0.75,
+  "id": "M-H0238",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "转化为 $y=f(x)$ 与 $g(x)=\\left(\\frac13\\right)^{|x|}$ 的交点个数；两个都是偶函数，只需研究 $x\\in[0,2)$。",
+  "stem": [
+   "已知函数 $f(x)$ 为偶函数，且当 $x>0$ 时，$f(x)=\\begin{cases}1-x, & 0\\leqslant x<1,\\\\\\dfrac13 f(x-1), & x\\geqslant1,\\end{cases}$则当 $x\\in(-2,2)$ 时，方程 $f(x)=\\left(\\dfrac13\\right)^{|x|}$ 的根有几个？（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "填空",
+  "stem_text": "定义在 $(0,+\\infty)$ 上的函数 $f(x)$ 满足：\n① 当 $x\\in[1,3)$ 时，$f(x)=\\begin{cases}x-1, & 1\\leqslant x\\leqslant2,\\\\3-x, & 2<x<3;\\end{cases}$　② $f(3x)=3f(x)$．\n（i）$f(6)=$ \\underline{\\hspace{2em}}；\n（ii）若函数 $F(x)=f(x)-a$ 的零点从小到大依次记为 $x_{1},x_{2},\\cdots,x_{n},\\cdots$，则当 $a\\in(1,3)$ 时，$x_{1}+x_{2}+\\cdots+x_{2n-1}+x_{2n}=$ \\underline{\\hspace{3em}}．",
+  "opts": [],
+  "answer": "$3$；$6(3^{n}-1)$",
+  "solution": "（i）由 $f(3x)=3f(x)$，取 $x=2$ 得 $f(6)=3f(2)$．当 $x=2$ 时 $f(2)=2-1=1$，故 $f(6)=3\\times1=3$．\n（ii）在同一坐标系内作出 $y=f(x)$ 与 $y=a$ 的图象．由 $f(3x)=3f(x)$ 知，把 $[1,3)$ 上的图象横向放大 $3$ 倍、纵向放大 $3$ 倍，即得 $[3,9)$ 上的图象，如此反复．\n当 $a\\in(1,3)$ 时，利用对称性依次有：\n$x_{1}+x_{2}=2\\times6=12$，\n$x_{3}+x_{4}=2\\times18=12\\times3$，\n$\\cdots\\cdots$\n$x_{2n-1}+x_{2n}=2\\times2\\times3^{n}=4\\cdot3^{n}$．\n于是 $x_{1}+x_{2}+\\cdots+x_{2n}=4\\left(3+3^{2}+\\cdots+3^{n}\\right)=4\\times\\dfrac{3(1-3^{n})}{1-3}=6(3^{n}-1)$．\n故答案为：$3$；$6(3^{n}-1)$．",
+  "analysis": "（i）用 $f(3x)=3f(x)$ 迭代；（ii）数形结合，零点成对关于各段对称轴对称，配对后成等比数列求和。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-060"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-060-V1",
+  "review": "★ 提取文本作「f(x) = x - 1,1 ≤x ≤2, 3 - x,2 < x < 3, ②f(3x) = 3f(x)」，分段的两个式子与区间界限全部塌成一行。由详解「(i) $f(6)=3f(2)=3$」「(ii) $x_1+x_2=2\\times6=12$，$x_3+x_4=2\\times18$，…，$x_{2n-1}+x_{2n}=2\\times2\\times3^n$」还原。\n**数值校验**：$a=2$ 时，零点应在 $[3,6)$ 上有两个（$f(x)=2$ → $x-2$ 型…），按公式 $n=1$ 得 $x_1+x_2=6(3-1)=12$，与详解「$x_1+x_2=12$」一致；$n=2$ 得 $6(9-1)=48=12+36$，与「$12+36$」一致。\n**易错点**：等比求和的公比是 $3$ 不是 $3^2$——配对和 $x_{2k-1}+x_{2k}=4\\cdot3^{k}$，对 $k=1..n$ 求和才是 $6(3^n-1)$。",
+  "difficulty": 0.85,
+  "id": "M-H0239",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "填空题-单空题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "（i）用 $f(3x)=3f(x)$ 迭代；（ii）数形结合，零点成对关于各段对称轴对称，配对后成等比数列求和。",
+  "stem": [
+   "定义在 $(0,+\\infty)$ 上的函数 $f(x)$ 满足：\n① 当 $x\\in[1,3)$ 时，$f(x)=\\begin{cases}x-1, & 1\\leqslant x\\leqslant2,\\\\3-x, & 2<x<3;\\end{cases}$　② $f(3x)=3f(x)$．\n（i）$f(6)=$ \\underline{\\hspace{2em}}；\n（ii）若函数 $F(x)=f(x)-a$ 的零点从小到大依次记为 $x_{1},x_{2},\\cdots,x_{n},\\cdots$，则当 $a\\in(1,3)$ 时，$x_{1}+x_{2}+\\cdots+x_{2n-1}+x_{2n}=$ \\underline{\\hspace{3em}}．"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "填空",
+  "stem_text": "已知函数 $f(x)=\\begin{cases}|\\ln x|, & 0<x\\leqslant\\mathrm{e},\\\\f(2\\mathrm{e}-x), & \\mathrm{e}<x<2\\mathrm{e},\\end{cases}$函数 $F(x)=f(x)-ax$ 有 $2$ 个零点，则实数 $a$ 的取值范围是 \\underline{\\hspace{4em}}．",
+  "opts": [],
+  "answer": "$a>\\dfrac{1}{\\mathrm{e}}$ 或 $a=0$",
+  "solution": "$F(x)=f(x)-ax$ 有 $2$ 个零点，即 $y=f(x)$ 与直线 $y=ax$ 有 $2$ 个交点．由 $f(x)=f(2\\mathrm{e}-x)$ 知 $f$ 的图象关于直线 $x=\\mathrm{e}$ 对称，在 $(0,\\mathrm{e}]$ 上 $f(x)=|\\ln x|$，在 $(\\mathrm{e},2\\mathrm{e})$ 上为其对称部分．\n**当 $a=0$ 时**：$y=0$ 与 $y=f(x)$ 交于 $x=1$ 与 $x=2\\mathrm{e}-1$，恰 $2$ 个交点，成立．\n**当 $a\\ne0$ 时**：考查临界情形——直线与 $y=\\ln x$（$x>1$ 部分）相切．设切点为 $(x_{0},ax_{0})$，由导数几何意义得\n$\\begin{cases}\\dfrac{1}{x_{0}}=a,\\\\[4pt] \\ln x_{0}=ax_{0},\\end{cases}$解得 $x_{0}=\\mathrm{e}$，$a=\\dfrac{1}{\\mathrm{e}}$．\n数形结合：当 $a>\\dfrac{1}{\\mathrm{e}}$ 时，直线斜率大于切线斜率，与 $f$ 的两支各有 $1$ 个交点，共 $2$ 个；当 $0<a<\\dfrac{1}{\\mathrm{e}}$ 时，直线与左支另有交点，交点数多于 $2$ 个；当 $a<0$ 时，直线向下倾斜，与 $f$ 只有 $1$ 个交点．\n综上，$a>\\dfrac{1}{\\mathrm{e}}$ 或 $a=0$．",
+  "analysis": "$F$ 有 $2$ 个零点 $\\iff$ $y=f(x)$ 与 $y=ax$ 有 $2$ 个交点；$f$ 的图象关于 $x=\\mathrm{e}$ 对称，分 $a=0$ 与 $a\\ne0$ 讨论，$a\\ne0$ 时找切线临界。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-060"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-060-V2",
+  "review": "★ 提取文本作「已知函数f x  = lnx  ，0 < x ≤e f 2e - x  ，e < x < 2e  」，分段归属与界限全丢，且 $|\\ln x|$ 的绝对值竖线丢失（PMExtra 私用区，dump_pdf 已确认码位 U+F0F4）。由详解「函数 $\\begin{cases}\\ln|x|,&0<x\\le\\mathrm{e}\\\\a=\\frac1{\\mathrm{e}},&\\mathrm{e}<x<2\\mathrm{e}\\end{cases}$ 的图象关于 $x=\\mathrm{e}$ 对称」与「当斜率为零即 $a=0$ 时有两个交点」「相切时 $a=\\frac1{\\mathrm{e}}$」还原。\n**答案为什么是「或」不是区间**：$a=0$ 是孤立的成立点，$0<a\\le\\frac1{\\mathrm{e}}$ 时交点数不是 $2$。原书写成「$a>\\frac1{\\mathrm{e}}$ 或 $a=0$」正是这个原因，不能合并成区间。\n**数值校验**：$a=\\frac1{\\mathrm{e}}\\approx0.3679$ 是切线临界；$a=0.5>\\frac1{\\mathrm{e}}$ 时 $y=0.5x$ 与 $f$ 恰 $2$ 个交点，符合。",
+  "difficulty": 0.8,
+  "id": "M-H0240",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "填空题-单空题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "$F$ 有 $2$ 个零点 $\\iff$ $y=f(x)$ 与 $y=ax$ 有 $2$ 个交点；$f$ 的图象关于 $x=\\mathrm{e}$ 对称，分 $a=0$ 与 $a\\ne0$ 讨论，$a\\ne0$ 时找切线临界。",
+  "stem": [
+   "已知函数 $f(x)=\\begin{cases}|\\ln x|, & 0<x\\leqslant\\mathrm{e},\\\\f(2\\mathrm{e}-x), & \\mathrm{e}<x<2\\mathrm{e},\\end{cases}$函数 $F(x)=f(x)-ax$ 有 $2$ 个零点，则实数 $a$ 的取值范围是 \\underline{\\hspace{4em}}．"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "填空",
+  "stem_text": "对于函数 $f(x)=\\begin{cases}\\sin\\pi x, & x\\in[0,2],\\\\\\dfrac12 f(x-2), & x\\in(2,+\\infty),\\end{cases}$下列 $5$ 个结论正确的是 \\underline{\\hspace{4em}}（把你认为正确的答案全部写上）．\n（1）任取 $x_{1},x_{2}\\in[0,+\\infty)$，都有 $|f(x_{1})-f(x_{2})|\\leqslant2$；\n（2）函数 $y=f(x)$ 在 $[4,5]$ 上单调递增；\n（3）$f(x)=2^{k}f(x+2k)$（$k\\in\\mathbb N^{*}$），对一切 $x\\in[0,+\\infty)$ 恒成立；\n（4）函数 $y=f(x)-\\ln(x-1)$ 有 $3$ 个零点；\n（5）若关于 $x$ 的方程 $f(x)=m$（$m<0$）有且只有两个不同的实根 $x_{1},x_{2}$，则 $x_{1}+x_{2}=3$．",
+  "opts": [],
+  "answer": "（1）（4）（5）",
+  "solution": "由 $f(x)=\\dfrac12 f(x-2)$（$x>2$）知，$[2,4]$ 上的图象是 $[0,2]$ 上右移 $2$、纵向减半，如此逐段衰减．\n**（1）** 由图象 $f_{\\max}=1$、$f_{\\min}=-1$，故任取 $x_{1},x_{2}\\in[0,+\\infty)$ 都有 $|f(x_{1})-f(x_{2})|\\leqslant|f_{\\max}-f_{\\min}|=2$，**正确**；\n**（2）** $f$ 在 $[4,5]$ 上对应 $\\sin\\pi(x-4)$ 的半周期形状，先增后减，**错误**；\n**（3）** 由 $f(x+2k)=\\left(\\dfrac12\\right)^{k}f(x)$ 得 $f(x)=2^{k}f(x+2k)$——注意 $x\\in[0,2]$ 时才成立，对一切 $x\\in[0,+\\infty)$ 不成立（$x>2$ 时递推层数不同），**错误**；\n**（4）** 在同一坐标系中作出 $f(x)$ 与 $y=\\ln(x-1)$ 的图象，两者有 $3$ 个不同公共点，即 $y=f(x)-\\ln(x-1)$ 有 $3$ 个零点，**正确**；\n**（5）** $f(x)=m$（$m<0$）有且只有两个实根，由图象知当且仅当 $-1<m<-\\dfrac12$ 时成立，且此时两根 $x_{1},x_{2}$ 关于 $x=\\dfrac32$ 对称，即 $x_{1}+x_{2}=3$，**正确**．\n故填（1）（4）（5）．",
+  "analysis": "由 $f(x)=\\frac12 f(x-2)$ 知图象逐段减半（放大镜函数）；逐条判断：(1) 用最值；(2) 看 $[4,5]$ 上 $f$ 的形状；(3) 系数方向反了；(4)(5) 数形结合。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-060"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-060-V3",
+  "review": "★ 提取文本作「f x  = sinπx,x ∈0,2  1 2 f x - 2  ,x ∈2,+∞  」，分段与系数 $\\frac12$ 全部塌成平文本。由详解「$f(x)=\\begin{cases}\\sin\\pi x,&x\\in[0,2]\\\\\\frac12 f(x-2),&x\\in(2,+\\infty)\\end{cases}$」还原。\n**（3）是最容易判错的一条**：详解给的式子是 $f(x+2k)=(\\frac12)^k f(x)$（当 $x\\in[0,2]$），反过来写成 $f(x)=2^k f(x+2k)$ 后，**它只在 $x\\in[0,2]$ 时成立，不能说对一切 $x\\in[0,+\\infty)$ 成立**，故判错误。题干里「对一切 $x\\in[0,+\\infty)$ 恒成立」这个限定词是判错的依据。\n（5）中 $-1<m<-\\frac12$ 这一条件来自详解「由图象可知当且仅当 $-1<m<-\\frac12$ 时」；两根关于 $x=\\frac32$ 对称亦出自详解「$x_1,x_2$ 关于 $\\frac32$ 对称，即 $x_1+x_2=3$」。",
+  "difficulty": 0.85,
+  "id": "M-H0241",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "填空题-单空题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "由 $f(x)=\\frac12 f(x-2)$ 知图象逐段减半（放大镜函数）；逐条判断：(1) 用最值；(2) 看 $[4,5]$ 上 $f$ 的形状；(3) 系数方向反了；(4)(5) 数形结合。",
+  "stem": [
+   "对于函数 $f(x)=\\begin{cases}\\sin\\pi x, & x\\in[0,2],\\\\\\dfrac12 f(x-2), & x\\in(2,+\\infty),\\end{cases}$下列 $5$ 个结论正确的是 \\underline{\\hspace{4em}}（把你认为正确的答案全部写上）．\n（1）任取 $x_{1},x_{2}\\in[0,+\\infty)$，都有 $|f(x_{1})-f(x_{2})|\\leqslant2$；\n（2）函数 $y=f(x)$ 在 $[4,5]$ 上单调递增；\n（3）$f(x)=2^{k}f(x+2k)$（$k\\in\\mathbb N^{*}$），对一切 $x\\in[0,+\\infty)$ 恒成立；\n（4）函数 $y=f(x)-\\ln(x-1)$ 有 $3$ 个零点；\n（5）若关于 $x$ 的方程 $f(x)=m$（$m<0$）有且只有两个不同的实根 $x_{1},x_{2}$，则 $x_{1}+x_{2}=3$．"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知函数 $f(x)=\\begin{cases}x^{2}-mx, & x\\geqslant0,\\\\x^{2}-2x, & x<0,\\end{cases}$若关于 $x$ 的方程 $f(x)+f(-x)+2=0$ 有且仅有四个互不相等的实根，则实数 $m$ 的取值范围是（　　）",
+  "opts": [
+   [
+    "A",
+    "$(-\\infty,7]$"
+   ],
+   [
+    "B",
+    "$(6,+\\infty)$"
+   ],
+   [
+    "C",
+    "$(2,+\\infty)$"
+   ],
+   [
+    "D",
+    "$[8,+\\infty)$"
+   ]
+  ],
+  "answer": "B",
+  "solution": "**当 $x\\geqslant0$ 时**：$f(x)=x^{2}-mx$，$f(-x)=(-x)^{2}-2(-x)=x^{2}+2x$，方程化为 $x^{2}-mx+x^{2}+2x+2=0$．\n$x=0$ 时得 $2=0$，不成立，故 $x>0$，此时 $m=\\dfrac{2x^{2}+2x+2}{x}=2x+\\dfrac{2}{x}+2$．\n**当 $x<0$ 时**：$f(x)=x^{2}-2x$，$f(-x)=(-x)^{2}-m(-x)=x^{2}+mx$，方程化为 $2x^{2}+(m-2)x+2=0$，即 $m=-2x-\\dfrac{2}{x}+2$．\n记 $g(x)=\\begin{cases}2x+\\dfrac{2}{x}+2, & x>0,\\\\[6pt]-2x-\\dfrac{2}{x}+2, & x<0,\\end{cases}$由 $g(-x)=g(x)$ 知 $g$ 为偶函数．\n原方程有且仅有四个互不相等的实根 $\\iff$ $y=g(x)$ 与 $y=m$ 有四个不同交点．由偶函数性只需看 $x>0$：\n$g(x)=2x+\\dfrac{2}{x}+2\\geqslant2\\sqrt{2x\\cdot\\dfrac{2}{x}}+2=4+2=6$，等号在 $x=1$ 处取到；且 $x\\to0^{+}$ 与 $x\\to+\\infty$ 时 $g(x)\\to+\\infty$．\n故 $x>0$ 上：当 $m>6$ 时有两个交点，$m=6$ 时一个，$m<6$ 时无．由偶对称性，$m>6$ 时共 $2\\times2=4$ 个交点．\n所以 $m\\in(6,+\\infty)$，故选 B．",
+  "analysis": "分 $x>0$、$x<0$ 把方程化为 $m=g(x)$，$g$ 是偶函数；问题变成 $y=g(x)$ 与 $y=m$ 有四个交点。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-061"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-061-E1",
+  "review": "★ 提取文本作「f(x) = x2- mx, x ≥0 x2- 2x, x < 0 」，分段大括号与归属全丢，两段式子连在一起。由详解「当 $x\\ge0$ 时…$m=2x+\\frac2x+2$；当 $x<0$ 时…$m=-2x-\\frac2x+2$」反推确认分段结构。\n**数值校验**：$g(x)=2x+\\frac2x+2$ 在 $x=1$ 取最小值 $6$；$m=7$ 时 $2x+\\frac2x+2=7$ → $2x^2-5x+2=0$ → $x=2$ 或 $0.5$，$x>0$ 两个解，由偶性共 $4$ 个，与答案 B 吻合；$m=6$ 时只有 $x=1$ 与 $x=-1$ 两个，不足四个。\n**关键陷阱**：$x=0$ 时方程化为 $2=0$ 恒不成立，必须先把 $x=0$ 排除再除 $x$；漏掉这步会误认为 $x=0$ 也是根。",
+  "difficulty": 0.75,
+  "id": "M-H0242",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "分 $x>0$、$x<0$ 把方程化为 $m=g(x)$，$g$ 是偶函数；问题变成 $y=g(x)$ 与 $y=m$ 有四个交点。",
+  "stem": [
+   "已知函数 $f(x)=\\begin{cases}x^{2}-mx, & x\\geqslant0,\\\\x^{2}-2x, & x<0,\\end{cases}$若关于 $x$ 的方程 $f(x)+f(-x)+2=0$ 有且仅有四个互不相等的实根，则实数 $m$ 的取值范围是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "设函数 $f(x)=\\begin{cases}x, & -1<x\\leqslant0,\\\\[4pt]\\dfrac{1}{f(x-1)}+1, & 0<x<1,\\end{cases}$若方程 $f(x)=2t$ 在区间 $(-1,1)$ 内有且仅有两个根，则实数 $t$ 的取值范围是（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\left(-\\dfrac12,+\\infty\\right)$"
+   ],
+   [
+    "B",
+    "$(-\\infty,0)$"
+   ],
+   [
+    "C",
+    "$\\left(-\\dfrac12,0\\right)$"
+   ],
+   [
+    "D",
+    "$\\left[-\\dfrac12,0\\right)$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "当 $0<x<1$ 时，$-1<x-1<0$，故 $f(x-1)=x-1$，于是 $f(x)=\\dfrac{1}{f(x-1)}+1=\\dfrac{1}{x-1}+1$．\n所以 $f(x)=\\begin{cases}x, & -1<x\\leqslant0,\\\\[6pt]\\dfrac{1}{x-1}+1, & 0<x<1.\\end{cases}$\n$x\\in(-1,0]$ 时 $f(x)=x\\in(-1,0]$；$x\\in(0,1)$ 时 $x-1\\in(-1,0)$，$\\dfrac{1}{x-1}\\in(-\\infty,-1)$，故 $f(x)=\\dfrac{1}{x-1}+1\\in(-\\infty,0)$，且随 $x$ 增大而递减．\n方程 $f(x)=2t$ 在 $(-1,1)$ 内恰有两个根，即 $y=f(x)$ 与直线 $y=2t$ 在 $(-1,1)$ 内恰有两个公共点．\n由图象（左段从 $-1$ 升到 $0$，右段从 $0$ 降到 $-\\infty$）知，当且仅当 $-1<2t<0$ 时恰有两个公共点，即 $-\\dfrac12<t<0$．\n故选 C．",
+  "analysis": "先把 $0<x<1$ 段的解析式化出来：此时 $x-1\\in(-1,0)$，故 $f(x-1)=x-1$，从而 $f(x)=\\dfrac{1}{x-1}+1$；再数形结合。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-061"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-061-V1",
+  "review": "★ 提取文本作「f x  = x, -1 < x ≤0 1 f x - 1  + 1, , 0 < x < 1 」，分式的分子「1」被挤到行首，与「f(x-1)+1」分离，极易误读成 $f(x)=\\frac{1}{f(x-1)+1}$ 或 $f(x-1)+1$。由详解「若 $0<x<1$，则 $-1<x-1<0$，所以 $f(x-1)=x-1$，故 $f(x)=\\frac{1}{f(x-1)}+1=\\frac{1}{x-1}+1$」确认是 $f(x)=\\dfrac{1}{f(x-1)}+1$。\n**数值校验**：$t=-0.25$（在 C 内）时 $2t=-0.5$，左段 $x=-0.5$ 一个根；右段 $\\frac1{x-1}+1=-0.5$ → $\\frac1{x-1}=-1.5$ → $x-1=-\\frac23$ → $x=\\frac13$，一个根；共 $2$ 个 ✓。$t=0$ 时 $2t=0$：左段 $x=0$，右段无解（$f<0$），只有 $1$ 个，故 D 的闭区间不对。\n**易错点**：$t=-\\frac12$ 时 $2t=-1$，左段 $x=-1$ 不在开区间 $(-1,1)$ 内，只剩右段一个根，所以左端是开区间。",
+  "difficulty": 0.7,
+  "id": "M-H0243",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "先把 $0<x<1$ 段的解析式化出来：此时 $x-1\\in(-1,0)$，故 $f(x-1)=x-1$，从而 $f(x)=\\dfrac{1}{x-1}+1$；再数形结合。",
+  "stem": [
+   "设函数 $f(x)=\\begin{cases}x, & -1<x\\leqslant0,\\\\[4pt]\\dfrac{1}{f(x-1)}+1, & 0<x<1,\\end{cases}$若方程 $f(x)=2t$ 在区间 $(-1,1)$ 内有且仅有两个根，则实数 $t$ 的取值范围是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "填空",
+  "stem_text": "已知函数 $f(x)=\\begin{cases}3-4x, & x\\leqslant0,\\\\x^{2}-x+2, & x>0,\\end{cases}$若关于 $x$ 的方程 $2f(x)-f(-x)-k=0$ 有且只有 $3$ 个实数根，则实数 $k$ 的取值范围是 \\underline{\\hspace{5em}}．",
+  "opts": [],
+  "answer": "$\\left(-\\dfrac72,1\\right)\\cup\\{3\\}\\cup\\left(4,\\dfrac{97}{4}\\right)$",
+  "solution": "方程 $2f(x)-f(-x)-k=0$ 有且只有 $3$ 个实根 $\\iff$ $y=h(x)$ 与 $y=k$ 恰有 $3$ 个交点，其中 $h(x)=2f(x)-f(-x)$．\n**当 $x<0$ 时**：$-x>0$，$f(x)=3-4x$，$f(-x)=(-x)^{2}-(-x)+2=x^{2}+x+2$，\n$h(x)=2(3-4x)-(x^{2}+x+2)=-x^{2}-9x+4=-\\left(x+\\dfrac92\\right)^{2}+\\dfrac{97}{4}$；\n**当 $x=0$ 时**：$h(0)=2f(0)-f(0)=2\\times3-3=3$；\n**当 $x>0$ 时**：$-x<0$，$f(x)=x^{2}-x+2$，$f(-x)=3-4(-x)=3+4x$，\n$h(x)=2(x^{2}-x+2)-(3+4x)=2x^{2}-6x+1=2\\left(x-\\dfrac32\\right)^{2}-\\dfrac72$．\n于是 $h(x)=\\begin{cases}-\\left(x+\\dfrac92\\right)^{2}+\\dfrac{97}{4}, & x<0,\\\\[6pt]3, & x=0,\\\\[4pt]2\\left(x-\\dfrac32\\right)^{2}-\\dfrac72, & x>0.\\end{cases}$\n各段值域：左段在 $x=-\\dfrac92$ 取最大值 $\\dfrac{97}{4}$，$x\\to0^{-}$ 时趋于 $4$，$x\\to-\\infty$ 时趋于 $-\\infty$；右段在 $x=\\dfrac32$ 取最小值 $-\\dfrac72$，$x\\to0^{+}$ 时趋于 $1$，$x\\to+\\infty$ 时趋于 $+\\infty$．\n数形结合，$y=k$ 与 $y=h(x)$ 恰有 $3$ 个交点当且仅当：\n① $-\\dfrac72<k<1$：右段 $2$ 个、左段 $1$ 个，共 $3$ 个；\n② $k=3$：左段 $1$ 个（$x=\\frac{-9-\\sqrt{85}}{2}$）、$x=0$ 处 $1$ 个、右段 $1$ 个，共 $3$ 个；\n③ $4<k<\\dfrac{97}{4}$：左段 $2$ 个、右段 $1$ 个，共 $3$ 个．\n综上，$k\\in\\left(-\\dfrac72,1\\right)\\cup\\{3\\}\\cup\\left(4,\\dfrac{97}{4}\\right)$．",
+  "analysis": "设 $h(x)=2f(x)-f(-x)$，问题化为 $y=h(x)$ 与 $y=k$ 恰有 $3$ 个交点；分 $x<0$、$x=0$、$x>0$ 三段求出 $h$ 的分段表达式。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-061"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-061-V2",
+  "review": "★ 提取文本作「f x  = 3 - 4x,x ≤0, x2- x + 2,x > 0, 」，分段全塌。由详解逐段求 $h(x)$ 的过程反推确认。\n**数值校验**（逐段解方程验证交点数）：\n$k=0\\in(-\\frac72,1)$：右段 $2x^2-6x+1=0$ → $x=\\frac{3\\pm\\sqrt7}{2}$，两根均 $>0$ ✓；左段 $-x^2-9x+4=0$ → $x=\\frac{-9\\pm\\sqrt{97}}{2}$，$\\frac{-9+\\sqrt{97}}{2}\\approx0.42>0$（舍）、$\\frac{-9-\\sqrt{97}}{2}\\approx-9.42<0$ ✓；共 $3$ 个 ✓。\n$k=3$：左段 $-x^2-9x+4=3$ → $x^2+9x-1=0$ → $x=\\frac{-9\\pm\\sqrt{85}}{2}$，取 $-9.11$ ✓（$0.11$ 舍）；$x=0$ 处 $h=3$ ✓；右段 $2x^2-6x+1=3$ → $x=\\frac{3\\pm\\sqrt{13}}{2}$，取 $3.303$ ✓；共 $3$ 个 ✓。\n$k=5\\in(4,\\frac{97}4)$：左段 $-x^2-9x+4=5$ → $x^2+9x+1=0$ → $x=\\frac{-9\\pm\\sqrt{77}}{2}$，两根均 $<0$ ✓；右段 $2x^2-6x+1=5$ → $x=\\frac{3\\pm\\sqrt{17}}{2}$，取 $\\frac{3+4.123}2=3.56>0$ ✓；共 $3$ 个 ✓。\n**为什么 $k=4$ 不在内**：左段 $x\\to0^-$ 时 $h\\to4$ 但取不到，右段 $k=4$ 有 $1$ 个、左段只有 $1$ 个（另一根趋于 $0$），共 $2$ 个。",
+  "difficulty": 0.85,
+  "id": "M-H0244",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "填空题-单空题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "设 $h(x)=2f(x)-f(-x)$，问题化为 $y=h(x)$ 与 $y=k$ 恰有 $3$ 个交点；分 $x<0$、$x=0$、$x>0$ 三段求出 $h$ 的分段表达式。",
+  "stem": [
+   "已知函数 $f(x)=\\begin{cases}3-4x, & x\\leqslant0,\\\\x^{2}-x+2, & x>0,\\end{cases}$若关于 $x$ 的方程 $2f(x)-f(-x)-k=0$ 有且只有 $3$ 个实数根，则实数 $k$ 的取值范围是 \\underline{\\hspace{5em}}．"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "填空",
+  "stem_text": "已知函数 $y=f(x)$ 对于 $x\\in\\mathbb R$ 恒有 $f(2-x)+f(x)=2$，若 $f(x)$ 与函数 $g(x)=\\dfrac{x}{x-1}$ 的图象的交点为 $(x_{1},y_{1}),(x_{2},y_{2}),\\cdots,(x_{n},y_{n})$，则 $(x_{1}+y_{1})+(x_{2}+y_{2})+\\cdots+(x_{n}+y_{n})=$ \\underline{\\hspace{3em}}．",
+  "opts": [],
+  "answer": "$2n$",
+  "solution": "由 $f(2-x)+f(x)=2$，把 $x$ 换成 $2-x$ 得 $f(x)+f(2-x)=2$，说明若 $(x,f(x))$ 在图象上，则 $(2-x,\\,2-f(x))$ 也在图象上，即 $y=f(x)$ 的图象关于点 $(1,1)$ 中心对称．\n又 $g(x)=\\dfrac{x}{x-1}=1+\\dfrac{1}{x-1}$，把 $x$ 换成 $2-x$ 得 $g(2-x)=1+\\dfrac{1}{1-x}=1-\\dfrac{1}{x-1}=2-g(x)$，即 $g(2-x)+g(x)=2$，故 $y=g(x)$ 的图象也关于点 $(1,1)$ 中心对称．\n于是当 $(x_{i},y_{i})$ 是两图象的交点时，$(2-x_{i},\\,2-y_{i})$ 也是交点，交点关于 $(1,1)$ 成对对称．\n因此 $\\sum\\limits_{i=1}^{n}x_{i}=\\dfrac{n}{2}\\times2=n$（每对横坐标之和为 $2$），同理 $\\sum\\limits_{i=1}^{n}y_{i}=n$．\n故 $(x_{1}+y_{1})+\\cdots+(x_{n}+y_{n})=n+n=2n$．",
+  "analysis": "两个函数的图象都关于点 $(1,1)$ 中心对称，故交点成对关于 $(1,1)$ 对称；配对求和即可，不必知道有几个交点。",
+  "kp": "函数与导数",
+  "kp2": "零点与图像交点",
+  "topics": [
+   "M-T-061"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-061-V3",
+  "review": "★ 提取文本作「g(x) = x x - 1 的图像的点交为(x,y),(x,y)...」，分式 $g(x)=\\frac{x}{x-1}$ 塌成「x x - 1」，与 $g(x)=x(x-1)$、$g(x)=\\frac{x}{x}-1$ 等无法区分。由详解「$g(x)=\\frac{x}{x-1}=1+\\frac{1}{x-1}$ 的图象关于点 $(1,1)$ 对称」确认为 $\\dfrac{x}{x-1}$。\n**这题的精巧之处**：不需要求出交点个数 $n$，只用对称性就能得出答案为 $2n$。若去解 $f(x)=\\frac{x}{x-1}$ 就走偏了——$f$ 的具体形式并未给出。\n**注**：$n$ 必为偶数（交点成对），除非有交点恰为对称中心 $(1,1)$；但 $x=1$ 时 $g$ 无定义，故交点不可能是 $(1,1)$，$n$ 为偶数。",
+  "difficulty": 0.7,
+  "id": "M-H0245",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第15批",
+  "smark": "",
+  "subtype": "填空题-单空题",
+  "kp_list": [
+   "函数与导数",
+   "零点与图像交点"
+  ],
+  "ana_text": "两个函数的图象都关于点 $(1,1)$ 中心对称，故交点成对关于 $(1,1)$ 对称；配对求和即可，不必知道有几个交点。",
+  "stem": [
+   "已知函数 $y=f(x)$ 对于 $x\\in\\mathbb R$ 恒有 $f(2-x)+f(x)=2$，若 $f(x)$ 与函数 $g(x)=\\dfrac{x}{x-1}$ 的图象的交点为 $(x_{1},y_{1}),(x_{2},y_{2}),\\cdots,(x_{n},y_{n})$，则 $(x_{1}+y_{1})+(x_{2}+y_{2})+\\cdots+(x_{n}+y_{n})=$ \\underline{\\hspace{3em}}．"
+  ]
  }
 ]
