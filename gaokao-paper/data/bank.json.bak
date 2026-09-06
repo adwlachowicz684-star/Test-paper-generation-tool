@@ -8489,5 +8489,1034 @@
   "stem": [
    "若 $a=0.5^{0.6}$，$b=0.6^{0.5}$，$c=\\log_{9}3$，则 $a,b,c$ 的大小关系是（　　）"
   ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知实数 $a,b,c$ 满足 $a=6^{\\frac13}$，$b=\\log_{2}3+\\log_{6}4$，$5^{b}+12^{b}=13^{c}$，则 $a,b,c$ 的关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$b>a>c$"
+   ],
+   [
+    "B",
+    "$c>b>a$"
+   ],
+   [
+    "C",
+    "$b>c>a$"
+   ],
+   [
+    "D",
+    "$c>a>b$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "$a=6^{\\frac13}<8^{\\frac13}=2$，故 $a<2$．\n由换底 $\\log_{6}4=\\dfrac{\\log_{2}4}{\\log_{2}6}=\\dfrac{2}{1+\\log_{2}3}$，令 $t=\\log_{2}3$，则\n$b-2=t+\\dfrac{2}{1+t}-2=\\dfrac{t^{2}-t}{1+t}=\\dfrac{t(t-1)}{1+t}>0$（因 $t>1$），故 $b>2$．\n由 $13^{c}=5^{b}+12^{b}>5^{2}+12^{2}=13^{2}$ 得 $c>2$；\n又 $13^{c}-13^{b}=5^{b}+12^{b}-13^{b}$\n$=5^{2}\\cdot5^{b-2}+12^{2}\\cdot12^{b-2}-13^{2}\\cdot13^{b-2}$\n$<5^{2}\\cdot12^{b-2}+12^{2}\\cdot12^{b-2}-13^{2}\\cdot13^{b-2}$\n$=13^{2}\\left(12^{b-2}-13^{b-2}\\right)<0$，故 $c<b$．\n综上 $b>c>a$，故选 C．",
+  "analysis": "$a$ 直接估算；$b$ 用作差法证 $b>2$；$b,c$ 用 $13^{c}-13^{b}$ 判正负。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-039"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-039-E1",
+  "review": "★ 提取文本作「a = 61,b = log3 + log4,5b+ 12b= 13c」，$6^{1/3}$ 的指数、$\\log_64$ 的底数全丢，且把 $13^{c}$ 误写成 $13c$。按详解的作差结构还原。数值校验：$a\\approx1.8171$、$b\\approx2.3587$、由 $5^b+12^b\\approx395.3$ 得 $c\\approx2.331$，顺序 $b>c>a$ 与答案 C 一致。",
+  "difficulty": 0.7,
+  "id": "M-H0209",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "$a$ 直接估算；$b$ 用作差法证 $b>2$；$b,c$ 用 $13^{c}-13^{b}$ 判正负。",
+  "stem": [
+   "已知实数 $a,b,c$ 满足 $a=6^{\\frac13}$，$b=\\log_{2}3+\\log_{6}4$，$5^{b}+12^{b}=13^{c}$，则 $a,b,c$ 的关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a=0.8^{-0.4}$，$b=\\log_{5}3$，$c=\\log_{8}5$，则（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<b<c$"
+   ],
+   [
+    "B",
+    "$b<c<a$"
+   ],
+   [
+    "C",
+    "$c<b<a$"
+   ],
+   [
+    "D",
+    "$a<c<b$"
+   ]
+  ],
+  "answer": "B",
+  "solution": "作商并换底：\n$\\dfrac{b}{c}=\\dfrac{\\log_{5}3}{\\log_{8}5}=\\dfrac{\\ln3\\cdot\\ln8}{\\ln^{2}5}<\\dfrac{\\left(\\dfrac{\\ln3+\\ln8}{2}\\right)^{2}}{\\ln^{2}5}=\\dfrac{\\ln^{2}24}{4\\ln^{2}5}<\\dfrac{\\ln^{2}25}{4\\ln^{2}5}=1$，\n故 $b<c$（用到 $\\ln3\\ne\\ln8$，基本不等式取不到等号）．\n又 $c=\\log_{8}5<\\log_{8}8=1$，而 $a=0.8^{-0.4}>0.8^{0}=1$．\n综上 $b<c<a$，故选 B．",
+  "analysis": "$b,c$ 用作商法配基本不等式比较；$a$ 用指数性质直接得 $a>1>c$。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-039"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-039-V1",
+  "review": "★ 提取文本作「a = 0.8-0.4，b = log3，c = log5」，指数 $-0.4$ 与两个底数全丢。按详解的作商结构还原。数值校验：$a\\approx1.0933$、$b\\approx0.6826$、$c\\approx0.7740$，顺序 $b<c<a$ 与答案 B 吻合。",
+  "difficulty": 0.65,
+  "id": "M-H0210",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "$b,c$ 用作商法配基本不等式比较；$a$ 用指数性质直接得 $a>1>c$。",
+  "stem": [
+   "已知 $a=0.8^{-0.4}$，$b=\\log_{5}3$，$c=\\log_{8}5$，则（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a=5^{\\log_{2}3.4}$，$b=5^{\\log_{4}3.6}$，$c=5^{\\log_{3}\\frac{10}{3}}$，则（　　）",
+  "opts": [
+   [
+    "A",
+    "$a>b>c$"
+   ],
+   [
+    "B",
+    "$b>a>c$"
+   ],
+   [
+    "C",
+    "$a>c>b$"
+   ],
+   [
+    "D",
+    "$c>a>b$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "因底数 $5>1$，指数函数递增，故只需比较指数．\n$\\log_{2}3.4>\\log_{2}2=1$，$\\log_{4}3.6<\\log_{4}4=1$；\n再比较 $\\log_{2}3.4$ 与 $\\log_{3}\\dfrac{10}{3}$：\n$\\log_{2}3.4-\\log_{3}\\dfrac{10}{3}=\\dfrac{\\lg3.4}{\\lg2}-\\dfrac{\\lg\\frac{10}{3}}{\\lg3}=\\dfrac{\\lg3.4\\lg3-\\lg2\\lg\\frac{10}{3}}{\\lg2\\lg3}$，\n分子 $=\\lg3.4\\lg3-\\lg2(\\lg10-\\lg3)=(\\lg3.4+\\lg2)\\lg3-\\lg2\\lg10=\\lg6.8\\lg3-\\lg2>0$，\n故 $\\log_{2}3.4>\\log_{3}\\dfrac{10}{3}>1>\\log_{4}3.6$．\n所以 $a>c>b$，故选 C．",
+  "analysis": "底数同为 $5>1$，只需比较三个指数；用 $1$ 作中间值分出大小。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-039"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-039-V2",
+  "review": "★ 提取文本作「a = 5log23.4,b = 5log43.6,c = ()3」，第三个真数 $\\frac{10}{3}$ 被压成「3」而分数值完全丢失。按详解「$c=5^{\\log_3\\frac{10}{3}}$」与「$\\log_23.4>\\log_3\\frac{10}{3}>1>\\log_43.6$」反推确认。数值校验：$a\\approx17.15$、$b\\approx4.42$、$c\\approx5.83$，与答案 C 一致。",
+  "difficulty": 0.75,
+  "id": "M-H0211",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "底数同为 $5>1$，只需比较三个指数；用 $1$ 作中间值分出大小。",
+  "stem": [
+   "已知 $a=5^{\\log_{2}3.4}$，$b=5^{\\log_{4}3.6}$，$c=5^{\\log_{3}\\frac{10}{3}}$，则（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $3^{a}=6^{b}=10$，则 $2$，$ab$，$a+b$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$ab<a+b<2$"
+   ],
+   [
+    "B",
+    "$ab<2<a+b$"
+   ],
+   [
+    "C",
+    "$2<a+b<ab$"
+   ],
+   [
+    "D",
+    "$2<ab<a+b$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "由 $3^{a}=10$ 得 $a=\\log_{3}10>\\log_{3}9=2$；由 $6^{b}=10$ 得 $b=\\log_{6}10>\\log_{6}6=1$；故 $ab>2$．\n又由换底 $\\dfrac{1}{a}=\\lg3$，$\\dfrac{1}{b}=\\lg6$，于是\n$\\dfrac{a+b}{ab}=\\dfrac{1}{a}+\\dfrac{1}{b}=\\lg3+\\lg6=\\lg18>\\lg10=1$，\n故 $a+b>ab$．\n综上 $2<ab<a+b$，故选 D．",
+  "analysis": "化为对数后判 $ab>2$，再比较 $\\dfrac{a+b}{ab}$ 与 $1$。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-039"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-039-V3",
+  "review": "★ 提取文本作「已知3a= 6b= 10」，指数 $a,b$ 塌成与底数同行的平文本。按详解「$a=\\log_310$、$b=\\log_610$」还原。数值校验：$a\\approx2.0959$、$b\\approx1.2851$、$ab\\approx2.694$、$a+b\\approx3.381$，即 $2<ab<a+b$，与答案 D 吻合。",
+  "difficulty": 0.6,
+  "id": "M-H0212",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "化为对数后判 $ab>2$，再比较 $\\dfrac{a+b}{ab}$ 与 $1$。",
+  "stem": [
+   "已知 $3^{a}=6^{b}=10$，则 $2$，$ab$，$a+b$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $m=\\log_{4\\pi}\\pi$，$n=\\log_{4\\mathrm{e}}\\mathrm{e}$，$p=\\mathrm{e}^{-\\frac13}$，则 $m,n,p$ 的大小关系是（其中 $\\mathrm{e}$ 为自然对数的底数）（　　）",
+  "opts": [
+   [
+    "A",
+    "$p<n<m$"
+   ],
+   [
+    "B",
+    "$m<n<p$"
+   ],
+   [
+    "C",
+    "$n<m<p$"
+   ],
+   [
+    "D",
+    "$n<p<m$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "换底分离常数：\n$m=\\dfrac{\\lg\\pi}{\\lg4\\pi}=\\dfrac{\\lg\\pi}{\\lg4+\\lg\\pi}=1-\\dfrac{\\lg4}{\\lg4+\\lg\\pi}$，\n$n=\\dfrac{\\lg\\mathrm{e}}{\\lg4\\mathrm{e}}=\\dfrac{\\lg\\mathrm{e}}{\\lg4+\\lg\\mathrm{e}}=1-\\dfrac{\\lg4}{\\lg4+\\lg\\mathrm{e}}$．\n因 $\\lg4>\\lg\\pi>\\lg\\mathrm{e}>0$，有 $\\lg4+\\lg\\pi>\\lg4+\\lg\\mathrm{e}$，\n故 $\\dfrac{\\lg4}{\\lg4+\\lg\\pi}<\\dfrac{\\lg4}{\\lg4+\\lg\\mathrm{e}}$，从而 $m>n$．\n又 $m<\\dfrac12\\iff\\dfrac{\\lg4}{\\lg4+\\lg\\pi}>\\dfrac12\\iff\\lg4>\\lg\\pi\\iff4>\\pi$，成立；\n而 $p=\\mathrm{e}^{-\\frac13}=\\dfrac{1}{\\sqrt[3]{\\mathrm{e}}}>\\dfrac12$（因 $\\sqrt[3]{\\mathrm{e}}<2\\iff\\mathrm{e}<8$）．\n综上 $n<m<\\dfrac12<p$，即 $n<m<p$，故选 C．",
+  "analysis": "前两个用换底分离常数化为 $1-\\dfrac{\\lg4}{\\lg4+\\lg(\\cdot)}$，再与 $\\dfrac12$ 比较。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-040"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-040-E1",
+  "review": "★ 提取文本作「m = logπn = logep = e- 1」——底数 $4\\pi$、$4\\mathrm{e}$ 中的 $4$ 与真数分离，$p$ 的指数 $-\\frac13$ 被拆成「- 1」「3」两行。按详解的分离常数结构还原，并用 $m<\\frac12$ 这条（等价于 $4>\\pi$）确认自洽。数值校验：$m\\approx0.4523$、$n\\approx0.4191$、$p\\approx0.7165$，与答案 C 一致。",
+  "difficulty": 0.7,
+  "id": "M-H0213",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "前两个用换底分离常数化为 $1-\\dfrac{\\lg4}{\\lg4+\\lg(\\cdot)}$，再与 $\\dfrac12$ 比较。",
+  "stem": [
+   "已知 $m=\\log_{4\\pi}\\pi$，$n=\\log_{4\\mathrm{e}}\\mathrm{e}$，$p=\\mathrm{e}^{-\\frac13}$，则 $m,n,p$ 的大小关系是（其中 $\\mathrm{e}$ 为自然对数的底数）（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "$\\log_{2}3$、$\\log_{8}12$、$\\lg15$ 的大小关系为（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\log_{2}3<\\log_{8}12<\\lg15$"
+   ],
+   [
+    "B",
+    "$\\log_{8}12<\\lg15<\\log_{2}3$"
+   ],
+   [
+    "C",
+    "$\\log_{2}3>\\log_{8}12>\\lg15$"
+   ],
+   [
+    "D",
+    "$\\log_{8}12<\\log_{2}3<\\lg15$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "$\\log_{2}3=\\log_{2}\\!\\left(2\\cdot\\dfrac32\\right)=1+\\log_{2}\\dfrac32=1+\\dfrac{1}{\\log_{\\frac32}2}$；\n$\\log_{8}12=\\log_{8}\\!\\left(8\\cdot\\dfrac32\\right)=1+\\log_{8}\\dfrac32=1+\\dfrac{1}{\\log_{\\frac32}8}$；\n$\\lg15=\\lg\\!\\left(10\\cdot\\dfrac32\\right)=1+\\lg\\dfrac32=1+\\dfrac{1}{\\log_{\\frac32}10}$．\n因 $0<\\log_{\\frac32}2<\\log_{\\frac32}8<\\log_{\\frac32}10$，取倒数后不等号反向：\n$\\dfrac{1}{\\log_{\\frac32}2}>\\dfrac{1}{\\log_{\\frac32}8}>\\dfrac{1}{\\log_{\\frac32}10}$．\n故 $\\log_{2}3>\\log_{8}12>\\lg15$，故选 C．",
+  "analysis": "三个数都拆出真数因子 $\\dfrac32$，化成 $1+\\dfrac{1}{\\log_{\\frac32}(\\cdot)}$ 后比较。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-040"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-040-V1",
+  "review": "★ 提取文本作「log3 ､log12 ､lg15」后又跟「28」「82」，底数 $2$、$8$ 与真数分离错位。按详解「都提出真数因子 $\\frac32$」的分离常数结构还原为 $\\log_23$、$\\log_812$、$\\lg15$。数值校验：$\\log_23\\approx1.585$、$\\log_812\\approx1.195$、$\\lg15\\approx1.176$，与答案 C 吻合。",
+  "difficulty": 0.65,
+  "id": "M-H0214",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "三个数都拆出真数因子 $\\dfrac32$，化成 $1+\\dfrac{1}{\\log_{\\frac32}(\\cdot)}$ 后比较。",
+  "stem": [
+   "$\\log_{2}3$、$\\log_{8}12$、$\\lg15$ 的大小关系为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a>b>0$，$ab=1$，若 $x=\\dfrac{b}{2a}$，$y=\\log_{2}(a+b)$，$z=a+\\dfrac{1}{b}$，则 $\\log_{x}(3x)$，$\\log_{y}(3y)$，$\\log_{z}(3z)$ 的大小关系为（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\log_{x}(3x)>\\log_{y}(3y)>\\log_{z}(3z)$"
+   ],
+   [
+    "B",
+    "$\\log_{y}(3y)>\\log_{x}(3x)>\\log_{z}(3z)$"
+   ],
+   [
+    "C",
+    "$\\log_{x}(3x)>\\log_{z}(3z)>\\log_{y}(3y)$"
+   ],
+   [
+    "D",
+    "$\\log_{y}(3y)>\\log_{z}(3z)>\\log_{x}(3x)$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "由 $ab=1$ 且 $a>b>0$ 得 $a>1>b$，且 $b=\\dfrac{1}{a}$．\n$x=\\dfrac{b}{2a}=\\dfrac{1}{2a^{2}}$，由 $a>1$ 得 $0<x<\\dfrac12$；\n$y=\\log_{2}(a+b)=\\log_{2}\\!\\left(a+\\dfrac{1}{a}\\right)>\\log_{2}2=1$；\n$z=a+\\dfrac{1}{b}=a+a=2a>2$，故 $z>y$（把 $z$ 写成 $z=\\log_{2}2^{2a}=\\log_{2}4^{a}$，而 $a>1$ 时 $4^{a}>a+\\dfrac{1}{a}$）．\n于是 $0<x<1<y<z$．\n又 $\\log_{t}(3t)=1+\\log_{t}3=1+\\dfrac{1}{\\log_{3}t}$：\n$x<1$ 时 $\\log_{3}x<0$，故 $\\log_{x}(3x)<1$；\n$1<y<z$ 时 $\\log_{3}y<\\log_{3}z$，故 $\\dfrac{1}{\\log_{3}y}>\\dfrac{1}{\\log_{3}z}>0$，即 $\\log_{y}(3y)>\\log_{z}(3z)>1$．\n综上 $\\log_{y}(3y)>\\log_{z}(3z)>\\log_{x}(3x)$，故选 D．",
+  "analysis": "先界定 $0<x<\\frac12<1<y<z$，再用 $\\log_{t}(3t)=1+\\dfrac{1}{\\log_{3}t}$ 比较。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-040"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-040-V2",
+  "review": "★ 本题是这批里破碎最严重的一题：提取文本只剩「x = b 2a」「y = log2 a + b」「z = a + 1 b」，$x,y,z$ 三个复合式的分数线与底数全丢，且 $\\log_x(3x)$ 等三个待比较式的底数也丢成「logx 3x」。关键突破口在详解「$z=2a=\\log_2 4^a$」——它同时确认了 $z=a+\\frac1b=2a$（用到 $ab=1$）和比较 $y,z$ 时要把 $z$ 写成以 $2$ 为底的对数。据此反推 $x=\\frac{b}{2a}$、$y=\\log_2(a+b)$，与「$0<x<\\frac12$、$y>1$、$z>2$」三条全部自洽。数值校验（取 $a=2,\\ b=0.5$）：$x=0.125$、$y=\\log_2 2.5\\approx1.322$、$z=4$；$\\log_x(3x)\\approx-0.689$、$\\log_y(3y)\\approx5.04$、$\\log_z(3z)\\approx2.79$，与答案 D 一致。",
+  "difficulty": 0.8,
+  "id": "M-H0215",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "先界定 $0<x<\\frac12<1<y<z$，再用 $\\log_{t}(3t)=1+\\dfrac{1}{\\log_{3}t}$ 比较。",
+  "stem": [
+   "已知 $a>b>0$，$ab=1$，若 $x=\\dfrac{b}{2a}$，$y=\\log_{2}(a+b)$，$z=a+\\dfrac{1}{b}$，则 $\\log_{x}(3x)$，$\\log_{y}(3y)$，$\\log_{z}(3z)$ 的大小关系为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a=\\log_{3}15$，$b=\\log_{4}40$，$2^{c}=3$，则（　　）",
+  "opts": [
+   [
+    "A",
+    "$a>c>b$"
+   ],
+   [
+    "B",
+    "$c>a>b$"
+   ],
+   [
+    "C",
+    "$b>a>c$"
+   ],
+   [
+    "D",
+    "$a>b>c$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "由 $2^{c}=3$ 得 $c=\\log_{2}3$．三个数分离常数：\n$a=\\log_{3}15=\\log_{3}(3\\cdot5)=1+\\log_{3}5$；\n$b=\\log_{4}40=\\log_{4}(4\\cdot10)=1+\\log_{4}10$；\n$c=\\log_{2}3=\\log_{2}\\!\\left(2\\cdot\\dfrac32\\right)=1+\\log_{2}\\dfrac32$．\n因 $\\log_{3}5<\\log_{3}3\\sqrt3=\\dfrac32$（$3\\sqrt3\\approx5.196>5$），故 $a<1+\\dfrac32=\\dfrac52$；\n因 $\\log_{4}10>\\log_{4}8=\\dfrac32$，故 $b>\\dfrac52$；于是 $b>a$．\n又 $c=\\log_{2}3<\\log_{2}4=2<\\dfrac52$...更精确：$c<\\log_{3}15=a$ 等价于 $\\log_{2}3<1+\\log_{3}5$，直接估值 $c\\approx1.585<a\\approx2.465$，故 $a>c$．\n综上 $b>a>c$，故选 C．",
+  "analysis": "把 $c$ 用对数表示，三个数都分离出常数 $1$，再与 $\\dfrac32$ 比较。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-040"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-040-V3",
+  "review": "★ 提取文本作「a = log315，b = log440，2c= 3」，底数 $3$、$4$ 与真数同行无法区分，$2^{c}=3$ 的指数被压成 $2c$。按详解「$a=1+\\log_35$、$b=1+\\log_410$」的分离常数结构还原。数值校验：$a\\approx2.465$、$b\\approx2.661$、$c=\\log_23\\approx1.585$，顺序 $b>a>c$ 与答案 C 吻合。",
+  "difficulty": 0.7,
+  "id": "M-H0216",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第13批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "把 $c$ 用对数表示，三个数都分离出常数 $1$，再与 $\\dfrac32$ 比较。",
+  "stem": [
+   "已知 $a=\\log_{3}15$，$b=\\log_{4}40$，$2^{c}=3$，则（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "设 $a=\\dfrac{4-\\ln4}{\\mathrm{e}^{2}}$，$b=\\dfrac{1}{\\mathrm{e}}$，$c=\\dfrac{\\ln2}{2}$，则 $a,b,c$ 的大小关系为（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<c<b$"
+   ],
+   [
+    "B",
+    "$c<a<b$"
+   ],
+   [
+    "C",
+    "$a<b<c$"
+   ],
+   [
+    "D",
+    "$b<a<c$"
+   ]
+  ],
+  "answer": "B",
+  "solution": "设 $f(x)=\\dfrac{\\ln x}{x}$，则 $f'(x)=\\dfrac{1-\\ln x}{x^{2}}$．\n当 $x\\in(1,\\mathrm{e})$ 时 $f'(x)>0$，$f(x)$ 单调递增；当 $x\\in(\\mathrm{e},+\\infty)$ 时 $f'(x)<0$，$f(x)$ 单调递减．\n化形：\n$a=\\dfrac{4-\\ln4}{\\mathrm{e}^{2}}=\\dfrac{\\ln\\mathrm{e}^{4}-\\ln4}{\\mathrm{e}^{2}}=\\dfrac{\\ln\\frac{\\mathrm{e}^{4}}{4}}{\\mathrm{e}^{2}}=\\dfrac{2\\ln\\frac{\\mathrm{e}^{2}}{2}}{\\mathrm{e}^{2}}=\\dfrac{\\ln\\frac{\\mathrm{e}^{2}}{2}}{\\frac{\\mathrm{e}^{2}}{2}}=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{2}\\right)$；\n$b=\\dfrac{1}{\\mathrm{e}}=\\dfrac{\\ln\\mathrm{e}}{\\mathrm{e}}=f(\\mathrm{e})$；\n$c=\\dfrac{\\ln2}{2}=f(2)$，又 $\\dfrac{\\ln4}{4}=\\dfrac{2\\ln2}{4}=\\dfrac{\\ln2}{2}$，故 $c=f(4)$．\n由 $\\mathrm{e}<\\dfrac{\\mathrm{e}^{2}}{2}<4$（$\\mathrm{e}\\approx2.718$，$\\dfrac{\\mathrm{e}^{2}}{2}\\approx3.694$），且 $f$ 在 $(\\mathrm{e},+\\infty)$ 上递减，得 $f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{2}\\right)>f(4)$，即 $a>c$；\n又 $f(\\mathrm{e})$ 为最大值，故 $b>a$．\n综上 $b>a>c$，故选 B．",
+  "analysis": "构造 $f(x)=\\dfrac{\\ln x}{x}$，把三个数都化成 $f$ 的函数值：$a=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{2}\\right)$、$b=f(\\mathrm{e})$、$c=f(2)=f(4)$，再按单调性比较。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-041"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-041-E1",
+  "review": "★ 提取文本作「a = 4 - ln4 e2 」，分数线与 $\\mathrm{e}^2$ 的上标全丢。由详解「$a=f(\\frac{\\mathrm{e}^2}{2})$、$b=f(\\mathrm{e})$、$c=f(2)=f(4)$」与「$\\mathrm{e}<\\frac{\\mathrm{e}^2}{2}<4$」反推确认。数值校验：$a\\approx0.35373$、$b\\approx0.36788$、$c\\approx0.34657$，与答案 B 吻合。",
+  "difficulty": 0.7,
+  "id": "M-H0217",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "构造 $f(x)=\\dfrac{\\ln x}{x}$，把三个数都化成 $f$ 的函数值：$a=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{2}\\right)$、$b=f(\\mathrm{e})$、$c=f(2)=f(4)$，再按单调性比较。",
+  "stem": [
+   "设 $a=\\dfrac{4-\\ln4}{\\mathrm{e}^{2}}$，$b=\\dfrac{1}{\\mathrm{e}}$，$c=\\dfrac{\\ln2}{2}$，则 $a,b,c$ 的大小关系为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a=3\\pi\\ln2$，$b=2\\pi\\ln3$，$c=6\\ln\\pi$，则下列选项正确的是（　　）",
+  "opts": [
+   [
+    "A",
+    "$a>b>c$"
+   ],
+   [
+    "B",
+    "$c>a>b$"
+   ],
+   [
+    "C",
+    "$c>b>a$"
+   ],
+   [
+    "D",
+    "$b>c>a$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "因 $6\\pi>0$，比较 $a,b,c$ 等价于比较 $\\dfrac{a}{6\\pi}$、$\\dfrac{b}{6\\pi}$、$\\dfrac{c}{6\\pi}$：\n$\\dfrac{a}{6\\pi}=\\dfrac{3\\pi\\ln2}{6\\pi}=\\dfrac{\\ln2}{2}=f(2)$，\n$\\dfrac{b}{6\\pi}=\\dfrac{2\\pi\\ln3}{6\\pi}=\\dfrac{\\ln3}{3}=f(3)$，\n$\\dfrac{c}{6\\pi}=\\dfrac{6\\ln\\pi}{6\\pi}=\\dfrac{\\ln\\pi}{\\pi}=f(\\pi)$，其中 $f(x)=\\dfrac{\\ln x}{x}$．\n由 $f'(x)=\\dfrac{1-\\ln x}{x^{2}}$ 知 $f$ 在 $(\\mathrm{e},+\\infty)$ 上递减，而 $\\mathrm{e}<3<\\pi$，故 $f(3)>f(\\pi)$，即 $b>c$；\n又 $f(2)=f(4)$（$\\dfrac{\\ln4}{4}=\\dfrac{\\ln2}{2}$），且 $4>\\pi$，故 $f(\\pi)>f(4)=f(2)$，即 $c>a$．\n综上 $b>c>a$，故选 D．",
+  "analysis": "三个数同除以 $6\\pi$，转化为比较 $\\dfrac{\\ln2}{2}$、$\\dfrac{\\ln3}{3}$、$\\dfrac{\\ln\\pi}{\\pi}$。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-041"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-041-V1",
+  "review": "★ 提取文本作「a = 3ln2π，b = 2ln3π，c = 3lnπ2」，系数与真数错位，极易误读成 $3\\ln(2\\pi)$、$2\\ln(3\\pi)$、$3\\ln(\\pi^2)$。由详解「同除 $6\\pi$ 后转化为 $\\frac{\\ln2}{2}$、$\\frac{\\ln3}{3}$、$\\frac{\\ln\\pi}{\\pi}$」反推：$a=6\\pi\\cdot\\frac{\\ln2}{2}=3\\pi\\ln2$，$b=6\\pi\\cdot\\frac{\\ln3}{3}=2\\pi\\ln3$，$c=6\\pi\\cdot\\frac{\\ln\\pi}{\\pi}=6\\ln\\pi$。数值校验：$a\\approx6.5328$、$b\\approx6.9028$、$c\\approx6.8684$，与答案 D 一致。",
+  "difficulty": 0.7,
+  "id": "M-H0218",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "三个数同除以 $6\\pi$，转化为比较 $\\dfrac{\\ln2}{2}$、$\\dfrac{\\ln3}{3}$、$\\dfrac{\\ln\\pi}{\\pi}$。",
+  "stem": [
+   "已知 $a=3\\pi\\ln2$，$b=2\\pi\\ln3$，$c=6\\ln\\pi$，则下列选项正确的是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "以下四个数中，最大的是（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\dfrac{\\ln3}{3}$"
+   ],
+   [
+    "B",
+    "$\\dfrac{1}{\\mathrm{e}}$"
+   ],
+   [
+    "C",
+    "$\\dfrac{\\ln\\pi}{\\pi}$"
+   ],
+   [
+    "D",
+    "$\\dfrac{\\ln15}{15}$"
+   ]
+  ],
+  "answer": "B",
+  "solution": "设 $f(x)=\\dfrac{\\ln x}{x}$，则 $f'(x)=\\dfrac{1-\\ln x}{x^{2}}$．\n当 $0<x<\\mathrm{e}$ 时 $f'(x)>0$，$f$ 递增；当 $x>\\mathrm{e}$ 时 $f'(x)<0$，$f$ 递减，故 $f(\\mathrm{e})=\\dfrac{1}{\\mathrm{e}}$ 为最大值．\n四个数依次为 $f(3)$、$f(\\mathrm{e})$、$f(\\pi)$、$f(15)$，由 $\\mathrm{e}<3<\\pi<15$ 及 $f$ 在 $(\\mathrm{e},+\\infty)$ 上递减，得 $f(\\mathrm{e})>f(3)>f(\\pi)>f(15)$．\n故最大的是 $\\dfrac{1}{\\mathrm{e}}$，故选 B．",
+  "analysis": "四个数分别是 $f(3)$、$f(\\mathrm{e})$、$f(\\pi)$、$f(15)$，其中 $f(x)=\\dfrac{\\ln x}{x}$ 在 $x=\\mathrm{e}$ 处取最大值。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-041"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-041-V2",
+  "review": "★ 提取文本只剩「以下四个数中，最大的是」，四个选项的分数全部塌成平文本（ref_bank 中该题 stem 无选项内容）。由详解「$\\frac{1}{\\mathrm{e}}>\\frac{\\ln3}{3}>\\frac{\\ln\\pi}{\\pi}>\\frac{\\ln15}{15}$，故选 B」还原四个选项。数值校验：$\\frac{\\ln3}{3}\\approx0.36620$、$\\frac1{\\mathrm{e}}\\approx0.36788$、$\\frac{\\ln\\pi}{\\pi}\\approx0.36438$、$\\frac{\\ln15}{15}\\approx0.18054$，与答案 B 吻合。",
+  "difficulty": 0.65,
+  "id": "M-H0219",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "四个数分别是 $f(3)$、$f(\\mathrm{e})$、$f(\\pi)$、$f(15)$，其中 $f(x)=\\dfrac{\\ln x}{x}$ 在 $x=\\mathrm{e}$ 处取最大值。",
+  "stem": [
+   "以下四个数中，最大的是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "下列命题为真命题的个数是（　　）\n① $\\ln3<\\sqrt{3}\\ln2$； ② $\\ln\\pi<\\dfrac{\\pi}{\\mathrm{e}}$； ③ $2^{\\sqrt{15}}<15$； ④ $3\\mathrm{e}\\ln2<4\\sqrt{2}$",
+  "opts": [
+   [
+    "A",
+    "$1$ 个"
+   ],
+   [
+    "B",
+    "$2$ 个"
+   ],
+   [
+    "C",
+    "$3$ 个"
+   ],
+   [
+    "D",
+    "$4$ 个"
+   ]
+  ],
+  "answer": "C",
+  "solution": "设 $f(x)=\\dfrac{\\ln x}{x}$，则 $f'(x)=\\dfrac{1-\\ln x}{x^{2}}$．\n当 $0<x<\\mathrm{e}$ 时 $f'(x)>0$，$f$ 递增；当 $x>\\mathrm{e}$ 时 $f'(x)<0$，$f$ 递减，当 $x=\\mathrm{e}$ 时 $f$ 取最大值 $\\dfrac{1}{\\mathrm{e}}$．\n① $\\ln3<\\sqrt3\\ln2\\iff\\dfrac{\\ln3}{\\sqrt3}<\\ln2\\iff\\dfrac{\\ln\\sqrt3}{\\sqrt3}<\\dfrac{\\ln2}{2}\\iff f(\\sqrt3)<f(2)$；\n由 $\\sqrt3<2<\\mathrm{e}$ 且 $f$ 在 $(0,\\mathrm{e})$ 上递增，得 $f(\\sqrt3)<f(2)$，故①为真；\n② $\\ln\\pi<\\dfrac{\\pi}{\\mathrm{e}}\\iff\\dfrac{\\ln\\pi}{\\pi}<\\dfrac{1}{\\mathrm{e}}\\iff f(\\pi)<f(\\mathrm{e})$；\n由 $\\mathrm{e}<\\pi$ 且 $f$ 在 $(\\mathrm{e},+\\infty)$ 上递减，得 $f(\\pi)<f(\\mathrm{e})$，故②为真；\n③ $2^{\\sqrt{15}}<15\\iff\\sqrt{15}\\ln2<\\ln15\\iff\\dfrac{\\ln2}{\\sqrt{15}}<\\dfrac{\\ln15}{15}$，由 $f(16)<f(15)$（$15<16$ 且均在 $(\\mathrm{e},+\\infty)$ 上）得 $\\dfrac{\\ln2}{4}<\\dfrac{\\ln15}{15}$，而 $\\dfrac{\\ln2}{\\sqrt{15}}<\\dfrac{\\ln2}{4}$（因 $\\sqrt{15}<4$），故③为真；\n④ $3\\mathrm{e}\\ln2<4\\sqrt2\\iff\\dfrac{\\ln8}{4\\sqrt2}<\\dfrac{1}{\\mathrm{e}}$，而 $\\dfrac{\\ln8}{4\\sqrt2}=\\dfrac{\\ln\\sqrt8}{\\sqrt8}\\cdot\\dfrac{\\sqrt8}{4\\sqrt2}\\cdot 2<\\dfrac{1}{\\mathrm{e}}$（用到 $f(x)\\leqslant\\dfrac1{\\mathrm{e}}$），故④为真．\n**原书判定②为假、共 $3$ 个真命题，故选 C。**",
+  "analysis": "统一用 $f(x)=\\dfrac{\\ln x}{x}$ 处理：① 化为 $f(\\sqrt3)<f(2)$；② 化为 $f(\\pi)<f(\\mathrm{e})$；③ 化为比较 $\\dfrac{\\ln2}{?}$ 与 $\\dfrac{\\ln15}{?}$；④ 利用 $f$ 的最大值 $\\dfrac1{\\mathrm{e}}$。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-041"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-041-V3",
+  "review": "★ **本题存在原书答案争议，按原书 C 录入，标记为存疑。**\n数值验证四个命题分别为：\n① $\\ln3\\approx1.098612<\\sqrt3\\ln2\\approx1.200566$ → 真；\n② $\\ln\\pi\\approx1.144730<\\pi/\\mathrm{e}\\approx1.155727$ → **真**；\n③ $2^{\\sqrt{15}}\\approx14.6516<15$ → 真；\n④ $3\\mathrm{e}\\ln2\\approx5.652508<4\\sqrt2\\approx5.656854$ → 真．\n四个命题数值上全部成立，真命题应为 $4$ 个（选 D），与原书答案 C（$3$ 个）矛盾。\n原书详解判②为假，依据是「由 $\\mathrm{e}<\\pi$ 可得 $f(\\mathrm{e})<f(\\pi)$」，但 $f(\\mathrm{e})=\\frac1{\\mathrm{e}}$ 是 $f$ 的最大值，必有 $f(\\mathrm{e})>f(\\pi)$，**该处不等号方向写反了**，据此得出的「②为假」不成立。\n另注：详解中「由 $f(16)<f(15)$ 可得 $f(2)<f(15)$」同样写反（实际 $f(2)\\approx0.3466>f(15)\\approx0.1805$）。\n因③的具体形式（$2^{\\sqrt{15}}$ 的上标含矢量绘制的根号）无法从破碎文本百分百确认（若实为 $2^{15}<15$ 则③为假，此时真命题恰为 $3$ 个、答案 C 自洽），故此处按原书答案 C 录入，留待复核。",
+  "difficulty": 0.8,
+  "id": "M-H0220",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "统一用 $f(x)=\\dfrac{\\ln x}{x}$ 处理：① 化为 $f(\\sqrt3)<f(2)$；② 化为 $f(\\pi)<f(\\mathrm{e})$；③ 化为比较 $\\dfrac{\\ln2}{?}$ 与 $\\dfrac{\\ln15}{?}$；④ 利用 $f$ 的最大值 $\\dfrac1{\\mathrm{e}}$。",
+  "stem": [
+   "下列命题为真命题的个数是（　　）\n① $\\ln3<\\sqrt{3}\\ln2$； ② $\\ln\\pi<\\dfrac{\\pi}{\\mathrm{e}}$； ③ $2^{\\sqrt{15}}<15$； ④ $3\\mathrm{e}\\ln2<4\\sqrt{2}$"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "（$2022$·天津三中三模）设 $a=\\dfrac{3(2-\\ln3)}{\\mathrm{e}^{2}}$，$b=\\dfrac{1}{\\mathrm{e}}$，$c=\\dfrac{\\ln2}{2}$，则 $a,b,c$ 的大小顺序为（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<c<b$"
+   ],
+   [
+    "B",
+    "$c<a<b$"
+   ],
+   [
+    "C",
+    "$a<b<c$"
+   ],
+   [
+    "D",
+    "$b<a<c$"
+   ]
+  ],
+  "answer": "B",
+  "solution": "设 $f(x)=\\dfrac{\\ln x}{x}$，则 $f'(x)=\\dfrac{1-\\ln x}{x^{2}}$．\n当 $0<x<\\mathrm{e}$ 时 $f'(x)>0$，$f$ 递增；当 $x>\\mathrm{e}$ 时 $f'(x)<0$，$f$ 递减．\n化形：$a=\\dfrac{3(2-\\ln3)}{\\mathrm{e}^{2}}=\\dfrac{3(\\ln\\mathrm{e}^{2}-\\ln3)}{\\mathrm{e}^{2}}=\\dfrac{3\\ln\\frac{\\mathrm{e}^{2}}{3}}{\\mathrm{e}^{2}}=\\dfrac{\\ln\\frac{\\mathrm{e}^{2}}{3}}{\\frac{\\mathrm{e}^{2}}{3}}=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)$；\n$b=\\dfrac{1}{\\mathrm{e}}=f(\\mathrm{e})$，$c=\\dfrac{\\ln2}{2}=f(2)$．\n由 $2<\\dfrac{\\mathrm{e}^{2}}{3}<\\mathrm{e}$（$\\dfrac{\\mathrm{e}^{2}}{3}\\approx2.463$），且 $f$ 在 $(0,\\mathrm{e})$ 上递增，得 $f(2)<f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)<f(\\mathrm{e})$．\n故 $c<a<b$，故选 B．",
+  "analysis": "构造 $f(x)=\\dfrac{\\ln x}{x}$，化得 $a=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)$、$b=f(\\mathrm{e})$、$c=f(2)$，再比较自变量。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-041"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-041-V4",
+  "review": "★ 提取文本作「a = 3 2 - ln3  e2 」，分子是 $3(2-\\ln3)$ 还是 $\\frac32-\\ln3$ 无法分辨。由详解「$a=f(\\frac{\\mathrm{e}^2}{3})=\\frac{3\\ln(\\mathrm{e}^2/3)}{\\mathrm{e}^2}$」确认为 $3(2-\\ln3)$：$\\ln(\\mathrm{e}^2/3)=2-\\ln3$，乘 $3$ 再除 $\\mathrm{e}^2$ 正好还原。数值校验：$a\\approx0.36597$、$b\\approx0.36788$、$c\\approx0.34657$，与答案 B 吻合。注意与 V5 的区别：V4 的 $c=\\frac{\\ln2}{2}$，V5 的 $c=\\frac{\\ln3}{3}$，其余相同。",
+  "difficulty": 0.7,
+  "id": "M-H0221",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "构造 $f(x)=\\dfrac{\\ln x}{x}$，化得 $a=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)$、$b=f(\\mathrm{e})$、$c=f(2)$，再比较自变量。",
+  "stem": [
+   "（$2022$·天津三中三模）设 $a=\\dfrac{3(2-\\ln3)}{\\mathrm{e}^{2}}$，$b=\\dfrac{1}{\\mathrm{e}}$，$c=\\dfrac{\\ln2}{2}$，则 $a,b,c$ 的大小顺序为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "（$2022$·江苏·扬州中学高二期中）$a=\\dfrac{3(2-\\ln3)}{\\mathrm{e}^{2}}$，$b=\\dfrac{1}{\\mathrm{e}}$，$c=\\dfrac{\\ln3}{3}$，则 $a,b,c$ 的大小顺序为（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<c<b$"
+   ],
+   [
+    "B",
+    "$c<a<b$"
+   ],
+   [
+    "C",
+    "$a<b<c$"
+   ],
+   [
+    "D",
+    "$b<a<c$"
+   ]
+  ],
+  "answer": "A",
+  "solution": "设 $f(x)=\\dfrac{\\ln x}{x}$，则 $f'(x)=\\dfrac{1-\\ln x}{x^{2}}$，$f$ 在 $(0,\\mathrm{e})$ 上递增、在 $(\\mathrm{e},+\\infty)$ 上递减，$x=\\mathrm{e}$ 时取最大值 $\\dfrac{1}{\\mathrm{e}}$．\n同 V4 化形得 $a=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)$，$b=f(\\mathrm{e})=\\dfrac{1}{\\mathrm{e}}$，$c=f(3)=\\dfrac{\\ln3}{3}$．\n因 $\\dfrac{\\mathrm{e}^{2}}{3}\\approx2.463<\\mathrm{e}<3$，且 $b=f(\\mathrm{e})$ 为最大值，故 $b$ 最大．\n比较 $a$ 与 $c$：设 $f(x)=t$ 有两个解 $x_{1}<x_{2}$，则 $x_{1}<\\mathrm{e}<x_{2}$．构造 $g(x)=\\ln x-\\dfrac{2(x-1)}{x+1}$（$x>1$），由导数可得 $g(x)>0$，从而 $\\dfrac{\\ln x_{2}-\\ln x_{1}}{x_{2}-x_{1}}>\\dfrac{2}{x_{1}+x_{2}}$，取 $x_{1}=\\dfrac{\\mathrm{e}^{2}}{3}$、$x_{2}=3$ 即可判得 $f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)<f(3)$，即 $a<c$．\n综上 $a<c<b$，故选 A．",
+  "analysis": "$a=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)$、$b=f(\\mathrm{e})$、$c=f(3)$；$b$ 最大无疑，$a$ 与 $c$ 需用「$f(x)=t$ 两解」的结论细比。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-041"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-041-V5",
+  "review": "★ 与 V4 同型，仅 $c$ 不同（V4 是 $\\frac{\\ln2}{2}$，本题是 $\\frac{\\ln3}{3}$），但答案从 B 变为 A —— 因为 $f(3)>f(2)$（$2<\\mathrm{e}<3$，且 $3$ 离 $\\mathrm{e}$ 更近）。提取文本作「a = 3(2 - ln3) e2 ,b = 1 e ,c = ln3 3 」，分数全塌。由详解「$a=f(\\frac{\\mathrm{e}^2}{3})$、$b=f(\\mathrm{e})$、$c=f(3)$」还原。数值校验：$a\\approx0.365969$、$c\\approx0.366204$、$b\\approx0.367879$，三者极接近（$a$ 与 $c$ 仅差 $0.00024$），普通估值无法分辨，必须靠详解给出的 $g(x)=\\ln x-\\frac{2(x-1)}{x+1}$ 技巧，与答案 A 一致。",
+  "difficulty": 0.85,
+  "id": "M-H0222",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "$a=f\\!\\left(\\dfrac{\\mathrm{e}^{2}}{3}\\right)$、$b=f(\\mathrm{e})$、$c=f(3)$；$b$ 最大无疑，$a$ 与 $c$ 需用「$f(x)=t$ 两解」的结论细比。",
+  "stem": [
+   "（$2022$·江苏·扬州中学高二期中）$a=\\dfrac{3(2-\\ln3)}{\\mathrm{e}^{2}}$，$b=\\dfrac{1}{\\mathrm{e}}$，$c=\\dfrac{\\ln3}{3}$，则 $a,b,c$ 的大小顺序为（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知实数 $a$、$b$，满足 $a=\\log_{5}6+\\log_{6}25$，$3^{a}+4^{a}=5^{b}$，则关于 $a$、$b$ 下列判断正确的是（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<b<2$"
+   ],
+   [
+    "B",
+    "$b<a<2$"
+   ],
+   [
+    "C",
+    "$2<a<b$"
+   ],
+   [
+    "D",
+    "$2<b<a$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "先证 $a>2$：令 $t=\\log_{5}6>1$，则 $\\log_{6}25=\\log_{6}5^{2}=2\\log_{6}5=\\dfrac{2}{t}$，\n于是 $a=t+\\dfrac{2}{t}\\geqslant2\\sqrt{t\\cdot\\dfrac{2}{t}}=2\\sqrt2>2$．\n再证 $a>b$：构造 $f(x)=\\left(\\dfrac{3}{5}\\right)^{x}+\\left(\\dfrac{4}{5}\\right)^{x}-1$，$x\\in\\mathbb R$．\n因 $0<\\dfrac35<1$、$0<\\dfrac45<1$，故 $f(x)$ 在 $\\mathbb R$ 上单调递减，且 $f(2)=\\dfrac{9}{25}+\\dfrac{16}{25}-1=0$．\n由 $a>2$ 得 $f(a)<f(2)=0$，即 $\\left(\\dfrac35\\right)^{a}+\\left(\\dfrac45\\right)^{a}<1$，亦即 $3^{a}+4^{a}<5^{a}$．\n又 $3^{a}+4^{a}=5^{b}$，故 $5^{b}<5^{a}$，得 $b<a$．\n最后证 $b>2$：由 $a>2$ 得 $5^{b}=3^{a}+4^{a}>3^{2}+4^{2}=25=5^{2}$，故 $b>2$．\n综上 $a>b>2$，即 $2<b<a$，故选 D．",
+  "analysis": "先用基本不等式放缩证 $a>2$；再把 $3^{a}+4^{a}=5^{a}\\cdot\\left[\\left(\\frac35\\right)^{a}+\\left(\\frac45\\right)^{a}\\right]$，构造 $f(x)=\\left(\\frac35\\right)^{x}+\\left(\\frac45\\right)^{x}-1$ 得 $a>b$；最后由 $5^{b}=3^{a}+4^{a}>3^{2}+4^{2}$ 得 $b>2$。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-042"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-042-E1",
+  "review": "★ 提取文本作「a = log6 + log25，3a+ 4a= 5b」，底数与真数全部塌成同行，$\\log_{6}25$ 与 $\\log_{26}25$ 无法区分。由详解「$a=\\log_56+\\log_36 25=\\log_56+2\\log_65=t+\\frac2t>2\\sqrt2$」确认为 $\\log_{5}6+\\log_{6}25$。数值校验：$a\\approx2.90977$、由 $3^a+4^a=5^b$ 得 $b\\approx2.72987$，$a>b>2$ 与答案 D 吻合。",
+  "difficulty": 0.75,
+  "id": "M-H0223",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "先用基本不等式放缩证 $a>2$；再把 $3^{a}+4^{a}=5^{a}\\cdot\\left[\\left(\\frac35\\right)^{a}+\\left(\\frac45\\right)^{a}\\right]$，构造 $f(x)=\\left(\\frac35\\right)^{x}+\\left(\\frac45\\right)^{x}-1$ 得 $a>b$；最后由 $5^{b}=3^{a}+4^{a}>3^{2}+4^{2}$ 得 $b>2$。",
+  "stem": [
+   "已知实数 $a$、$b$，满足 $a=\\log_{5}6+\\log_{6}25$，$3^{a}+4^{a}=5^{b}$，则关于 $a$、$b$ 下列判断正确的是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "若 $2020^{x}-2020^{y}<2021^{-x}-2021^{-y}$（$x,y\\in\\mathbb R$），则（　　）",
+  "opts": [
+   [
+    "A",
+    "$\\ln(y-x+1)>0$"
+   ],
+   [
+    "B",
+    "$\\ln(y-x+1)<0$"
+   ],
+   [
+    "C",
+    "$\\ln|x-y|>0$"
+   ],
+   [
+    "D",
+    "$\\ln|x-y|<0$"
+   ]
+  ],
+  "answer": "A",
+  "solution": "由 $2020^{x}-2020^{y}<2021^{-x}-2021^{-y}$ 移项得\n$2020^{x}-2021^{-x}<2020^{y}-2021^{-y}$．\n令 $f(x)=2020^{x}-2021^{-x}$．因 $y=2020^{x}$ 在 $\\mathbb R$ 上递增、$y=2021^{-x}=\\left(\\dfrac{1}{2021}\\right)^{x}$ 在 $\\mathbb R$ 上递减，故 $-2021^{-x}$ 递增，从而 $f(x)$ 在 $\\mathbb R$ 上单调递增．\n由 $f(x)<f(y)$ 得 $x<y$，即 $y-x>0$，于是 $y-x+1>1$，故 $\\ln(y-x+1)>\\ln1=0$，A 正确、B 错误．\n又 $|x-y|=y-x$ 与 $1$ 的大小关系无法确定（例如 $x=0,y=0.5$ 时 $|x-y|=0.5<1$；$x=0,y=3$ 时 $|x-y|=3>1$），故 C、D 均无法确定．\n故选 A．",
+  "analysis": "移项重组为 $2020^{x}-2021^{-x}<2020^{y}-2021^{-y}$，构造 $f(x)=2020^{x}-2021^{-x}$（增函数）即可得 $x<y$。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-042"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-042-V1",
+  "review": "★ 提取文本作「2020x- 2020y< 2021-x- 2021-y」，指数全塌成同行。由详解「令 $f(x)=2020^x-2021^{-x}$，则 $f(x)$ 在 $\\mathbb R$ 上单调递增，且 $f(x)<f(y)$，∴$x<y$」还原。关键是把 $-2021^{-x}$ 与 $-2020^{y}$ 交叉移项 —— 不移项则无法构造函数。",
+  "difficulty": 0.65,
+  "id": "M-H0224",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "移项重组为 $2020^{x}-2021^{-x}<2020^{y}-2021^{-y}$，构造 $f(x)=2020^{x}-2021^{-x}$（增函数）即可得 $x<y$。",
+  "stem": [
+   "若 $2020^{x}-2020^{y}<2021^{-x}-2021^{-y}$（$x,y\\in\\mathbb R$），则（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a+2^{a}=2$，$b+3^{b}=2$，则 $b\\lg a$ 与 $a\\lg b$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$b\\lg a<a\\lg b$"
+   ],
+   [
+    "B",
+    "$b\\lg a=a\\lg b$"
+   ],
+   [
+    "C",
+    "$b\\lg a>a\\lg b$"
+   ],
+   [
+    "D",
+    "不确定"
+   ]
+  ],
+  "answer": "C",
+  "solution": "令 $f(x)=x+2^{x}$，$g(x)=x+3^{x}$，二者在 $\\mathbb R$ 上均单调递增．\n当 $x>0$ 时 $3^{x}>2^{x}$，故 $g(x)>f(x)$；当 $x<0$ 时 $3^{x}<2^{x}$，故 $g(x)<f(x)$．\n由 $f(a)=2$、$g(b)=2$ 且 $g(0)=f(0)=1<2$，$f(1)=3>2$、$g(1)=4>2$，知 $a,b\\in(0,1)$；又 $g(a)>f(a)=2=g(b)$，故 $a>b$，即 $0<b<a<1$．\n于是 $a^{b}>b^{b}$（底大指数同正）、$b^{b}>b^{a}$（底 $b\\in(0,1)$、指数小者值大），故 $a^{b}>b^{a}$．\n两边取常用对数：$\\lg\\left(a^{b}\\right)>\\lg\\left(b^{a}\\right)$，即 $b\\lg a>a\\lg b$．\n故选 C．",
+  "analysis": "令 $f(x)=x+2^{x}$、$g(x)=x+3^{x}$，由 $f(a)=g(b)=2$ 得 $0<b<a<1$；再由 $a^{b}>b^{a}$ 取对数即得。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-042"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-042-V2",
+  "review": "★ 提取文本作「blga 与algb 的大小关系」，$\\lg$ 与 $a$、$b$ 的从属关系不清。由详解「由 $a^b>b^a$，得 $\\lg(a^b)>\\lg(b^a)$，即 $b\\lg a>a\\lg b$」确认为 $b\\lg a$ 与 $a\\lg b$。数值校验：解 $a+2^a=2$ 得 $a\\approx0.54300$，解 $b+3^b=2$ 得 $b\\approx0.41769$；$b\\lg a\\approx-0.110772$、$a\\lg b\\approx-0.205874$，$b\\lg a>a\\lg b$ 与答案 C 一致。注意两值均为负，比较时容易看错方向。",
+  "difficulty": 0.7,
+  "id": "M-H0225",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "令 $f(x)=x+2^{x}$、$g(x)=x+3^{x}$，由 $f(a)=g(b)=2$ 得 $0<b<a<1$；再由 $a^{b}>b^{a}$ 取对数即得。",
+  "stem": [
+   "已知 $a+2^{a}=2$，$b+3^{b}=2$，则 $b\\lg a$ 与 $a\\lg b$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "若 $a=\\log_{2}3$，$b=\\log_{3}4$，$c=\\log_{4}5$，则 $a,b,c$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<b<c$"
+   ],
+   [
+    "B",
+    "$b<c<a$"
+   ],
+   [
+    "C",
+    "$b<a<c$"
+   ],
+   [
+    "D",
+    "$c<b<a$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "由 $\\log_{2}3>\\log_{2}2=1$、$\\log_{3}4>\\log_{3}3=1$、$\\log_{4}5>\\log_{4}4=1$，知 $a,b,c$ 均大于 $1$．\n比较 $a$ 与 $c$：$c=\\log_{4}5=\\log_{2^{2}}5=\\dfrac{1}{2}\\log_{2}5=\\log_{2}\\sqrt5$，而 $a=\\log_{2}3>\\log_{2}\\sqrt5$（因 $3>\\sqrt5$），故 $a>c>1$．\n比较 $a$ 与 $b$：$a=\\log_{2}3>\\log_{2}2\\sqrt2=\\dfrac32$，$b=\\log_{3}4<\\log_{3}3\\sqrt3=\\dfrac32$，故 $a>\\dfrac32>b>1$．\n比较 $b$ 与 $c$：因 $4^{4}=256>243=3^{5}$，故 $4\\log_{3}4=\\log_{3}4^{4}>\\log_{3}3^{5}=5$，即 $b>\\dfrac54$；\n因 $4^{5}=1024>625=5^{4}$，故 $4\\log_{4}5=\\log_{4}5^{4}<\\log_{4}4^{5}=5$，即 $c<\\dfrac54$．\n综上 $a>\\dfrac32>b>\\dfrac54>c>1$，即 $c<b<a$，故选 D．",
+  "analysis": "先把 $a,c$ 化同底比出 $a>c$；再把 $a,b$ 分别与 $\\dfrac32$ 比、$b,c$ 分别与 $\\dfrac54$ 比，用「$4^{4}>3^{5}$、$4^{5}>5^{4}$」放缩。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-043"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-043-E1",
+  "review": "★ 提取文本作「a = log3，b = log4，c = log5」，底数全丢，与 $\\log_23$、$\\log_34$、$\\log_45$ 无法区分。由详解「$c=\\log_45=\\frac12\\log_25=\\log_2\\sqrt5$，而 $a=\\log_23>\\log_2\\sqrt5$」与「$a>\\frac32>b$、$b>\\frac54>c$」三段放缩确认。数值校验：$a=\\log_23\\approx1.58496$、$b=\\log_34\\approx1.26186$、$c=\\log_45\\approx1.16096$，与答案 D 吻合。",
+  "difficulty": 0.7,
+  "id": "M-H0226",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "先把 $a,c$ 化同底比出 $a>c$；再把 $a,b$ 分别与 $\\dfrac32$ 比、$b,c$ 分别与 $\\dfrac54$ 比，用「$4^{4}>3^{5}$、$4^{5}>5^{4}$」放缩。",
+  "stem": [
+   "若 $a=\\log_{2}3$，$b=\\log_{3}4$，$c=\\log_{4}5$，则 $a,b,c$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "设 $a=\\log_{2019}2020$，$b=\\log_{2020}2019$，$c=2019^{\\frac{1}{2000}}$，则 $a,b,c$ 的大小关系是（　　）",
+  "opts": [
+   [
+    "A",
+    "$a>b>c$"
+   ],
+   [
+    "B",
+    "$a>c>b$"
+   ],
+   [
+    "C",
+    "$c>a>b$"
+   ],
+   [
+    "D",
+    "$c>b>a$"
+   ]
+  ],
+  "answer": "C",
+  "solution": "由 $\\log_{2019}2020>\\log_{2019}2019=1$、$\\log_{2019}2020<\\log_{2019}2019^{2}=2$，得 $1<a<2$；\n由 $\\log_{2020}2019<\\log_{2020}2020=1$，得 $b<1$；\n由 $c=2019^{\\frac{1}{2000}}>2019^{0}=1$，得 $c>1$．\n故 $b$ 最小，只需比较 $a$ 与 $c$：\n$a=\\log_{2019}2020=\\dfrac{\\ln2020}{\\ln2019}=1+\\dfrac{\\ln\\frac{2020}{2019}}{\\ln2019}\\approx1+\\dfrac{0.000495}{7.610}\\approx1.000065$；\n$c=2019^{\\frac{1}{2000}}=\\mathrm{e}^{\\frac{\\ln2019}{2000}}=\\mathrm{e}^{0.003805}\\approx1.00381$．\n故 $c>a>b$，故选 C．",
+  "analysis": "$b<1$ 显然；$a,c$ 均大于 $1$，需估算 $a$ 与 $1$ 的差、$c$ 与 $1$ 的差。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-043"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-043-V1",
+  "review": "★ 提取文本作「c = 20191 a,b,c / 2000」，指数 $\\frac{1}{2000}$ 被拆成两行，极易误读成 $2019\\cdot\\frac{1}{2000}$ 或 $2019^{1}$。由详解「$c=2019^{\\frac1{2000}}>2019^0=1$」确认为分数指数。数值校验：$a\\approx1.000065$、$b\\approx0.999935$、$c\\approx1.003812$，$c>a>b$ 与答案 C 一致。注意 $a$ 与 $1$ 仅差 $6.5\\times10^{-5}$，靠估算很容易判错方向。",
+  "difficulty": 0.6,
+  "id": "M-H0227",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "$b<1$ 显然；$a,c$ 均大于 $1$，需估算 $a$ 与 $1$ 的差、$c$ 与 $1$ 的差。",
+  "stem": [
+   "设 $a=\\log_{2019}2020$，$b=\\log_{2020}2019$，$c=2019^{\\frac{1}{2000}}$，则 $a,b,c$ 的大小关系是（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "设 $a=\\log_{4}3$，$b=\\log_{5}2$，$c=\\log_{8}5$，则（　　）",
+  "opts": [
+   [
+    "A",
+    "$a<b<c$"
+   ],
+   [
+    "B",
+    "$b<c<a$"
+   ],
+   [
+    "C",
+    "$b<a<c$"
+   ],
+   [
+    "D",
+    "$c<a<b$"
+   ]
+  ],
+  "answer": "B",
+  "solution": "比较 $a$ 与 $c$：化同底 $64=4^{3}=8^{2}$，\n$a=\\log_{4}3=\\log_{4^{3}}3^{3}=\\log_{64}27$，$c=\\log_{8}5=\\log_{8^{2}}5^{2}=\\log_{64}25$．\n由 $27>25$ 得 $\\log_{64}27>\\log_{64}25$，即 $a>c$．\n比较 $b$ 与 $c$：$b=\\log_{5}2<\\log_{5}\\sqrt5=\\dfrac12$，$c=\\log_{8}5>\\log_{8}\\sqrt8=\\dfrac12$，故 $b<\\dfrac12<c$．\n综上 $b<c<a$，故选 B．",
+  "analysis": "把 $a,c$ 化到以 $64$ 为底比出 $a>c$；再由 $b<\\dfrac12<c$ 得 $b$ 最小。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-043"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-043-V2",
+  "review": "★ 提取文本作「a = log3，b = log2，c = log5」，三个底数全丢，与 $\\log_43$、$\\log_52$、$\\log_85$ 无法区分。由详解「$a=\\log_43=\\log_{64}27$、$c=\\log_85=\\log_{64}25$」确认底数为 $4,5,8$。数值校验：$a\\approx0.79248$、$b\\approx0.43068$、$c\\approx0.77398$，与答案 B 吻合。",
+  "difficulty": 0.65,
+  "id": "M-H0228",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "把 $a,c$ 化到以 $64$ 为底比出 $a>c$；再由 $b<\\dfrac12<c$ 得 $b$ 最小。",
+  "stem": [
+   "设 $a=\\log_{4}3$，$b=\\log_{5}2$，$c=\\log_{8}5$，则（　　）"
+  ]
+ },
+ {
+  "subject": "数学",
+  "type": "选择",
+  "stem_text": "已知 $a=2^{\\sqrt3}$，$b=\\dfrac52$，$c=\\log_{2}5$，$d=2\\sqrt2$，则下列大小关系正确的为（　　）",
+  "opts": [
+   [
+    "A",
+    "$c>a>d>b$"
+   ],
+   [
+    "B",
+    "$a>c>d>b$"
+   ],
+   [
+    "C",
+    "$a>d>c>b$"
+   ],
+   [
+    "D",
+    "$a>d>b>c$"
+   ]
+  ],
+  "answer": "D",
+  "solution": "$a=2^{\\sqrt3}$，$d=2\\sqrt2=2^{\\frac32}$．由 $\\sqrt3\\approx1.732>\\dfrac32=1.5$ 且 $y=2^{x}$ 递增，得 $a>d$．\n$d=2\\sqrt2=\\sqrt8$，$b=\\dfrac52=\\sqrt{\\dfrac{25}{4}}$．由 $8>\\dfrac{25}{4}=6.25$ 得 $d>b$．\n$b=\\dfrac52=\\log_{2}2^{\\frac52}=\\log_{2}\\sqrt{32}$，$c=\\log_{2}5=\\log_{2}\\sqrt{25}$．由 $\\sqrt{32}>\\sqrt{25}$ 且 $y=\\log_{2}x$ 递增，得 $b>c$．\n综上 $a>d>b>c$，故选 D．",
+  "analysis": "统一化为以 $2$ 为底的幂或对数：$a=2^{\\sqrt3}$、$d=2^{\\frac32}$、$b=\\log_{2}2^{\\frac52}$、$c=\\log_{2}5$，再逐对比。",
+  "kp": "函数与导数",
+  "kp2": "幂指对比较大小",
+  "topics": [
+   "M-T-043"
+  ],
+  "src": "2024高中数学热点题型归纳完整解析版.pdf · M-T-043-V3",
+  "review": "★ 提取文本作「a = 2 3，b = ，c = log5，d = 2 2」，$2^{\\sqrt3}$ 的指数、$\\frac52$、$2\\sqrt2$ 的分数与根号全部塌成平文本。由详解「$d=2\\sqrt2=2^{\\frac32}<2^{\\sqrt3}=a$」「$d=2\\sqrt2=\\sqrt8>\\sqrt{\\frac{25}4}=\\frac52=b$」「$b=\\frac52=\\log_2\\sqrt{32}>\\log_2\\sqrt{25}=\\log_25=c$」三段确认四个量。数值校验：$a\\approx3.32200$、$d\\approx2.82843$、$b=2.5$、$c\\approx2.32193$，$a>d>b>c$ 与答案 D 一致。",
+  "difficulty": 0.7,
+  "id": "M-H0229",
+  "num": 0,
+  "score": 5,
+  "figs": [],
+  "batch": "教辅录入-第14批",
+  "smark": "",
+  "subtype": "单选题",
+  "kp_list": [
+   "函数与导数",
+   "幂指对比较大小"
+  ],
+  "ana_text": "统一化为以 $2$ 为底的幂或对数：$a=2^{\\sqrt3}$、$d=2^{\\frac32}$、$b=\\log_{2}2^{\\frac52}$、$c=\\log_{2}5$，再逐对比。",
+  "stem": [
+   "已知 $a=2^{\\sqrt3}$，$b=\\dfrac52$，$c=\\log_{2}5$，$d=2\\sqrt2$，则下列大小关系正确的为（　　）"
+  ]
  }
 ]

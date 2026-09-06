@@ -63,6 +63,7 @@ PDF 里的函数括号、区间括号是矢量绘制而非文本，脚本无论�
 | 渲染出问题（公式变源码、选项消失、分数丢失） | `references/30-pitfalls.md` |
 | 调用 CLI / hand_input 接口 | `references/40-api.md` |
 | 打题型标签、知识点归属 | `references/50-topics.md` |
+| 全局重复题检测（扫全库找同题，人工复核后写回） | `references/15-dupcheck.md` |
 | 查「哪些题改过原书答案」 | `原书勘误表.md`（`python3 tools/gen_errata.py` 生成） |
 | 改了底层代码，怀疑文档过期 | 跑 `python3 tools/check_skill_docs.py` |
 

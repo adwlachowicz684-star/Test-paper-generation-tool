@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""第14批入库：共 22 题。
+r"""第14批入库（中）：T042~T043 共 7 题：共 22 题。
 
     python3 tools/commit_batch14.py
 
@@ -19,7 +19,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, 'py'))
 sys.path.insert(0, HERE)
 
-from input_batch14 import QS
+from input_batch14b import QS
 import hand_input
 import kp_catalog as K
 
