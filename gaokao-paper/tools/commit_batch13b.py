@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-r"""第14批入库：共 22 题。
+r"""第13批入库（下）：T039~T040 共 8 题（上）：T037~T038 共 8 题：共 16 题。
 
-    python3 tools/commit_batch14.py
+    python3 tools/commit_batch13.py
 
 由 tools/new_batch.py 生成。kp / kp2 从 kp_catalog 按 topic 自动查，不手写。
 
@@ -19,11 +19,11 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, 'py'))
 sys.path.insert(0, HERE)
 
-from input_batch14 import QS
+from input_batch13b import QS
 import hand_input
 import kp_catalog as K
 
-BATCH = '教辅录入-第14批'
+BATCH = '教辅录入-第13批'
 SLICE = os.path.join(ROOT, 'src', 'slices', '数学')
 
 

@@ -784,7 +784,7 @@ def latex_inline(s):
     人工录入的题目用它渲染 $...$ 包裹的公式。
     例如 $\\frac{1}{4}x$ → <math><mfrac>...</mfrac><mi>x</mi></math>
     """
-    t = (s or '').strip()
+    t = expand_roman((s or '').strip())
     if not t:
         return ''
     kids, _ = _parse_expr(t, 0)
@@ -810,6 +810,30 @@ def latex_inline(s):
 _CTRL_LATEX = {
     '\x0b': 'v',
 }
+
+
+def expand_roman(s):
+    r"""把 \RomanNumeral{n} 展开成罗马数字字符。
+
+    题目详解里用罗马数字给子结论编号（如「由①知…再由②知…」），
+    录入时写成 $\mathrm{\RomanNumeral{1}}$ 这类形式。
+    宏表是纯字符串替换、不支持带参命令，所以这里单独预处理：
+    不处理的话 MathML 里会残留 <mi>RomanNumeral</mi><mn>1</mn>，
+    页面上直接显示 "RomanNumeral1" 而不是 "Ⅰ"。
+
+    Word 端与 HTML 端都要走（latex_expand / latex_inline 各自调用）。
+    """
+    if not s or 'RomanNumeral' not in s:
+        return s
+    tbl = ['', 'Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ',
+           'Ⅵ', 'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ',
+           'Ⅺ', 'Ⅻ']
+
+    def rep(m):
+        n = int(m.group(1))
+        return tbl[n] if 1 <= n < len(tbl) else m.group(0)
+
+    return re.sub(r'\\RomanNumeral\s*\{\s*(\d+)\s*\}', rep, s)
 
 
 def repair_ctrl(s):
@@ -851,7 +875,8 @@ def latex_expand(s):
     """
     if not s:
         return ''
-    t = repair_ctrl(str(s))
+    t = expand_roman(str(s))
+    t = repair_ctrl(t)
 
     # 转义花括号：\{ \} -> { }
     # 不去反斜杠的话 Word 里会显示 \{1,2\}，
