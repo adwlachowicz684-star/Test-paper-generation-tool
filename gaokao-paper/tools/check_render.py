@@ -63,11 +63,13 @@ def anchor_of(stem):
 
 
 def main(argv):
-    if len(argv) < 3:
+    args = [a for a in argv[1:] if not a.startswith('--')]
+    quiet = '--quiet' in argv            # 只打印失败项
+    if len(args) < 2:
         print(__doc__)
         return 2
-    html_path, docx_path = argv[1], argv[2]
-    ids = argv[3:]
+    html_path, docx_path = args[0], args[1]
+    ids = args[2:]
     bank = json.load(open(BANK, encoding='utf-8'))
     if ids:
         sel = [q for q in bank if q['id'] in ids]
@@ -75,16 +77,29 @@ def main(argv):
         sel = bank
     htext, wtext = load_texts(html_path, docx_path)
 
-    ok = 0
+    ok, bad = 0, []
     for q in sel:
         a = anchor_of(q.get('stem_text'))
         inw, inh = a in wtext, a in htext
         if inw and inh:
             ok += 1
-        print('  %s %-9s %-26s W=%s H=%s' % (
-            '✓' if inw and inh else '✗', q['id'], a[:24],
-            'Y' if inw else 'N', 'Y' if inh else 'N'))
-    print('\n  两端一致: %d / %d' % (ok, len(sel)))
+        else:
+            bad.append((q['id'], a[:24], inw, inh))
+    if quiet:
+        # 全通过时只输出一行。题库有近 200 题，逐行打印会淹没真正的问题，
+        # 也让每批核对平白多出上百行输出。
+        if bad:
+            for qid, a, inw, inh in bad:
+                print('  ✗ %-9s %-26s W=%s H=%s'
+                      % (qid, a, 'Y' if inw else 'N', 'Y' if inh else 'N'))
+    else:
+        for q in sel:
+            a = anchor_of(q.get('stem_text'))
+            inw, inh = a in wtext, a in htext
+            print('  %s %-9s %-26s W=%s H=%s' % (
+                '✓' if inw and inh else '✗', q['id'], a[:24],
+                'Y' if inw else 'N', 'Y' if inh else 'N'))
+    print('  两端一致: %d / %d' % (ok, len(sel)))
     return 0 if ok == len(sel) else 1
 
 

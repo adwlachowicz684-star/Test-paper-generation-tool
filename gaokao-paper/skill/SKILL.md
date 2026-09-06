@@ -4,6 +4,32 @@
 
 **工作目录固定为 `/data/workspace/gaokao-paper`**，所有相对路径都相对它。
 
+## 最快路径：两条命令跑完一批
+
+日常录题走这两条就够，中间步骤由脚本串起来，只在出问题时才展开细节。
+
+```bash
+cd /data/workspace/gaokao-paper
+
+# 1. 生成骨架（第18批：M-T-073 出4题、M-T-074 出3题）
+python3 tools/new_batch.py 18 -t M-T-073:4 -t M-T-074:3
+#   → 生成 tools/input_batch18.py（题目骨架）+ tools/commit_batch18.py（入库脚本）
+
+# 2. 填 input_batch18.py 的内容（题干/选项/答案/详解/review），然后一键跑到底
+python3 tools/run_batch.py 18
+```
+
+`run_batch` 依次做完：入库 → 导出 HTML/Word/答案卷 → 逐题两端核对 → 后端/前端/文档三项回归 → 刷新计划清单。
+全部通过时输出约 12 行；任一步失败立即停下并打印该步报错。
+
+常用变体：
+
+```bash
+python3 tools/run_batch.py 18 --no-commit   # 已入库过，只重跑导出/核对/回归
+python3 tools/run_batch.py 18 --title '导数含参讨论'
+python3 tools/run_batch.py 18 --skip-docs   # 没改底层代码时跳过文档自检
+```
+
 ## 三种录入模式
 
 先定模式，再动手。这是本 skill 最关键的决策，选错会直接影响题目正确性。
@@ -28,14 +54,16 @@ PDF 里的函数括号、区间括号是矢量绘制而非文本，脚本无论�
 |---|---|
 | 首次使用 / 不确定走哪条路 | `references/00-core.md` |
 | 来源是 **PDF** | `references/10-source-pdf.md` |
+| **教辅 PDF：还原数学符号、核实存疑题、切图题** | `references/14-pdf-glyphs.md` |
 | 来源是 **Word / .docx** | `references/11-source-docx.md` |
 | 来源是 **图片**（拍照、截图、扫描件） | `references/12-source-image.md` |
 | 来源是 **网页文本 / 粘贴文本 / LaTeX** | `references/13-source-web.md` |
 | **写题干的 LaTeX**（必读，模式 A 强依赖） | `references/20-latex.md` |
-| **人工审核规则**（修什么、怎么判） | `references/21-review-rules.md` |
+| **人工审核规则**（修什么、怎么判、改答案怎么留痕） | `references/21-review-rules.md` |
 | 渲染出问题（公式变源码、选项消失、分数丢失） | `references/30-pitfalls.md` |
 | 调用 CLI / hand_input 接口 | `references/40-api.md` |
 | 打题型标签、知识点归属 | `references/50-topics.md` |
+| 查「哪些题改过原书答案」 | `原书勘误表.md`（`python3 tools/gen_errata.py` 生成） |
 | 改了底层代码，怀疑文档过期 | 跑 `python3 tools/check_skill_docs.py` |
 
 ## 操作规范
@@ -97,19 +125,61 @@ python3 tools/check_skill_docs.py
 
 ## 标准流程（模式 A）
 
+第 6–9 步由 `run_batch.py` 一键完成，手工只需做前五步。
+
 ```
-1. 定位原文     读源文件，把要录的题目的原文完整取到（含【答案】【详解】）
-2. 重建题干     按 references/20-latex.md 写成规范 LaTeX
-3. 交叉验证     用【详解】反推题干是否自洽，发现矛盾按规范 6 处理
-4. 入库         hand_input.add_many([...], batch='人工录入-00N')
-5. 导出样卷     export-html / export-docx
-6. 逐题核对     tools/check_render.py（证明每题两端都在）
-7. 跑回归       selftest.py + test.mjs
-8. 交付四份文件 HTML 试卷 / Word 试卷 / 答案卷 / Excel
+1. 生成骨架     tools/new_batch.py 18 -t M-T-073:4      ← 30 秒
+2. 定位原文     教辅 PDF 走 tools/dump_pdf.py --find（符号已还原）
+                其他来源直接读原文，含【答案】【详解】
+3. 重建题干     按 references/20-latex.md 写成规范 LaTeX，填进骨架
+4. 交叉验证     用【详解】反推题干是否自洽，发现矛盾按规范 6 处理
+5. 存疑核实     按 14-pdf-glyphs.md 第二节逐条核实，核实完再决定录不录
+   图题切图     tools/cut_figs.py --list / --check / --cut（仅图题）
+─────────────── 以下由 run_batch 自动完成 ───────────────
+6. 入库         hand_input.add_many（整批校验，任一题有问题整批拒绝）
+7. 导出样卷     export-html / export-docx / export-answer
+8. 逐题核对     check_render.py --quiet（只报缺失的题）
+9. 跑回归       selftest.py + test.mjs + check_skill_docs.py
+10. 刷新清单    make_plan.py（待录题数才会更新）
+```
+
+```bash
+python3 tools/run_batch.py 18
 ```
 
 批量录入时，**每批 15–25 题就导出一次样卷核对**。
 错误会批量复制，早发现返工量小。
+
+### 图题不用预估 ID
+
+切图时用临时名，入库后脚本按实际 ID 自动改名：
+
+```bash
+# 1~2. 列图位、校验边界
+python3 tools/cut_figs.py "$PDF" --list 45
+python3 tools/cut_figs.py "$PDF" --check 45 --boxes 334,493,440,603 459,495,555,603
+# 3. 用 _tmp 开头的 qid 切图
+python3 tools/cut_figs.py "$PDF" --cut 45 --qid _tmp_T071E1 --boxes 334,493,440,603
+# 4. input 里 figs 的 file 填 '_tmp_T071E1_fig1.png'
+# 5. run_batch 入库后自动改名为 {实际ID}_fig1.png，并同步 bank
+```
+
+ID 算错也不会留下对不上的图名。
+
+### 教辅 PDF 的两个提速点
+
+教辅（如《2024高中数学热点题型归纳完整解析版》）的公式符号是私用区字符，
+常规提取会丢失、导致题干自相矛盾。用配套工具省掉这部分排查时间：
+
+```bash
+PDF=/data/inputs/2024高中数学热点题型归纳完整解析版.pdf
+
+python3 tools/dump_pdf.py "$PDF" --find '题干特征词' --context 1200   # 符号已还原的原文
+python3 tools/dump_pdf.py "$PDF" --pages 44 --chars --x0 320 --x1 580 # 精确定括号/撇号
+python3 tools/cut_figs.py "$PDF" --list 45                            # 图题：列图位
+```
+
+图题以前只能跳过，现在切图→入库→三端渲染已跑通，按 `14-pdf-glyphs.md` 走即可。
 
 ## 交付给用户什么
 

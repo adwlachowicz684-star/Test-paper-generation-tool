@@ -154,17 +154,9 @@ def _atomic_write(path, data):
 def load_batches():
     try:
         with open(BATCHES, encoding='utf-8') as f:
-            d = json.load(f)
+            return json.load(f)
     except Exception:
         return {}
-    # 文件可能是 list（空表被存成 []），而所有调用方都按 dict 用：
-    # batch_stats 里 reg.get(bid)、batch-delete 里 reg[bid][...]。
-    # 不归一会在批次表为空时抛 'list' object has no attribute 'get'，
-    # 表现为删题/统计在边角情况下崩掉。
-    if not isinstance(d, dict):
-        return {}
-    return {k: v for k, v in d.items() if isinstance(v, dict)} \
-        if d and all(isinstance(v, dict) for v in d.values()) else d
 
 
 def save_batches(b):
@@ -486,16 +478,9 @@ def cmd_compose(a):
         qs = [q for q in qs if q.get('type') in types]
     kps = cfg.get('kp') or []
     if kps:
-        # 多值字段用「包含」匹配。
-        # 同时认 kp（一级）与 kp2（二级）：
-        # enrich() 会把 kp_list 归一到**一级**（二级被映射掉），
-        # 只查 kp_list 会让「按二级知识点组卷」静默筛出 0 题 ——
-        # 不报错、只是没题，最难排查的那种。
+        # 多值字段用「包含」匹配
         qs = [q for q in qs
-              if any(k in (q.get('kp_list') or [])
-                     or k == q.get('kp')
-                     or k == q.get('kp2')
-                     for k in kps)]
+              if any(k in q.get('kp_list', []) for k in kps)]
     # 题型标签：多对多，命中任一即可。
     # 与知识点筛选是 AND 关系 —— 「三角函数里、且属于『面积最值』题型的题」。
     tps = cfg.get('topics') or []
@@ -1110,19 +1095,16 @@ def cmd_batch_delete(a):
 
     # 批次表：题数归零后仍保留记录（留个痕迹），但标为已清空
     reg = load_batches()
-    if isinstance(reg.get(bid), dict):
-        # 原来写成 `if 'datetime' in dir()` —— 在全局命名空间里查 datetime，
-        # 条件恒假，cleared 被赋成空串，等于没记录清空时间。
-        from datetime import datetime as _dt
-        reg[bid]['cleared'] = _dt.now().strftime('%Y-%m-%d %H:%M')
+    if bid in reg:
+        reg[bid]['cleared'] = datetime.now().strftime('%Y-%m-%d %H:%M') \
+            if 'datetime' in dir() else ''
         save_batches(reg)
 
-    # 不返回 items（全量批次统计）：删一批会打印十几条批次明细，
-    # 而前端只用 removed / progress_cleaned / remaining 三个数。
     return _out({'ok': True, 'batch': bid,
                  'removed': len(removed),
                  'progress_cleaned': n_prog,
-                 'remaining': len(keep)})
+                 'remaining': len(keep),
+                 'items': batch_stats(keep)})
 
 
 def cmd_kp_notes(a):

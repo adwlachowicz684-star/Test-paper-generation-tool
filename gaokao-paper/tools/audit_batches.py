@@ -62,7 +62,11 @@ def main():
         ts = set()
         for fi in fis:
             src = open(os.path.join(HERE, fi), encoding='utf-8').read()
-            ts |= set(re.findall(r"topic='(M-T-\d+)'", src))
+            # 两种写法都要认：老批次 topic='M-T-001'，新批次 'topics': ['M-T-070']。
+            # 只认前者会让用推荐写法（多对多）的新批次静默逃过审计——
+            # 表现为「声称题型」一列空着，看不出异常。
+            ts |= set(re.findall(
+                r"['\"]?topics?['\"]?\s*[:=]\s*\[?\s*['\"](M-T-\d+)['\"]", src))
         detail = ' '.join('%s:%d' % (t.replace('M-T-', 'T'), c.get(t, 0))
                           for t in sorted(ts))
         zero = [t for t in sorted(ts) if c.get(t, 0) == 0]

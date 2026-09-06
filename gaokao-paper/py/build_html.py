@@ -232,18 +232,6 @@ def _img_tag(sub, fg, max_cm=None):
     if sz:
         return (f'<img src="{src}" alt="" '
                 f'style="width:{sz[0]:.2f}cm;height:{sz[1]:.2f}cm">')
-    return f'<img src="{src}" alt="">' 
-    fp = os.path.join(SLICE, sub, fg['file'])
-    if not os.path.exists(fp):
-        return ''
-    if EMBED_IMG:
-        ext = fg['file'].rsplit('.', 1)[-1].lower()
-        mime = 'image/jpeg' if ext in ('jpg', 'jpeg') else 'image/png'
-        with open(fp, 'rb') as f:
-            b64 = base64.b64encode(f.read()).decode()
-        src = f'data:{mime};base64,{b64}'
-    else:
-        src = f'{SLICE}/{sub}/{fg["file"]}'
     return f'<img src="{src}" alt="">'
 
 
