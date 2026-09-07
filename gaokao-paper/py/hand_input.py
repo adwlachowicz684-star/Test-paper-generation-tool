@@ -271,6 +271,14 @@ def add_many(qs, batch='人工录入'):
 
     ids = []
     for q in qs:
+        # 填空位写法归一化（裸 LaTeX 填空位 → ____）。
+        # ⚠ add_many 曾长期缺这一步（只在 add() 里有），
+        # 而批量录入走的是 add_many，导致归一化形同虚设：
+        # 裸写 \underline{\hspace{3em}} 的题入库后两端都渲染不出题干。
+        # 必须在生成 stem 之前做，且 add / add_many 两处都要有。
+        for _k in ('stem_text', 'analysis', 'solution', 'review', 'answer'):
+            if _k in q:
+                q[_k] = _norm_blanks(q[_k])
         q.setdefault('subject', '数学')
         if not q.get('id'):
             q['id'] = next_id(bank, q['subject'])

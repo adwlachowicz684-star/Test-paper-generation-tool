@@ -250,6 +250,18 @@
    "kp2": "绝对值不等式",
    "kind": "变式",
    "ref_answer": "(1) [11/4,+∞)  (2) (-∞,3/2]"
+  },
+  {
+   "key": "M-T-052-V2",
+   "page": 0,
+   "topic": "M-T-052",
+   "topic_name": "",
+   "kp1": "",
+   "kp2": "",
+   "kind": "",
+   "ref_answer": "",
+   "reason": "重复",
+   "note": "主窗口"
   }
  ],
  "reason_desc": {
