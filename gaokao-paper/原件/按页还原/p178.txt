@@ -1,0 +1,102 @@
+33
+即AB - BD = 0，所以AB = BD 在△ABC 中，由余弦定理得AC2=
+22
+BC2+ AB2- 2AB ⋅BC ⋅cosB
+ 332 77
+= 4BD2+ BD2- 2 × BD × 2BD × = BD2即AC = BD，所以
+42242
+AC\frac{7}{3}21
+ =\frac{2 BD}{2 BD}=
+AB3
+ π3
+若AC = 4 3，B = ，BD = 2AD，由上述知AB = BD
+62
+ π BD
+作DE ⊥AB 于点E，由B = ，知DE == AD，∴DA ⊥AB 作AF ⊥
+62
+ π
+BC 于点F，∠ADB =
+3
+ AB3327. 在平面四边形ABCD 中，AB = 1，AD = 4，BC = CD = 2，则四
+所以△ABC 在BC 边上的高为h == BD = AF，BF = AB =
+242
+3边形ABCD 面积的最大值为()
+ BD
+4
+ 5 7 5 7
+ 1 1A.B.C. 4 2D. 2 2
+所以S = AF ⋅CD =\frac{3}{ 2π} BD ⋅CD 因为AD = BD，AC = 4 3，48
+△ADC282
+ π
+∠ADB = ，所以∠ADC =【答案】 A
+33
+AC2= AD2+ CD2- 2AD ⋅CD ⋅cos∠ADC【分析】 
+由余弦定理得
+  1 1 3通过余弦定理分别表示BD，从而找到角A，C 的关系，将四边形的面积用角
+48 =\frac{1}{ 1} BD2+ CD2+ BD ⋅CD = (CD - BD(2+ BD ⋅CD
+即
+4222A，C 表示，从而求得面积的最大值.
+3
+当CD = BD 时，BD ⋅CD 有最大值，即 BD ⋅CD = 48，则BD ⋅CD = 32【详解】 由余弦定理知：在△ABD 中，有BD2= AB2+ AD2- 2AB ⋅ADcosA
+22
+3321= 12+ 42- 2 × 1 × 4 ⋅cosA = 17 - 8cosA，
+所以S = BD ⋅CD = × 32 = 4 3 故答案为：，4 3
+△ADC883在△BCD 中，有BD2= CB2+ CD2- 2CB ⋅CDcosC = 22+ 22- 2 × 2 × 2 ⋅
+cosC = 8 - 8cosC，
+ 9
+则17 - 8cosA = 8 - 8cosC ⇒cosA - cosC = ，由四边形ABCD 的面积=
+8
+三角形ABD 的面积+ 三角形BCD 的面积，
+ 1 1 1 1
+故S = AB ⋅ADsinA + CB ⋅CDsinC = × 1 × 4sinA + × 2 × 2sinC
+2222
+= 2(sinA + sinC)，
+26. △ABC 内接于半径为2 的圆，三个内角A，B，C 的平分线延长在三角形中，易知A,C ∈(0,π)，sinA,sinC > 0，(sinA + sinC(2+ (cosA -
+cosC)2
+后分别交此圆于A，B，C.则
+111= sinA + sinC + 2sinAsinC + cosA + cosC - 2cosAcosC = 2 - 2cos(A
+2222
+ A B C
+AAcos + BBcos + CCcos+ C) ≤4A + C = π
+121212，当且仅当 时等号成立，
+的值为.
+sinA + sinB + sinC925 7
+此时(sinA + sinC)2+((≤4 ⇒sinA + sinC ≤，
+88
+ 5 7 5 7
+故S = 2(sinA + sinC) ≤2 ×=，故选：A.
+84
+【答案】 4
+【分析】 
+ A
+连BA，由正弦定理得AA= 2Rsin ⟨?⟩B +⟨?⟩，利用三角形内角和性质得AA
+1121
+ B - C A
+= 4cos⟨?⟩⟨?⟩，进而利用积化和差公式、诱导公式得AAcos =
+212
+ B C
+2( sinC + sinB(，同理求BBcos 、CCcos ，即可求值.
+1212
+【详解】 
+ A A + B + C B C
+连BA，则AA= 2Rsin ⟨?⟩B +⟨?⟩= 4sin⟨?⟩+ -⟨?⟩=
+112222
+ B - C
+4cos⟨?⟩⟨?⟩，
+2
+ A B - C A A + B - C A + C - B
+∴AAcos = 4cos⟨?⟩⟨?⟩cos = 2⟨?⟩ cos+ cos⟨?⟩=
+122222
+2( sinC + sinB(，
+ B C
+同理可得：BBcos = 2( sinA + sinC(，CCcos = 2( sinA + sinB(.
+1212
+  B C
+∴AAcos\frac{A}{A} + BBcos + CCcos = 4( sinA + sinB + sinC(，即
+121212
+   C
+AAcos + BBcos\frac{B}{ + } + CCcos
+121212
+= 4.
+sinA + sinBsinC
+·178·
