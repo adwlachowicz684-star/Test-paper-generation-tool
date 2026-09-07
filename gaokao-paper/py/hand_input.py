@@ -213,6 +213,10 @@ def add(q, batch='人工录入'):
     q.setdefault('kp_list', [x for x in (q.get('kp'), q.get('kp2')) if x])
     q.setdefault('src', '')
     q.setdefault('review', '')       # 人工审核备注（记改了什么、为什么）
+    # 填空位写法归一化（裸 \underline → ____），必须在生成 stem 之前
+    for _k in ('stem_text', 'analysis', 'solution', 'review', 'answer'):
+        if _k in q:
+            q[_k] = _norm_blanks(q[_k])
     q['ana_text'] = q.get('analysis') or ''
     # 渲染层用的 stem（列表形式）
     q['stem'] = [q['stem_text']]
@@ -220,6 +224,25 @@ def add(q, batch='人工录入'):
     bank.append(q)
     save(bank)
     return True, q['id']
+
+
+# 填空位的规范写法是 4 个下划线 ____。
+# 裸写 \underline{\hspace{2em}}（未包在 $...$ 内）时 Word/HTML 两端都渲染不出来，
+# 表现为「题干缺字」，且 bank 清理脚本难以触及（stem 字段是 list）。
+# 这里在入库入口统一兜住，避免每次录完才发现。
+import re as _re
+_BLANK = _re.compile(r'\\underline\{\\hspace\{[^}]*\}\}')
+
+
+def _norm_blanks(v):
+    """把裸的 LaTeX 填空位统一换成 ____（递归处理 list/dict）。"""
+    if isinstance(v, str):
+        return _BLANK.sub('____', v) if ('underline' in v or 'hspace' in v) else v
+    if isinstance(v, list):
+        return [_norm_blanks(e) for e in v]
+    if isinstance(v, dict):
+        return {k: _norm_blanks(e) for k, e in v.items()}
+    return v
 
 
 def _subtype(q):
