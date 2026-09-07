@@ -1,0 +1,134 @@
+AB AE π π π2 3 π
+∴ = ，即AB ⋅CD = BD ⋅AE ②当2θ - = 时，即θ = ，可得sin + 1 = 2，
+DBDC33333
+①+ ②得： π π2 3 π
+当2θ - =- 时，即θ = 0，可得sin (-(+ 1 = 0，
+3333
+AD ⋅BC + AB ⋅CD = BD ⋅EC + BD ⋅AE = BD ⋅(EC + AE(= BD ⋅AC
+所以BC 的取值范围是(0,2).
+由(1) 可知，BD = 7
+sinA b + ca b + c
+∴AD ⋅BC + AB ⋅CD = 7AC选②：由 = ，根据正弦定理可得 = ，
+sinB - sinCa + cb - ca + c
+∴求AD ⋅BC + AB ⋅CD 的最大值即求AC 的最大值.可得a2+ ac = b2- c2，即a2+ c2- b2=-ac，
+当AC 为圆的直径时，AC 最大 a2+ c2- b2 -ac 1
+又由余弦定理，可得cosB == =- ，
+BD 14 32ac2ac2
+由正弦定理得：2R = =\frac{7}{sin120^{∘}}= 
+sin∠BAD3A ∈(0,π)B =
+因为，所以\frac{2π}{ π} ，
+3
+14 3 14 3 98 3
+∴AC 最大值为，此时AD ⋅BC + AB ⋅CD = 7 ×= 
+333设∠BAC = θ，则∠CAD = - θ,∠CDA = θ +\frac{π}{D} ，
+26
+98 3
+AD ⋅BC + AB ⋅CD 的最大值为AC
+3在△ACD 中，由正弦定理得 =\frac{A}{ π} ，
+sin∠ADCsin∠ACD
+b
+43. ( 2022 · 全国· 高三专题练习) 在①\frac{cosB}{⟨?⟩⟨?⟩⟨?⟩} =- ，② ADsin∠ADC π
+cosC2a + c可得AC ==\frac{3 ⋅sin (θ +6)}{sin3}= 2sin (θ +(，
+sin∠ACD\frac{π}{BC} 6
+sinA b + c⟨?⟩⟨?⟩⟨?⟩
+ = ，③2S =- 3BA⋅BC三个条件中任选一
+sinB - sinCa + c 
+在△ABC 中，由正弦定理得\frac{AC}{ } = ，
+sinBsinθ
+个补充在下面的横线上，并加以解答.
+在△ABC 中，角A，B，C 的对边分别为a，b，c 且，作 AC ⋅sinθ\frac{π}{ 2π}  π
+可得BC ==\frac{2sin (θ +6)⋅sinθ}{sin3}=\frac{4}{3} sin (θ +(⋅sinθ
+sinB6
+ π
+AB ⊥AD，使得四边形ABCD 满足∠ACD = ，AD =3，
+3 3 1 3 1
+=\frac{4}{3}⟨?⟩ sinθ + cosθ⟨?⟩sinθ =\frac{4}{3}⟨?⟩ sin2θ + sinθcosθ⟨?⟩
+BC.2222
+求 的取值范围
+   1 - cos2θ
+=\frac{1}{3} (2 3sin2θ + 2sinθcosθ) =\frac{1}{3} ⟨?⟩2 3 ×+ sin2θ⟨?⟩
+2
+  2 3 π
+=\frac{1}{3} (sin2θ -3cos2θ) + 1 =sin (2θ -(+ 1，
+33
+ π π π π
+因为0 < θ < ，可得- < 2θ - < ，
+3333
+ π π π2 3 π
+当2θ - = 时，即θ = ，可得sin + 1 = 2，
+33333
+ π π2 3 π
+当2θ - =- 时，即θ = 0，可得sin (-(+ 1 = 0，
+3333
+所以BC 的取值范围是(0,2).
+⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩ 1
+若选③：由2S =- 3BA⋅BC，可得2 × acsinB =- 3accosB，
+2
+即sinB =- 3cosB，可得tanB =- 3，
+因为A ∈(0,π)，所以B =\frac{2π}{ π} ，
+3
+设∠BAC = θ，则∠CAD = - θ,∠CDA = θ +\frac{π}{D} ，
+26
+AC
+在△ACD 中，由正弦定理得 =\frac{A}{ π} ，
+【答案】 (0,2).sin∠ADCsin∠ACD
+【分析】 
+ ADsin∠ADC π
+ 2π 可得AC ==\frac{3 ⋅sin (θ +6)}{sin3}= 2sin (θ +(，
+根据题意，选择①②③求得B = ，设∠BAC = θ，则∠CAD =\frac{π}{ π} - θ,sin∠ACD 6
+32\frac{π}{BC}
+ π
+∠CDA = θ + ，在△ACD 中，由正弦定理求得AC = 2sin (θ +(，在 
+66在△ABC 中，由正弦定理得\frac{AC}{ } = ，
+sinBsinθ
+  π
+△ABC 中，由正弦定理求得可得BC =\frac{4}{3} sin (θ +(⋅sinθ =
+6\frac{π}{ 2π}
+ AC ⋅sinθ  π
+可得BC ==\frac{2sin (θ +6)⋅sinθ}{sin3}=\frac{4}{3} sin (θ +(⋅sinθ
+2 3 π πsinB6
+sin (2θ -(+ 1，结合0 < θ < 和三角函数的性质，即可求解.
+333
+cosBbcosB 3 1 3 1
+【详解】 若选①：由 =- ，根据正弦定理可得 ==\frac{4}{3}⟨?⟩ sinθ + cosθ⟨?⟩sinθ =\frac{4}{3}⟨?⟩ sin2θ + sinθcosθ⟨?⟩
+cosC2a + ccosC2222
+sinB   1 - cos2θ
+- ，=\frac{1}{3} (2 3sin2θ + 2sinθcosθ) =\frac{1}{3} ⟨?⟩2 3 ×+ sin2θ⟨?⟩
+2sinA + sinC2
+即2sinAcosB + sinCcosB =-sinBcosC，  2 3 π
+=\frac{1}{3} (sin2θ -3cos2θ) + 1 =sin (2θ -(+ 1，
+即2sinAcosB =-sinBcosC - sinCcosB =-sin (B + C(=-sinA，33
+ 1 2π π π π π
+cosB =-A ∈(0,π)B =因为0 < θ < ，可得- < 2θ - < ，
+可得 ，因为，所以 ，3333
+23
+ π  π π π2 3 π
+设∠BAC = θ，则∠CAD = - θ,∠CDA = θ +\frac{π}{D} ，当2θ - = 时，即θ = ，可得sin + 1 = 2，
+2633333
+AC π π2 3 π
+在△ACD 中，由正弦定理得 =\frac{A}{ π} ，当2θ - =- 时，即θ = 0，可得sin (-(+ 1 = 0，
+sin∠ADCsin∠ACD3333
+所以BC 的取值范围是(0,2).
+ ADsin∠ADC π
+可得AC ==\frac{3 ⋅sin (θ +6)}{sin3}= 2sin (θ +(，
+sin∠ACD 644.ABCDCD = 3 3BC =7cos∠CBD =
+\frac{π}{BC} 如图，在四边形 中，，，
+ 7
+在△ABC 中，由正弦定理得\frac{AC}{ } = ，- .
+sinBsinθ14
+ AC ⋅sinθ\frac{π}{ 2π}  π
+可得BC ==\frac{2sin (θ +6)⋅sinθ}{sin3}=\frac{4}{3} sin (θ +(⋅sinθ
+sinB6
+\frac{4}{3} ⟨?⟩3 1⟨?⟩\frac{4}{3} ⟨?⟩3 1⟨?⟩
+= sinθ + cosθsinθ = sin2θ + sinθcosθ
+2222
+   1 - cos2θ
+=\frac{1}{3} (2 3sin2θ + 2sinθcosθ) =\frac{1}{3} ⟨?⟩2 3 ×+ sin2θ⟨?⟩
+2
+  2 3 π
+=\frac{1}{3} (sin2θ -3cos2θ) + 1 =sin (2θ -(+ 1，
+33
+ π π π π
+因为0 < θ < ，可得- < 2θ - < ，
+3333
+·194·

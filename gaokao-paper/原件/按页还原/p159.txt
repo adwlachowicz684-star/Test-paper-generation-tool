@@ -1,0 +1,150 @@
+b sinB2b2+ c2tb 有最大值，则实数t 的取值范围是．
+C 表示B，求出 = 的取值范围，即可求出的取值范围．
+csinCbc
+1
+△ABCa2= b2+ c2- 2bccosA【答案】 ( ,2(
+【详解】 在 中，由余弦定理得，2
+ 1 2π
+且△ABC 的面积S = bcsinA，【分析】 根据正弦定理、余弦定理化简得到C = ，再利用正弦定理与三角
+23
+由2S = a2- (b - c)2，得bcsinA = 2bc - 2bccosA，化简得sinA + 2cosA =a + tb4t - 22+ 12 ⋅sin B + θa + tb
+恒等变换将 化简为((((，再根据 存在最
+2，tanθ
+大值，分析 的范围列式即可
+又A ∈(0,\frac{π}{ }(，sin2A + cos2A = 1，联立得5sin2A - 4sinA = 0，【详解】 由已知及正弦定理可得(a - b(b = a( a + 2b(- c2，整理得a2+ b2- c2
+2
+4 a2+ b2- c2 1 2π
+解得sinA = 或sinA = 0(舍去)，=-ab，由余弦定理得cosC ==- ，又C ∈(0,π(，得C = ，由
+52ab23
+ sin(A + C)ba
+b sinB  正弦定理得 = = 4，
+所以 = ==\frac{sinAcosC + cosAsinC}{ π}=\frac{4}{ π} +\frac{3}{π} ，sinBsinA
+csinCsinCsinC5tanC5
+ π
+∴a + tb = 4( sinA + tsinB(= 4tsinB + 4sin( - B(= 4tsinB +
+因为△ABC 为锐角三角形，所以0 < C < ，B = π - A - C < ，所以3
+222
+ π⟨?⟩3 1⟨?⟩
+- A < C <4 cosB - sinB= (4t - 2(sinB + 2 3cosB =(4t - 2(2+ 12 ⋅
+ ，22
+2
+ π1 31 4b3 π
+所以tanC > tan( - A(= = ，所以 ∈(0,(，所以 ∈sin (B + θ(，其中tanθ = ，又B ∈(0,(，
+2tanA4tanC3c2t - 13
+3 5 ππ π
+( ,(，∴若a + tb 存在最大值，即B + θ = 有解，即θ ∈( ,(，
+53262
+\frac{b}{1}3 52b2+ c2 b c 1⟨?⟩2t - 1 > 0,
+设 = t，其中t ∈( ,(，所以= 2 + = 2t + =11
+c53bccbt∴⟨?⟩⟨?⟩33解得 < t < 2，即t 的范围是( ,2(．
+ > ,22
+⟨?⟩⟨?⟩2t - 13
+⟨?⟩2⟨?⟩
+2 t +，
+⟨?⟩t⟨?⟩
+ 1⟨?⟩32⟨?⟩⟨?⟩2 5⟨?⟩23. 已知△ABC 的内角A，B，C 的对边分别为a，b，c．角B 为钝
+由对勾函数单调性知y = 2t + 在 ,上单调递减，在 ,上单
+t5223
+角．设△ABC 的面积为S，若4bS = a (b2+ c2- a2(，则sinA +
+调递增，
+2 3 43 5 59sinC 的最大值是．
+当t = 时，y = 2 2；当t = 时，y = ；当t = 时，y = ；
+2515315
+9
+ 592b2+ c2 59【答案】 
+y ∈[2 2,([2 2,(8
+所以，即的取值范围是．
+15bc15
+【分析】 根据已知，利用三角形面积公式、余弦定理可得sinB = cosA =
+故选：C.
+ π π
+sin( - A(，B 为钝角知B = + A，由三角形内角和的性质得sinA + sinC
+【提分秘籍】22
+ 12 
+基本规律=-2 (cosB +(+\frac{9}{ 1} ，即可求最大值.
+48
+1. 已知或者求出一角，则可以利用另外俩角和定值来消角
+【详解】 由题设，S = acsinB，则2abcsinB = a(b2+ c2- a2)，
+2.()2
+ 广义消角：已知或者求得一角非特殊角 三角函数值，可以利用两角和的正余
+ b2+ c2- a2 π
+弦来“消角”∴sinB == cosA = sin( - A(，又B 为钝角即A 为锐角，
+2bc2
+ π π
+∴B + - A = π，即B = + A，又C = π - (A + B)，
+22
+【变式演练】
+ π π
+21.△ABCA.B.Ca.b.cc =∴cosB = cos( + A(=-sinA 且sinB = sin( + A(= cosA，
+ 设锐角 的三个内角 的对边分别为，且22
+1，A = 2C，则△ABC 周长的取值范围为()而sinA + sinC = sinA + sin(A + B) = sinA(1 + cosB) + cosAsinB = sin2B
+ 12 9
+- cos2B - cosB = 1 - cosB - 2cos2B =-2( cosB +(+ ，
+A. (0，2 +2]B. (0，3 +3]48
+ 19
+C. (2 +2，3 +3)D. [2 +2，3 +3]∴当cosB =- 时，sinA + sinC 的最大值为 .
+48
+9
+【答案】 C故答案为：
+8
+abc
+由锐角三角形求得30° < C < 45°，由正弦定理可得 = = =
+sinAsinBsinC
+1【题型九】面积2：正切代换
+ ，求出a，b 关于cosC 的函数，根据余弦函数的性质，可求得范围．
+sinC【典例分析】
+【详解】 1.△ABCABCabcS
+例 在锐角 中，角，， 的对边分别为，，， 为
+⟨?⟩0 < A <\frac{π}{ π}
+⟨?⟩2
+⟨?⟩△ABC 的面积，且2S = a2- (b - c(2，则\frac{4b^{2}- 12bc + 17c^{2}}{4b^{2}- 12bc + 13c^{2}} 的取值范
+∵△ABC 为锐角三角形，且A + B + C = π，∴⟨?⟩0 < B <⇒
+2
+⟨?⟩围为() ．
+⟨?⟩ π
+⟨?⟩0 < C <
+2
+9 73281 9
+ π A.[ ,(B.( ,[
+⟨?⟩0 < 2C <⟨?⟩0 < C <\frac{π}{ π}5371815
+⟨?⟩2⟨?⟩4
+⟨?⟩ π⟨?⟩π 73281
+⟨?⟩0 < π - C - 2C <⇒⟨?⟩ < C <，C. [2,(D.( ,2[
+26337181
+⟨?⟩⟨?⟩
+⟨?⟩ π⟨?⟩ π
+⟨?⟩0 < C <⟨?⟩0 < C <
+22【答案】 D
+π π23△ABCsinAcosA
+∴ < C < ， < cosC < ，又∵A = 2C，【分析】 根据余弦定理和 的面积公式，结合题意求出、 的
+6422
+b
+ac值，再用C 表示B，求出 的取值范围，即可求出\frac{4b^{2}- 12bc + 17c^{2}}{4b^{2}- 12bc + 13c^{2}} 的取值范围．
+∴sinA = sin2C = 2sinC ⋅cosC，又∵c = 1， = ，∴a = 2cosC，由c
+sinAsinC
+b【详解】 △ABC 中，由余弦定理得，a2= b2+ c2- 2bccosA，且△ABC 的面积
+ =\frac{c}{ ⋅sinB} ，
+sinBsinC 1
+为S = bcsinA，由2S = a2- (b - c)2，
+ c sin3C sinC ⋅cos2C + cosC ⋅sin2C2
+即b == == 4cos2C - 1，
+sinCsinCsinC π
+得bcsinA = 2bc - 2bccosA，化简得sinA + 2cosA = 2；又A ∈(0,(，
+∴a + b + c = 2cosC + 4cos2C - 1 + 1 = 4cos2C + 2cosC2
+，
+2323sin2A + cos2A = 1，
+令t = cosC，则t ∈⟨?⟩ ，⟨?⟩，又∵函数y = 4t2+ 2t 在⟨?⟩ ，⟨?⟩上单调
+2222 4
+所以sinA + 2 1 - sin2A = 2，化简得5sin2A - 4sinA = 0，解得sinA =
+5
+递增，
+或sinA = 0(不合题意，舍去)；
+∴函数值域为(2 +2，3 +3)，故选：C
+ π 3 sinA 4
+因为A ∈(0,(所以cosA =1 - sin2A = ，tanA = =
+25cosA3
+22. 在△ABC 中，角A，B，C 的对边分别为a，b，c，且(a - b(sinB
+b sinB sin(A + C) sinAcosC + cosAsinC4 3
+所以 = === + ，
+= a (sinA + 2sinB(- csinC ，△ABC 的外接圆半径为2，若a +csinCsinCsinC5tanC5
+·159·

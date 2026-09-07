@@ -1,0 +1,129 @@
+例1. 在△ABC 中，角A，B，C 的对边分别为a，b，c，△ABC 的 1 1
+所以△ABC 的面积S = ac = ×6 ×2 =3.
+22
+3
+面积为S，且S =(a2+ b2- c2(.
+417. 已知△ABC 的内角A,B,C 的对边分别为a,b,c，且9c - a =
+(1) 求角C；9bcosA.
+(2) 若3a = 2b，求sinA.(1) 求cosB；
+ π211 1
+【答案】 (1)C = ；(2)sinA =.(2) 若角B 的平分线与AC 交于点D，且BD = 1，求 + 的
+37ac
+3 1
+【详解】 (1) 因为S = (a2+ b2- c2) = absinC，所以sinC =值.
+42
+3(a2+ b2- c2)3 × 2abcosC 1 2 5
+==3cosC，【答案】 (1) ；(2).
+2ab2ab93
+ π【详解】 (1) 方法一：由9c - a = 9bcosA 及余弦定理得9c - a = 9b ⋅
+解得tanC =3，又C ∈(0,π)，故C = .
+3b2+ c2- a2
+，
+(2) 设a = 2t,b = 3t(t > 0) 则c =a2+ b2- 2abcosC =7t 所以sinA =2bc
+asinC 321 2 a2+ c2- b2 1
+=\frac{2t}{7t} ⋅ =.整理得a2+ c2- b2= ac，所以cosB == .
+c2792ac9
+方法二：由9c - a = 9bcosA 及正弦定理得9sinC - sinA = 9sinBcosA，
+又sinC = sin (A + B(= sinAcosB + cosAsinB，所以9sinAcosB - sinA = 0
+【提分秘籍】
+ 1
+基本规律⇒cosB = .
+9
+1. 若式子含有a,b,c 的2 次齐次式，优先考虑余弦定理，“角化边” 1
+(2) 由(1) 可知cos∠ABC = cos2∠ABD = 1 - 2sin2∠ABD = ，且sin∠ABD
+9
+2. 面积和a,b,c2 次齐次式，可构造余弦定理
+> 0，所以sin∠ABD =\frac{2}{ 2} ，
+3
+【变式演练】同理可得sin∠CBD = ，设△ABC,△ABD,△CBD 的面积分别为S,S,S，
+312
+π
+15. 已知ΔABC 中，角A，B，C 所对的边分别为a，b，c，A ≠ ，且 1  11  2 5
+2S = acsin∠ABC =\frac{1}{ } ac 1 - cos2∠ABC = ac1 -((2=ac
+则9，
+2229
+满足bcsin2A + 20cos (B + C(= 0. 11 1 1
+S= c ⋅BDsin∠ABD = c，S= a ⋅BDsin∠CBD = a，
+123223
+(1) 求ΔABC 的面积S；
+1 1 2 51 1 2 5
+由S+ S= S 得 c + a =ac，所以 + =.
+c b12339ac3
+(2) 若a2= 4S，求 + 的最大值.
+bc【题型七】解三角形1：面积最值
+【答案】 (1)5(2)2 2【典例分析】
+【详解】 (1) 在ΔABC 中，A + B + C = π，∴B + C = π - A ∵bcsin2A +例1. 如图，在△ABC 中，D 为BC 边上的点，连接AD，且满足
+20cos (B + C(= 0
+DB ⋅sin∠ABD = DC ⋅sin∠ACD.
+π 1
+∴2bcsinA ⋅cosA - 20cosA = 0 ∵A ≠ ，∴cosA ≠0 ∴S = bcsinA = 5
+22A
+(2) ∵a2= 4S ∴b2+ c2- 2bccosA = 2bcsinA ∴b2+ c2= 2bcsinA + 2bccosA
+ b b2+ c2 π πc
+∴\frac{c}{ b} + == 2sinA + 2cosA = 2 2sin (A +(∴当A = 时，
+bcbc44b
++ 取最大值2 2.
+c
+16. 已知a，b，c 分别为△ABC 内角A，B，C 的对边，若△ABC 同
+b - a 
+时满足以下四个条件中的三个：①=\frac{2 6a + 3c}{3(a + b)}，②
+c
+cosC c 2b
+ + = ，③a =6，④b = 2 2.
+cosAaa
+BDC
+(1) 条件①②能否同时满足，请说明理由；
+(2) 以上四个条件，请在满足三角形有解的所有组合中任选一(1) 求证：∠BAD = ∠CAD；
+组，并求出对应△ABC 的面积. π
+(2) 若∠BAC = ，AD = 1，求△ABC 的面积的最小值.
+3
+【答案】 (1) 不能同时满足①②(2) 若△ABC 满足①③④时, 则△ABC 的面积
+3
+为3 -2，若△ABC 满足②③④时，则△ABC 的面积为3.【答案】 (1) 证明见解析。(2)
+3
+b - a 
+【详解】 (1) 由①=\frac{2 6a + 3c}{3(a + b)}得：3(a2+ c2- b2) =-2 6ac 由余弦定【分析】 
+c
+(1) 分别在△ADB 和△ADC 中运用正弦定理并结合已知条件即可证得；
+ 6
+理cosB =\frac{a^{2}+ c^{2}- b^{2}}{ c 2b}=- .(2) 利用S = S+ S，列出等式b + c =3bc，利用基本不等式即
+2ac3△ABC△ABD△ACD
+cosCcosCsinA + cosAsinC 2sinB可求出△ABC 的面积的最小值.
+由② + = 及正弦定理，得：= ，
+cosAaacosAsinAsinCADBD
+【详解】 (1) 在△ADB 中，利用正弦定理可知 = ，即
+sin(A + C) sin∠ABDsin∠BAD
+即 =\frac{2sinB}{ 1} ，因为A + C,A ∈(0,π(，∴sin (A + C(= sinB ≠0，
+cosAsinAsinABD ⋅sin∠ABD = AD ⋅sin∠BAD，
+ πADCD
+sinA ≠0，∴cosA = ，∵A ∈(0,π(，∴A = .△ADC =
+23同理，在 中，利用正弦定理可知 ，
+sin∠ACDsin∠CAD
+6 1 2π
+因为cosB =- <- 且B ∈(0,π(，所以B > . 所以A + B > π，矛盾.即CD ⋅sin∠ACD = AD ⋅sin∠CAD，
+323
+由已知条件DB ⋅sin∠ABD = DC ⋅sin∠ACD，可得AD ⋅sin∠BAD = AD ⋅
+所以△ABC 不能同时满足①②.
+sin∠CAD，
+(2) 由(1) 知，△ABC 满足①③④或②③④若△ABC 满足①③④因为b2= a2
+即sin∠BAD = sin∠CAD。∵∠BAD + ∠CAD ∈(0,π)，∴∠BAD =
++ c2- 2accosB
+6∠CAD；
+所以8 = 6 + c2+ 2 ×6 × c × ，即c2+ 4c - 2 = 0，解得c =6 - 2 或c =
+3 1 π
+(2) 设AC = b，AB = c, ∠BAD = ∠CAD = ∠BAC = ,
+- 6 - 2().26
+舍去
+ 1 1 1
+ 1∴S = bcsin∠BAC =\frac{3}{ 1} bc，S= AB ⋅ADsin∠BAD = c，
+∴△ABC 的面积S = acsinB =3 -2 另：若△ABC 满足②③④△ABC24△ABD24
+2
+ 1
+ab 2 2 πS= AC ⋅ADsin∠CAD = b，
+ = ，即\frac{6}{23}= ，则sinB = 1，所以B = ，所以c =b2- a2△ACD24
+sinAsinBsinB2
+3 1
+又∵S = S+ S，∴ bc = (b + c(，∴b + c =3bc，
+△ABC△ABD△ACD44
+=8 - 6 =2，
+·184·

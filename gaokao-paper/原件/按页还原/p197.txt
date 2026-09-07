@@ -1,0 +1,126 @@
+ 43 3 1 1  1 π π
+= × + (-(× = (4 3 - 3(【分析】 (1) 求出BP =BC2- PC2= ，∠CBP = ,∠ABP = ，ΔABP
+525210236
+|AD||AB||AD| 4中由余弦定理即可求得PA；
+又 = ，∴|AB|= sin∠ADB ⋅ = ⋅\frac{3 × 10}{4 3 - 3} =
+sinBsin∠ADBsinB5
+(2) 设∠PBA = α，利用正弦定理表示出\frac{AB}{sin120°} =\frac{PB}{sin(60° -α)} ，求得tanα =
+8( 4 3 + 3(
+133
+ ，利用面积公式即可得解.
+ 8 4 3 + 32
+((
+∴|AB|=．
+13【详解】 
+(1) 在ΔABC 中，∠ABC = 90°,AB =3,BC = 1，AC = 2
+ 1
+49. 如图，在△ABC 中，sinA = ，AB = 2 3 ，D ，E 分别在边
+33
+ΔABC∠BPC = 90PC =BP =BC- PC =
+为 内一点，°， ，所以22
+BC，AC 上，EC = EB，ED ⊥BC 且DE = 1．2
+1
+ ，
+2
+ BP2+ BC2- PC2 1
+ΔCBP 中，由余弦定理得：cos∠CBP ==
+2BP ⋅BC2
+ π π
+所以∠CBP = ,∠ABP = ΔABP 中，由余弦定理得：AP =
+36
+AB2+ BP2- 2AB ⋅BPcos∠PBA
+ 1 13
+=3 + - 2 ×3 × ×=\frac{7}{ π} ；
+4222
+(2)∠APB = 120°，设∠PBA = α ∈(0,(,∠PBC = 90° -α,∠PAB = 60° -α，
+2
+在RtΔPBC 中，PB = BC ⋅sinα = sinα，在ΔPBA 中，由正弦定理\frac{AB}{sin120°} =
+\frac{PB}{sin(60° -α)} ，
+(1) 求cosC；3
+即2 =\frac{sinα}{sin(60° -α)} ，sinα =3cosα - sinα，所以tanα = ，sinα =\frac{3}{7} ,
+2
+(2) 求△AEB 的面积．
+3 7 2PB =\frac{3}{7}
+【答案】 (1)cosC = (2)
+36
+ 1 1 3 3
+【分析】 ΔABP 的面积S = AB ⋅PBsinα = ×3 ×\frac{3}{7} ×\frac{3}{7} = .
+2214
+1
+(1) 根据题意，先得出sinC = ，进而在△ABE 中运用正弦定理得到sinC,【题型十八】建模应用
+EB
+EB 的另外一个等式，然后解出答案；【典例分析】
+(2) 由(1) 求出sinC，进而确定∠AEB，然后求出sin∠AEB，最后结合三角形例1. 北京2022 年冬奥会将于2022 年2 月4 日在北京和张家口
+面积公式解得答案.开幕，运动员休息区本着环保，舒适，温馨这一出发点，进行精心设
+ DE1
+【详解】 (1) 由EC = EB，ED ⊥BC，得sinC = = ⋯①，计，如图，在四边形ABCD 休闲区域，四周是步道，中间是花卉种植
+ECEB
+在△AEB 中，∠AEB = 2∠C，区域，为减少拥堵，中间穿插了氢能源环保电动步道AC,∠D =2
+AB EB3
+由正弦定理得 = ，
+sin∠AEBsinA∠B，且AD =1, CD =3,cos B = .
+3
+2 32 3
+即 = = 3EB ⋯②，
+sin2C2sinCcosC
+2 333
+将①代入②得 = ，故cosC = ．
+2sinCcosCsinC3
+36
+(2) 由cosC = ，0 < C < π，得到sinC =1 - cos2C = ，
+33
+ 2 2
+在△AEB 中，sin∠AEB = 2sinCcosC =，
+3
+ 1
+cos∠AEB = 2cos2C - 1 =- ，
+3
+ 1 2 2
+由sinA = ，易知A 为锐角，则cosA =1 - sin2A =，
+33
+∴sin∠ABE = sin(∠A + ∠AEB) = sin∠Acos∠AEB + cos∠Asin∠AEB =
+7(1)AC
+ ． 求氢能源环保电动步道 的长；
+9
+16(2) 若BC =6，求花卉种植区域总面积(电动步道AC 的面积
+∵BE = = ，
+sinC2
+忽略不计).
+ 1 16 7 7 2
+∴S= ⋅BE ⋅AB ⋅sin∠ABE = × × 2 3 × =，∴△ABE
+△ABE22296【答案】 (1)AC = 2 3(2) 42
+7 2 1
+的面积是．【分析】 (1) 由已知可得cos D = cos2 B = 2 cos 2B - 1 =- ，从而由余弦定
+63
+理即可求出AC 的长；
+50. 如图，在ΔABC 中，∠ABC = 90°,AB =3,BC = 1，P 为ΔABC
+(2) 利用余弦定理求出AB = 3 2，利用面积公式求出S 和S，进而可
+△ABC△ADC
+内一点，∠BPC = 90°.
+得花卉种植区域总面积.
+C3
+【详解】 (1) 因为cos B = ，∠D =2 ∠B，所以cos D = cos2 B = 2 cos 2B
+3
+ 1
+- 1 =- ，
+3
+因为AD = 1，CD = 3，所以由余弦定理得AC2= AD2+ DC2- 2AD ⋅
+P 1
+DCcosD = 1 + 9 - 6 × (- ) = 12，
+3
+B因为AC ＞0，所以AC =23；
+A
+(2) 因为BC =6，
+3 3
+(1) 若PC = ，求PA；所以在△ABC 中，由余弦定理得cos B =\frac{AB^{2}+ 6 - 12}{2 6 × AB}= ，解得AB =
+23
+(2)∠APB = 120°ΔABPS.3 2 或-2(舍去)，
+ 若，求 的面积
+36 1 1
+7 3 3因为cos B = ，所以sin B = ，所以S = AB ⋅BC ⋅sinB = ×
+【答案】 (1) ；(2) .33△ABC22
+214
+6
+6 × 3 2 × = 3 2
+3
+·197·

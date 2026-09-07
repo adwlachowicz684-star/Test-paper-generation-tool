@@ -1,0 +1,84 @@
+(1) 若E 为PC 的中点，求证：BE ∥平面PAD.
+(2) 当平面PBD ⊥平面ABCD 时，求二面角C - PD - B 的余
+弦值.
+【题型四】平行4：难题- - 线面探索型
+13
+【答案】 (1) 证明见解析(2)【典例分析】
+13
+例1. 在四棱锥P - ABCD 中，底面ABCD 是菱形，AC ∩BD
+【分析】 (1) 作出辅助线，利用中位线证明线线平行，进而证明线面平行；(2)
+建立空间直角坐标系，利用空间向量解决二面角.= O.
+(1) 取CD 的中点M ，连接EM ，BM ，(I) 若AC ⊥PD，求证：AC ⊥平面PBD；
+P(II) 若平面PAC ⊥平面ABCD，求证：PB = PD；
+(Ⅲ) 在棱PC 上是否存在点M(异于点C) 使得BM ⎳平面
+EPM
+DPAD，若存在，求 的值；若不存在，说明理由.
+PC
+A
+MP
+CB
+由已知得，△BCD 为等边三角形，∴BM ⊥CD.
+∵AD = AB = 2，BD = 2 3，∴∠ADB = ∠ABD = 30°，∠ADC = 90°，∴BM
+D
+∥AD.
+O
+又∵BM ⊄平面PAD，AD ⊂平面PAD，∴BM ∥平面PAD.A
+C
+∵E 为PC 的中点，M 为CD 的中点，∴EM ∥PD.
+B
+又∵EM ⊄平面PAD，PD ⊂平面PAD，∴EM ∥平面PAD.
+∵EM ∩BM = M ，PD ∩DA = D，∴平面BEM ∥平面PAD.【答案】 (I) 证明见解析；(II) 证明见解析；(Ⅲ) 不存在.
+∵BE ⊂平面BEM ，∴BE ∥平面PAD.【分析】 (I) 由ABCD 是菱形可得AC ⊥BD；结合AC ⊥PD，由线面垂直的
+判定定理可得AC ⊥平面PAD.；(II) 由(I) 可知AC ⊥PO, 由面面垂直的性质
+6. 如图所示的四棱锥P - ABCD 的底面ABCD 是一个等腰梯形，
+可得BD ⊥PO, 结合BO = DO 可得结果；(Ⅲ) 利用反证法，假设存在点M(异于
+AD ⎳BC ，且AD = 2AB = 2BC = 4，PO 是△PAD 的中线，点
+点C) 使得BM ⎳平面PAD，可推出平面PBD ⎳平面PAD，从而可得结论.
+E 是棱PD 的中点．【详解】 
+P
+DM
+O
+A
+C
+B
+(1) 证明：CE ∥平面PAB．
+(I) 因为底面ABCD 是菱形。所以AC ⊥BD.
+(2) 若平面PAD ⊥平面ABCD，且PA = PD,PO = AO，求平
+又因为AC ⊥PD，PD ∩BD = D，所以AC ⊥平面PAD. 
+面PAB 与平面PCD 夹角余弦值．
+(II) 由(I) 可知AC ⊥PO. 因为平面PAC ⊥平面ABCD，平面PAC ∩平面
+(3) 在(2) 条件下，求点D 到平面PAB 的距离．ABCD = AC，
+ 1 4 21PO ⊥平面ABCD，因为BD ⊂平面PAC，所以BD ⊥PO.
+【答案】 (1) 证明见解析；(2) ；(3).
+77
+因为底面ABCD 是菱形，所以BO = DO. 所以PB = PD. 
+【分析】 (1) 连接OC、OE，平行四边形的性质、线面平行的判定可得OE ⎳平
+(Ⅲ) 不存在. 下面用反证法说明. 
+面PAB、CO ⎳平面PAB，再根据面面平行的判定可得平面OCE ⎳平面
+假设存在点M(异于点C) 使得BM ∥平面PAD. 在菱形ABCD 中，BC ∥
+PAB，利用面面平行的性质可证结论；
+BC，因为BM ⊂平面PAD，BC ⊂平面PAD，所以BC ∥平面PAD. 因为BM ⊥
+(2) 取BC 的中点为M ，连接OM ，证明出PO ⊥平面ABCD，OM ⊥BC，以
+⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩平面PBC，BC ⊥平面PBC，
+O 为坐标原点，OM、OD、OP的方向分别为x 轴、y 轴、z 轴的正方向建立空
+BC ∩BM = B，所以平面PBC ∥平面PAD. 而平面PBC 与平面PAD 相
+间直角坐标系，利用空间向量法可求得平面PAB 与平面PCD 所成锐二面角
+交，矛盾.
+的余弦值.
+(3) 利用等体积法，V= V求D 到平面PAB 的距离．
+P-ABDD-PAB【提分秘籍】
+(1) 连接OC、OE，由O、E 分别是棱AD、PD 的中点，则OE ⎳PA，
+基本规律
+∵OE ⊄平面PAB，PA ⊂平面PAB，则OE ⎳平面PAB．
+1. 常规题，对应的点大多在中点处。
+又AD ⎳BC，且AD = 2AB = 2BC = 4，
+2. 要多训练非中点的题选。
+∴AO ⎳BC 且AO = BC，四边形ABCO 是平行四边形，则CO ⎳AB，
+∵CO ⊄平面PAB，AB ⊂平面PAB，则CO ⎳平面PAB．
+又CO ∩OE = O，可得平面OCE ⎳平面PAB．又CE ⊂平面OCE．
+【变式演练】
+∴CE ⎳平面PAB．
+7. 如图所示四棱锥P - ABCD 中，PA ⊥底面ABCD，四边形
+ABCD 中，AB ⊥AD，BC ⎳AD，PA = AB = BC = 2，AD =
+4．
+·286·

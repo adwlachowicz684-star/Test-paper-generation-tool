@@ -1,0 +1,102 @@
+如图所示，将三棱锥A - BCD 置于直三棱柱ABM - GCD 中，
+不妨设∠ABM 为锐角，P，Q 分别为AG，DM 的中点，H 为线段BM 上一
+点，且AH ⊥BH．
+连接PE，EQ，PQ，CH，由直三棱柱的几何性质易知，F 为PQ 的中点，
+ AH AH
+∠ABH = θ，∠ACH = θ，∠FEQ = θ，则sinθ= ，sinθ= ，
+1231AB2AC
+又AB < AC，故sinθ> sinθ，θ> θ；
+1212
+易知S = S，则PEsin∠PEF = QE ⋅sin∠QEF，又PE = AB > CD
+△PEF△QEF
+= QE，所以sin∠PEF < sin∠QEF，故∠PEF < ∠QEF ⇒2θ> ∠PEQ =
+3
+∠ABH = θ．
+1
+取AB 中点E，DC 中点M ，AC 中点M ，连结DE、CE、MN、EN ，
+过D 作DO ⊥CE，交CE 于O，连结AO，则∠DEC = θ，∠DAO = θ，
+1
+∠MNE = θ，DE = CE =4 - 1 =3，DC = 2，
+2
+ 1 2 2 3 AO
+∴cosθ =\frac{3 + 3 - 4}{2 ×3 ×3} = ，AO = CO = CE =，∴cosθ= =
+3331AD
+\frac{2 3}{3}33
+= ，
+3
+取BC 中点F，连结DF、AF，则DF ⊥BC，AF ⊥BC，
+又DF ∩AF = F，∴BC ⊥平面AFD，∴BC ⊥AD，∴θ= 90°，
+2
+∴θ≥θ ≥θ，排除B，C，
+21
+故选：AC - AB - Dθ ≥θDA.
+当二面角 是直二面角时，，排除，故选：
+2
+【题型七】球中的角度
+【变式演练】【典例分析】
+16. 如图，在三棱锥P - ABC 中，AB ⊥AC，AB = AP，D 是棱BC1.ABCDO∠AOC = 60°
+例 已知、 是圆 的两条直径，且，如图
+上一点(不含端点) 且PD = BD，记∠DAB 为α，直线AB 与平1ABD'
+，沿 折起，使两个半圆面所在的平面垂直，折到点位置，如
+面PAC 所成角为β，直线PA 与平面ABC 所成角为γ，则2BD'OCθ()
+图．设直线与直线 所成的角为，则
+()
+A. ∠BD'C = 90° 且θ > 60°
+A. γ ≤β,γ ≤αB. β ≤α,β ≤γ
+B. ∠BD'C = 90° 且θ ≤60°
+C. β ≤α,γ ≤αD. α ≤β,γ ≤β
+C. ∠BD'C ≠90° 且θ > 60°
+【答案】 A
+D. ∠BD'C ≠90° 且θ ≤60°
+【分析】 
+由AB = AP，PD = BD，可得△ABD ≌△APD，从而得∠DAB = ∠DAP =【答案】 C
+α，而直线PA 与平面ABC 所成角为γ，由最小角定理可得γ ≤α，再由V【分析】 
+P-ABC
+= V，S ≤S，进而可比较β,γ 的大小根据圆的性质知∠EAC = 60°，过D 作DE ⊥OB 于E，连接CE、AC，设圆
+B-PAC△PAC△ABC
+AB = APPD = BD△ABD ≌△APD∠DAB = r 3r
+【详解】 因为，，所以，所以的半径为r，有BE = ,AE = ,AC = r，利用余弦定理、线面垂直的性质证
+22
+∠DAP = α，因为直线PA 与平面ABC 所成角为γ，
+D'E ⊥CE，结合勾股定理判断∠BD'C 是否为直角；再过O 作OF ⎳D'B 交AD'
+ 1
+所以由最小角定理可得γ ≤α，因为AB ⊥AC，所以S = AB ⋅AC,于F，则F 为AD'中点，连接CF，即直线BD'与直线OC 所成的角为∠COF = θ，
+△ABC2
+ 1过F 作FG ⊥AB 于G，连接CG，利用勾股定理及余弦定理求cos∠COF，即可
+因为S = AC ⋅APsin∠PAC，AB = AP，所以S ≤S，
+△PAC2△PAC△ABC
+比较与60° 的大小.
+令点P 到平面ABC 的距离为d，点B 到平面PAC 的距离为d，因为V
+12P-ABC【详解】 
+ 1 1
+= V，V = S ⋅d,V = S ⋅d 所以d≤d，1DDE ⊥OBECEACr
+B-PACP-ABC3△ABC1B-PAC3△PAC212图 中过 作 于，连接、，设圆的半径为，
+因为直线AB 与平面PAC 所成角为β，直线PA 与平面ABC 所成角为γ，所
+ d d
+以sinβ =2 ,sinγ =1
+ABPA
+ π
+因为AB = AP，所以sinβ ≥sinγ 因为β,γ ∈(0,[所以β ≥γ，故选：A
+2
+17. 已知三棱锥D - ABC，记二面角C - AB - D 的平面角是θ，直
+线DA 与平面ABC 所成的角是θ，直线DA 与BC 所成的角是
+1
+θ，则()
+2
+A. θ ≥θB. θ ≤θC. θ ≥θD. θ ≤θ r 3r
+1122由∠AOC = 60°，则∠EAC = 60° 且BE = ,AE = ,AC = r，
+22
+【答案】 A7r
+∴在△ACE 中，CE =AC2+ AE 2- 2AC ⋅AE ⋅cos∠EAC =，而DE
+【分析】 2
+D - ABC2ABEDCMAC3r
+设三棱锥 是棱长为 的正四面体，取 中点， 中点 ，=，
+2
+中点M ，连结DE、CE、MN、EN ，过D 作DO ⊥CE，交CE 于O，连结AO，
+则∠DEC = θ，∠DAO = θ，∠MNE = θ，排除B，C．当二面角C - AB - D
+12
+是直二面角时，θ ≥θ，排除D．由此能求出结果．
+2
+【详解】 
+设三棱锥D - ABC 是棱长为2 的正四面体，
+·278·

@@ -1,0 +1,87 @@
+3 1 A'I
+在原平面图形中易得A'I = ，OI = ，所以tan∠A'JI = =
+22IJ
+A'I3
+ =\frac{23}{2 sin∠IOJ}= ，
+OIsin∠IOJ1sin∠IOJ
+显然sin∠IOJ ∈(0,1)，所以tan∠A'JI ∈( 3,+∞)，即60° < ∠A'JI < 90°，
+故选：B．
+连接AB,BD, 如图，在长
+111
+方体内知AB⎳DC,
+12
+所以∠BAD为异面直线DC 与AD所成的角为α，易知△ABD为等边三
+112111
+角形，所以α = 60°，
+因为AD⊥平面ABBA,AB⊂平面ABBA，所以AD⊥AB
+2222222222
+又AB⊥AB，AD∩AB = A所以AB⊥平面ABCD，同理可得BC ⊥
+2222222221
+平面ABCD，
+⟨?⟩⟨?⟩⟨?⟩⟨?⟩1⟨?⟩⟨?⟩1
+则AB，BC可分别视为平面ABCD，平面ABCD的一个法向量，
+212211⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
+又因为在长方体内易知AD⎳BC，而∠DAB= 60° 故AB与BC的夹角
+212221
+60°【提分秘籍】
+为，
+β = 60°β = 120°sinα = sinβB基本规律
+所以或，即，故选：
+. 翻折题型要寻找“变化”中的“不变”
+【题型四】翻折中的角度
+【变式演练】
+【典例分析】
+CE AF 110. 如图，矩形ABCD 中，已知AB = 2，BC = 4，E 为AD 的中点．
+例1. 如图，矩形ABCD 中，AB =3BC ， = = ，
+DEBF2将△ABE 沿着BE 向上翻折至△A'BE，记锐二面角A'- BE -
+EF ∩BD = O．将梯形ADEF 沿着EF 翻折成梯形A'D'EF ，则CαA'BBCDEβ
+ 的平面角为， 与平面 所成的角为，则下列结论
+A'C 与平面BOD'所成角可以是()()
+不可能成立的是
+A. sinα =2sinβB.2cosα = cosβ
+ π
+C. α < 2βD. α - β >
+4
+【答案】 D
+【分析】 
+先取BC 中点为F，判断四边形ABFE 是正方形，再作A'H ⊥OF 于H，证明
+A. 90°B. 75°C. 45°D. 30°α = ∠A'OF，β = ∠A'BH，分别再直角三角形中计算sinα 和sinβ，比较即判断
+A 正确；将选项A 的结论平方，结合二倍角公式和余弦函数的单调性，即判断
+【答案】 B
+ π
+【分析】 C 正确；计算cosα,cosβ 即判断B 可能成立；判断β < ，结合α < 2β，即得α
+4
+由平面几何知识证得EF ⊥BD，O 是它们的中点，从而可证明平面EFA'D' π
+- β < ，判断D 错误.
+4
+⊥平面OBD'．过A'作A'I ⊥OD'于I，过C 作CG ⊥OB 于G，可证得A'C 交
+【详解】 
+IG 于J 即为A'C 与平面OBD'的交点，并得出∠A'JI 即为直线A'C 与平面OBD'
+记BC 中点为F，连接EF，连接AF 与BE 交于点O，依题意知四边形ABFE
+所成的角，然后计算求得此角正切的范围，从而可得正确选项．
+是正方形.
+【详解】 
+ 13 2 3
+设BC = 1，即AD = 1，AF = AB = ，BF =，
+333
+  2 3
+DF =AD2+ AF 2== BF，
+3
+由BF = DE，BF ⎳DE 可得△DOE ≅△BOF，所以BO = DO，FO = EO，
+所以FO ⊥BD，即EF ⊥BD，
+折叠后，EF ⊥BO,EF ⊥D'O，又BO ∩D'O = O，BO,D'O ⊂平面OBD'，
+EF ⊥OBD'EF ⊂EFA'D'EFA'D'⊥A'O ⊥BE,OF ⊥BE，故锐二面角A'- BE - C 的平面角为α = ∠A'OF，
+所以平面．平面，所以平面平面
+OBD'BE ⊥平面A'OF，过A'作A'H ⊥OF 于H，则BE ⊥A'H，
+．
+A'A'I ⊥OD'ICCG ⊥OBG而BE，OF 相交于平面BCDE 内，
+过作于，过 作 于，原平面图形中
+A'I ⎳EF ⎳CGA'I,CGA'I ⊥OBD'故A'H ⊥平面BCDE，故连接BF，则A'B 与平面BCDE 所成的角为β =
+，折叠后仍然保持平行，所以 共面，平面．
+∠A'BH.
+设A'C 交IG 于J，
+A'C 与平面OBD'的交点即为J，∠A'JI 即为直线A'C 与平面OBD'所成的记A'H = h，因为Rt△A'OH 中，sinα =\frac{A^{'}H}{OA^{'}}=\frac{h}{2} ，
+角，  h
+Rt△A'BH 中，sinβ =\frac{A^{'}H}{A^{'}B} = ，所以sinα =2sinβ ①，选项A 成立；
+由A'I ⊥平面OBD'，IJ ⊂平面OBD'，得A'I ⊥IJ，2
+·275·

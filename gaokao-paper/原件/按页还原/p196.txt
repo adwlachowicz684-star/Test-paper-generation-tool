@@ -1,0 +1,127 @@
+\frac{2m}{m^{2}+ 1}【典例分析】
+即\frac{cosA + cosC -}{-m_{2}+ 1 cosAcosC}=-1，与原三角式作比较可知φ(m) 存在且φ(m)例1. (2022·广东·广州市第五中学高一阶段练习)D 为△ABC
+2m
+边AB 上一点，满足AD = 2，DB = 8，记∠ABC = α，∠CAB = β．
+=-\frac{2m}{m^{2}+ 1} ．
+(1) 当CD ⊥AB 时，且β = 2α，求CD 的值；
+ π
+46. (2022·全国·高三专题练习) 在△ABC 中，A 为定角且b + c ≤(2) 若α + β = ，求△ACD 面积的最大值．
+4
+113
+2a，求证： + = ．【答案】 (1)4 2
+a + ba + ca + b + c
+(2)5(2 - 1(
+【答案】 证明见解析 x x
+【分析】 (1) 设CD 长为x，可知tanα = ，tanβ = ，再利用正切的二倍角
+【分析】 根据分析法先从要证结论着手，把要证等式变形为82
+(2a + b + c((a + b + c(= 3( a + b((a + c(，公式可求解；
+结合余弦定理得到所证即为A = 60°. 然后用综合法从已知条件出发结合正弦(2) 利用正弦定理得BC = 10 2sinβ，AC = 10 2sinα，再利用三角形面积公
+A = 60°. π
+定理及和差公式证明 即可式结合两角差的正弦公式及辅助角公式可得S = 25 2sin (2β +(- 25，利用正
+4
+【详解】 所证等式可变形为(2a + b + c((a + b + c(= 3( a + b((a + c(．
+弦函数的性质即可求解.
+b2+ c2- a2 1
+即b2+ c2- a2= bc，即= ，因此只需证A = 60°． x
+2bc2【详解】 (1) 设CD 长为x，当CD ⊥AB 时，AD = 2，DB = 8，则tanα = ，
+8
+下面改为顺推法： x
+tanβ =
+bab + c2a2
+由正弦定理，可得 =\frac{c}{+ c} = ，于是 = ，
+sinBsinCsinAsinB + sinC2sinAπ
+因为 > β = 2α > 0，所以tanβ = tan2α > 0，即tanβ =\frac{2tanα}{1 - tan^{2}α} > 0
+2
+结合条件b + c ≤2a，即\frac{b }{+ c}≤1，
+2a\frac{x}{x^{2}}
+sinB + sinC b x
+所以=≤1，即sinB + sinC ≤2sinA，所以 =\frac{2 × 8}{1 - 64}> 0，得x2= 32，所以x = 4 2，所以CD 为4 2
+2sinA2a2
+ B + C B - C B + C B - C
+即sin⟨?⟩+⟨?⟩+ sin⟨?⟩-⟨?⟩≤2sinA，
+2222  3π
+(2) 在△ABC 中，α + β =\frac{π}{C} ，则∠ACB = ，
+A + B + C = π44
+因为，
+AC B
+ B + C B - C A A A B + C由正弦定理得 = =\frac{AB}{sin4}，又AB = 10，
+所以即2sincos≤4sin cos = 4sin sin，sinαsinβ 3π
+222222
+ B - C A
+∴cos≤2sin ．所以BC = 10 2sinβ，AC = 10 2sinα，
+22
+ A 1 3π 1
+∵A2sin ()1则△ABC 的面积S = BC ⋅AC ⋅sin = × 10 2sinβ × 10 2sinα ×
+ 为定角，上式左边有最大值定值，这个最大值应为．242
+2
+  3π
+∴2sin\frac{A}{1} = 1∴A = 60°sin = 50 2sinβsinα，
+，．4
+2
+13 π
+ + =.又α + β = ，
+所以 成立4
+a + ba + ca + b + c
+ π
+所以S = 50 2sinβ × sin( - β(= 50( sinβcosβ - sin2β(
+47. 在△EFG 中，H 为FG 上一点，FH = 2 HG ，3 sinF =4
+ π
+sin∠EHGMEF= 25( sin2β + cos2β - 1(= 25 2sin (2β +(- 25
+， 是线段 的延长线上一点．4
+ π π 3π
+因为0 < β <\frac{π}{π} ，所以 < 2β + < ，
+4444
+  π π
+所以当2β + = ，即β = 时，S 有最大值25(2 - 1(
+428
+1
+又△ACD 的面积等于 S，故△ACD 的面积的最大值为5(2 - 1(
+5
+【变式演练】
+48. 设△ABC 的内角A，B，C 的对边分别为a，b，c，且满足bsin2A
+(1) 证明：∠MEG = ∠HEG；+ asinB = 0DBCAD ⊥AC.
+，点 为边 上一点，
+(2) 若HG = 3，EH = 2，求EG．(1)∠BAC
+ 求 的大小；
+【答案】 (1) 证明见解析；(2)EG =15．
+(2) 若|AC| = 4，|AD| = 3，求|AB|.
+【分析】 (1) 先利用诱导公式及正弦定理得EF = 3EH，再由FH = 2HG 得
+ 2π 8(4 3 + 3)
+△EFG△EHG∠HEG∠FEG【答案】 (1) ；(2)﹒
+， 面积的关系，即可得， 的关系，即可得证；313
+(2) 先由余弦定理求出∠EHF 的余弦值，即可求出∠EHG 的余弦值，再利用【分析】 (1) 结合bsin2A + asinB = 0 与正弦定理边化角即可求解；
+余弦定理即可求出EG．(2) 根据几何关系，在△ABD 内求|AB| ﹒
+EHEF(1) ∵bsin2A + asinB = 0
+【详解】 (1) 在△EFH 中，由正弦定理 = ，【详解】 ，
+sinFsin∠EHF
+∴由正弦定理得，sinB ∙2sinAcosA + sinAsinB = 0
+∵3sinF = sin∠EHG = sin (π - ∠EHF(= sin∠EHF，∴EF = 3EH，
+∵A,B ∈(0，π(,∴sinAsinB ≠0，
+又FH = 2HG，∴S= 3S，
+△EFG△EHG 1 2π
+ 1 1 1∴cosA =- ，∴A = ；
+∴3 × EH × EGsin∠GEH = EF × EGsin∠EFG = × 3EH ×23
+222
+(2)
+EGsin∠FEG，
+∴sin∠GEH = sin∠FEG，
+∵0 < ∠HEG < ∠FEG < π，∴∠HEG + ∠FEG = π，
+∴∠MEG = π - ∠FEG = ∠HEG．
+(2) ∵HG = 3，∴FH = 2HG = 6，∵EH = 2，∴由(1) 知，EF = 3EH = 6，
+ FH 2+ EH 2- EF 2 62+ 22- 62
+在△EFH 中，由余弦定理知，cos∠EHF ==
+2FH × EH2 × 6 × 2
+ 1 2π π π
+= ，∵|AC|= 4，|AD|= 3，AD ⊥AC，∴|DC|= 5，∠BAD = - = ，
+6326
+ 1 4
+∴cos∠EHG = cos (π - ∠EHF(=-cos∠EHF =- ，又∠ADB = π - ∠ADC，∴sin∠ADB = sin∠ADC = ，cos∠ADB =
+65
+ 1 3
+∴EG2= EH 2+ HG2- 2EH × HGcos∠EHG = 22+ 33- 2 × 2 × 3 × (-(=-cos∠ADC =- ，
+65
+15，又∠B = π - (∠ADB + ∠BAD(，
+∴EG =15．∴sin∠B = sin (∠ADB + ∠BAD(
+= sin∠ADBcos∠BAD + cos∠ADB ⋅sin∠BAD
+【题型十七】解三角形综合
+·196·

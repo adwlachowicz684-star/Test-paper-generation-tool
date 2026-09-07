@@ -1,0 +1,35 @@
+ m2
+2lnm - lnn = ln ,
+n
+m2 (n + e)2 n2 2ne e2 e2e2
+ == ++ = n + 2e + ≥2e + 2n ⋅ = 4e 当且
+nnnnnnn
+ e2
+仅当n = ，即y = 1 时取“=”
+n
+ m2
+ln ≥ln4e = 1 + 2ln2,
+n
+49.【2020 全国Ⅰ理12】若2a+ loga = 4b+ 2logb，则()
+24
+A. a > 2bB. a < 2bC. a > b2D. a < b2
+【答案】B
+【分析】设f(x) = 2x+ logx，利用作差法结合f(x) 的单调性即可得到答案．
+2
+【详解】设f(x) = 2x+ logx，则f(x) 为增函数，∵2a+ loga = 4b+ 2logb = 22b
+224
++ logb，
+2
+∴f(a) - f(2b) = 2a+ loga - (22b+ log2b) = 22b+ logb - (22b+ log2b) =
+2222
+ 1
+log =-1 < 0，
+22
+∴f(a) < f(2b)，∴a < 2b．
+∴f(a) - f(b2) = 2a+ loga - (2b2+ logb2) = 22b+ logb - (2b2+ logb2) = 22b-
+2222
+2b2- logb，
+2
+当b = 1 时，f(a) - f(b2) = 2 > 0，此时f(a) > f(b2)，有a > b2；当b = 2 时，f(a)
+- f(b2) =-1 < 0，此时f(a) < f(b2)，有a < b2，∴C、D 错误，故选B．
+·238·

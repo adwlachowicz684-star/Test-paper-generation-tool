@@ -1,0 +1,132 @@
+(2) 在ΔACB 中，由余弦定理得AB =AC2+ BC2- 2AC × BCcos∠ACB.
+在ΔACD 中，由余弦定理得
+AD =
+AC2+ DC2- 2AC × DCcos∠ACD =AC2+ BC2- 2AC × BCcos∠ACD.
+因为α + β > 90∘，∠ACB = 180∘- 2α - β，
+所以∠ACB - ∠ACD = (180∘- 2α - β(- β = 180∘- 2( α + β(< 0，
+即∠ACB < ∠ACD.
+又0∘< ∠ACB < 180∘，0∘< ∠ACD < 180∘，所以cos∠ACB > cos∠ACD，
+所以AB < AD.
+(1) 求∠BDC；
+【变式演练】
+ π
+(2) 若∠A = ，求△ABD 周长的最大值.45. 在非直角三角形ABC 中，角A,B,C 的对边分别为a,b,c，
+3
+ π(1) 若a + c = 2b，求角B 的最大值；
+【答案】 (1) ；(2)12
+6
+(2) 若a + c = mb( m > 1(，
+【分析】 
+ A C m - 1
+(1) 在△BCD 中，利用正弦定理可求得结果；(i) 证明：tan tan = ；(可能运用的公式有sinα +
+22m + 1
+ π
+(2) 在△BCD 中，由余弦定理可求得BD = 4，在△ABD 中，∠A = ，设AB α + β α - β
+  3
+sinβ = 2sincos)
+ x2+ y2- 16 122
+= x, AD = y，由余弦定理得cosA == ，即x2+ y2- 16 = xy，
+2xy2(ii)φ mm
+ 是否存在函数((，使得对于一切满足条件的，代数式
+利用基本不等式求得(x + y(，进而求出△ABD 周长的最大值.
+maxcosA + cosC + φ( m(
+【详解】 恒为定值？若存在，请给出一个满足条件
+φ( m(cosAcosC
+7⟨?⟩7⟨?⟩2
+(1) 在△BCD 中，∵cos∠CBD =- ，∴sin∠CBD =1 - -=
+1414的φ( m(，并证明之；若不存在，请给出一个理由.
+3 21 π
+14【答案】 (1) ；(2) (i) 证明见解析；(ii) 存在，φ(m) =-\frac{2m}{m^{2}+ 1} ，证明见解析.
+3
+CDBC1
+利用正弦定理得： = ，(1)cosB ≥B
+sin∠CBDsin∠BDC【分析】  由余弦定理结合基本不等式可得 ，从而可求出角 的
+2
+\frac{3 21}{ 3}最大值.
+ BC ⋅sin∠CBD 1
+∴sin∠BDC ==\frac{7 × 14}{3}=(2) (i)sinA + sinC = msinB
+CD2 由正弦定理边角互换可得，结合和差化积公式和
+ π A - C A + C
+又∵∠CBD 为钝角，∴∠BDC 为锐角，∴∠BDC =诱导公式可得cos= mcos，结合两叫和、差的余弦公式和同角
+622
+ BC2+ BD2- CD2三角函数的基本关系可得所证式子.
+(2) 在△BCD 中，由余弦定理得cos∠CBD ==
+2BC ⋅BD(ii)4m - 2(m2+ 1) (cosA + cosC) =
+ 结合已知条件和半角正切公式可得
+7
+\frac{7 + BD^{2}- 27}{2 7 × 3 3}=-
+14\frac{2m}{m^{2}+ 1}
+  -4mcosAcosC，通过整理变形可得=-1，从而可求
+解得：BD = 4 或BD =-5(舍去)\frac{cosA + cosC -}{-m_{2}+ 1 cosAcosC}2m
+ π
+在△ABD 中，∠A = ，设AB = x, AD = y
+3出φ( m(.
+ AB2+ AD2- BD2 x2+ y2- 16 1 a2+ c2- b2
+由余弦定理得cosA === ，即x2+ y2- 16【详解】 (1) 因为a + c = 2b，，所以由余弦定理cosB =可得：
+2AB ⋅AD2xy22ac
+= xy23 1
+a2+ c2-(\frac{a + c}{c}( (a2+ c2) - ac
+242ac 1
+整理得：x + y2- 16 = 3xy，又x > 0,y > 0cosB ==≥ = (当且仅当a = c
+((2a2ac2ac2
+3( x + y(2(x + y(2)
+x + y2- 16 = 3xy ≤≤16时取等号，
+利用基本不等式得：((，即，
+44 π
+又B ∈(0,π)，，∴B ∈(0,[，所以角B 的最大值为\frac{π}{c} .
+即(x + y(2≤64，当且仅当x = y = 4 时，等号成立，即(x + y(= 8，33
+max
+AB + AD + BD= 8 + 4 = 12ab
+所以(((2) (i) 由a + c = mb 及正弦定理 = = 得sinA + sinC =
+maxsinAsinBsinC
+所以△ABD 周长的最大值为12
+msinB，
+ A + C A - C B BA + C π B
+所以2sincos= 2msin cos ，因为= - ，
+【题型十六】三角形中证明题2222222
+    π - (A + C( B
+【典例分析】所以2sin(\frac{π}{ } -\frac{B}{+ C}(cos\frac{A - C}{ B}= 2msincos =
+22222
+例1. 在平面四边形ABCD 中，已知AD ⎳BC ，∠CBD =
+ πA 
+2msin⟨?⟩ -⟨?⟩cos ，
+∠BDC = α∠ACD = β.222
+，
+(1)α = 30∘β = 75∘3AC +2CD = 5AC,CD有cos\frac{A - C}{ C}= mcos\frac{A + C}{ C}，由两角和、差的余弦公式可得
+ 若，，，求 的长；22
+ A A A C A C
+(2) 若α + β > 90∘，求证：AB < AD.cos cos + sin sin = m ⟨?⟩cos cos - sin sin⟨?⟩=
+22222222
+【答案】 (1)AC =3，CD =2；(2) 见解析 A C A C A C
+mcos cos - msin sin 整理得(1 + m)sin sin = (m - 1)
+222222
+【分析】 (1) 根据题意，得出∠ACB = 45∘，∠ADC = 60∘，再利用正弦定理求
+ A    m - 1
+6cos cos\frac{C}{ A} ，故tan\frac{A}{ } tan\frac{C}{- 1} = ．
+得AC = CD，结合已知条件，即可求出AC,CD 的长；2222m + 1
+2
+ Cm  α 1 - cosαsinα
+(2)∠ACB < ∠ACD(ii) 由tan tan = 及半角正切公式tan ==
+ 利用余弦定理以及三角形的内角和，得出，通过判断三22m + 12sinα1 + cosα
+角形中边角关系，即可得出结论.可得
+【详解】 (1) 由已知得∠CBD = ∠BDC = 30∘，∠ACD = 75∘，所以∠ACB = A C2 1 - cosAsinA1 - cosCsinC 1 - cosA
+⟨?⟩tan tan⟨?⟩=⋅ ⋅⋅ = ⋅
+22sinA1 + cosAsinC1 + cosC1 + cosA
+45∘.
+1 - cosC
+因为AD ∥BC，所以∠ADB = ∠CBD = 30∘，∠DAC = ∠BCA = 45∘. ，
+1 + cosC
+所以∠ADC = 60∘. 
+=\frac{(m - 1)^{2}}{(m + 1)^{2}} ，展开整理得4m - 2(m2+ 1) (cosA + cosC) =-4mcosAcosC，
+ACCD
+在ΔACD 中，由正弦定理得 = ，所以\frac{AC}{sin60^{∘}}=
+sin∠ADCsin∠CAD
+cosA + cosC -\frac{2m}{m^{2}+ 1}
+4m - 2( m2+ 1((cosA + cosC(
+\frac{CD}{sin45^{∘}}，即=-4m，即=
+cosAcosCcosAcosC
+6
+所以AC = CD.\frac{2m}{m^{2}+ 1} ，
+2
+又3AC +2CD = 5，所以AC =3，CD =2.
+·195·

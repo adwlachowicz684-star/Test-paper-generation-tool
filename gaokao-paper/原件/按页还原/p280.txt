@@ -1,0 +1,98 @@
+例1. 如图，在等边三角形ABC 中，D,E 分别是线段AB,AC 上
+异于端点的动点，且BD = CE，现将三角形ADE 沿直线DE 折起，
+使平面ADE ⊥平面BCED，当D 从B 滑动到A 的过程中，则下列
+选项中错误的是()
+A. ∠ADB 的大小不会发生变化 1 133
+S= BC × HG = × 1 ×(1 - x(=(1 - x(
+△BCD2224
+B. 二面角A - BD - C 的平面角的大小不会发生变化
+由AH ⊥DE, 则AH ⊥BC，又HG ⊥DE, 且HG ∩AH = H
+C. BD 与平面ABC 所成的角变大BC ⊥AGHAG ⊂AGH,BC ⊥AG
+所以平面，又平面 所以
+D. AB 与DE 所成的角先变小后变大由AH ⊥平面BCED，由HG ⊂平面BCED, 则AH ⊥HG
+ 3 3
+【答案】 C所以AG =AH 2+ GH 2= x2+ (1 - x(2
+44
+【分析】  1
+S = BC × AG
+AAG ⊥BCDEHBCGBH△ABC2
+过点 作，交 于点，交 于点，连接，可证明在三角
+设点D 到平面ABC 的距离为d.
+形ADE 沿直线DE 折起的过程中，AH ⊥平面BCED，然后用x 的值分别将各
+1 1
+个选项中的角的相应三角函数表示出来，然后判断可得答案.由等体积法可得V= V, 即 × S× AH = × S × d
+A-BCDD-ABC3△BCD3△ABC
+【详解】 
+设等边三角形ABC 的边长为1，AD = x (0 < x < 1(，则BD = 1 - x则d =\frac{S_{△BCD}× AH}{△ABC}=\frac{12 × BC × HG × AH}{2 × BC × AG}=\frac{23 x (1 - x)}{x^{2}+ (1 - x)^{2}}
+S1
+在△ABC 中，由BD = CE，则DE ⎳BC
+过点A 作AG ⊥BC，交DE 于点H，交BC 于点G，连接BH，则AH ⊥DE
+d
+3333设BD 与平面ABC 所成的角为θ，则sinθ = =\frac{23 x}{x^{2}+ (1 - x)^{2}} =
+AG = ,∠ADH = ∠ABG = 60°, 所以AH = x，HG = - x =BD
+2222
+3
+(1 - x(\frac{3}{1}
+2\frac{2}{1 +(x - 1)^{2}}
+在三角形ADE 沿直线DE 折起的过程中，AH ⊥DE，HG ⊥BC 始终满足.
+由平面ADE ⊥平面BCED，平面ADE ∩平面BCED = DE，所以AH ⊥平
+当D 从B 滑动到A 的过程中，x 的值从1 变小到0，这一过程中
+面BCED 
+12
+1 +( - 1(逐渐变大.
+由BH ⊂平面BCED, 则AH ⊥BHx
+1 3所以在这一过程中，sinθ 变小，则角θ 变小，故选项C 不正确.
+在△BHG 中，BH = + (1 - x(2 ,
+44DE ⎳BC∠ABC ()ABDE.
+由，则或其补角 为 与 所成的角
+ 3 1 3 \frac{3}{3} \frac{3}{ 3} AG
+所以AB =AH 2+ BH 2= x2+ + (1 - x(2= x2- x + 1 
+44422由上可知：BC ⊥AG，则tan∠ABC = = 2AG =3x2+ (1 - x(2=
+BG
+x2+ (1 - x(2-( x2- x + 1(3 2x2- 2x + 1
+ AD2+ BD2- AB222
+所以cos∠ADB ===
+2 × AD × BD2 ⋅x ⋅(1 - x( 1
+函数y = 2x2- 2x + 1 (0 < x < 1(的对称轴为x =
+2
+ 1
+- 1
+4当0 < x < 时，函数y = 2x2- 2x + 1 (0 < x < 1(单调递减.
+2
+所以∠ADB 大小不变，故选项A 正确.
+1
+当 < x < 1 时，函数y = 2x2- 2x + 1 (0 < x < 1(单调递增.
+2
+11
+所以当x 从1 变到 的过程中，tan∠ABC 变小，当x 从 变到0 的过程
+22
+中，tan∠ABC 变大，
+所以选项D 正确.
+故选：C
+【变式演练】
+21. 在正四面体D - ABC(所有棱长均相等的三棱锥) 中，点E 在棱
+ x3AB 上，满足AE = 2EB，点F 为线段AC 上的动点. 设直线DE
+过H 作HO ⊥BD 交BD 于O 点，由DH = ，则OH = x
+24
+与平面DBF 所成的角为α，则()
+由AH ⊥平面BCED，又BD ⊂平面BCED，则AH ⊥BD
+由AH ∩OH = H, 所以BD ⊥平面AOH,A. 存在某个位置，使得DE ⊥BF
+所以∠AOH 为二面角A - BD - C 的平面角 π
+B. 存在某个位置，使得∠FDB =
+\frac{3}{1}4
+ AH
+在直角△AOH 中，tan∠AOH = =\frac{2 x}{2 x}=3C. 存在某个位置，使得平面DEF ⊥平面DAC
+OH
+ π
+D. 存在某个位置，使得α =
+所以∠AOH 大小不变，故选项B 正确.6
+【答案】 C
+【分析】 
+设正四面体D - ABC 的底面中心为点O，连接DO，则DO ⊥平面ABC，以
+点O 为坐标原点，OB、OD 所在直线分别为x、z 轴建立空间直角坐标系，设
+正四面体D - ABC 的棱长为2，然后利用空间向量法逐一分析求解可得结
+果.
+【详解】 
+如下图所示，设正四面体D - ABC 的底面中心为点O，连接DO，则DO ⊥平
+面ABC，
+·280·

@@ -1,0 +1,111 @@
+【分析】  π π π
+cosA = 0，即A = ，从而B = ，C = ．
+442
+若三角形各边长为a、b、c 且内切圆半径为r，
+ π π
+ Aa Bb因此，△ABC 为等腰直角三角形．(2) 若A + B = ，即C = ，此时③④恒
+法一：由内切圆的性质有tan = 、tan = ，根据边角关系可得22
+2b + c2a + c
+成立，
+a = b 或a2+ b2= c2，注意讨论所得关系验证所得关系的内在联系；
+综上，△ABC 为直角三角形．故选：B
+ π
+法二：由半角正切公式、正弦定理可得A = B 或A + B = ，结合三角形内角
+2
+12. 已知△ABC 内接于半径为2 的⊙O，内角A，B，C 的角平分线
+的性质讨论所得关系判断三角形的形状.
+ A B
+【详解】 分别与⊙O 相交于D，E，F 三点，若AD ⋅cos + BE ⋅cos
+22
+ 1
+设P = (a + b + c(，△ABC 的内切圆半径为r，如图所示， C
+2+ CF ⋅cos = λ(sinA + sinB + sinC)λ =()
+，则
+2
+A. 1B. 2C. 3D. 4
+【答案】 D
+【分析】 
+ A B
+分别求得AD ⋅cos = 2( sinC + sinB(、BE ⋅cos = 2( sinA + sinC(、CF ⋅
+22
+ C
+cos = 2( sinA + sinB(，结合已知条件，求得λ 的值.
+2
+【详解】 连接BD，在三角形ABD 中，由正弦定理得\frac{AD}{sin ⟨?⟩B +2⟨?⟩}= 4，故AD
+ A
+ Ara Brb A A A π B C√ πB C√
+法一：∴tan = = ①；tan = = ②.⋅cos = 4sin ⟨?⟩B +⟨?⟩cos = 4sin⟨?⟩ + -⟨?⟩cos√ -⟨?⟩ +⟨?⟩√=
+2p - ab + c2p - ba + c222222√222√
+  \frac{B}{ B} \frac{C}{ C} \frac{B}{ B} \frac{C}{ C}
+p - baa + c4sin⟨?⟩ +⟨?⟩cos⟨?⟩ -⟨?⟩=
+①÷ ②，得： = ⋅，即\frac{2( p - b)}{2( p - a)}=\frac{a( a + c)}{b( b + c)}．于是2222
+p - ab + cb
+   B C
+4⟨?⟩ sin cos + cos sin⟨?⟩⟨?⟩cos\frac{B}{B} cos\frac{C}{ } + sin sin⟨?⟩=
+b( b + c((c + a - b(= a( a + c((b + c - a(，22222222
+ab2- b3+ bc2= a2b - a3+ ac2a - ba2+ b2- c2= 0a = ba2+ C  B
+，((((，从而得 或2⟨?⟩ sin2 + cos\frac{2C}{ }⟨?⟩sinB + 2( sin2 + cos2(sinC = 2( sinB + sinC(.
+2222
+b2= c2，B C
+同理可得BE ⋅cos = 2( sinA + sinC(、CF ⋅cos = 2( sinA + sinB(，故
+∴∠A = ∠B 或∠C = 90°．故△ABC 为等腰三角形或直角三角形，22
+ A B C
+(1) 当a = b 时，内心I 在等腰三角形CAB 的底边上的高CD 上，AD ⋅cos + BE ⋅cos + CF ⋅cos = 4(sinA + sinB + sinC)，故λ = 4.
+222
+故选D.
+ c2
+c ⋅a2-
+ 1 1 c22S4
+S = AB ⋅CD =a2- ⋅c，从而得r = =．
+△ABC224a + b + c2a + c
+ 1 1\frac{c^{2}}{1}a
+又p - a = (b + c - a(= c，代入①式，得\frac{c ⋅a^{2}- 4}{(2a + c)⋅2 c}= =
+22b + c
+a4a2- c2a
+ ，即= ，
+a + c2a + ca + c
+2a - c
+上式两边同时平方，得： =\frac{a^{2}}{(a + c)^{2}} ，化简c2- 2a2= 0，即c =2a．
+2a + c
+即△ABC 直角三角形，【题型五】四心3：重心
+∴△ABC 为等腰直角三角形．【典例分析】
+\frac{1}{1}例1. 在钝角△ABC 中，a,b,c 分别是△ABC 的内角A,B,C 所
+ 1
+(2) 当a2+ b2= c2时，易得r = (a + b - c(．代入②式，得\frac{2 (a + b - c)}{2 (a + c - b)}=
+2对的边，点G 是△ABC 的重心，若AG ⊥BG，则cosC 的取值范围
+b是()
+ ，此式恒成立，
+a + c
+6√46
+综上，△ABC 为直角三角形．A. ⟨?⟩0,⟨?⟩B.√ ,⟨?⟩
+3√53
+ AsinA BsinB
+法二：利用tan = ，tan = 及正弦定理和题设条件，
+21 + cosA21 + cosB64
+C.⟨?⟩ ,1⟨?⟩D.[ ,1(
+sinAsinAsinBsinB35
+得 = ①， = ②.
+1 + cosAsinB + sinC1 + cosBsinA + sinC
+∴1 + cosA = sinB + sinC1 + cosB = sinA + sinC.【答案】 C
+ ③； ④
+由③和④得：1 + cosA - sinB = 1 + cosB - sinA，即sinA + cosA = sinB +【分析】 
+ 3
+ π 延长CG 交AB 于D，由重心性质和直角三角形特点可求得CD = c，由
+cosB，sin (A +(= sin (B +\frac{π}{ }(，2
+44
+π π π πcos∠BDC =-cos∠ADC，利用余弦定理可构造等量关系得到a2+ b2= 5c2，由此
+因为A,B 为三角形内角，∴A + = B + 或A + = π - B - ，即A =
+4444确定C 为锐角，则可假设A 为钝角，得到b2+ c2< a2，a2+ c2> b2，a > b，由此可
+ π
+B 或A + B = ．
+2构造不等式组求得\frac{b}{b} 的取值范围，在△ABC 利用余弦定理可得cosC =
+a
+(1) 若A = B，代入③得：1 + cosA = sinB + sinC ⑤2a b
+⟨?⟩ +⟨?⟩，利用 的范围，结合C 为锐角可求得cosC 的取值范围.
+又C = π - A - B = π - 2A，将其代入⑤，得：1 + cosA = sinA + sin2A．变形5baa
+得sinA - cosA2- sinA - cosA= 0，【详解】 
+((((
+延长CG 交AB 于D，如下图所示：
+即(sinA - cosA((sinA - cosA - 1(= 0 ⑥，
+由A = B 知A 为锐角，从而知sinA - cosA - 1 ≠0．∴由⑥，得：sinA -
+·172·
