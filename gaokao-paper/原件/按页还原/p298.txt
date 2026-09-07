@@ -1,0 +1,78 @@
+25. (2020·山西·怀仁市大地学校高中部高二阶段练习(理)) 如图，
+ABCD 是边长为a 的正方形，DE ⊥平面ABCD，AF ⊥平面
+ABCD，DE = 3AF = 3.
+(1) 求证：DE ⊥平面ABCD；
+(2) 若EF = 2BC，求多面体ABCDEF 被平面BDG 分成的大、
+小两部分的体积比.
+【答案】 (1) 证明见解析；(2) 11:1.
+(1) 证明：平面ABF ⎳平面DCE；(1)ED ⊥CD
+【分析】  由勾股定理逆定理证得，再由面面垂直的性质定理得
+(2) 在DE 上是否存在一点G，使平面FBG 将几何体ABCDEF线面垂直；
+3 ∶11G(2) 连接EB，AE. 多面体ABCDEF 被分为B - AEF,E - ABD,E - BDG,
+分成上下两部分的体积比为？若存在，求出 的位置；若
+G - BDC 四个三棱锥，由它们之间的体积关系可求得比值．
+不存在，说明理由；
+【详解】 (1) 因为四边形ABCD 为矩形，所以CD = AB.
+【答案】 (1) 证明过程见详解；(2) 存在点G 且EG = 1 满足条件.
+因为AB = DE = 2，所以CD = DE = 2.
+【分析】 (1) 先证明AF ⎳平面DCE，再证明AB ⎳平面DCE，最后结合AB
+ 2 2
+因为点G 在线段CE 上，且EG = 2GC =AB，所以EC =2AB =
+∩AF = A、AB ⊂平面ABF、AF ⊂平面ABF，证明平面ABF ⎳平面DCE.3
+(2) 先假设点G 存，接着求V，再根据题意设EG = t 并建立方程求得t2CD = 2 2
+ABCDEF
+= 1，说明存在点G 且EG = 1 满足条件.所以DE 2+ CD2= EC2，即DE ⊥CD
+【详解】 (1) ∵DE ⊥平面ABCD，AF ⊥平面ABCD，∴DE ⎳AF，∴AF ⎳又平面CDE ⊥平面ABCD，平面CDE ∩平面ABCD = CD，DE ⊂平面
+平面DCE，CDE，
+∵ABCD 是正方形，AB ⎳CD，∴AB ⎳平面DCE，所以DE ⊥平面ABCD.
+∵AB ∩AF = A，AB ⊂平面ABF，AF ⊂平面ABF，
+∴平面ABF ⎳平面DCE.
+(2) 假设存在一点G，过G 作MG ⎳BF 交EC 于M ，连接BG，GF，如图
+(2) 设三棱锥G - BCD 的体积为1，连接EB，AE.
+ 1
+因为EG = 2GC，所以CG = EC，所以V= 3V= 3.
+3E-BCDG-BCD
+易知V= V= 3
+E-BCDE-ABD
+又EF = 2BC，BC ∥EF，所以2S= S，故2V= V
+ 1  3 × a 7ΔABD△EFAB-ABDB-AEF
+V = V + V= × a ×\frac{(1 + 3)× a}{ 7 3}+\frac{1}{ } × a ×= a2，又V= V= 3，所以V = 6
+ABCDEFB-ADEFB-CDE32326B-ABEE-ABDB-AEF
+1故V+ V+ V= 6 + 3 + 3 - 1 = 11
+设EG = t，则V= V+ V = a2× = a2，B-AFEE-ABDE-BDG
+GFBMEB-EFGB-EGM6144ABCDEFBDG11:1.
+故多面体 被平面 分成的大、小两部分的体积比为
+ EMt 1 1
+设M 到ED 的距离为h，则\frac{h}{1} = = ，h = at，S = at2，【点睛】
+aEC3 - 12△EGM4
+ 1 1 本题考查面面垂直的性质定理证线面垂直，考查多面体的体积，多面体的体
+V = × a × at2= a2t2，
+B-EGM3412
+积一般通过分割成若干个三棱锥求解较方便．利用体积公式易得这些小三
+ 11 1
+又因为V= × a ×( at(= a2t棱锥之间体积的比值．
+B-EFG326
+1 1 1
+所以 a2t2+ a2t = a2，解得t = 1 或t =-3(舍去)，
+12644- -
+【题型十四】体积：难题 动点型
+即存在点G 且EG = 1 满足条件.
+【典例分析】
+【点睛】本题考查利用线面平行证明面面平行、根据几何体的体积关系判断点1. (2020··())△PAD
+例安徽安庆市第七中学模拟预测文 如图，
+是否存在，是中档题.
+是边长为3 的等边三角形，四边形ABCD 为正方形，平面PAD ⊥
+.
+PF CE
+平面ABCD. 点E，F 分别为棱CD，PD 上的点，且 = =
+26. (2021··())FDED
+陕西西北工业大学附属中学高三阶段练习文 如图，多
+1AG
+面体ABCDEF 中，AB = DE = 2,   AD = 1，平面CDE ⊥平 ，G 为棱AB 上一点，且 = λ.
+2GB
+面ABCD，四边形ABCD 为矩形，BC ∥EF ，点G 在线段CE 1
+(I) 当λ = 时，求证：PG ∥平面AEF；
+ 2 22
+上，且EG = 2GC =AB.
+3(II) 已知三棱锥A - EFG 的体积为3，求λ 的值.
+·298·

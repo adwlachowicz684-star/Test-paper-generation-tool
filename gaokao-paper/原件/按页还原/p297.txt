@@ -1,0 +1,91 @@
+∴AM ⊥平面ADC，即AM 为三棱柱的高，
+ 1 1
+∵V= S ⋅AM = AC ⋅AD ⋅AM = × 2 × 4 ×3 = 4 3.
+柱△ADC22
+ 1 1 1 1 2 3
+V= S× AM = S× AM = × × 2 × 2 ×3 =.
+D-D1B1C13△B1C1D13△BCD323
+ 2 3 10 3
+所以V = 4 3 -=.
+33
+【点睛】
+本题考查了面面垂直的性质定理、判定定理，柱体、锥体的体积公式，考查了
+考生的逻辑推理能力，计算求解能力，属于中当题.
+24. (2020·四川·宜宾市叙州区第二中学校高二阶段练习(文)) 如图，
+在多面体ABCDEF 中，ADEF 为矩形，ABCD 为等腰梯形，
+【点睛】
+BC ⎳DA，BC = 2，AD = 4，且AB ⊥BD，平面ADEF ⊥平面
+本题考查利用线线平行，线面平行和面面平行的判定定理和性质定理，考查
+ABCD，M ，N 分别为EF，CD 的中点.分割法求多面体的体积，考查四棱锥和三棱锥的体积公式，考查学生的转化
+能力和计算能力，属于中档题.
+【题型十三】体积3：难题- - 两部分体积比
+【典例分析】
+例1. 如图，在四棱锥P - ABCD 中，底面ABCD 为菱形，
+ΔPAD 为正三角形，平面PAD ⊥平面ABCD，E、F 分别是AD、
+CD 的中点.
+(1) 求证：MN ⎳平面ACF；
+(2) 若DE = 2，求多面体ABCDEF 的体积.
+ 10 3
+【答案】 (1) 证明见解析；(2).
+3
+【分析】 (1) 取AD 的中点O, 连接OM ，ON ，可证OM ⎳AF,ON ⎳AC，然后
+利用平面MON ⎳平面ACF，可证MN ⎳平面ACF.(2) 将多面体分为四棱锥
+(1) 证明： BD ⊥平面PEF；
+B - ADEF 和三棱锥B - CDE 两部分，将V转化为V，然后利用四
+B-CDEE-BCD
+(2) 若M 是PB 棱上一点，三棱锥M - PAD 与三棱锥P -
+棱锥和三棱锥的体积公式分别求出然后求和即可.
+PM
+【详解】 (1) 如图，取AD 的中点O, 连接OM ，ON ，DEF 的体积相等，求 的值.
+MB
+在矩形ADEF 中，∵O，M 分别为线段AD，EF 的中点，
+ PM 1
+∴OM ⎳AF.【答案】 (1) 详见解析；(2) = .
+MB3
+又OM ⊈平面ACF，AF ⊂平面ACF，【分析】 (1) 连接AC，可得PE ⏊AD，利用面面垂直的性质可证PE ⏊平面
+∴OM ⎳平面ACF.ABCD，利用线面垂直的性质可证BD ⊥PE，由EF ⎳AC，BD ⊥AC，可证BD
+在△ACD 中，∵O，N 分别为线段AD，CD 的中点，⊥EF，BD ⊥PE，利用线面垂直的判定定理即可证明BD ⊥平面PEF；
+∴ON ⎳AC.PMPMλ
+(2) 连接MA,MD，设 = λ，则 = ，利用V= V，可
+MBPBλ + 1M-PADP-DEF
+又ON ⊂平面ACF，AC ⊂平面ACF，
+λ 1PM
+∴ON ⎳ACF.得 = ，进而解得λ 的值，即可得出 的值.
+平面λ + 14MB
+又OM ∩ON = O，OM,ON ⊂平面MON ，【详解】 (1) 连接AC，∵PA = PD 且E 是AD 的中点，∴PE ⏊AD
+∴平面MON ⎳平面ACF又平面PAD ⏊平面ABCD，平面PAD ∩平面ABCD = AD，PE ⊊平面
+又MN ⊂平面MON ，∴MN ⎳平面ACF.PAD，∴PE ⏊平面ABCD. 
+(2) 如图，过点C 作CH ⊥AD 于H.QBD ⊊平面ABCD，∴BD ⊥PE，又ABCD 为菱形，且E、F 分别为棱
+∵平面ADEF ⊥平面ABCD，平面ADEF ∩平面ABCD = AD，CH ⊂平面AD、CD 的中点，∴EF ⎳AC，
+ABCD，∵BD ⏊AC，∴BD ⊥EF，又BD ⊥PE，PE ∩EF = E，∴BD ⏊平面
+∴CH ⊥平面ADEF.PEF；
+同理DE ⊥平面ABCD.PMPMλ
+(2) 如图，连接MA,MD，设 = λ，则 = ，∴V=
+MBPBλ + 1M-PAD
+连接OB，OC. 在△ABD 中，∵AB ⊥BD，AD = 4，
+λλ
+ 1 V= V，
+∴OB = AD = 2.λ + 1B-PADλ + 1P-ABD
+2
+  1λ 1
+同理OC = 2.又V =\frac{1}{ 1} V= V，V= V，∴ = ，解得λ =
+P-DEF4P-ACD4P-ABDM-PADP-DEFλ + 14
+∵BC = 2，∴等边△OBC 的高为3，即CH =3.1PM
+ ，即 = λ = .
+3MB3
+连接BE.
+∴V = V + V= V + V
+ABCDEFB-ADEFB-CDEB-ADEFE-BCD
+ 1 1 1 1 1
+= S ⋅CH + S⋅DE = × 2 × 4 ×3 + × × 2 ×3 × 2
+3ADEF3△BCD332
+ 10 3
+=.
+3
+【提分秘籍】
+基本规律
+1. 直接求体积，大多数是难度较大。
+2. 利用等体积转化(或者不等体积转化)
+3. 寻找合适的底面和平行高转化。
+【变式演练】
+·297·

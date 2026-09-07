@@ -1,0 +1,18 @@
+∴q=\frac{v_{n+1}/2}{n+1} =\frac{p_{n}q_{n}}{1 - q^{2n}}=\frac{p_{n}q_{n}}{(1 - q_{n((}1 + q_{n(}}=\frac{q_{n}}{n} ，
+n+11 - w1 + q
+ ⟨?⟩⟨?⟩
+则\frac{1}{n+1} = 1 +\frac{1}{n} ，∴⟨?⟩⟨?⟩\frac{1}{n}⟨?⟩⟨?⟩是公差为1 的等差数列：
+qqq
+ \frac{v_{1}}{- w}q
+\frac{1}{n} =\frac{1}{1} + (n - 1(，其中q=\frac{2}{1} =\frac{pq}{1 - q^{2}} = ，
+qq11 1 + q
+ 1qq2
+∴\frac{1}{n} = + n，q= ，于是w= q2=⟨?⟩⟨?⟩，
+qqn1 + nqn+1n1 + nq
+ p + nqp + nq2
+p= 1 - q= ，u= p2=⟨?⟩⟨?⟩，v= 2pq= 2 ⋅\frac{p( p + nq)}{(1 + nq)^{2}} ，
+nn1 + nqn+1n1 + nqn+1nn
+q2
+对于w=⟨?⟩⟨?⟩，n 越大，w越小，所以这种实验长期进行下去，w越来越小，而w是子代中aa 所占的比例，也即性状aa 会渐渐消失.
+n+11 + nqn+1nn
+·396·

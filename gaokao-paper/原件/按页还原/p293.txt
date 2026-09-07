@@ -1,0 +1,103 @@
+因为DE ⊂平面CDB，AC⊄平面CDB， 2 5
+111AH = ABsin∠ABH = ABsin∠APM =. 
+5
+所以AC∥平面CDB．
+11∵CA ⊥PAB,BH ⊂PAB,∴BH ⊥CA,BH ⊥PA,CA ⊂
+平面平面 且平面
+(Ⅲ) 在线段AB上存在点M ，使得BM ⊥CB，且M 为线段AB的中点．
+11111PAC,PA ⊂PAC,CA ∩PA = A,∴BH ⊥PAC,H,
+平面平面 即 存在 在棱
+ 2 5
+PA 上, 且AH =.
+5
+P
+H
+A
+B
+证明如下：因为AA⊥底面ABC，CD ⊂底面ABC，所以AA⊥CD．
+11C
+由已知AC = BC，D 为线段AB 的中点，
+所以CD ⊥AB．
+【点睛】
+又AA∩AB = A，,
+1本题主要考查了立体几何中的线面线线与面面垂直的证明和性质 同时也考
+所以CD ⊥平面AABB．..
+11查了根据垂直求解线段长度以及体积的问题等 属于中档题
+取线段AB的中点M ，连接BM．4- -
+11【题型十】垂直：难题 翻折中的垂直
+因为BM ⊂平面AABB，所以CD ⊥BM．
+11【典例分析】
+由已知AB = 2AA，由平面几何知识可得BM ⊥BD．1. (2021··)
+11例河北衡水市第十四中学高二阶段练习 如图①，在
+又CD ∩BD = D，所以BM ⊥平面BCD．
+11菱形ABCD 中，∠A = 60° 且AB = 2，E 为AD 的中点，将△ABE
+又BC ⊂平面BCD，
+11BEAD =2A - BCDE.
+沿 折起使，得到如图②所示的四棱锥
+所以BM ⊥CB．
+1
+18. 如图：(2019·福建福州·模拟预测(文)) 三棱锥P - ABC 中，AB
+= AC = 2,BC = 2 2,PA = PB =5，面PAB ⊥面ABC．
+(I) 求证：平面ABE ⊥平面ABC；
+(II) 若P 为AC 的中点，求三棱锥P - ABD 的体积.
+3
+【答案】 (I) 证明见详解；(II)
+6
+【分析】 (I) 先证DE ⊥BE,DE ⊥AE，即可求得DE ⊥平面AEB，结合
+DE ⎳BC，即可由线面垂直推证面面垂直；
+(II) 根据点P 是AC 中点，则P - ABD 的体积为C - ABD 体积的一半，再
+转化顶点求得C - ABD 的体积，则问题得解.
+【详解】 (I) 因为四边形ABCD 是菱形，且点E 为AD 中点，
+(1) 求PC 长；
+又∠A = 60°，故三角形ABD 为等边三角形，
+(2) 求三棱锥体积；
+则DE ⊥BE，
+(3)ΔPAC 内(含边界) 上是否存在H 点，使BH ⊥面PAC．若
+又在三角形ADE 中，AE = ED = 1,AD =2，
+存在H 点，求出H 点的位置；若不存在H 点，说明理由．满足AE 2+ ED2= AD2，
+ 4 2 5故DE ⊥AE，
+【答案】 (1)3；(2) ；(3)H 存在，在棱PA 上，且AH =．
+35
+又BE ∩AE = E,BE,AE ⊂平面ABE，
+【分析】 (1) 根据勾股定理可得CA ⊥AB, 进而可得∠CAP = 90°, 再用勾股
+故可得DE ⊥平面ABE，
+定理计算PC 即可.
+又因为DE ⎳BC，
+(2) 作AB 的中点M, 连接PM 可知PM ⊥平面ABC, 再求解体积即可.
+故可得BC ⊥平面ABE，
+(3) 作BH ⊥PA 于H, 再证明BH ⊥面PAC 即可.
+又BC ⊂平面ABC，
+【详解】 (1) ∵AB2+ AC2= BC2,∴∠CAB = 90°,CA ⊥AB. 
+故可得平面ABC ⊥平面ABE. 即证.
+∵平面PAB ⊥平面ABC, 平面PAB ∩平面ABC = AB,CA ⊂平面ABC, 1 1
+(II) 因为P 是AC 中点，故V= V= V.
+且CA ⊥AB,P-ABD2C-ABD2A-BCD
+可知CA ⊥平面PAB,∠CAP = 90°. 又AE ⊥DE,AE ⊥BE，BE ∩DE = E,
+∴PC =AC+ AP = 3. BE,DE ⊂平面BCDE，
+22
+(2)ABM,PM,PM ⊥ABC,故AE ⊥平面BCDE，即AE 为A - BCD 底面BCD 上的高.
+ 作 的中点 连接 由题意知平面
+ 1 1 1 43
+∴V = S ⋅PM = × × 22×5 - 1 = . 又S= S= × 22=3，
+3ΔABC323△BCD△ABD4
+AE = 1，
+P
+ 1 1 1 1
+故V= V= V= × × S× AE
+P-ABD2C-ABD2A-BCD23△BCD
+ 1
+= ×3 × 1
+6
+3
+= .
+6
+AM
+3
+故三棱锥P - ABD 的体积为 .
+B6
+【点睛】
+C
+本题考查由线面垂直推证面面垂直，涉及线面垂直的证明以及棱锥体积的
+(3)BH ⊥PAH,HPA.求解，属综合基础题.
+ 作 于 在 上
+·293·
