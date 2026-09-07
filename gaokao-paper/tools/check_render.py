@@ -36,9 +36,16 @@ def norm(t):
 def load_texts(html_path, docx_path):
     h = open(html_path, encoding='utf-8').read()
     # HTML：公式整体置空
-    htext = norm(re.sub(
-        r'<[^>]+>', '',
-        re.sub(r'<math\b[^>]*>.*?</math>', '', h, flags=re.S)))
+    h = re.sub(r'<math\b[^>]*>.*?</math>', '', h, flags=re.S)
+    # ⚠ 填空位在 HTML 里渲染成 <u class="blank-u">&nbsp;</u>，
+    # 去掉标签后残留 6 个字符的 "&nbsp;" 实体文本。
+    # 锚点若**跨越**填空位（双空填空题很常见，如
+    # 「解集是 ____；若解集中恰有 3 个元素…」取到的最长片段就跨过第一个空），
+    # 这一小段实体会把两端文本错开，导致 HTML 端永远匹配失败（误报缺失）。
+    # 必须在去标签**之前**把实体和整个 <u …>…</u> 一并清掉。
+    h = re.sub(r'<u\b[^>]*>.*?</u>', '', h, flags=re.S)
+    h = h.replace('&nbsp;', '')
+    htext = norm(re.sub(r'<[^>]+>', '', h))
 
     d = docx.Document(docx_path)
     allx = ''.join(p._p.xml for p in d.paragraphs)
