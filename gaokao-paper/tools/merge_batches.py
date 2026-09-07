@@ -80,6 +80,51 @@ def norm(t):
     return re.sub(r'[^一-鿿0-9a-zA-Z]', '', t)[:60]
 
 
+def apply_skips(dry=False):
+    r"""把各窗口 _claims/*_skip.json 里的跳过标记并入 data/skipped.json。
+
+    各窗口写自己的独立文件，这里统一汇总——
+    **这是 skipped.json 的唯一写者**，避免多窗口互相覆盖。
+    """
+    sys.path.insert(0, os.path.join(HERE))
+    try:
+        import claim as C
+    except Exception:      # noqa: BLE001
+        return 0
+    pend = C.collect_skips()
+    if not pend:
+        return 0
+    sp = os.path.join(ROOT, 'data', 'skipped.json')
+    d = json.load(open(sp, encoding='utf-8'))
+    have = {x['key'] for x in d['items']}
+    legal = set(d.get('reason_desc') or {})
+    n = 0
+    for who, items in sorted(pend.items()):
+        for x in items:
+            if x['key'] in have:
+                continue
+            rsn = x.get('reason') or '待核查'
+            if rsn not in legal:
+                rsn = '待核查'
+            d['items'].append({
+                'key': x['key'], 'page': 0, 'topic': x['key'].rsplit('-', 1)[0],
+                'topic_name': '', 'kp1': '', 'kp2': '', 'kind': '',
+                'ref_answer': '', 'reason': rsn, 'note': x.get('by', ''),
+            })
+            have.add(x['key'])
+            n += 1
+            print('  + 跳过 %s（%s，来自 %s）' % (x['key'], rsn, who))
+    if n and not dry:
+        json.dump(d, open(sp, 'w', encoding='utf-8'),
+                  ensure_ascii=False, indent=1)
+        # 合并后清空各窗口的独立文件
+        for who in pend:
+            fp = os.path.join(C.CLAIM_DIR, C._safe(who) + '_skip.json')
+            if os.path.exists(fp):
+                os.remove(fp)
+    return n
+
+
 def build_items(qs):
     """把 input 模块的 QS 转成 hand_input 能吃的 item 列表。
 
@@ -157,6 +202,11 @@ def main():
         if i + 1 < len(sys.argv):
             v = sys.argv[i + 1]
             bn = v if v.startswith('教辅录入') else '教辅录入-第%s批' % v
+
+    if '--apply-skip' in flags:
+        n = apply_skips(dry='--dry-run' in flags)
+        print('\n  跳过标记合并完成：%d 条' % n if n else '\n  没有待合并的跳过标记')
+        return 0
 
     if '--all' in flags:
         mods = list_inputs()
