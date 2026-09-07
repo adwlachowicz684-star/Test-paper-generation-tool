@@ -1,0 +1,158 @@
+11
+a2- c2= bc，则 - + 3sinA 的取值范围为()
+tanCtanA
+A. (2 3,+∞)B. (2 3,4)
+13 3 13 3
+C.,4D. 2 3,
+66
+【答案】 C
+【分析】 
+根据余弦定理以及正弦定理化简条件得A、C 关系，再根据二倍角正切公式
+以及函数单调性求范围．
+【详解】 
+∵a2- c2= bc，∴所以b2- 2bccosA = bc ∴b - 2ccosA = c ∴sinB -
+2sinCcosA = sinC,
+sin(A + C) - 2sinCcosA = sinC,∴sin(A - C) = sinC ∴A - C = C,A =
+2C
+1 -1 + 3sinA =1 -1 + 3sinA =1 -
+因此tanCtanAtanCtan2CtanC
+1 - tan2C+ 3sinA = 1 + tan2C+ 3sinA
+2tanC2tanC
+=1 + 3sinA =1 + 3sinA
+2sinCcosCsinA
+sinA = t∵△ABC∴A ∈(0, π),C = A ∈(0, π),B = π
+设， 是锐角三角形，222
+- A - A ∈(0, π)∴A ∈(π , π)
+22，32
+∴sinA = t ∈3 ,11 + 3tt ∈3 ,1
+2，t 在2上单调递增，
+∴1 -1 + 3sinA = 1 + 3t ∈13 3,4
+tanCtanAt6，
+故选：C
+【提分秘籍】
+基本规律
+解三角形题。对含有正切函数求最值范围，属于较难题型，一般从以下几方面
+【分析】 
+1. 切化弦
+2. 在三角形中，有∴tanA + tanB + tanC = tanAtanBtanC
+【变式演练】
+29. 在锐角△ABC 中，三内角A,B,C 的对边分别为a,b,c，且a =
+2bsinC，则tanA + tanB + tanC 的最小值为()
+A. 2B. 4C. 6D. 8
+【答案】 D
+【分析】 首先由正弦定理和三角恒等变形得到tanB + tanC = 2tanBtanC，
+再根据正切公式得到tanA + tanB + tanC = tanAtanBtanC =
+tanB + tanC ⋅tanBtanC.
+tanBtanC - 1，最后再换元，利用基本不等式求最小值
+【详解】 由正弦定理可知2RsinA = 2 × 2R × sinBsinC ⇔sinA =
+2sinBsinC,
+又因为sinA = sin (B + C)= sinBcosC + cosBsinC，
+所以sinBcosC + cosBsinC = 2sinBsinC，
+因为△ABC 是锐角三角形，所以cosBcosC > 0,
+上式两边同时除以cosBcosC，可得tanB + tanC = 2tanBtanC，①
+tanA =-tan B + C= tanB + tanC > 0
+又因为()tanBtanC - 1，
+∴tanB + tanC = tanA (tanBtanC - 1),
+∴tanA + tanB + tanC = tanAtanBtanC = tanB + tanC ⋅tanBtanC
+tanBtanC - 1，
+令tanBtanC - 1 = m > 0，由①可知tanB + tanC = 2 (m + 1)
+ 2 (m + 1) 2 (m + 1)2
+所有tanA + tanB + tanC =⋅(m + 1)=，= 4 + 2m +
+mm
+2 ≥4 + 22m × 2 = 8
+mm，
+2m = 2m = 1tanBtanC = 2
+当且仅当m 时，即 时，取等号，此时，
+所以tanA + tanB + tanC 的最小值是8. 故选：D
+30. 在锐角△ABC 中，角A，B，C 所对的边分别为a，b，c，已知a2
++ 2abcosC = 3b2，则tanAtanBtanC 的最小值是．
+【答案】 6
+【分析】 先根据正余弦定理对原式进行化简得2(sin2A - sin2B) = sin2C，再利
+用正弦平方差定理化简可得sinAcosB = 3cosAsinB ⇒tanA = 3tanB，然后
+·16
+
+──────────── 右栏 ────────────
+tanA = x,tanB = 3xtanC =4x
+，表示出 ，构造函数求最值即可得出答
+3x2- 1
+案.
+【详解】 根据题意，已知a2+ 2abcosC = 3b2，由余弦定理得a2+
+2ab a2+ b2- c2= 3b2 2(a2- b2) = c2
+2ab，化简得
+由正弦定理：2(sin2A - sin2B) = sin2C 即2sin(A + B)sin(A - B) = sin2C
+(正弦平方差)
+整理可得：2sinAcosB - 2cosAsinB = sinAcosB + cosAsinB 即sinAcosB
+= 3cosAsinB ⇒tanA = 3tanB
+设tanA = x,tanB = 3x 因为为锐角三角形，所以tanA > 0,x > 0 此时tanC
+=-tan(A + B) =- tanA + tanBtanC =4x
+1 - tanA ⋅tanB 即 所以
+3x2- 1
+tanAtanBtanC =12x3f(x) =12x3 (x > 0)f′(x) =
+ 令
+3x2- 13x2- 1
+36(x2+ 1) (x2- 1)
+(3x2- 1)2
+当f′(x) > 0,x > 1，f(x) 递增；当f′(x) < 0,0 < x < 1，f(x) 递减；
+所以f(x)= f(1) = 6 故tanAtanBtanC 的最小值是6。故答案为6
+min
+31. 已知△ABC 的三个内角A,B,C 的对边分别为a,b,c，且满足
+a b +2c
+ += 0，则sin2B ⋅tan2C 的取值范围是()
+cosAcosB
+A. (0,2 -2[B. )0,3 - 2 2]
+ 3[
+C. (0, 3 - 1[D. )0,
+2
+【答案】 B
+A = 3π
+【分析】 根据正弦定理的边化角公式以及两角和的正弦公式，得出4 ，
+sin2B ⋅tan2Csin2B ⋅tan2C = sin2B ⋅1 - sin2B
+再将 化简为1 + sin2B ，利用换元法以
+及导数，即可得出sin2B ⋅tan2C 的取值范围.
+a + b +2c= 0sinA + sinB +2sinC= 0
+【详解】 由cosAcosB，得cosAcosB 整理得
+cosAsinB + sinAcosB =- 2sincosA
+∴sinC =- 2sinC ⋅cosA ∵sinC ≠0∴cosA =-2∵A ∈(0,π)∴A =
+，2 又，
+3π
+4
+∵tanC = tan (π -)3π + B()= tan (π - B)= 1 - tanB = cosB - sinB
+441 + tanBcosB + sinB
+∴sin2B ⋅tan2C = sin2B ⋅cosB - sinB2= sin2B ⋅1 - sin2Bt = 1 +
+cosB + sinB1 + sin2B 令
+sin2B0 < 2B < πt ∈(1,2)
+，因为2 ，所以
+ (t - 1) (1 - t + 1) 2 2
+则sin2B ⋅tan2C ==- (t +)+ 3 令y = t + ,t ∈(1,2)，
+ttt
+y′= 1 - 2 = t2- 2
+则
+t2t2
+y′> 0 ⇒2 < t < 2y′< 0 ⇒1 < t <2y = t + 2(1, 2)
+； 即函数t 在 上单调
+( 2,2)t + 2 ∈[2 2,3) ∴sin2B ⋅tan2C ∈(0,3 -
+递减，在 上单调递增，即t
+2 2] 故选B
+【题型十二】图形1：中线
+【典例分析】
+例1. 以BC 为底边的等腰三角形ABC 中，腰AC 边上的中线长
+为9，当△ABC 面积取最大时，腰AB 长为()
+A. 2 5B. 4 5
+C. 6 5D. 前三个答案都不对
+【答案】 C
+【分析】 设D 为AC 中点，在△ABC 和△ABD 分别运用余弦定理得2a2+ b2
+= 324，再表示△ABC 的面积，运用二次函数的性质可得选项.
+DACcosA = b2+ c2- a2=
+【详解】 如下图所示，设 为 中点，由余弦定理，2bc
+2b2- a2
+，
+2b2
+△ABDBD2= b2+b2- 2 × b × b × 2b2- a2⇒2a2+ b2= 324∴S
+在 中，22，
+2b2
+= 1 ab2-(a)2
+22
+= 1 a324 - 9 a2 = 1a2 (324 - 9 a2)= 1a2 (324 - 9 a2)
+242424，
+当a2= 72 时，S 有最大值，此时b2= 324 - 2a2= 180 ⇒b = 6 5，即腰长AB
+2·
