@@ -277,3 +277,27 @@ python3 tools/cut_figs.py "$PDF" --rename M-H0190 M-H0191
 ```
 
 第 4 步只对图题做，其余题跳过。
+
+## 一之三、分数线自动扫描（frac_scan.py）
+
+分数线是**矢量绘制**的，文本层里没有；但它在**绘图指令**里是一条
+「高度≈0、宽度几 pt」的水平线段，可以扫出来再按坐标配对分子分母：
+
+```bash
+python3 tools/frac_scan.py <pdf> --page 76              # 扫一页
+python3 tools/frac_scan.py <pdf> --find 'lnx - x + a'   # 按关键词定位
+python3 tools/frac_scan.py <pdf> --page 76 --context 3  # 带上下文原文
+```
+
+实测输出（PDF 页 76）：
+
+    \frac{1 + x}{ex}                  → \frac{1+x}{\mathrm e^x}
+    \frac{lnx - x + a}{x2}            → \frac{\ln x-x+a}{x^2}
+    \frac{x - 2lnx + 1 - 2a}{x3}      → \frac{x-2\ln x+1-2a}{x^3}
+
+**注意**：上标显示为平文本（`x2` 实为 $x^2$），需与 pdf2latex.py 的字号判据
+配合使用；根号不是线段（是 U+F0E8/E9/EA 三段字符），本脚本不管。
+
+判据：分数线 = 绘图指令中 `height < 0.5` 且宽度在 `--minw/--maxw` 之间的
+水平线段；分子/分母取**数学字体**字符（中文正文按字体名排除），
+中心 x 落在线段范围内、底边/顶边紧贴线。
