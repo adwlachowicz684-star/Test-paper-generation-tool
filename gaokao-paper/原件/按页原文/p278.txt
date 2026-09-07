@@ -1,0 +1,110 @@
+如图所示，将三棱锥A - BCD 置于直三棱柱ABM - GCD 中，
+不妨设∠ABM 为锐角，P，Q 分别为AG，DM 的中点，H 为线段BM 上一
+点，且AH ⊥BH．
+连接PE，EQ，PQ，CH，由直三棱柱的几何性质易知，F 为PQ 的中点，
+∠ABH = θ∠ACH = θ∠FEQ = θsinθ= AHsinθ= AH
+1，2，3，则1AB ，2AC ，
+又AB < AC，故sinθ> sinθ，θ> θ；
+1212
+易知S = S，则PEsin∠PEF = QE ⋅sin∠QEF，又PE = AB > CD
+△PEF△QEF
+= QE，所以sin∠PEF < sin∠QEF，故∠PEF < ∠QEF ⇒2θ> ∠PEQ =
+3
+∠ABH = θ．
+1
+故选：A
+【变式演练】
+16. 如图，在三棱锥P - ABC 中，AB ⊥AC，AB = AP，D 是棱BC
+上一点(不含端点) 且PD = BD，记∠DAB 为α，直线AB 与平
+面PAC 所成角为β，直线PA 与平面ABC 所成角为γ，则
+()
+A. γ ≤β,γ ≤αB. β ≤α,β ≤γ
+C. β ≤α,γ ≤αD. α ≤β,γ ≤β
+【答案】 A
+【分析】 
+由AB = AP，PD = BD，可得△ABD ≌△APD，从而得∠DAB = ∠DAP =
+α，而直线PA 与平面ABC 所成角为γ，由最小角定理可得γ ≤α，再由V
+P-ABC
+= V，S ≤S，进而可比较β,γ 的大小
+B-PAC△PAC△ABC
+【详解】 因为AB = AP，PD = BD，所以△ABD ≌△APD，所以∠DAB =
+∠DAP = α，因为直线PA 与平面ABC 所成角为γ，
+γ ≤αAB ⊥ACS = 1 AB ⋅AC,
+所以由最小角定理可得，因为，所以△ABC2
+S = 1 AC ⋅APsin∠PACAB = APS ≤S
+因为△PAC2，，所以△PAC△ABC，
+令点P 到平面ABC 的距离为d，点B 到平面PAC 的距离为d，因为V
+12P-ABC
+= VV = 1 S ⋅d,V = 1 S ⋅dd≤d
+B-PAC，P-ABC3△ABC1B-PAC3△PAC2 所以12，
+因为直线AB 与平面PAC 所成角为β，直线PA 与平面ABC 所成角为γ，所
+ d d
+以sinβ =2 ,sinγ =1
+ABPA
+AB = APsinβ ≥sinγβ,γ ∈(0, π[β ≥γA
+因为，所以 因为2所以，故选：
+17. 已知三棱锥D - ABC，记二面角C - AB - D 的平面角是θ，直
+线DA 与平面ABC 所成的角是θ，直线DA 与BC 所成的角是
+1
+θ，则()
+2
+A. θ ≥θB. θ ≤θC. θ ≥θD. θ ≤θ
+1122
+【答案】 A
+【分析】 
+设三棱锥D - ABC 是棱长为2 的正四面体，取AB 中点E，DC 中点M ，AC
+中点M ，连结DE、CE、MN、EN ，过D 作DO ⊥CE，交CE 于O，连结AO，
+则∠DEC = θ，∠DAO = θ，∠MNE = θ，排除B，C．当二面角C - AB - D
+12
+是直二面角时，θ ≥θ，排除D．由此能求出结果．
+2
+【详解】 
+设三棱锥D - ABC 是棱长为2 的正四面体，
+·27
+
+──────────── 右栏 ────────────
+取AB 中点E，DC 中点M ，AC 中点M ，连结DE、CE、MN、EN ，
+过D 作DO ⊥CE，交CE 于O，连结AO，则∠DEC = θ，∠DAO = θ，
+1
+∠MNE = θ，DE = CE =4 - 1 =3，DC = 2，
+2
+∴cosθ =3 + 3 - 4 = 1AO = CO = 2 CE = 2 3∴cosθ= AO =
+3 ，33，1AD
+2 ×3 ×3
+2 3
+3=3
+33 ，
+取BC 中点F，连结DF、AF，则DF ⊥BC，AF ⊥BC，
+又DF ∩AF = F，∴BC ⊥平面AFD，∴BC ⊥AD，∴θ= 90°，
+2
+∴θ≥θ ≥θ，排除B，C，
+21
+当二面角C - AB - D 是直二面角时，θ ≥θ，排除D，故选：A.
+2
+【题型七】球中的角度
+【典例分析】
+例1. 已知AB、CD 是圆O 的两条直径，且∠AOC = 60°，如图
+1，沿AB 折起，使两个半圆面所在的平面垂直，折到点D′位置，如
+图2．设直线BD′与直线OC 所成的角为θ，则()
+A. ∠BD′C = 90° 且θ > 60°
+B. ∠BD′C = 90° 且θ ≤60°
+C. ∠BD′C ≠90° 且θ > 60°
+D. ∠BD′C ≠90° 且θ ≤60°
+【答案】 C
+【分析】 
+根据圆的性质知∠EAC = 60°，过D 作DE ⊥OB 于E，连接CE、AC，设圆
+rBE = r ,AE = 3r ,AC = r
+的半径为，有22，利用余弦定理、线面垂直的性质证
+D′E ⊥CE，结合勾股定理判断∠BD′C 是否为直角；再过O 作OF ⎳D′B 交AD′
+于F，则F 为AD′中点，连接CF，即直线BD′与直线OC 所成的角为∠COF = θ，
+过F 作FG ⊥AB 于G，连接CG，利用勾股定理及余弦定理求cos∠COF，即可
+比较与60° 的大小.
+【详解】 
+图1 中过D 作DE ⊥OB 于E，连接CE、AC，设圆的半径为r，
+∠AOC = 60°∠EAC = 60°BE = r ,AE = 3r ,AC = r
+由，则 且22，
+∴△ACECE =AC2+ AE 2- 2AC ⋅AE ⋅cos∠EAC =7rDE
+在 中，2，而
+=3r
+2，
+8·

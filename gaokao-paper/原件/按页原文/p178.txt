@@ -1,0 +1,92 @@
+AB -3 BD = 0AB =3 BD△ABCAC2=
+即2，所以2 在 中，由余弦定理得
+BC2+ AB2- 2AB ⋅BC ⋅cosB
+= 4BD2+ 3 BD2- 2 ×3 BD × 2BD ×2 = 7 BD2AC =7 BD
+4224即2，所以
+7 BD
+AC =2=21
+AB33
+2 BD
+AC = 4 3B = πBD = 2ADAB =3 BD
+若，6 ，，由上述知2
+DE ⊥ABEB = πDE = BD= AD∴DA ⊥ABAF ⊥
+作 于点，由6 ，知2， 作
+BCF∠ADB = π
+ 于点，3
+△ABCBCh = AB=3 BD = AFBF =3 AB =
+所以 在 边上的高为24，2
+3 BD
+4
+S = 1 AF ⋅CD =3 BD ⋅CDAD = 1 BDAC = 4 3
+所以△ADC28 因为2，，
+∠ADB = π∠ADC = 2π
+3 ，所以3
+由余弦定理得AC2= AD2+ CD2- 2AD ⋅CD ⋅cos∠ADC
+48 = 1 BD2+ CD2+ 1 BD ⋅CD = (CD - 1 BD)2+ 3 BD ⋅CD
+即4222
+CD = 1 BDBD ⋅CD3 BD ⋅CD = 48BD ⋅CD = 32
+当2 时， 有最大值，即2，则
+S =3 BD ⋅CD =3 × 32 = 4 3214 3
+所以△ADC88 故答案为：3，
+26. △ABC 内接于半径为2 的圆，三个内角A，B，C 的平分线延长
+后分别交此圆于A，B，C.则
+111
+ A B C
+AAcos + BBcos + CCcos
+121212
+的值为.
+sinA + sinB + sinC
+【答案】 4
+【分析】 
+BAAA= 2Rsin B + AAA
+连1，由正弦定理得12，利用三角形内角和性质得1
+= 4cos B - CAAcos A =
+2，进而利用积化和差公式、诱导公式得12
+2 sinC + sinBBBcos BCCcos C.
+()，同理求12 、12 ，即可求值
+【详解】 
+BAAA= 2Rsin B + A= 4sin A + B + C+ B - C=
+连1，则12222
+4cos B - C
+2，
+∴AAcos A = 4cos B - Ccos A = 2 cos A + B - C+ cos A + C - B=
+122222
+2 (sinC + sinB)，
+BBcos B = 2 sinA + sinCCCcos C = 2 sinA + sinB.
+同理可得：12()，12()
+∴AAcos A + BBcos B + CCcos C = 4 sinA + sinB + sinC
+121212()，即
+AAcos A + BBcos B + CCcos C
+121212= 4.
+sinA + sinB + sinC
+·17
+
+──────────── 右栏 ────────────
+27. 在平面四边形ABCD 中，AB = 1，AD = 4，BC = CD = 2，则四
+边形ABCD 面积的最大值为()
+ 5 7 5 7
+A.B.C. 4 2D. 2 2
+48
+【答案】 A
+【分析】 
+通过余弦定理分别表示BD，从而找到角A，C 的关系，将四边形的面积用角
+A，C 表示，从而求得面积的最大值.
+【详解】 由余弦定理知：在△ABD 中，有BD2= AB2+ AD2- 2AB ⋅ADcosA
+= 12+ 42- 2 × 1 × 4 ⋅cosA = 17 - 8cosA，
+在△BCD 中，有BD2= CB2+ CD2- 2CB ⋅CDcosC = 22+ 22- 2 × 2 × 2 ⋅
+cosC = 8 - 8cosC，
+17 - 8cosA = 8 - 8cosC ⇒cosA - cosC = 9ABCD=
+则8 ，由四边形 的面积
+三角形ABD 的面积+ 三角形BCD 的面积，
+S = 1 AB ⋅ADsinA + 1 CB ⋅CDsinC = 1 × 1 × 4sinA + 1 × 2 × 2sinC
+故2222
+= 2(sinA + sinC)，
+在三角形中，易知A,C ∈(0,π)，sinA,sinC > 0，(sinA + sinC)2+ (cosA -
+cosC)2
+= sin2A + sin2C + 2sinAsinC + cos2A + cos2C - 2cosAcosC = 2 - 2cos(A
++ C) ≤4，当且仅当A + C = π 时等号成立，
+(sinA + sinC)2+(9)2≤4 ⇒sinA + sinC ≤5 7
+此时88，
+S = 2(sinA + sinC) ≤2 × 5 7= 5 7A.
+故84，故选：
+8·

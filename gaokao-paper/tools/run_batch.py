@@ -184,6 +184,14 @@ def main():
     ne = grep1(out5, r'(A 类 \d+ / B 类 \d+ / C 类 \d+ / D 类 \d+)')
     steps.append((OK, '勘误表    %s' % ne))
 
+    # ── 7. 题型页码索引（并行录入分工表，随进度刷新）────────────
+    rc7, out7 = run_capture([sys.executable, 'tools/make_index.py'])
+    if rc7 != 0:
+        print('%s 页码索引生成失败' % FAIL)
+        print('\n'.join('      ' + l for l in out7.strip().split('\n')[-15:]))
+        return 1
+    steps.append((OK, '页码索引  tools/make_index.py 已刷新'))
+
     # ── 汇总 ────────────────────────────────────────────────
     print('第%s批 流水线完成' % n)
     for sym, txt in steps:
