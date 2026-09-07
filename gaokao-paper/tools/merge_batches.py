@@ -4,6 +4,7 @@ r"""并行录入的合并入口：把多个窗口产出的 input_batch*.py 一�
 
     python3 tools/merge_batches.py input_batch15a input_batch15b
     python3 tools/merge_batches.py --all              # 自动扫描所有未入库的
+    python3 tools/merge_batches.py --all --batch 18   # 指定批次名
     python3 tools/merge_batches.py --all --dry-run    # 只看会入什么
 
 ## 为什么必须有这个工具
@@ -148,6 +149,14 @@ def main():
     args = [a for a in sys.argv[1:] if not a.startswith('-')]
     flags = [a for a in sys.argv[1:] if a.startswith('-')]
     dry = '--dry-run' in flags
+    # 批次名：默认「合并」，但验收(run_batch)靠 batch 字段定位本批题目，
+    # 并行录入时必须能指定成「第18批」之类，否则 run_batch 找不到题。
+    bn = '教辅录入-合并'
+    if '--batch' in sys.argv:
+        i = sys.argv.index('--batch')
+        if i + 1 < len(sys.argv):
+            v = sys.argv[i + 1]
+            bn = v if v.startswith('教辅录入') else '教辅录入-第%s批' % v
 
     if '--all' in flags:
         mods = list_inputs()
@@ -238,7 +247,7 @@ def main():
             owner[id(it)] = m
         all_items.extend(items)
 
-    ok, res = hand_input.add_many(all_items, batch='教辅录入-合并')
+    ok, res = hand_input.add_many(all_items, batch=bn)
     if not ok:
         print('  校验未通过，整批拒绝：')
         for e in res:

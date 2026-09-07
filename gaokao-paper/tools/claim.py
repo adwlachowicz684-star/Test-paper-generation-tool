@@ -71,12 +71,25 @@ def pending_topics():
         if len(ks) > 1:
             dup.update(ks[1:])
 
+    # 老高考题型（柯西/绝对值不等式、线性规划）新高考不考，
+    # make_plan 把它们归为「不录(老高考)」，不参与分批。
+    # **认领时必须同样排除**——否则窗口会领到整段不该录的题，
+    # 白白浪费几批工作量（实测第18批就录进去了 8 题）。
+    sys.path.insert(0, HERE)
+    try:
+        import old_gaokao as OG
+        old_topics = set(OG.old_topics())
+    except Exception:      # noqa: BLE001
+        old_topics = set()
+
     by = defaultdict(int)
     for k in ref:
         m = re.match(r'(M-T-\d+)-', k)
         if not m:
             continue
         if k in done or k in dup or k in skip:
+            continue
+        if m.group(1) in old_topics:
             continue
         by[m.group(1)] += 1
     return sorted(by.items(), key=lambda x: int(x[0].split('-')[2]))
