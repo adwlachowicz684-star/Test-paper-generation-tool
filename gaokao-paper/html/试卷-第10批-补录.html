@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>第10批-补录</title><style>
+:root{
+  --body-w: 162mm;
+  --cn: "Songti SC","SimSun","Source Han Serif SC",serif;
+  --en: "Times New Roman",Times,serif;
+  --math: "Cambria Math","Latin Modern Math","STIX Two Math",serif;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{
+  size: A4;
+  margin: 22mm 24mm 22mm 24mm;
+}
+body{
+  font-family:var(--cn);
+  font-size:10.5pt;
+  line-height:1.45;
+  margin:0 auto;
+  max-width:var(--body-w);
+  color:#000;
+}
+/* ---------- 卷头 ---------- */
+.title{
+  font-family:var(--cn); font-weight:700; font-size:16pt;
+  text-align:center; margin:0 0 2pt;
+}
+.subtitle{ text-align:center; font-size:11pt; color:#444; margin:0 0 4pt; }
+.rule{ border:0; border-top:2px solid #2E75B6; margin:0 0 5pt; }
+.meta{
+  width:100%; border-collapse:collapse; margin:0 0 8pt; font-size:9.5pt;
+}
+.meta th{ font-weight:700; text-align:center; width:30mm; }
+.meta td, .meta th{ border:1px solid #9ab; padding:2px 6px; }
+/* ---------- 分节 ---------- */
+.section{
+  font-weight:700; font-size:11pt; color:#1F3864;
+  margin:9pt 0 3pt;
+}
+/* ---------- 题目：矩形模块 ---------- */
+/* 两列：第1列题号，第2列放**一个**容器 .qmain，
+   题干/选项/插图/留白在 .qmain 内部流式排布。
+   不用 grid-row:1/-1 —— 隐式网格下它不能跨所有行，内容会流回第1列。 */
+.q{
+  display:grid;
+  grid-template-columns:2.4em 1fr;
+  column-gap:4pt;
+  margin:6pt 0 3pt;
+  break-inside:avoid;          /* 题目不被分页切断 */
+  page-break-inside:avoid;
+}
+.qnum{
+  text-align:right;
+  font-weight:700;
+  color:#1F3864;               /* 与答案卷同色 */
+  white-space:nowrap;
+}
+.qmain{ min-width:0; }         /* 允许内容收缩，防止撑破列宽 */
+/* 选项与插图并排 */
+.qbody{ display:flex; gap:6pt; align-items:flex-start; }
+.qbody > .opts{ flex:1 1 auto; min-width:0; }
+.qbody > .figs{ flex:0 0 auto; }
+/* ---------- 选项：固定列宽 → 跨题对齐 ---------- */
+.opts{
+  display:grid;
+  grid-template-columns:repeat(var(--cols,2),1fr);
+  column-gap:8pt;
+  margin:1pt 0 0;
+}
+.opt{ margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  /* 含公式的选项不裁切。
+     overflow:hidden 会把超宽的 MathML 整体切掉 ——
+     页面上只剩「A．B．C．D．」看不到内容。
+     纯文本长选项仍用省略号，避免撑破版面。 */
+  .opts-noclip .opt { overflow:visible; text-overflow:clip; }
+.opt b{ font-weight:700; margin-right:2pt; }
+/* ---------- 插图 ---------- */
+.figs{ text-align:right; }
+.figs.alone{ text-align:right; margin:2pt 0; }
+.figrow{ display:flex; flex-wrap:wrap; gap:4pt; justify-content:flex-end; }
+figure{ margin:0; text-align:center; }
+/* 必须显式限宽限高：只写 max-width:100% 时大图会
+   按原始像素撑开，710px 宽的图几乎占满 A4 一行。*/
+figure img{ max-width:100%; height:auto; display:block; margin:0 auto;
+  max-height:8.0cm; }
+figcaption{
+  font-size:8pt; color:#888; text-align:center; margin:1pt 0 2pt;
+}
+/* ---------- 答题留白 ---------- */
+.blank{
+  border-bottom:1px solid #e8e8e8;
+  margin-top:2pt;
+}
+/* ---------- 填空下划线 ---------- */
+/* 用 border-bottom 而非 text-decoration：
+   text-decoration 画在空白字符上时，部分浏览器（尤其打印预览）
+   会跳过纯空白区域，导致下划线看不见。
+   inline-block + 固定宽度 + 下边框是任何环境都稳定的画法。*/
+u.blank-u{
+  display:inline-block;
+  min-width:4.0em;
+  border-bottom:1px solid #000;
+  text-decoration:none;
+  vertical-align:baseline;
+  margin:0 .15em;
+}
+/* ---------- 答案卷 ---------- */
+.ans{ margin:7pt 0 0; break-inside:avoid; }
+.ans .a{ color:#c00; font-weight:700; }
+.ans .src{ color:#808080; font-size:9pt; margin-left:8mm; }
+.ans .ana{ color:#353; font-size:9.5pt; margin-left:8mm; }
+/* ---------- 数学字体 ---------- */
+/* 显式声明 font-style，**不依赖浏览器默认**。
+   MathML 规范里 <mn>/<mo> 该是正体、<mi> 变量该是斜体，
+   但各浏览器实现不一致（有的把区间 (0,1) 整体渲染成斜体）。
+   这里按数学排版规范写死：
+     变量 mi          → 斜体
+     数字 mn、运算符 mo → 正体
+     函数名（mathvariant=normal）→ 正体（sin/log/max 等不该斜） */
+math{ font-family:var(--math); font-size:1.02em; }
+math mi{ font-style:italic; }
+math mn, math mo, math mtext{ font-style:normal; }
+math mi[mathvariant="normal"]{ font-style:normal; }
+/* 区间、括号等定界符保持正体（部分浏览器对 <mo> 的默认不可靠） */
+math mo{ font-family:var(--math); }
+/* ---------- 屏幕提示（打印时隐藏） ---------- */
+.tip{
+  background:#fffbe6; border:1px solid #ffe58f; padding:6pt 8pt;
+  font-size:9pt; margin:0 0 8pt; border-radius:3px;
+}
+@media print{
+  .tip{ display:none; }
+  /* 打印时页边距交给 @page，.paper 不能再有 padding，
+     否则多页文档的第 2 页起会叠加一次（padding 只在整个元素首尾）。 */
+  body{ max-width:none; }
+  .paper{ width:auto; min-height:0; padding:0; box-shadow:none; }
+}
+@media screen{
+  /* 屏幕上把 .paper 显示成一张 A4 纸：
+     宽 210mm，并用与 @page 相同的页边距做 padding。
+     这样屏幕预览的内容宽度 = 210 - 2*24 = 正文宽，
+     与打印输出完全一致（原来 padding 用的是 16/14mm，与页边距不符）。 */
+  body{ background:#f5f5f5; padding:12px; max-width:none; }
+  .paper{
+    width:210mm;
+    min-height:297mm;
+    padding:22mm 24mm 22mm 24mm;
+    margin:0 auto;
+    background:#fff;
+    box-shadow:0 1px 6px rgba(0,0,0,.18);
+  }
+}
+</style></head><body><div class="paper"><div class="tip">提示：按 Ctrl/Cmd + P 打印，在打印设置中选择「另存为 PDF」，纸张 A4、边距设为「默认」。</div><div class="title">第10批-补录</div><div class="subtitle">第10批-补录</div><hr class="rule"><table class="meta"><tr><th>题量</th><td>4 题</td></tr><tr><th>科目</th><td>数学</td></tr><tr><th>生成时间</th><td>第10批-补录</td></tr></table><div class="section">一、选择题：本题共 1 小题。在每小题给出的四个选项中，只有一项是符合题目要求的。</div><div class="q"><div class="qnum">1．</div><div class="qmain"><div>已知函数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo stretchy="true">{</mo><mstyle displaystyle="false"><mtable columnspacing="0.6em" rowspacing="0.1ex" framespacing="0 0" columnalign="left"><mtr><mtd><mfrac><mrow><mrow><mo>|</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>|</mo></mrow></mrow><mrow><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mrow></mfrac><mo>,</mo></mtd><mtd><mi>x</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr><mtr><mtd><msup><mi>x</mi><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>4</mn><mi>x</mi><mo>+</mo><mn>3</mn><mo>,</mo></mtd><mtd><mi>x</mi><mo>≥</mo><mn>0</mn></mtd></mtr></mtable></mstyle></mrow></mrow></math>， 若方程 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">f</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>x</mi></mrow></mfrac><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi></mrow></math> 恰有 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>4</mn></math> 个实根，则实数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>a</mi></math> 的取值范围是（　　）</div><div class="opts opts-noclip" style="--cols:2"><div class="opt"><b>A．</b><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math></div><div class="opt"><b>B．</b><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">(</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math></div><div class="opt"><b>C．</b><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>∪</mo><mo stretchy="false">[</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math></div><div class="opt"><b>D．</b><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">(</mo><mo>-</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>∪</mo><mo stretchy="false">(</mo><mfrac><mrow><mn>5</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math></div></div></div></div><div class="section">二、填空题：本题共 3 小题。</div><div class="q"><div class="qnum">2．</div><div class="qmain"><div>已知 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo stretchy="true">{</mo><mstyle displaystyle="false"><mtable columnspacing="0.6em" rowspacing="0.1ex" framespacing="0 0" columnalign="left"><mtr><mtd><mfrac><mrow><mi>a</mi></mrow><mrow><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mrow></mfrac><mo>,</mo></mtd><mtd><mi>x</mi><mo>≤</mo><mn>0</mn></mtd></mtr><mtr><mtd><mi mathvariant="normal">lg</mi><mi>x</mi><mo>,</mo></mtd><mtd><mi>x</mi><mo>&gt;</mo><mn>0</mn></mtd></mtr></mtable></mstyle></mrow></mrow></math>， 若关于 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> 的方程 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">f</mi><mo stretchy="false">[</mo><mi mathvariant="normal">f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mn>0</mn></mrow></math> 仅有一解，则 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>a</mi></math> 的取值范围是 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi></mrow></math><u class="blank-u">&nbsp;</u></div></div></div><div class="q"><div class="qnum">3．</div><div class="qmain"><div>已知函数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo stretchy="true">{</mo><mstyle displaystyle="false"><mtable columnspacing="0.6em" rowspacing="0.1ex" framespacing="0 0" columnalign="left"><mtr><mtd><mo>-</mo><msup><mi>x</mi><mrow><mn>2</mn></mrow></msup><mo>+</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn><mo>,</mo></mtd><mtd><mi>x</mi><mo>≤</mo><mn>2</mn></mtd></mtr><mtr><mtd><mo stretchy="false">|</mo><msub><mi mathvariant="normal">log</mi><mrow><mn>2</mn></mrow></msub><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>2</mn><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>,</mo></mtd><mtd><mi>x</mi><mo>&gt;</mo><mn>2</mn></mtd></mtr></mtable></mstyle></mrow></mrow></math>， 则方程 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">f</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mrow><mn>4</mn><mi>x</mi></mrow></mrow></mfrac><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi></mrow></math> 恰好有 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>6</mn></math> 个不同的解，则实数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>a</mi></math> 的取值范围为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi></mrow></math><u class="blank-u">&nbsp;</u></div></div></div><div class="q"><div class="qnum">4．</div><div class="qmain"><div>已知 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mo>∈</mo><mi mathvariant="normal">R</mi></mrow></math>，函数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo stretchy="true">{</mo><mstyle displaystyle="false"><mtable columnspacing="0.6em" rowspacing="0.1ex" framespacing="0 0" columnalign="left"><mtr><mtd><mo stretchy="false">|</mo><msup><mn>3</mn><mrow><mi>x</mi></mrow></msup><mo>+</mo><mn>1</mn><mo stretchy="false">|</mo><mo>,</mo></mtd><mtd><mi>x</mi><mo>&lt;</mo><mn>1</mn></mtd></mtr><mtr><mtd><msub><mi mathvariant="normal">log</mi><mrow><mn>2</mn></mrow></msub><mo stretchy="false">(</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo stretchy="false">)</mo><mo>,</mo></mtd><mtd><mi>x</mi><mo>&gt;</mo><mn>1</mn></mtd></mtr></mtable></mstyle></mrow></mrow></math>， <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="normal">g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>x</mi><mrow><mn>2</mn></mrow></msup><mo>-</mo><mn>2</mn><mi>x</mi><mo>+</mo><mn>2</mn><mi>m</mi><mo>-</mo><mn>1</mn></mrow></math>，若函数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>=</mo><mi mathvariant="normal">f</mi><mo stretchy="false">[</mo><mi mathvariant="normal">g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>-</mo><mi>m</mi></mrow></math> 有 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>4</mn></math> 个零点，则实数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>m</mi></math> 的取值范围是 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi><mi>_</mi></mrow></math><u class="blank-u">&nbsp;</u></div></div></div></div></body></html>

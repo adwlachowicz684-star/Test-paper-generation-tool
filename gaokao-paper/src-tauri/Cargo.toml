@@ -1,0 +1,36 @@
+[package]
+name = "gaokao-paper"
+version = "0.1.0"
+description = "高考真题拆题 · 自动组卷 · 间隔复习"
+edition = "2021"
+rust-version = "1.77.2"
+
+[lib]
+name = "gaokao_paper_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[features]
+# 本项目前端是零构建静态资源，tauri.conf.json 里没有 devUrl。
+# 没有 devUrl 时必须启用 custom-protocol，
+# 否则生产构建（tauri build）加载不到前端资源，打开就是白屏。
+custom-protocol = ["tauri/custom-protocol"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# 注意：panic = "abort" 会与 `cargo test` 冲突（binary crate 不受影响）。
+# 若哪天要加 Rust 单元测试，需改为 "unwind"。
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true
