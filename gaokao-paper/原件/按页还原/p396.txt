@@ -4,7 +4,7 @@ n+11 - w1 + q
 则\frac{1}{n+1} = 1 +\frac{1}{n} ，∴⟨?⟩⟨?⟩\frac{1}{n}⟨?⟩⟨?⟩是公差为1 的等差数列：
 qqq
  \frac{v_{1}}{- w}q
-\frac{1}{n} =\frac{1}{1} + (n - 1(，其中q=\frac{2}{1} =\frac{pq}{1 - q^{2}} = ，
+\frac{1}{n} =\frac{1}{1} + (n - 1)，其中q=\frac{2}{1} =\frac{pq}{1 - q^{2}} = ，
 qq11 1 + q
  1qq2
 ∴\frac{1}{n} = + n，q= ，于是w= q2=⟨?⟩⟨?⟩，
