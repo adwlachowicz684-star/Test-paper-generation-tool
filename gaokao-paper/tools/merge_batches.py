@@ -76,8 +76,14 @@ def save_merged(d):
 
 def norm(t):
     """题干签名：去公式、去非字母数字汉字，用于判断是否已入库。"""
-    t = re.sub(r'\$[^$]*\$', '#', t or '')
-    return re.sub(r'[^一-鿿0-9a-zA-Z]', '', t)[:60]
+    t = t or ''
+    # 旧实现把 $...$ 整段换成 '#'：若题干用 $ 包裹（本项目惯例），
+    # 公式内容全部丢失，只剩很短的中文骨架 → 不同题极易碰撞成同一签名。
+    # 改为：去掉 $ 与 LaTeX 命令，但**保留公式里的字母数字**，区分度大幅提升。
+    t = t.replace('$', '')
+    t = re.sub(r'\\[a-zA-Z]+', '', t)          # rac \sqrt 等命令名
+    t = re.sub(r'[{}]', '', t)                  # 分组花括号
+    return re.sub(r'[^一-鿿0-9a-zA-Z]', '', t)[:100]
 
 
 def apply_skips(dry=False):
@@ -224,6 +230,7 @@ def main():
         return 1
 
     merged = load_merged()
+    pending_sig = {}
     # 已入库的题号：从 bank 的 src 抽 M-T-xxx-En/Vn
     # **这道检查不能省**——历史 input_batch*.py 全都还在 tools/ 下，
     # 而它们的题早已入库。只看 _merged.json 的话（首次运行为空），
@@ -269,14 +276,17 @@ def main():
         if not fresh:
             if dupn:
                 print('  - %-22s       （%d 题已入库，跳过）' % (m, dupn))
-            if merged.get(m) != sig:
-                merged[m] = sig
+            # 注意：这里**不**落盘。扫描阶段就把 sig 写进 _merged.json 会造成
+            # 「入库失败但被标记为已处理」——下次再跑会误判为已入库而静默跳过。
+            # 真正的判重以 bank 为准（have + stems），_merged 只用于成功后的留痕。
+            pending_sig[m] = sig
             continue
         print('  + %-22s %2d 题  待入库%s'
               % (m, len(fresh),
                  '（另 %d 题已入库，跳过）' % dupn if dupn else ''))
         todo.append((m, fresh, sig))
-    save_merged(merged)
+    # 扫描阶段不落盘，见上方注释
+    # save_merged(merged)
 
     if not todo:
         print('\n没有待入库的内容。')
