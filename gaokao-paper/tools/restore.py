@@ -320,7 +320,17 @@ def run(chars, lines):
     out = []
     for row, fs in zip(rows, bucket):
         ry0 = min(c['y0'] for c in row)
-        items = [(c['cx'], 0, norm(c['c'])) for c in row]
+        items = []
+        paren_n = 0          # 圆/方括号左右同码位，行内按 x 交替判定
+        for c in sorted(row, key=lambda z: z['cx']):
+            o = ord(c['c'])
+            if o in (0xF0EE, 0xF0F6):
+                pair = GLYPH[o]
+                items.append((c['cx'], 0,
+                              pair[0] if paren_n % 2 == 0 else pair[1]))
+                paren_n += 1
+            else:
+                items.append((c['cx'], 0, norm(c['c'])))
         items += [(f['x0'], 1, f['txt']) for f in fs]
         items.sort(key=lambda t: (t[0], t[1]))
         out.append((ry0, ''.join(t[2] for t in items)))

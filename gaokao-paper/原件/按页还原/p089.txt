@@ -1,17 +1,17 @@
-f [ex(x3- 3x + 3([≤f(aex+ x) 成立, 则实数a 的最小值为
+f [ex)x3- 3x + 3(]≤f(aex+ x) 成立, 则实数a 的最小值为
 ()
  2 2 1
 A. - 1B. 2 -C. 1 + 2e2D. 1 -
 eee
 【答案】 D
 【详解】 
-【分析】 由题意构造函数f (x(= ex- e-x，借助单调性问题转化为ex(x3- 3x
-+ 3) - aex- x ≤0 在[-2,+∞(上有解，变量分离求最值即可．
-【详解】 由f (x(是定义在R 上的奇函数, 当x ≥0 时, 满足f' (x(- f (x(> 0.
-可设f (x(= ex- e-x故f (x(为R 上的增函数，
+【分析】 由题意构造函数f (x)= ex- e-x，借助单调性问题转化为ex(x3- 3x
++ 3) - aex- x ≤0 在[-2,+∞)上有解，变量分离求最值即可．
+【详解】 由f (x)是定义在R 上的奇函数, 当x ≥0 时, 满足f' (x)- f (x)> 0.
+可设f (x)= ex- e-x故f (x)为R 上的增函数，
 f e x- 3x + 3≤f ae+ x∴e(x- 3x + 3) - ae- x ≤0
-又[x(3([(x(x3x 在
-[-2,+∞(上有解，∴a ≥x3- 3x + 3 -\frac{x}{e^{x}} ，
+又[x)3(](x)x3x 在
+[-2,+∞)上有解，∴a ≥x3- 3x + 3 -\frac{x}{e^{x}} ，
   ⟨?⟩ ⟨?⟩
 令g(x) = x3- 3x + 3 -\frac{x}{e^{x}} ，g′ (x) = 3x2- 3 +\frac{x - 1}{e^{x}}= (x - 1) 3x + 3 +\frac{1}{e^{x}}，
 故当x ∈(-2，1) 时，g′ (x) < 0，
@@ -25,48 +25,48 @@ minee
 A. (1,+∞)B. (-∞,1)
 C. (-∞,0) ∪(1,+∞)D. (0,+∞)
 【答案】 A
-【分析】 设g( x(= ex-1f (x(- ex-1，得到函数g'(x(> 0，即函数g( x(为单调递
-增函数，不等式转化为g( x(> g( 1(，即可不等式的解集．
-【详解】 设g( x(= ex-1f (x(- ex-1，则g'(x(= ex-1f (x(+ ex-1f'(x(- ex-1=
+【分析】 设g( x)= ex-1f (x)- ex-1，得到函数g'(x)> 0，即函数g( x)为单调递
+增函数，不等式转化为g( x)> g( 1)，即可不等式的解集．
+【详解】 设g( x)= ex-1f (x)- ex-1，则g'(x)= ex-1f (x)+ ex-1f'(x)- ex-1=
 e f x+ fx- 1
-x-1((('(((，
-又由f (x(+ f'(x(> 1，则f (x(+ f'(x(- 1 > 0，所以g'(x(> 0，
-所以函数g( x(为单调递增函数，
-又由f (1(= 3，所以g( 1(= e0f (1(- e0= 2，
-由不等式f(x) > 1 +\frac{2}{ex-1} ，即ex-1f(x) - ex-1> 2，即g( x(> g( 1(，
-所以不等式的解集为(1,+∞(，故选A．
+x-1()(')()，
+又由f (x)+ f'(x)> 1，则f (x)+ f'(x)- 1 > 0，所以g'(x)> 0，
+所以函数g( x)为单调递增函数，
+又由f (1)= 3，所以g( 1)= e0f (1)- e0= 2，
+由不等式f(x) > 1 +\frac{2}{ex-1} ，即ex-1f(x) - ex-1> 2，即g( x)> g( 1)，
+所以不等式的解集为(1,+∞)，故选A．
  π
-37. 已知函数f(x) 在(0,(上处处可导，若[ f(x) - f'(x)]tanx - f
+37. 已知函数f(x) 在(0,)上处处可导，若[ f(x) - f'(x)]tanx - f
 2
 (x) < 0，则()
  3 3 5 5
-A. f (ln(sin( ln(一定小于0.6f (ln(sin( ln(
+A. f (ln)sin( ln)一定小于0.6f (ln)sin( ln)
 2222
  3 3 5 5
-B. f (ln(sin( ln(一定大于0.6f (ln(sin( ln(
+B. f (ln)sin( ln)一定大于0.6f (ln)sin( ln)
 2222
  3 3 5 5
-C. f (ln(sin( ln(可能大于0.6f (ln(sin( ln(
+C. f (ln)sin( ln)可能大于0.6f (ln)sin( ln)
 2222
  3 3 5 5
-D. f (ln(sin( ln(可能等于0.6f (ln(sin( ln(
+D. f (ln)sin( ln)可能等于0.6f (ln)sin( ln)
 2222
 【答案】 A
  sinx
 【详解】 ∵[f(x) - f'(x)]tanx - f(x) < 0 ∴[f(x) - f'(x)] - f(x) < 0，即
 cosx
 f(x)sinx - f'(x)sinx < f(x)cosx ⇒f(x)sinx < f'(x)sinx + f(x)cosx =
-(f(x)sinx('即(f(x)sinx('- f(x)sinx > 0，设g(x) =\frac{f(x)sinx}{e^{x}}，则g'(x) =
+(f(x)sinx)'即(f(x)sinx)'- f(x)sinx > 0，设g(x) =\frac{f(x)sinx}{e^{x}}，则g'(x) =
 f(x)sinx'e- e f(x)sinx
-((xx((
+()xx()
 \frac{f(x)sinx}{e^{x}}==\frac{(f(x)sinx)^{'}- f(x)sinx}{e^{x}}> 0，即
-(ex(2
+(ex)2
   π 3 5 π
-函数g(x) =\frac{f(x)sinx}{e^{x}}在(0,(上单调递增，而0 < ln < ln < ，所以
+函数g(x) =\frac{f(x)sinx}{e^{x}}在(0,)上单调递增，而0 < ln < ln < ，所以
 2222
 \frac{f (ln 32)sin (ln 32)}{eln 32}<\frac{f (ln 52)sin (ln 52)}{eln 52}⇒\frac{f (ln 32)sin (ln 32)}{2}<
 3
  3 3 3 5 5
-\frac{f (ln 52)sin (ln 52)}{2}⇒f (ln(sin (ln(< f (ln(sin (ln(选A
+\frac{f (ln 52)sin (ln 52)}{2}⇒f (ln)sin (ln)< f (ln)sin (ln)选A
 522522
 ·89·

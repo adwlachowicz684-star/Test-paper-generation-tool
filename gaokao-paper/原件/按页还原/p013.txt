@@ -28,34 +28,34 @@ b
 【分析】 应用作商法，由对数的运算性质、基本不等式可得 =\frac{ln3 ⋅ln8}{ln^{2}5}<
 c【详解】 
 3 33
-\frac{(ln3 + ln8)^{2}}{4ln^{2}5}可知b、c 的大小，再结合指对数的性质可知a、c 的大小.log3 = log (2 ⋅(= 1 + log = 1 +\frac{1}{ 32} ，log12 = log( 8 ⋅(= 1 +
+\frac{(ln3 + ln8)^{2}}{4ln^{2}5}可知b、c 的大小，再结合指对数的性质可知a、c 的大小.log3 = log (2 ⋅)= 1 + log = 1 +\frac{1}{ 32} ，log12 = log( 8 ⋅)= 1 +
 22222log2882
 b     3
 【详解】  =\frac{log_{5}3}{8} =\frac{ln3 ⋅ln8}{ln^{2}5}<\frac{(ln3 + ln8)^{2}}{4ln^{2}5}=\frac{ln^{2} 24}{ln^{2}5}< 1，即b < c，∵clog = 1 +\frac{1}{ 32} ，
 clog582log8
 < 1 < a = 0.8-0.4，∴综上，b < c < a. 故选：B3 3
-lg15 = lg (10 ⋅(= 1 + lg = 1 +\frac{1}{ 32} ，∵0 < log2 < log8 < log10，
+lg15 = lg (10 ⋅)= 1 + lg = 1 +\frac{1}{ 32} ，∵0 < log2 < log8 < log10，
 22log10 3 3 3
 1log0.3222
-8. 已知a = 5log23.4,b = 5log43.6,c =((3，则()
+8. 已知a = 5log23.4,b = 5log43.6,c =()3，则()
 5∴log3 > log12 > lg15，故选：C.
 28
 A. a > b > cB. b > a > c  1
-11. 已知a > b > 0,ab = 1，若x =\frac{b}{2^{a}} ,y = log( a + b(,z = a + ，则
+11. 已知a > b > 0,ab = 1，若x =\frac{b}{2^{a}} ,y = log( a + b),z = a + ，则
 2b
 C. a > c > bD. c > a > b
-log( 3x(，log( 3y(，log( 3z(的大小关系为()
+log( 3x)，log( 3y)，log( 3z)的大小关系为()
 【答案】 Cxyz
 log 10  10A. log 3x> log 3y> log 3z
-【详解】 因为c = 533，又log3.4 > 1,log3.6 < 1，log3.4 - log =x((y((z((
+【详解】 因为c = 533，又log3.4 > 1,log3.6 < 1，log3.4 - log =x()y()z()
 24233
- 10 10B. log( 3y(> log( 3x(> log( 3z(
+ 10 10B. log( 3y)> log( 3x)> log( 3z)
 lg3.4lg3 - lg2lg(lg6.8lg3 - lg2lg3) - lg2lg lg6.8lg3 - lg2yxz
 33
 ==> 0，C. log 3x> log 3z> log 3y
-lg2lg3lg2lg3lg2lg3x((z((y((
+lg2lg3lg2lg3lg2lg3x()z()y()
  101log0.3D. log 3y> log 3z> log 3x
-所以log3.4 > log > 1 > log3.6,5log23.4>((3> 5log43.6，即a > c > b((((((
+所以log3.4 > log > 1 > log3.6,5log23.4>()3> 5log43.6，即a > c > b()()()
 23345yzx
 【答案】 D
 9. 已知3a= 6b= 10，则2，ab，a + b 的大小关系是()
@@ -85,7 +85,7 @@ b
 例1. 已知m = logπ，n = loge，p = e3，则m，n，p 的大小关所以0 < x < ,y > 1,z > 2，即y > x,z > x，可知log(3x) 最小．
 4π4e2x
 系是(其中e 为自然对数的底数)() 1
-由于y = log(a + b) = log (a +(,z = 2a = log22a= log4a，所以比较真数
+由于y = log(a + b) = log (a +),z = 2a = log22a= log4a，所以比较真数
 22a22
 A. p < n < mB. m < n < p 1 1
 a + 与4a的大小关系. 当a > 1 时，a + < 4a，所以z > y > 1, 

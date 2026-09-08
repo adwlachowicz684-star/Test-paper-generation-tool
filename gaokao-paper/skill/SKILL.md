@@ -4,16 +4,23 @@
 
 **工作目录固定为 `/data/workspace/gaokao-paper`**，所有相对路径都相对它。
 
-## 最快路径：两条命令跑完一批
+## 最快路径：三条命令跑完一批
 
-日常录题走这两条就够，中间步骤由脚本串起来，只在出问题时才展开细节。
+日常录题走这三条就够，中间步骤由脚本串起来，只在出问题时才展开细节。
 
 ```bash
 cd /data/workspace/gaokao-paper
 
+# 0. 选题（**必做**：避免录到已录过的题）
+python3 tools/pick_batch.py --n 12 --dump
+#   → 输出「可录题 + 完整度 + 原文页码 + 答案」，原文存到 /tmp/pick_batch/
+
 # 1. 生成骨架（第18批：M-T-073 出4题、M-T-074 出3题）
 python3 tools/new_batch.py 18 -t M-T-073:4 -t M-T-074:3
 #   → 生成 tools/input_batch18.py（题目骨架）+ tools/commit_batch18.py（入库脚本）
+
+# 1.5 自检（写完骨架就跑，--fix 自动修引号错误）
+python3 tools/lint_input.py tools/input_batch18.py --fix
 
 # 2. 填 input_batch18.py 的内容（题干/选项/答案/详解/review），然后一键跑到底
 python3 tools/run_batch.py 18
@@ -21,6 +28,13 @@ python3 tools/run_batch.py 18
 
 `run_batch` 依次做完：入库 → 导出 HTML/Word/答案卷 → 逐题两端核对 → 后端/前端/文档三项回归 → 刷新计划清单。
 全部通过时输出约 12 行；任一步失败立即停下并打印该步报错。
+
+> **第 0 步别省**：第 31 批我跳过 `pick_batch` 直接凭「题型待录数」选题，
+> 结果 12 题里 7 题是已录过的（教辅把同一题排进两个专题），**白写 6 道详审**。
+> 判重机制会拦下（不会污染数据），但人工白费。
+>
+> **第 1.5 步别省**：`r"$6$')` 这种单双引号混用我已犯过 6 次，
+> 肉眼看不出来，只能靠 `lint_input --fix`。
 
 常用变体：
 
