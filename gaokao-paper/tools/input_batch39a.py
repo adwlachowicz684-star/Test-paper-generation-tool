@@ -288,8 +288,8 @@ T374_V2 = {
         r"$\Rightarrow x^{2}-(x-c)^{2}=a^{2}\Rightarrow2cx-c^{2}=a^{2}\Rightarrow x=\dfrac{a^{2}+c^{2}}{2c}$．" "\n"
         r"$y=\dfrac ba\cdot\dfrac{a^{2}-c^{2}}{2c}=\dfrac ba\cdot\dfrac{-b^{2}}{2c}=-\dfrac{b^{3}}{2ac}$．" "\n"
         r"**第二步：求 $\lvert PF_{2}\rvert$ 与周长**" "\n"
-        r"$\lvert PF_{2}\rvert^{2}=\left(\dfrac{-b^{2}}{2c}\right)^{2}+\left(\dfrac{-b^{3}}{2ac}\right)^{2}
-        =\dfrac{b^{4}}{4c^{2}}+\dfrac{b^{6}}{4a^{2}c^{2}}=\dfrac{b^{4}(a^{2}+b^{2})}{4a^{2}c^{2}}=\dfrac{b^{4}}{4a^{2}}$，" "\n"
+        r"$\lvert PF_{2}\rvert^{2}=\left(\dfrac{-b^{2}}{2c}\right)^{2}+\left(\dfrac{-b^{3}}{2ac}\right)^{2}$" "\n"
+        r"$=\dfrac{b^{4}}{4c^{2}}+\dfrac{b^{6}}{4a^{2}c^{2}}=\dfrac{b^{4}(a^{2}+b^{2})}{4a^{2}c^{2}}=\dfrac{b^{4}}{4a^{2}}$，" "\n"
         r"故 $\lvert PF_{2}\rvert=\dfrac{b^{2}}{2a}$；由双曲线定义 "
         r"$\lvert PF_{1}\rvert=\lvert PF_{2}\rvert+2a=\dfrac{b^{2}}{2a}+2a$．" "\n"
         r"周长 $=\dfrac{b^{2}}{a}+2a+2c=a\left[(e^{2}-1)+2+2e\right]=a(e+1)^{2}$．" "\n"
