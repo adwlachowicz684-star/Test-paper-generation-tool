@@ -28,18 +28,18 @@ A.B.C.D.
 CDBEcosA()2
  丄，则 的取值范围是
  1 5
-AC2+ CD2=12+((2= .CE ⊥AD∠CED = 90°
+AC2+ CD2=12+()2= .CE ⊥AD∠CED = 90°
 2 因为，所以，所以
 1162
-A.( ,1(B.⟨?⟩ ,⟨?⟩
+A.( ,1)B.⟨?⟩ ,⟨?⟩
 223AD ⋅CE = AC ⋅CD，
 4√46\frac{1}{5}
-C.[ ,1(D.√ ,⟨?⟩ AC ⋅CD5 
+C.[ ,1)D.√ ,⟨?⟩ AC ⋅CD5 
 5√53即CE ==\frac{1 × 2}{2}= ，所以DE =CD2- CE 2=
 AD5
 【答案】 D
 12⟨?⟩5⟨?⟩25
-△ABCA,B,Ca,b,cCD,BE((-= . 过点F 作FH ⊥CB 交CB 于点H，所以∠FHB =
+△ABCA,B,Ca,b,cCD,BE()-= . 过点F 作FH ⊥CB 交CB 于点H，所以∠FHB =
 【分析】 设 的内角 所对的边分别为，设 交于点2510
 G，连接AG，延长交BC 于F，则F 为BC 的中点，由直角三角形的性质可得 DE FH
 90°，因为tan∠FCB = = ，设FH = HB = x，则CH = 1 - x，所以
@@ -53,12 +53,12 @@ AF = a，分别在三角形ABF 和三角形ACF 中，运用余弦定理可得c2+
 【详解】 设△ABC 的内角A,B,C 所对的边分别为a,b,c，设CD,BE 交于点A
 G，连接AG，延长交BC 于F，则F 为BC 的中点，由CD 丄BE，可得FG =
  1 33212 3
-\frac{1}{1} BC = a,AG = a,AF = a，在△ABF 中，c2=( a(+( a(- 2 × a
+\frac{1}{1} BC = a,AG = a,AF = a，在△ABF 中，c2=( a)+( a)- 2 × a
 222222
 ⋅ a ⋅cos∠AFB,F
 2
 31 31E
-△ACFb2=( a(2+( a(2- 2 × a ⋅ a ⋅cos∠AFC∠AFC +
+△ACFb2=( a)2+( a)2- 2 × a ⋅ a ⋅cos∠AFC∠AFC +
 在 中，，因为
 2222
 ∠AFB = π，
@@ -66,7 +66,7 @@ CDHB
 所以上面两式相加，得c2+ b2= 5a2，因为△ABC 为锐角三角形，可得a2+ b2
 > c2,b2+ c2> a2,c2+ a2> b2， 
   12125
-所以CF =CH 2+ FH 2=(1 -(+((= . 故选：D
+所以CF =CH 2+ FH 2=(1 -)+()= . 故选：D
 2  36 b6333
 可得3b2> 2c2,3c2> 2b2，则 <\frac{b^{2}}{c^{2}} < ，即 < < ，又cosA =
 323c2
@@ -82,7 +82,7 @@ c32t32
 ⟨?⟩6⟨?⟩⟨?⟩6⟨?⟩ 5 646
 因为f= f=，则 ≤cosA < ，故选：D【答案】 C
 32653
-【分析】 设OE = t (t > 0(，由三角形中的中位线的性质和比例的性质可得出
+【分析】 设OE = t (t > 0)，由三角形中的中位线的性质和比例的性质可得出
 A
 OB = 2t,OD =3t,OC = 2 3t，再设∠ABO = α，根据余弦定理得cosα =
 t2+ 1-t4+ 14t2- 1
@@ -97,10 +97,10 @@ E 1EO
 G DO 1
 = = ，
 CO2
-又OC =3OB，设OE = t (t > 0(，则OB = 2t,OD =3t,OC = 2 3t，
+又OC =3OB，设OE = t (t > 0)，则OB = 2t,OD =3t,OC = 2 3t，
 又因为AB = 2，所以DB = 1，设∠ABO = α，
 B
- BD2+ OB2- DO2 12+ (2t(2-(3t(2 t2+ 1
+ BD2+ OB2- DO2 12+ (2t)2-(3t)2 t2+ 1
 F△DBOcosα ===
 C所以在 中，，
 2BD ⋅BO2 × 1 × 2t4t

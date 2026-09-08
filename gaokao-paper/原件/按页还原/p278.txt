@@ -76,7 +76,7 @@ B-PACP-ABC3△ABC1B-PAC3△PAC212图 中过 作 于，连接、，设圆的半�
 以sinβ =2 ,sinγ =1
 ABPA
  π
-因为AB = AP，所以sinβ ≥sinγ 因为β,γ ∈(0,[所以β ≥γ，故选：A
+因为AB = AP，所以sinβ ≥sinγ 因为β,γ ∈(0,]所以β ≥γ，故选：A
 2
 17. 已知三棱锥D - ABC，记二面角C - AB - D 的平面角是θ，直
 线DA 与平面ABC 所成的角是θ，直线DA 与BC 所成的角是

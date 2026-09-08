@@ -1,4 +1,4 @@
-将①平方得：sin2α = 2sin2β，所以1 - cos2α = 2( 1 - cos2β(，cos2α = 2cos2β -B. 若Q 为MD 中点，则△ABE 无论翻折到哪个位置都有
+将①平方得：sin2α = 2sin2β，所以1 - cos2α = 2( 1 - cos2β)，cos2α = 2cos2β -B. 若Q 为MD 中点，则△ABE 无论翻折到哪个位置都有
 1 = cos2β，CQ ⎳AEM
 平面
 易见α，β 都是锐角，则cos2α < cosα，∴cos2β < cosα，而0 < 2β,α < π，

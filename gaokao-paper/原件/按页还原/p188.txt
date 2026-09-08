@@ -1,38 +1,38 @@
  2π π π
-∵A ∈(0,(，∴存在A，使得A + φ = ，此时a + 2b 取得最大值为2 7.用三角恒等变换得到2cos2B + cos(B - C) = sin (2B +(+ 1，结合B ∈
+∵A ∈(0,)，∴存在A，使得A + φ = ，此时a + 2b 取得最大值为2 7.用三角恒等变换得到2cos2B + cos(B - C) = sin (2B +)+ 1，结合B ∈
 326
 若选②：3sinA =3sinCcosB + sinBsinC，∵A + B + C = π， 2π
-(0,(求出取值范围.
+(0,)求出取值范围.
 3
-∴3sin (B + C(=3sinCcosB + sinBsinC，3 (sinBcosC + cosBsinC(
+∴3sin (B + C)=3sinCcosB + sinBsinC，3 (sinBcosC + cosBsinC)
  b2+ c2- a2 bc
 【详解】 (1) 由正弦定理得：b2+ c2= a2+ bc，从而cosA ==
 =3sinCcosB + sinBsinC，2bc2bc
 3sinBcosC = sinBsinCsinB ≠0tanC =3∵C ∈0,π 1 π
-化简得，由，得，((，= ，因为A ∈(0,π(，所以A = ；
+化简得，由，得，()，= ，因为A ∈(0,π)，所以A = ；
 23
  π
 ∴C = . π 2π 2π 2π
 3(2) 由A = 得：B + C = ，所以C = - B，B - C = 2B - ，2cos2B
 3333
 下同①； 2π 
-+ cos(B - C) = 1 + cos2B + cos (2B -(=\frac{1}{ π} cos2B +\frac{3}{π} sin2B + 1 =
-若选③：1 - sin2A - (1 - sin2C(= sin2B - sinAsinB，sin2C - sin2A = sin2B322
++ cos(B - C) = 1 + cos2B + cos (2B -)=\frac{1}{ π} cos2B +\frac{3}{π} sin2B + 1 =
+若选③：1 - sin2A - (1 - sin2C)= sin2B - sinAsinB，sin2C - sin2A = sin2B322
 - sinAsinB π 2ππ 3
-，sin (2B +(+ 1 因为B ∈(0,(，所以2B + ∈( ,(，结合正弦函数
+，sin (2B +)+ 1 因为B ∈(0,)，所以2B + ∈( ,)，结合正弦函数
 63662
  a2+ b2- c2 1
 由正弦定理得c2- a2= b2- ab，∴由余弦定理得cosC == ，∵ π π
-2ab2图象可得：sin (2B +(∈(-1,1[，sin (2B +(+ 1 ∈(0,2]，所以2cos2B +
+2ab2图象可得：sin (2B +)∈(-1,1]，sin (2B +)+ 1 ∈(0,2]，所以2cos2B +
 66
  π
-C ∈(0,π(，∴C = .cos(B - C) 的取值范围为(0,2].
+C ∈(0,π)，∴C = .cos(B - C) 的取值范围为(0,2].
 3
 下同①.【题型十一】解三角形5：中线
 【典例分析】
  π
-28. 在①cos2A -3sinAsinC = cos2B + sin2C ，②2bcos (A +( π b + c
-3例1. 在△ABC 中，asin (B +(=，且BC 边上的中线长
+28. 在①cos2A -3sinAsinC = cos2B + sin2C ，②2bcos (A +) π b + c
+3例1. 在△ABC 中，asin (B +)=，且BC 边上的中线长
 62
 = c，③(a - b - c) (a + b - c) + (2 +3)ac = 0，在三个条件中
 13
@@ -44,25 +44,25 @@ C ∈(0,π(，∴C = .cos(B - C) 的取值范围为(0,2].
  若，求 的取值范围【答案】 (I)A = ；(II).
 34
  5π π b + c
-【答案】 (1)B = .(2) (2 3,4)(1)asin (B +(=
+【答案】 (1)B = .(2) (2 3,4)(1)asin (B +)=
 6【分析】  本题可根据三角函数相关公式将化简为
 62
 【分析】 (1) 若选择①，根据同角三角函数关系，结合正弦定理，可得a2+ c2- π 1
-sin (A -(= ，然后根据A ∈(0,π(即可求出角A 的大小；
+sin (A -)= ，然后根据A ∈(0,π)即可求出角A 的大小；
 b2=- 3acBB62
 ，根据余弦定理及角 的范围，可求得角；
 (2) 本题首先可设BC 的中点为D，然后根据向量的平行四边形法则得到
 若选条件②，正弦定理边化角，结合两角和的余弦公式、正弦公式，化简整理，⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
-(AB+ AC(2= 4AD2，再然后通过化简计算即可求得b = 1，最后通过三角形面积
+(AB+ AC)2= 4AD2，再然后通过化简计算即可求得b = 1，最后通过三角形面积
 3
 可得tanB =- ，结合角B 的范围，可求得角B；
 3
 公式即可得出结果．
 若选条件③，根据余弦定理结合角B 的范围，可得角B. π sinB + sinC
-【详解】 (1) 由正弦定理边角互换可得sinAsin (B +(=，
+【详解】 (1) 由正弦定理边角互换可得sinAsin (B +)=，
 (2) 根据正弦定理，代入所求，结合两角差的正弦公式、辅助角公式，化简可得62
  π⟨?⟩3 1⟨?⟩ sinB + sinC
-3c + 2a = 4sin (A +(，根据角A 的范围，结合正弦型三角函数的性质，即所以sinA sinB + cosB=. 因为sinC = sin (A + B(=
+3c + 2a = 4sin (A +)，根据角A 的范围，结合正弦型三角函数的性质，即所以sinA sinB + cosB=. 因为sinC = sin (A + B)=
 3222
 可得答案.sinAcosB + cosAsinB，
 【详解】 (1) 若选条件①，则有1 - sin2A -3sinAsinC = 1 - sin2B + sin2C，⟨?⟩3 1⟨?⟩ sinB + sinAcosB + cosAsinB
@@ -72,25 +72,25 @@ b2=- 3acBB62
 根据正弦定理得a2+ c2- b2=- 3ac，所以cosB ==- ，因3sinAsinB + sinAcosB = sinB + sinAcosB + cosAsinB
 2ac2，
  5π即3sinAsinB = sinB + cosAsinB，整理得sinB3sinA - cosA - 1=
-为0 < B < π，所以B = . ((
+为0 < B < π，所以B = . ()
 6
-0. 因为B ∈(0,π(，所以sinB ≠0，
+0. 因为B ∈(0,π)，所以sinB ≠0，
 ⟨?⟩ 13⟨?⟩
 若选条件②，根据正弦定理得2sinB cosA - sinA= sinC = sin(A + π
-22所以3sinA - cosA - 1 = 0，即3sinA - cosA = 2sin (A -(= 1，所以
+22所以3sinA - cosA - 1 = 0，即3sinA - cosA = 2sin (A -)= 1，所以
 6
 B)，
  π 1
-sin (A -(= .
+sin (A -)= .
 所以sinBcosA -3sinBsinA = sinAcosB + cosAsinB，所以62
 - 3sinAsinB = sinAcosB π π π
-，因为A ∈(0,π(，所以A - = ，即A = ．
+，因为A ∈(0,π)，所以A - = ，即A = ．
 663
 3⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
 因为0 < A < π，所以sinA ≠0，所以- 3sinB = cosB，解得tanB =- ，(2) 设BC 的中点为D，根据向量的平行四边形法则可知AB+ AC= 2AD
 3
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
- 5π所以(AB+ AC(2= 4AD2，即AB2+ AC2+ 2| AB|∙|AC|cosA = 4AD2，
+ 5π所以(AB+ AC)2= 4AD2，即AB2+ AC2+ 2| AB|∙|AC|cosA = 4AD2，
 因为0 < B < π，所以B = . 
 6
  π
@@ -106,21 +106,21 @@ abc【提分秘籍】
 (2) 由正弦定理知 = = = 4，
 sinAsinBsinC基本规律
  π
-所以3c + 2a = 4( 3sinC + 2sinA) = 4[3sin( - A(+ 2sinA[1. 可以利用向量法
+所以3c + 2a = 4( 3sinC + 2sinA) = 4[3sin) - A(+ 2sinA]1. 可以利用向量法
 6
 133 12. 中线可延长，补成对称图形
 = 4√3⟨?⟩ cosA - sinA⟨?⟩+ 2sinA√= 4⟨?⟩ cosA + sinA⟨?⟩=
 √
 √22√223. 中线可借助补角。
  π
-4sin (A +(，【变式演练】
+4sin (A +)，【变式演练】
 3
 aba2b2
  \frac{π}{ }π π π3 π30. 在① = ；② = , 这两个条件中任选一
-因为0 < A < ，所以 < A + < ，所以 < sin (A +(< 1，则
+因为0 < A < ，所以 < A + < ，所以 < sin (A +)< 1，则
 633223cosAcosBtanAtanB
 π.△ABCAB
-2 3 < 4sin (A +(< 4，个，补充在下面问题中并作答 已知在锐角 中，角，，
+2 3 < 4sin (A +)< 4，个，补充在下面问题中并作答 已知在锐角 中，角，，
 3
 3c + 2a(2 3,4).C 的对边分别为a，b，c，.
 所以 的取值范围为

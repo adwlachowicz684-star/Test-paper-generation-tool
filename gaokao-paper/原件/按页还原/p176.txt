@@ -1,6 +1,6 @@
 323 1\frac{1}{1}
 A.B.C.D.c 
-3222令 = t，得k2= f (t(=\frac{4t + t + 2}{t +t - 1}=\frac{4t^{2}+ 2t + 1}{t^{2}- t + 1} ，下面采用基本不等式和
+3222令 = t，得k2= f (t)=\frac{4t + t + 2}{t +t - 1}=\frac{4t^{2}+ 2t + 1}{t^{2}- t + 1} ，下面采用基本不等式和
 b 
 【答案】 A
 3导数两种方法求解：
@@ -19,7 +19,7 @@ OQOP3
 由正弦定理得 = ，即 =\frac{3}{sin [π - α -)2 - θ(]}，+\frac{6 (t - 2)}{(t -2)^{2}+4}= 4 +\frac{6}{(t -2)+ 1}≤4 +\frac{6}{3} = 4 + 2 3
 sin∠OPQsin∠OQPsinαπ 1 3 1\frac{3}{4 (t -2)}
 π π
-所以3sinα = sin [π - α -( - θ([= sin[ - (α - θ)[= cos(α - θ) =
+所以3sinα = sin [π - α -) - θ(]= sin[ - (α - θ)]= cos(α - θ) =
 22 13 1 +3
 当且仅当t - =\frac{3}{4 (t -2)}= ，即t =时等号成立，所以t =
 cosαcosθ + sinαsinθ，2 122
@@ -29,38 +29,38 @@ cosαcosθ + sinαsinθ，2 122
 =\frac{cosθ}{3 - sinθ}2
  ，
 c 1 +3
-  πk 的最大值为1 +3，此时 =，所以b =(3 - 1(c，解得a =
-f(θ) =\frac{cosθ}{3 - sinθ}f'(θ) =\frac{1 -3sinθ}{( 3 - sinθ)^{2}}θ ∈(0,(b2
+  πk 的最大值为1 +3，此时 =，所以b =(3 - 1)c，解得a =
+f(θ) =\frac{cosθ}{3 - sinθ}f'(θ) =\frac{1 -3sinθ}{( 3 - sinθ)^{2}}θ ∈(0,)b2
 记 ，则 ，，
 2
  3 2 -6
 6 - 3 3c =c，
 3 π32
-令f'(θ) = 0，sinθ = ，存在唯一θ∈(0,(使得sinθ= ，
+令f'(θ) = 0，sinθ = ，存在唯一θ∈(0,)使得sinθ= ，
 30203ac csinA
 在△ABC 中，由正弦定理得 = ，解得sinC ==
  πsinAsinCa
-当θ ∈(0,θ(时f'(θ) > 0，f (θ(单调递增，当θ ∈(θ,(时f'(θ(< 0，f (θ(单
+当θ ∈(0,θ)时f'(θ) > 0，f (θ)单调递增，当θ ∈(θ,)时f'(θ)< 0，f (θ)单
 0026 +2
 ，
 调递减，4
 所以当θ = θ时，f θ最大，即tan∠OPQ 最大，又∠OPQ 为锐角，从而6 +2
-0((即sin∠ACD =. 下面采用导数的方法求解：求导得f'(t(=
+0()即sin∠ACD =. 下面采用导数的方法求解：求导得f'(t)=
 4
 3
 ∠OPQ 最大，此时sinθ = ， 1 +3
-3\frac{-6t^{2}+ 6t + 3}{(t^{2}- t + 1)^{2}} ，令f'(t(= 0，解得t =，
+3\frac{-6t^{2}+ 6t + 3}{(t^{2}- t + 1)^{2}} ，令f'(t)= 0，解得t =，
 2
 故选：A.
  1 +3 1 +3
-当0 < t <时，f'(t(> 0，当t >时，f'(t(< 0，所以当t =
+当0 < t <时，f'(t)> 0，当t >时，f'(t)< 0，所以当t =
 22
 【题型八】超难压轴小题11 +3c 1 +3
-时，f (t(取得最大值，此时 =，
+时，f (t)取得最大值，此时 =，
 2b2
 【典例分析】
  3 2 -6
-例1. 在△ABC 中，sin (A - B(+ sinB = sinC ，点D 在边BC所以b =(3 - 1(c，解得a =6 - 3 3c =c，在△ABC 中，由正
+例1. 在△ABC 中，sin (A - B)+ sinB = sinC ，点D 在边BC所以b =(3 - 1)c，解得a =6 - 3 3c =c，在△ABC 中，由正
 2
  sin∠ABDac
 上，且CD = 2BD = 2 ，设k = ，则当k 取最大值时，弦定理得 = ，
@@ -77,7 +77,7 @@ C.D.
 积为S，若S = ，则()
 2
 【答案】 B
-【分析】 根据sin (A - B(+ sinB = sinC，利用两角和与差的正弦公式化简A. bc = a
+【分析】 根据sin (A - B)+ sinB = sinC，利用两角和与差的正弦公式化简A. bc = a
 得到sinB = 2cosAsinB，进而求得A，根据点D 在边BC 上，且CD = 2BD，得到 
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩B. tanA =\frac{b^{2}+ c^{2}- a^{2}}{2a^{2}}
  sin∠ABD AD 3AD 2 1
@@ -86,7 +86,7 @@ sin∠BADBDBC33
  c b
 \frac{4c}{c}\frac{b}{ b}C. + 的最大值为5
  cbc
-方，得到k2=\frac{4c^{2}+ b^{2}+ 2bc}{c^{2}+ b^{2}- bc}=\frac{b + c + 2}{b +c - 1}，令 = t，得到k2= f (t(=
+方，得到k2=\frac{4c^{2}+ b^{2}+ 2bc}{c^{2}+ b^{2}- bc}=\frac{b + c + 2}{b +c - 1}，令 = t，得到k2= f (t)=
 b 
 D.\frac{bc}{a^{2}} 的最大值为1
 \frac{1}{1} C
@@ -94,11 +94,11 @@ D.\frac{bc}{a^{2}} 的最大值为1
 【分析】 由三角形面积公式列出等式可得a2= bcsinA，可化简判断A 错误；结
 关系，再利用正弦定理求解.tanA =B
 合已知条件利用余弦定理可得\frac{2a^{2}}{b^{2}+ c^{2}- a^{2}} ， 错误；利用余弦定理及
-【详解】 因为sin (A - B(+ sinB = sinC，所以sin (A - B(+ sinB =
-sin A + BsinB = 2cosAsinB辅助角公式可得\frac{c}{c} +\frac{b}{b} =5sin (A + φ(，根据三角函数的有界性可求得最大
-((，即，bc
+【详解】 因为sin (A - B)+ sinB = sinC，所以sin (A - B)+ sinB =
+sin A + BsinB = 2cosAsinB辅助角公式可得\frac{c}{c} +\frac{b}{b} =5sin (A + φ)，根据三角函数的有界性可求得最大
+()，即，bc
  1 c1
-因为B ∈(0,π(，所以sinB ≠0，cosA = ，因为A ∈(0,π(，所以A =\frac{π}{A} ，值，C 正确；由\frac{b}{a^{2}} = = 根据角A 的范围可求得sinA 的范围从
+因为B ∈(0,π)，所以sinB ≠0，cosA = ，因为A ∈(0,π)，所以A =\frac{π}{A} ，值，C 正确；由\frac{b}{a^{2}} = = 根据角A 的范围可求得sinA 的范围从
 23bcsinAsinA
  sin∠ABD AD 3D
 因为点D 在边BC 上，且CD = 2BD，所以k = = = ，而求得\frac{bc}{a^{2}} 的范围.
@@ -111,17 +111,17 @@ sin∠BADBDBC
 ∵sinA ≠0，∴bc = ，故A 错误；
 - bc，sinA
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩ 1⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩ 2⟨?⟩⟨?⟩⟨?⟩ 1⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩由余弦定理知a2= b2+ c2- 2bccosA = bcsinA ①，则b2+ c2- a2= 2bccosA，
-∵AD= AB+ BD= AB+ (BA+ AC(= AB+ AC，所以AD2=
+∵AD= AB+ BD= AB+ (BA+ AC)= AB+ AC，所以AD2=
 333 2bccosA1
 2⟨?⟩⟨?⟩⟨?⟩ 1⟨?⟩⟨?⟩⟨?⟩所以\frac{b^{2}+ c^{2}- a^{2}}{2a^{2}}= = ⇒tanA =\frac{2a^{2}}{b^{2}+ c^{2}- a^{2}} ，故B 错误；
-( AB+ AC(22bcsinAtanA
+( AB+ AC)22bcsinAtanA
 ，
 33
 b2+ c2c b
-1 4 1 4由①可知bc (sinA + 2cosA(= b2+ c2⇒= sinA + 2cosA，即 +
+1 4 1 4由①可知bc (sinA + 2cosA)= b2+ c2⇒= sinA + 2cosA，即 +
 即 a2k2= c2+ b2+ bccos∠BAC，即a2k2= 4c2+ b2+ 2bc，所以k2=bcbc
 9999
-=5sin (A + φ(，其中tanφ = 2，
+=5sin (A + φ)，其中tanφ = 2，
  \frac{4c}{c}\frac{b}{ b} π b
 \frac{4c^{2}+ b^{2}+ 2bc}{a^{2}}=\frac{4c^{2}+ b^{2}+ 2bc}{c^{2}+ b^{2}- bc}=\frac{b + c + 2}{b +c - 1}，当A + φ = 时，\frac{c}{1} + 取得最大值5，C 正确；
 2bc

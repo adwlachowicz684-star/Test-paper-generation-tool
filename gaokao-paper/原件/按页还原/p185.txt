@@ -12,12 +12,12 @@
 【提分秘籍】理得到c = 2 3，根据余弦定理和基本不等式求出ab ≤12，进而求出△ABC
 基本规律面积的最大值.
 面积最值，一般符合“齐次对称结构”，可以直接用余弦定理加均值不等式。 π
-【详解】 (1) 因为3bsin( - C(= csinB，所以3bcosC = csinB，由正弦定
+【详解】 (1) 因为3bsin( - C)= csinB，所以3bcosC = csinB，由正弦定
 2
-理得：3sinBcosC = sinCsinB，因为B ∈(0,π(，所以sinB ≠0，故3cosC
+理得：3sinBcosC = sinCsinB，因为B ∈(0,π)，所以sinB ≠0，故3cosC
 【变式演练】
  π
- 2π= sinC，tanC =3，因为C ∈(0,π(，所以C =
+ 2π= sinC，tanC =3，因为C ∈(0,π)，所以C =
 18. △ABC 三个内角A，B，C 对边分别为a，b，c，且B = ，b =3
 3
 c
@@ -41,7 +41,7 @@ c
 ∴3sin2C = ，sin2C =\frac{1}{π} ，．；③．这三个条件中任选
 22
  π 2 π π一个，补充在下面的问题中，并解答问题．
-又C ∈(0,(，∴2C ∈(0,(，∴2C = ，解得C = ．
+又C ∈(0,)，∴2C ∈(0,)，∴2C = ，解得C = ．
 33612
 在△ABC 中，角A、B、C 所对的边分别为a、b、c，且满足条件
  2π
@@ -54,7 +54,7 @@ c
  133
 ∴△ABC 的面积S = acsinB = ac ≤ ，当且仅当a = c =2 时，等号
 242 π
-【答案】 (1) 条件选择见解析，A = ；(2) (3 +3,3 3[.
+【答案】 (1) 条件选择见解析，A = ；(2) (3 +3,3 3].
 333
 S ∈⟨?⟩0,√△ABCS⟨?⟩0,√
 成立，故√，即 的面积 的取值范围为√．
@@ -70,20 +70,20 @@ S ∈⟨?⟩0,√△ABCS⟨?⟩0,√
 22
 选③，利用同角三角函数的平方关系、正弦定理以及余弦定理求出cosA 的
  2π π
-2 2sinA × 2 2sinCsin = 2 3sinAsin( - A(=3sinA ⋅( 3cosA -
+2 2sinA × 2 2sinCsin = 2 3sinAsin( - A)=3sinA ⋅( 3cosA -
 33值，结合角A 的取值范围可求得角A 的值；
  33(2) 求出角B 的取值范围，利用正弦定理以及三角恒等变换可得出a + b + c
-sinA) = 3sinAcosA -3sin2A = sin2A -(1 - cos2A(=
+sinA) = 3sinAcosA -3sin2A = sin2A -(1 - cos2A)=
 22
 关于B 的三角函数关系式，利用正弦型函数的基本性质可求得a + b + c 的取值
  π3
-3sin (2A +(- ．.
+3sin (2A +)- ．.
 62范围
  π ππ 5π3 tanA 2c
-∵A ∈(0,(∴2A + ∈( ,(∴S ∈⟨?⟩0,√【详解】 (1) 选①，由已知可得1 + = ，
+∵A ∈(0,)∴2A + ∈( ,)∴S ∈⟨?⟩0,√【详解】 (1) 选①，由已知可得1 + = ，
 又，，√，tanBb
 36662√
-32sinC sinAcosB sinAcosB + cosAsinB sin (A + B(
+32sinC sinAcosB sinAcosB + cosAsinB sin (A + B)
 △ABCS⟨?⟩0,√所以， = 1 + == =
 即 的面积 的取值范围为√．sinBcosAsinBcosAsinBcosAsinB
 2√
@@ -91,23 +91,23 @@ sinC
  ，
 19. 在三角形ABC 中，角A，B，C 的对边分别为a，b，c，且满足cosAsinB
  1
-a3b∵B、C ∈(0,π(，则sinB > 0，sinC > 0，可得cosA = ，
+a3b∵B、C ∈(0,π)，则sinB > 0，sinC > 0，可得cosA = ，
  = .2
 cosAsinB π
-∵A ∈(0,π(，故A = ；
+∵A ∈(0,π)，故A = ；
 (1)A3
  求角；
 选②，因为2b - c - 2acosC = 0，由正弦定理可得2sinB - 2sinAcosC =
 (2) 若a = 2，求三角形ABC 面积的最大值.
 sinC，
  π
-【答案】 (1)A = ；(2) 3.所以，sinC = 2sin (A + C(- 2sinAcosC = 2cosAsinC，
+【答案】 (1)A = ；(2) 3.所以，sinC = 2sin (A + C)- 2sinAcosC = 2cosAsinC，
 3
  1
-【分析】 (1) 利用正弦定理，将已知条件中的边化角，求得tanA，即可求得A；因为C ∈(0,π(，则sinC > 0，可得cosA = ，
+【分析】 (1) 利用正弦定理，将已知条件中的边化角，求得tanA，即可求得A；因为C ∈(0,π)，则sinC > 0，可得cosA = ，
 2
 (2) 利用余弦定理，结合基本不等式，求得bc 的最大值，即可求得面积的最大 π
-∵A ∈(0,π(，故A = .
+∵A ∈(0,π)，故A = .
 值.3
 a3babsinA选③，∵cos2B + cos2C + sinBsinC = 1 + cos2A，
 【详解】 (1) 由 = ，结合正弦定理 = ，得 =
@@ -120,7 +120,7 @@ tanA =3A ∈(0,π)A =由正弦定理可得b2+ c2- a2= bc，由余弦定理可得
 所以，又因为，所以2bc2
 3
  π
-(2) 由余弦定理a2= b2+ c2- 2bccosA，得4 = b2+ c2- bc ≥2bc - bc = bc∵A ∈(0,π(，故A = ；
+(2) 由余弦定理a2= b2+ c2- 2bccosA，得4 = b2+ c2- bc ≥2bc - bc = bc∵A ∈(0,π)，故A = ；
 3
 即bc ≤4(当且仅当b = c = 2 等号成立) \frac{π}{ π}
 ⟨?⟩0 < B <
@@ -135,8 +135,8 @@ S = bcsinA ≤ × 4 × =3(2) 因为△ABC 为锐角三角形，则⟨?⟩⟨?⟩
 sinBsinCsinA
 20. 在△ABC 中，角A ，B ，C 的对边分别为a ，b ，c ，
  π
-所以，a + b + c =3 + 2sinB + 2sinC =3 + 2sinB + 2sin (B +(
+所以，a + b + c =3 + 2sinB + 2sinC =3 + 2sinB + 2sin (B +)
  π3
-3bsin( - C(= csinB.
+3bsin( - C)= csinB.
 2=3 + 2sinB + sinB +3cosB =3 + 3sinB +3cosB =
 ·185·

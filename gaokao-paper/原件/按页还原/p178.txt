@@ -33,7 +33,7 @@ BC 于点F，∠ADB =
 AC2= AD2+ CD2- 2AD ⋅CD ⋅cos∠ADC【分析】 
 由余弦定理得
   1 1 3通过余弦定理分别表示BD，从而找到角A，C 的关系，将四边形的面积用角
-48 =\frac{1}{ 1} BD2+ CD2+ BD ⋅CD = (CD - BD(2+ BD ⋅CD
+48 =\frac{1}{ 1} BD2+ CD2+ BD ⋅CD = (CD - BD)2+ BD ⋅CD
 即
 4222A，C 表示，从而求得面积的最大值.
 3
@@ -51,7 +51,7 @@ cosC = 8 - 8cosC，
 故S = AB ⋅ADsinA + CB ⋅CDsinC = × 1 × 4sinA + × 2 × 2sinC
 2222
 = 2(sinA + sinC)，
-26. △ABC 内接于半径为2 的圆，三个内角A，B，C 的平分线延长在三角形中，易知A,C ∈(0,π)，sinA,sinC > 0，(sinA + sinC(2+ (cosA -
+26. △ABC 内接于半径为2 的圆，三个内角A，B，C 的平分线延长在三角形中，易知A,C ∈(0,π)，sinA,sinC > 0，(sinA + sinC)2+ (cosA -
 cosC)2
 后分别交此圆于A，B，C.则
 111= sinA + sinC + 2sinAsinC + cosA + cosC - 2cosAcosC = 2 - 2cos(A
@@ -61,7 +61,7 @@ AAcos + BBcos + CCcos+ C) ≤4A + C = π
 121212，当且仅当 时等号成立，
 的值为.
 sinA + sinB + sinC925 7
-此时(sinA + sinC)2+((≤4 ⇒sinA + sinC ≤，
+此时(sinA + sinC)2+()≤4 ⇒sinA + sinC ≤，
 88
  5 7 5 7
 故S = 2(sinA + sinC) ≤2 ×=，故选：A.
@@ -75,7 +75,7 @@ sinA + sinB + sinC925 7
 = 4cos⟨?⟩⟨?⟩，进而利用积化和差公式、诱导公式得AAcos =
 212
  B C
-2( sinC + sinB(，同理求BBcos 、CCcos ，即可求值.
+2( sinC + sinB)，同理求BBcos 、CCcos ，即可求值.
 1212
 【详解】 
  A A + B + C B C
@@ -87,12 +87,12 @@ sinA + sinB + sinC925 7
  A B - C A A + B - C A + C - B
 ∴AAcos = 4cos⟨?⟩⟨?⟩cos = 2⟨?⟩ cos+ cos⟨?⟩=
 122222
-2( sinC + sinB(，
+2( sinC + sinB)，
  B C
-同理可得：BBcos = 2( sinA + sinC(，CCcos = 2( sinA + sinB(.
+同理可得：BBcos = 2( sinA + sinC)，CCcos = 2( sinA + sinB).
 1212
   B C
-∴AAcos\frac{A}{A} + BBcos + CCcos = 4( sinA + sinB + sinC(，即
+∴AAcos\frac{A}{A} + BBcos + CCcos = 4( sinA + sinB + sinC)，即
 121212
    C
 AAcos + BBcos\frac{B}{ + } + CCcos

@@ -1,8 +1,8 @@
-  πCD2+ 22- (2 2(2
-因为bsinA = acos (B -\frac{π}{ π}(，所以sinBsinA = sinAcos (B -(. 又sinA ≠
+  πCD2+ 22- (2 2)2
+因为bsinA = acos (B -\frac{π}{ π})，所以sinBsinA = sinAcos (B -). 又sinA ≠
 66，
 2 × 2 × CD
-0，所以sinB = cos (B -(，解得CD =2 +6( 2 -6 舍去)，
+0，所以sinB = cos (B -)，解得CD =2 +6( 2 -6 舍去)，
 6
 3 1 π所以CD =2 +6.
 所以sinB = cosB + sinB，化简得tanB =3. 又0 < B < π，故B = .
@@ -13,7 +13,7 @@ sinAsinBb2
 形.四边形，一般适当的连接对角线，分解为有公共边俩三角形。如果是有外接圆，
 则要充分运用对角互补这个隐形条件
 38. 记△ABC 的内角A、B、C 的对边分别为a、b、c，已知a = 2t -
-1，b = 4t，c = 4t + 1( t > 1(．
+1，b = 4t，c = 4t + 1( t > 1)．
 (1) 当t = 3 时．求cosB；【变式演练】
 (2)tCt39. (2022·全国·高三专题练习) 如图，在平面四边形ABCD 中，
  是否存在正整数，使得角 为钝角？如果存在，求出 的
@@ -54,7 +54,7 @@ sinAsinBb2
 例1. (2022·山东青岛·高三期末) 如图，在四边形ABCD 中，
 【详解】 (1) 在△BCD 中，由余弦定理可知：
 AB ⎳CD,AD ⋅sin∠ADC = AB ⋅sin∠ABC. 1
-BD2= BC2+ CD2- 2BC ⋅CDcos∠BCD = 12+ 22- 2 × 1 × 2 × (-(= 7
+BD2= BC2+ CD2- 2BC ⋅CDcos∠BCD = 12+ 22- 2 × 1 × 2 × (-)= 7
 2
 ∴BD =7
 BDAD
@@ -83,8 +83,8 @@ BD2= AD2+ AB2- 2AD ⋅ABcos∠BAD 即7 = 22+ AB2- 2 ⋅AB
 可.
 【详解】 (1) 因为AB ⎳CD，所以∠ADC + ∠A = π,∠ABC + ∠C = π,∠BDC
 = ∠ABD，
-因为AD ⋅sin∠ADC = AB ⋅sin∠ABC，所以AD ⋅sin (π - ∠A(= AB ⋅
-sin (π - ∠C(，所以AD ⋅sin∠A = AB ⋅sin∠C，
+因为AD ⋅sin∠ADC = AB ⋅sin∠ABC，所以AD ⋅sin (π - ∠A)= AB ⋅
+sin (π - ∠C)，所以AD ⋅sin∠A = AB ⋅sin∠C，
 BDAD
 在△ABD 中，由正弦定理得 = ，即BD ⋅sin∠ABD = AD ⋅
 sinAsin∠ABD

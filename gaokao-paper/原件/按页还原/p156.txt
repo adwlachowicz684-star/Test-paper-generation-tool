@@ -9,13 +9,13 @@
  .
 2
  5π 13
-所以cosB + sinC = cosB + sin( - B(= cosB + cosB + sinB =【变式演练】
+所以cosB + sinC = cosB + sin( - B)= cosB + cosB + sinB =【变式演练】
 622
 33 π10. 在ΔABC 中，内角A，B，C 所对的边分别为a，b，c，且sinA =
- cosB + sinB =3sin (B +(，
+ cosB + sinB =3sin (B +)，
 223c b
 2π π 5π π13 π2sinBsinC，则 + 取得最大值时，内角A 的值为()
-由于 < B + < ，所以sin (B +(∈⟨?⟩ ,⟨?⟩，所以3sin (B +(bc
+由于 < B + < ，所以sin (B +)∈⟨?⟩ ,⟨?⟩，所以3sin (B +)bc
 3363223
 3 3 π π π π
 ∈⟨?⟩ ,⟨?⟩.CA.B.C.D.
@@ -25,9 +25,9 @@ AB【答案】 B
 8. 在锐角ΔABC 中，A = 2B，则 的取值范围是()
 AC【分析】 将正弦定理平方处理，即可将恒等式转化为a2= 2bcsinA，再代入余
  b2+ c2- a2c b
-A. (-1,3(B. (1,3(弦定理cosA =，从而将 + 转化为2(sinA + cosA)，再利用
+A. (-1,3)B. (1,3)弦定理cosA =，从而将 + 转化为2(sinA + cosA)，再利用
 2bcbc
-C. ( 2, 3)D. (1,2(辅助角公式即可求出使得式子取最大值的A 值.
+C. ( 2, 3)D. (1,2)辅助角公式即可求出使得式子取最大值的A 值.
 bc
 D【详解】 由sinA = 2sinBsinC，根据正弦定理，\frac{a^{2}}{sin^{2}A} = ，
 【答案】 sinBsinC
@@ -39,13 +39,13 @@ D【详解】 由sinA = 2sinBsinC，根据正弦定理，\frac{a^{2}}{sin^{2}A} 
 ⟨?⟩0 < 2∠B <\frac{π}{π}所以 + === 2(sinA + cosA) =
 ⟨?⟩⟨?⟩2bcbcbc
  π π 
-【详解】 在锐角ΔABC 中，0 < ∠B <可得 < ∠B < ，cosB ∈2 2sin (A +\frac{π}{π}(，
+【详解】 在锐角ΔABC 中，0 < ∠B <可得 < ∠B < ，cosB ∈2 2sin (A +\frac{π}{π})，
 2644
  π c b
 0 < π - 3∠B <所以当A = 时， + 取得最大值2 2，答案为B.
 24bc
 ⟨?⟩23⟨?⟩1 3
- ,,cos2B ∈( ,(，
+ ,,cos2B ∈( ,)，
 222411. 满足条件AB = 2,AC =2BC 的三角形ABC 的面积的最大值
 AB c sinC sin3B 3sinB - 4sin3B()
 所以由正弦定理可知 = = = == 3 -是
@@ -60,7 +60,7 @@ c
 b
 达式，再根据x 的取值范围，即可求解面积的最大值.
 13 2 3
-A.( ,2(B.⟨?⟩ ,⟨?⟩【详解】 设BC = x，则AC =2x，
+A.( ,2)B.⟨?⟩ ,⟨?⟩【详解】 设BC = x，则AC =2x，
 233
  1 1
 根据面积公式得S = AB ⋅BCsinB = × 2 ×1 - cos2B，
@@ -80,7 +80,7 @@ C. (1,2)D.⟨?⟩ ,1⟨?⟩
 C) = ⇒B =由三角形的三边关系可得⟨?⟩⟨?⟩，解得2 2 - 2 < x < 2 2 + 2，
 23x + 2 >2x
  ππ π1c sinC 2 3x = 2 3S2 2D.
-又∵A,C ∈(0,(∴ < C < ⇒ < sinC < 1 ⇒ = =sinC故点 时， 取得最大值，故选
+又∵A,C ∈(0,)∴ < C < ⇒ < sinC < 1 ⇒ = =sinC故点 时， 取得最大值，故选
 2622bsinB3ΔABC
 ⟨?⟩3 2 3⟨?⟩12.△ABCABCa,b,c,c = 2,sinA =
 ∈ ,故选B. 在 中，角，， 所对的边分别为
@@ -107,7 +107,7 @@ A. 2B. 4C. 2 5D. 4 2
 a b
 可得c2= 4absinC， + 可化为= 4sinC + 2cosC = 2 5sin(C + φ)，从而可
 ba 1 1 1 1
-S absinC =-b4+ 8b2- 4 =-( b2- 4(2+ 12 ，
+S absinC =-b4+ 8b2- 4 =-( b2- 4)2+ 12 ，
 得结果.2222
  1 1当b2= 4 时，即b = 2，ΔABC 的面积S 有最大值，
 【详解】 由题意得，S = absinC = c2，∴c2= 4absinC，又c2= a2+ b2-

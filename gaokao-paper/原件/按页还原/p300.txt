@@ -37,7 +37,7 @@ ABD，
 又AC = 2，所以由勾股定理可得MC =AC2- AM 2= 1，
 又PA ∩AC = A，∴CD ⊥平面PAC.
 又MC = MD = MB = 1，∴∠MCB = ∠MBC，∠MCD = ∠MDC，
-(2) 在Rt△PAD 中，由勾股定理，易求得PA =(2 2(2- 4 = 2，
+(2) 在Rt△PAD 中，由勾股定理，易求得PA =(2 2)2- 4 = 2，
 ∵∠MBC + ∠MDC + ∠BCD = 180∘，则2∠BCD = 180∘，∴∠BCD = 90∘，
  1
 ∵V= V= ，△BCDBC ⊥CD
@@ -51,7 +51,7 @@ N-MCDM-NCD9所以 为直角三角形，且，
 则V=\frac{1}{ 1} × S× ME =\frac{1}{1} ，
 M-NCD3△NCD9∵平面PCD ⊥平面ACD，平面PCD ∩平面ACD = CD，PN ⊂平面PCD，
   11 1∴PN ⊥平面ACD，
-又V= × S× PA = × ×( ×2 ×2(× 2 = ，
+又V= × S× PA = × ×( ×2 ×2)× 2 = ，
 P-NCD3△NCD3223
  15
 此时点P 到平面ACD 的距离为PN = AN =AC2- CN 2=，

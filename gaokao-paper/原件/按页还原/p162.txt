@@ -36,14 +36,14 @@ tanCtanAtanCtan2CtanCf'(x) > 0,x > 1f(x)f'(x) < 0,0 < x < 1f(x)
 = + 3sinA = + 3sinA31. 已知△ABC 的三个内角A,B,C 的对边分别为a,b,c，且满足
 2sinCcosCsinA
  π A πa b +2c
-设sinA = t，∵△ABC 是锐角三角形，∴A ∈(0,(,C = ∈(0,(,B = π += 0，则sin2B ⋅tan2C 的取值范围是()
+设sinA = t，∵△ABC 是锐角三角形，∴A ∈(0,),C = ∈(0,),B = π += 0，则sin2B ⋅tan2C 的取值范围是()
 222cosAcosB
  A ππ π
-- A - ∈(0,(，∴A ∈( ,(
-2232A. (0,2 -2[B. (0,3 - 2 2[
+- A - ∈(0,)，∴A ∈( ,)
+2232A. (0,2 -2]B. (0,3 - 2 2]
 ⟨?⟩3⟨?⟩1⟨?⟩3⟨?⟩
 ∴sinA = t ∈ ,1， + 3t 在t ∈ ,1上单调递增， 3
-2t2C. (0, 3 - 1[D. (0,[
+2t2C. (0, 3 - 1]D. (0,]
 2
 11 1⟨?⟩13 3⟨?⟩
 ∴ - + 3sinA = + 3t ∈,4，
@@ -67,7 +67,7 @@ cosAsinB + sinAcosB =- 2sincosA
 3π
 4
 【变式演练】3π   
-∵tanC = tan (π -( + B((= tan(\frac{π}{nB} - B(=\frac{1 - tanB}{1 - si} =\frac{cosB - sinB}{B}
+∵tanC = tan (π -) + B()= tan(\frac{π}{nB} - B)=\frac{1 - tanB}{1 - si} =\frac{cosB - sinB}{B}
 29. 在锐角△ABC 中，三内角A,B,C 的对边分别为a,b,c，且a =441 + tanBcosB + sinB
 cosB - si2n2
 2bsinCtanA + tanB + tanC()∴sin2B ⋅tan2C = sin2B ⋅⟨?⟩⟨?⟩= sin2B ⋅ 令t = 1 +
@@ -76,7 +76,7 @@ cosB - si2n2
 A. 2B. 4C. 6D. 8sin2B，因为0 < 2B < ，所以t ∈(1,2)
 2
  (t - 1) (1 - t + 1) 2 2
-【答案】 D则sin2B ⋅tan2C ==- (t +(+ 3 令y = t + ,t ∈(1,2)，
+【答案】 D则sin2B ⋅tan2C ==- (t +)+ 3 令y = t + ,t ∈(1,2)，
 ttt
 【分析】 首先由正弦定理和三角恒等变形得到tanB + tanC = 2tanBtanC，
 则y'= 1 -\frac{2}{t^{2}} =\frac{t^{2}- 2}{t^{2}}
@@ -89,7 +89,7 @@ tanBtanC - 1t
 t
 2sinBsinC,
 2 2] 故选B
-又因为sinA = sin (B + C(= sinBcosC + cosBsinC，
+又因为sinA = sin (B + C)= sinBcosC + cosBsinC，
 所以sinBcosC + cosBsinC = 2sinBsinC，
 【题型十二】图形1：中线
 因为△ABC 是锐角三角形，所以cosBcosC > 0,
@@ -97,17 +97,17 @@ t
 上式两边同时除以cosBcosC，可得tanB + tanC = 2tanBtanC，①
 例1. 以BC 为底边的等腰三角形ABC 中，腰AC 边上的中线长
  tanB + tanC
-又因为tanA =-tan (B + C(= > 0，
+又因为tanA =-tan (B + C)= > 0，
 tanBtanC - 1为9，当△ABC 面积取最大时，腰AB 长为()
-∴tanB + tanC = tanA( tanBtanC - 1(,
+∴tanB + tanC = tanA( tanBtanC - 1),
  tanB + tanCA. 2 5B. 4 5
 ∴tanA + tanB + tanC = tanAtanBtanC = ⋅tanBtanC，
 tanBtanC - 1C. 6 5D.
  前三个答案都不对
-令tanBtanC - 1 = m > 0，由①可知tanB + tanC = 2( m + 1(
+令tanBtanC - 1 = m > 0，由①可知tanB + tanC = 2( m + 1)
  2 m + 1 2 m + 12【答案】 C
-((((
-所有tanA + tanB + tanC =⋅(m + 1(=，= 4 + 2m +
+()()
+所有tanA + tanB + tanC =⋅(m + 1)=，= 4 + 2m +
 mm【分析】 设D 为AC 中点，在△ABC 和△ABD 分别运用余弦定理得2a2+ b2
 2 2= 324，再表示△ABC 的面积，运用二次函数的性质可得选项.
  ≥4 + 22m × = 8，
@@ -121,11 +121,11 @@ b2 b
 30. 在锐角△ABC 中，角A，B，C 所对的边分别为a，b，c，已知a2在△ABD 中，BD2= b2+⟨?⟩⟨?⟩- 2 × b × ×\frac{2b^{2}- a^{2}}{2b^{2}}⇒2a2+ b2= 324，∴S
 22
 + 2abcosC = 3b2，则tanAtanBtanC 的最小值是． 1a
-= ab2-((2
+= ab2-()2
 22
 【答案】 6
  1 9  1  9 1  9
-【分析】 先根据正余弦定理对原式进行化简得2(sin2A - sin2B) = sin2C，再利= a324 - a2=a2(324 - a2(=a2(324 - a2(，
+【分析】 先根据正余弦定理对原式进行化简得2(sin2A - sin2B) = sin2C，再利= a324 - a2=a2(324 - a2)=a2(324 - a2)，
 242424
 用正弦平方差定理化简可得sinAcosB = 3cosAsinB ⇒tanA = 3tanB，然后当a2= 72 时，S 有最大值，此时b2= 324 - 2a2= 180 ⇒b = 6 5，即腰长AB
 ·162·

@@ -5,7 +5,7 @@ AC⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩ AB⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?�
 9. 已知O 是三角形ABC 的外心，若 AB⋅AO+ AC⋅AO
 ABAC
 ⟨?⟩⟨?⟩⟨?⟩
-= 2m (AO(2，且sinB + sinC =3，则实数m 的最大值为
+= 2m (AO)2，且sinB + sinC =3，则实数m 的最大值为
 ()
  3 7 3
 A. 3B.C.D.
@@ -35,7 +35,7 @@ cb= bcsinA，
 A
 设AB = c，AC = b，∠BAO = θ，∠CAO = α，
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩ ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩【提分秘籍】
-由\frac{AC}{b} AB⋅AO+\frac{AB}{ c} AC⋅AO= 2m (AO(2
+由\frac{AC}{b} AB⋅AO+\frac{AB}{ c} AC⋅AO= 2m (AO)2
 ABAC基本规律
 得 ⋅c ⋅AOcosθ + ⋅b ⋅AOcosα = 2m ⋅AO2，1. 角平分线的交点。
 cb

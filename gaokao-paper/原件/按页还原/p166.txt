@@ -24,7 +24,7 @@ sin90°=\frac{3}{ 1} ，且BD = 2，在Rt△ABD 中，4 = a2+ b2≥2ab，所以a
 A. 27B. 16C. 10D. 251 = a2+ b2- 2abcos150°
 弦定理得，
 A3 1
-【答案】 所以3ab = 1 - (a2+ b2(< 1，即ab < . 所以S= × absin150°=
+【答案】 所以3ab = 1 - (a2+ b2)< 1，即ab < . 所以S= × absin150°=
 3△ABD2
 【分析】 以D 为坐标原点，DB,DC 分别为x,y 轴建立直角坐标系，求出A 点
 13
@@ -72,7 +72,7 @@ A.3B. + 1C. + 1D. 2
 【分析】 ΔABCAC2= BA2+ BC2- 2BA × BCcos∠ABC
 在 中，由余弦定理可得
 3
-根据正弦定理，可求得sin∠BAC = ，即角∠BAC = 60°或∠BAC = 120°，所以AC2= 12+(3(2- 2 × 1 ×3cosα，即AC2= 4 - 2 3cosα
+根据正弦定理，可求得sin∠BAC = ，即角∠BAC = 60°或∠BAC = 120°，所以AC2= 12+(3)2- 2 × 1 ×3cosα，即AC2= 4 - 2 3cosα
 2
 AC AB ABsinα
 分类讨论，由S = S+ S，计算三角形的面积，利用均值不等式求最值在ΔABC 中，由正弦定理可得 = ，则sinβ ==
@@ -84,11 +84,11 @@ AC AB ABsinα
 C而由条件可知，AC ⊥CD，AC = CD
 C
 D π
-所以BD2= CB2+ AC2- 2CB × ACcos( β +(
+所以BD2= CB2+ AC2- 2CB × ACcos( β +)
 2
-D即BD2= 3 + (4 - 2 3cosα(- 2 ×3 ×4 - 2 3cosα × cos( β +\frac{π}{ π}(
+D即BD2= 3 + (4 - 2 3cosα)- 2 ×3 ×4 - 2 3cosα × cos( β +\frac{π}{ π})
 2
-结合sinβ =\frac{sinα}{4 - 2 3cosα}，代入化简可得BD2= 7 + 2 6sin (α -(
+结合sinβ =\frac{sinα}{4 - 2 3cosα}，代入化简可得BD2= 7 + 2 6sin (α -)
 4
  3π
 所以当α = 时，BD2取得最大值为BD2= 7 + 2 6

@@ -1,9 +1,9 @@
 (2) 取FE 的中点P，连接CP 交BE 于点M ，M 点即为所求的点.
-(1(求四棱锥P - ABCD 的体积；
+(1)求四棱锥P - ABCD 的体积；
 证明：连接PN ，∵PE ⎳AD，AD ⎳BC，∴PE ⎳BC，
-(2(求证：CD ⊥平面PAC；所以CP 交BE 于点M ，∵N 是AD 的中点，P 是FE 的中点，
+(2)求证：CD ⊥平面PAC；所以CP 交BE 于点M ，∵N 是AD 的中点，P 是FE 的中点，
 3在棱PC 上是否存在点M(异于点C)，使得BM ⎳平面∴PN ⎳AF，又PN ⊊平面MNC，AF ⊈平面MNC，
-((
+()
 BM BC
 PM∴直线AF ⎳平面MNC. 又∵PE ⎳BC，∴ = = 2.
 PAD，若存在，求 的值；若不存在，说明理由．MEPE
@@ -11,30 +11,30 @@ PC
 【题型五】平行5：证面面平行
 【答案】 (1)4；(2) 见解析；(3) 不存在.
 【典例分析】
-【分析】 (1(利用四边形ABCD 是直角梯形，求出S，结合PA ⊥底面
+【分析】 (1)利用四边形ABCD 是直角梯形，求出S，结合PA ⊥底面
 ABCD例1.【2019 • 新课标Ⅰ，文19】如图，直四棱柱ABCD -
-ABCD，利用棱锥的体积公式求解即可求；(2(先证明PA ⊥CD，AC ⊥CD，
+ABCD，利用棱锥的体积公式求解即可求；(2)先证明PA ⊥CD，AC ⊥CD，
 ABCD的底面是菱形，AA= 4，AB = 2，∠BAD = 60°，E，M ，
-结合PA ∩AC = A，利用线面垂直的判定定理可得CD ⊥平面PAC ；(3(用11111
+结合PA ∩AC = A，利用线面垂直的判定定理可得CD ⊥平面PAC ；(3)用11111
 N 分别是BC，BB，AD 的中点．
 反证法证明，假设存在点M(异于点C) 使得BM ⎳平面PAD，证明平面11
 PBC ⎳平面PAD，与平面PBC 与平面PAD 相交相矛盾，从而可得结论．(1) 证明：MN ⎳平面CDE；
 1
  1(2)CCDE
-【详解】 (1(显然四边形ABCD 是直角梯形，S= (BC + AD(× AB = 求点 到平面 的距离．
+【详解】 (1)显然四边形ABCD 是直角梯形，S= (BC + AD)× AB = 求点 到平面 的距离．
 ABCD21
 1
- × (2 + 4(× 2 = 6
+ × (2 + 4)× 2 = 6
 2
  1 1
 又PA ⊥底面ABCD ∴V= S⋅PA = × 6 × 2 = 4
 P-ABCD3ABCD3
-(2(∵PA ⊥平面ABCD，CD ⊂平面ABCD，∴PA ⊥CD 在直角梯形
+(2)∵PA ⊥平面ABCD，CD ⊂平面ABCD，∴PA ⊥CD 在直角梯形
 ABCDAC =AB+ BC = 2 2
  中，22，
 CD = 2 2，∴AC2+ CD2= AD2，即AC ⊥CD 又∵PA ∩AC = A，∴CD ⏊
 平面PAC；
-(3(不存在，下面用反证法进行证明
+(3)不存在，下面用反证法进行证明
 假设存在点M(异于点C)使得BM ⎳平面PAD．又∵BC ⎳AD，且BC ⊈平
 面PAD，
 AD ⊊平面PAD，∴BC ⎳平面PAD 又∵BC ∩BM = B，

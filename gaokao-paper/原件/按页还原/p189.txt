@@ -1,10 +1,10 @@
-(2) 选①，由等腰三角形性质求得底边AB 长，然后由余弦定理求得AD；即2sinBcosC = 2sin (B + C(- sinC，化简得sinC = 2sinCcosB.∵C ∈
+(2) 选①，由等腰三角形性质求得底边AB 长，然后由余弦定理求得AD；即2sinBcosC = 2sin (B + C)- sinC，化简得sinC = 2sinCcosB.∵C ∈
 选②，三角形为等腰三角形时同选①，三角形为直角三角形时，由cosA 求得 1
-(0,π(，∴sinC ≠0，∴cosB = .
+(0,π)，∴sinC ≠0，∴cosB = .
 2
 tanA，然后求得BC，用勾股定理求得AD．
  π
-absinA sinB又∵B ∈(0,π(，∴B = .
+absinA sinB又∵B ∈(0,π)，∴B = .
 【详解】 (1) 选①， = ，由正弦定理理 = ，即tanA =3
 cosAcosBcosAcosBb 3
 (2) 由正弦定理得 = 2 3 ⇒b = 3. 设D 为AC 边上的中点，则AD = ,
@@ -44,7 +44,7 @@ A + B = 时，cosA = ，则sinA =，tanA = 2，所以BC = 2AC =
 31. 在△ABC 中，内角A ，B ，C 的对边分别为a ，b ，c ，且AC
 【分析】 (1) 由角平分线的性质可得 = 2，结合已知求AC,CD，进而可
 CD
-3 (acosC - b(= csinA.
+3 (acosC - b)= csinA.
 AB AC
 得∠ACB = 90°，由三角形面积公式求面积即可.(2) 令 = = λ、AB = c,
 (1)ABDCD
@@ -69,9 +69,9 @@ bb + c
 ∴AB = 5，AC = 3，BC = 4，易知：∠ACB = 90°，∴S = × 3 × 4 = 6.
 2a2- 4b2+ 158 = 0，再在△ABC 运用余弦定理得a2= b2+ 25 + 5b，两式联立△ABC2
 即可求得b = 13，最后直接用三角形面积公式即可求解.
-【详解】 (1) 由正弦定理得3 (sinAcosC - sinB(= sinCsinA，∴
+【详解】 (1) 由正弦定理得3 (sinAcosC - sinB)= sinCsinA，∴
 3sinAcosC -3sinB = sinCsinA，
-∴, 3sinAcosC -3sin (A + C(= sinCsinA ∴- 3sinCcosA = sinAsinC，
+∴, 3sinAcosC -3sin (A + C)= sinCsinA ∴- 3sinCcosA = sinAsinC，
  2π
 ∵sinC ≠0，∴tanA =- 3，又∵0 < A < π, ∴A = ,
 3

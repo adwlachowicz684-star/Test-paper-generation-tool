@@ -10,16 +10,16 @@
 113
 2a，求证： + = ．【答案】 (1)4 2
 a + ba + ca + b + c
-(2)5(2 - 1(
+(2)5(2 - 1)
 【答案】 证明见解析 x x
 【分析】 (1) 设CD 长为x，可知tanα = ，tanβ = ，再利用正切的二倍角
 【分析】 根据分析法先从要证结论着手，把要证等式变形为82
-(2a + b + c((a + b + c(= 3( a + b((a + c(，公式可求解；
+(2a + b + c)(a + b + c)= 3( a + b)(a + c)，公式可求解；
 结合余弦定理得到所证即为A = 60°. 然后用综合法从已知条件出发结合正弦(2) 利用正弦定理得BC = 10 2sinβ，AC = 10 2sinα，再利用三角形面积公
 A = 60°. π
-定理及和差公式证明 即可式结合两角差的正弦公式及辅助角公式可得S = 25 2sin (2β +(- 25，利用正
+定理及和差公式证明 即可式结合两角差的正弦公式及辅助角公式可得S = 25 2sin (2β +)- 25，利用正
 4
-【详解】 所证等式可变形为(2a + b + c((a + b + c(= 3( a + b((a + c(．
+【详解】 所证等式可变形为(2a + b + c)(a + b + c)= 3( a + b)(a + c)．
 弦函数的性质即可求解.
 b2+ c2- a2 1
 即b2+ c2- a2= bc，即= ，因此只需证A = 60°． x
@@ -63,19 +63,19 @@ AC B
 所以 成立4
 a + ba + ca + b + c
  π
-所以S = 50 2sinβ × sin( - β(= 50( sinβcosβ - sin2β(
+所以S = 50 2sinβ × sin( - β)= 50( sinβcosβ - sin2β)
 47. 在△EFG 中，H 为FG 上一点，FH = 2 HG ，3 sinF =4
  π
-sin∠EHGMEF= 25( sin2β + cos2β - 1(= 25 2sin (2β +(- 25
+sin∠EHGMEF= 25( sin2β + cos2β - 1)= 25 2sin (2β +)- 25
 ， 是线段 的延长线上一点．4
  π π 3π
 因为0 < β <\frac{π}{π} ，所以 < 2β + < ，
 4444
   π π
-所以当2β + = ，即β = 时，S 有最大值25(2 - 1(
+所以当2β + = ，即β = 时，S 有最大值25(2 - 1)
 428
 1
-又△ACD 的面积等于 S，故△ACD 的面积的最大值为5(2 - 1(
+又△ACD 的面积等于 S，故△ACD 的面积的最大值为5(2 - 1)
 5
 【变式演练】
 48. 设△ABC 的内角A，B，C 的对边分别为a，b，c，且满足bsin2A
@@ -95,8 +95,8 @@ EHEF(1) ∵bsin2A + asinB = 0
 【详解】 (1) 在△EFH 中，由正弦定理 = ，【详解】 ，
 sinFsin∠EHF
 ∴由正弦定理得，sinB ∙2sinAcosA + sinAsinB = 0
-∵3sinF = sin∠EHG = sin (π - ∠EHF(= sin∠EHF，∴EF = 3EH，
-∵A,B ∈(0，π(,∴sinAsinB ≠0，
+∵3sinF = sin∠EHG = sin (π - ∠EHF)= sin∠EHF，∴EF = 3EH，
+∵A,B ∈(0，π),∴sinAsinB ≠0，
 又FH = 2HG，∴S= 3S，
 △EFG△EHG 1 2π
  1 1 1∴cosA =- ，∴A = ；
@@ -115,13 +115,13 @@ EGsin∠FEG，
 = ，∵|AC|= 4，|AD|= 3，AD ⊥AC，∴|DC|= 5，∠BAD = - = ，
 6326
  1 4
-∴cos∠EHG = cos (π - ∠EHF(=-cos∠EHF =- ，又∠ADB = π - ∠ADC，∴sin∠ADB = sin∠ADC = ，cos∠ADB =
+∴cos∠EHG = cos (π - ∠EHF)=-cos∠EHF =- ，又∠ADB = π - ∠ADC，∴sin∠ADB = sin∠ADC = ，cos∠ADB =
 65
  1 3
-∴EG2= EH 2+ HG2- 2EH × HGcos∠EHG = 22+ 33- 2 × 2 × 3 × (-(=-cos∠ADC =- ，
+∴EG2= EH 2+ HG2- 2EH × HGcos∠EHG = 22+ 33- 2 × 2 × 3 × (-)=-cos∠ADC =- ，
 65
-15，又∠B = π - (∠ADB + ∠BAD(，
-∴EG =15．∴sin∠B = sin (∠ADB + ∠BAD(
+15，又∠B = π - (∠ADB + ∠BAD)，
+∴EG =15．∴sin∠B = sin (∠ADB + ∠BAD)
 = sin∠ADBcos∠BAD + cos∠ADB ⋅sin∠BAD
 【题型十七】解三角形综合
 ·196·

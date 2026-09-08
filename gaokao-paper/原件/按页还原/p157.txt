@@ -1,9 +1,9 @@
-【答案】 A2sinBcosB(sinB + cosB(2- 1
+【答案】 A2sinBcosB(sinB + cosB)2- 1
 原式等于 =，设t = sinB + cosB
 sinB + cosBsinB + cosB
 【分析】 由面积公式和余弦定理，基本不等式对\frac{S}{a^{2}+ 4bc} 进行变形，得到关
 t2- 1 1
-即原式等于= t - (1 < t ≤2(，函数是增函数，当t = 1 时，函数等
+即原式等于= t - (1 < t ≤2)，函数是增函数，当t = 1 时，函数等
 tt.tt
 于 的关系式，结合三角函数的有界性，列出关于 的不等式，求出最大值
  12⟨?⟩2⟨?⟩
@@ -21,11 +21,11 @@ S = bcsinAa2= b2+ c2- 2bccosA\frac{S}{a^{2}+ 4bc} =于0，当t =2 时，函数�
  = t 所以 sinA = 6t - 2tcosA，即 sinA + 2tcosA = 6t ≤+ b2= 5c2，则cosC 的取值范围是()
 62cosA22
 1 2161
- + 4t2∴t ≤ ，故选：A.A.⟨?⟩⟨?⟩B.(1(
+ + 4t2∴t ≤ ，故选：A.A.⟨?⟩⟨?⟩B.(1)
 416 ， ，
 232
 √464
-C.√ ，⟨?⟩D.[ ，1(
+C.√ ，⟨?⟩D.[ ，1)
 【提分秘籍】√535
 基本规律
 【答案】 C
@@ -67,10 +67,10 @@ BC2sinA + 4cosA = 5，利用辅助角公式和正弦函数的性质即可求解�
 ， ，
 sinA
 2b ab⟨?⟩66⟨?⟩ 2 1
-∵BC= AB+ AC- 2AB ⋅AC ⋅cosA⟨?⟩ +⟨?⟩，设 = x,x ∈ ,,∴f(x) = (x +(，
+∵BC= AB+ AC- 2AB ⋅AC ⋅cosA⟨?⟩ +⟨?⟩，设 = x,x ∈ ,,∴f(x) = (x +)，
 根据余弦定理得：2225aba325x
 = 4AC2+ AC2- 2 ⋅2AC ⋅AC ⋅cosA = 5AC2- 4AC2⋅cosA = (5 - 4cosA)66
-因为函数f (x(在⟨?⟩ ,1⟨?⟩单调递减，在⟨?⟩1,⟨?⟩上单调递增，所以函数f (x(
+因为函数f (x)在⟨?⟩ ,1⟨?⟩单调递减，在⟨?⟩1,⟨?⟩上单调递增，所以函数f (x)
  5 - 4cosA 5 - 4cosA32
 AC2=，即BC2=，
 sinAsinA66666
@@ -103,7 +103,7 @@ b2+ c2- 2bccos15°，化简即可求解S = 1\frac{a}{ca + c^{2}} +\frac{c}{ac + 
 2 3bcsin15° +2bccos15° = b2+ c2，A.B. 2C.D. 4
 24
 ⟨?⟩3 1⟨?⟩
-∴4bc sin15° + cos15°= b2+ c2∴4bcsin (15° +30°(= b2+ c2整理可得，
+∴4bc sin15° + cos15°= b2+ c2∴4bcsin (15° +30°)= b2+ c2整理可得，
 22【答案】 A
 b2 c2 1
 b2+ c2= 2 2bc，∴ + = 2 2【分析】 由S = acsinB 可解得ac = 4，结合基本不等式，知a + c ≥
@@ -112,7 +112,7 @@ b c2 ac = 4\frac{a}{ca + c^{2}} +\frac{c}{ac + a^{2}} =
 则 + = 2 2 故选：B．；经过变形化简可将原式整理为
 cb
  t2- 8 1 8
-15.△ABCsinAsinBsinC\frac{(a + c)^{2}- 2ac}{ac(a + c)}，令t = a + c，则t ∈[4，+∞)，f(t) == (t -(，结合
+15.△ABCsinAsinBsinC\frac{(a + c)^{2}- 2ac}{ac(a + c)}，令t = a + c，则t ∈[4，+∞)，f(t) == (t -)，结合
  已知 中， ， ， 成等比数列，则4t4t
 sin2B
  的取值范围是()函数的单调性即可得解．
@@ -124,11 +124,11 @@ A. ⟨?⟩-∞,√B. ⟨?⟩0,√a + c ≥2 ac = 2 4 = 4
 2√2√得，．
  3 -3√\frac{a}{ca + c^{2}} +\frac{c}{ac + a^{2}} =\frac{a}{c(a + c)} +\frac{c}{a(c + a)} =\frac{a^{2}+ c^{2}}{ac(a + c)} =\frac{(a + c)^{2}- 2ac}{ac(a + c)}，
 C. -1, 2D. ⟨?⟩0,√
-([
+(]
 2√
 令t = a + c，则t ∈[4，+∞)，
 【答案】 B t2- 8 1 8
-∴\frac{a}{ca + c^{2}} +\frac{c}{ac + a^{2}} = f(t) == (t -(，在[4，+∞) 上单调递增，
+∴\frac{a}{ca + c^{2}} +\frac{c}{ac + a^{2}} = f(t) == (t -)，在[4，+∞) 上单调递增，
  a2+ c2- b24t4t
 【详解】 由已知可知sin2B = sinA ⋅sinC，即b2= ac，cosB ==
 2ac 11
@@ -137,6 +137,6 @@ C. -1, 2D. ⟨?⟩0,√
 \frac{a^{2}+ c^{2}- ac}{ }≥= ，即0 < B < ，sinB + cosB =
 2ac2ac23
 π17. 在锐角ΔABC 中，角A，B，C 的对边分别为a，b，c(a > b > c)，
-2sin (B +(∈(1, 2[，
+2sin (B +)∈(1, 2]，
 4
 ·157·

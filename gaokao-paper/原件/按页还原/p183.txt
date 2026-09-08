@@ -15,11 +15,11 @@
 小为原来的 (纵坐标不变)，得到函数g(x) 的图象，若g(x) -(2) 先求出sinB，再利用三角函数恒等变换公式可求出sinA 的值
 2
  π π【详解】 (1) 因为(5a - 4c)cosB = 4bcosC，
-m = 0 在[- ,[上有两个不同的根，求m 的取值范围．
+m = 0 在[- ,]上有两个不同的根，求m 的取值范围．
 126abc
 所以由正弦定理 = = 得(5sinA - 4sinC)cosB =
 sinAsinBsinC
-【答案】 (1)f(x) = 2cos2x(2) [1,2(
+【答案】 (1)f(x) = 2cos2x(2) [1,2)
 4sinBcosC，
 【分析】 (1)：先利用辅助角公式化简，然后利用偶函数的性质，和两对称轴的
 所以5sinAcosB = 4(sinBcosC + sinCcosB) = 4sin(B + C)，
@@ -28,47 +28,47 @@ sinAsinBsinC
 (2)：将图像平移得到g(x)，求其在定义域内的两根转为两个函数由两个交点，
 sinA，
 便可求出m 的取值范围. 4
-所以5sinAcosB = 4sinA，又A ∈(0,π(,sinA ≠0，所以cosB =
+所以5sinAcosB = 4sinA，又A ∈(0,π),sinA ≠0，所以cosB =
  ωx + φ5
 【详解】 (1) ∵函数f(x) =3sin(ωx + φ) + 2sin2⟨?⟩⟨?⟩- 1 =3sin(ωx +
 2 4 3
 (2) 因为在△ABC 中，cosB = ，所以sinB =1 - cos2B = ，
  π55
-φ) - cos(ωx + φ) = 2sin (ωx + φ -(为偶函数
+φ) - cos(ωx + φ) = 2sin (ωx + φ -)为偶函数
 6因为在△ABC 中，A + B + C = 180∘
  π π 2π π
-∴φ - = kπ + ,k ∈Z 令k = 0，可得φ = ∴f(x) = 2sin (ωx +(=
+∴φ - = kπ + ,k ∈Z 令k = 0，可得φ = ∴f(x) = 2sin (ωx +)=
 623213. △ABC 的内角A ，B ，C 的对边分别为a ，b ，c ，已知
 2cosωx
-2cosC (acosB + bcosA(= c．
+2cosC (acosB + bcosA)= c．
 1 2π π
 ∴f(x) 图像的相邻两对称轴间的距离为 × = ∴ω = 2 ∴f(x) =
 2ω2(1) 求角C 的大小；
 2cos2x
 3 3
 π π(2) 若c =7，△ABC 的面积为，求△ABC 的周长．
-(2) 将函数f(x) 的图像向右平移 个单位长度，可得y = 2cos (2x -(的图2
+(2) 将函数f(x) 的图像向右平移 个单位长度，可得y = 2cos (2x -)的图2
 63
  π
 1【答案】 (1) (2)5 +7
 像，再将横坐标缩小为原来的 (纵坐标不变)，得到函数g(x) =3
 2
   π π【分析】 (1) 由已知及正弦定理，两角和的正弦函数公式，三角形内角和关系
-2cos (4x -\frac{π}{π}(的图像。若g(x) - m = 0 在[- ,[上有两个不同的根，则
+2cos (4x -\frac{π}{π})的图像。若g(x) - m = 0 在[- ,]上有两个不同的根，则
 3126化简已知可得2cosCsin A + B= sinC，由sinC ≠0，可求cosC，结合角C
-((
+()
   m π π
-cos (4x -(= 在[- ,[上有两个不同的根，即函数y =的范围即可得解；
+cos (4x -)= 在[- ,]上有两个不同的根，即函数y =的范围即可得解；
 32126
  π   π(2) 由三角形面积公式可求ab，利用余弦定理即可得解a + b 的值，从而可得
-cos (4x -(的图像与直线y =\frac{m}{ π} 在[-\frac{π}{ π} ,[上有两个不同的交点.
+cos (4x -)的图像与直线y =\frac{m}{ π} 在[-\frac{π}{ π} ,]上有两个不同的交点.
 32126.
 答案
  π 2ππ 11m
-∵4x - ∈[- ，[，cos (-(= cos((= ，cos0 = 1 ∴ ≤ < 1，(1)2cosC acosB + bcosA= c
-33333222【详解】  因为((，所以
-求得1 ≤m < 22cosC (sinAcosB + sinBcosA(= sinC，
-故m 的取值范围为[1,2(．整理得：2cosCsin (A + B(= sinC，∵sinC ≠0，sin (A + B(= sinC，∴cosC
+∵4x - ∈[- ，]，cos (-)= cos()= ，cos0 = 1 ∴ ≤ < 1，(1)2cosC acosB + bcosA= c
+33333222【详解】  因为()，所以
+求得1 ≤m < 22cosC (sinAcosB + sinBcosA)= sinC，
+故m 的取值范围为[1,2)．整理得：2cosCsin (A + B)= sinC，∵sinC ≠0，sin (A + B)= sinC，∴cosC
  1
 【题型五】解三角形基础：正弦定理、角与对边= ，
 2
@@ -87,43 +87,43 @@ cos (4x -(的图像与直线y =\frac{m}{ π} 在[-\frac{π}{ π} ,[上有两个�
  π14. △ABC 的内角A,B,C 的对边分别为a,b,c，已知sinA - sinB +
 【答案】 (1)B = 。(2)a = 2
 3
- B 1(2 - 2(sinAsinB
+ B 1(2 - 2)sinAsinB
 【分析】 (1) 由正弦定理和正弦的二倍角公式得到sin = ，进而求解出sinC = .
 22sinA - sinB - sinC
 B；(2) 利用面积公式得到ac = 4，结合a + c = 4，求出a 的值.
 (1) 求角C；
  B
 【详解】 (1) 由已知得：2asinAcos = 2bsin2A．由正弦定理得：(2)b = 4,sinA 1 - 2cosC= 2cosAsinC△ABC.
-2 若((，求 的面积
+2 若()，求 的面积
  B π
 sin2Acos = sinBsin2A．(1) (2)8 2
 2【答案】 
 4
  B B B
-因为A ∈(0,π(，所以sinA ≠0。所以得：cos = sinB = 2sin cos【分析】 (1) 对已知式子化简后利用正弦定理得a2+ b2- c2=2ab，再利用余
+因为A ∈(0,π)，所以sinA ≠0。所以得：cos = sinB = 2sin cos【分析】 (1) 对已知式子化简后利用正弦定理得a2+ b2- c2=2ab，再利用余
 222
 B  B B 1 B弦定理可求出角C，
-因为B ∈(0,π(， ∈(0,\frac{π}{ π}(。所以cos ≠0 所以sin = ．又0 <
+因为B ∈(0,π)， ∈(0,\frac{π}{ π})。所以cos ≠0 所以sin = ．又0 <
 222222(2)sinA 1 - 2cosC= 2cosAsinCsinA = 2sinB
- 由((，可得，再由正弦定理得
+ 由()，可得，再由正弦定理得
  πB 
 < ．所以 =\frac{π}{1} ．即B = ．a = 2b，再利用三角形的面积公式可求得结果
 2263
-(2 - 2(sinAsinB
+(2 - 2)sinAsinB
 (2) 由已知得： acsinB =3．得：ac = 4．又因为a + c = 4，所以a = c =【详解】 (1) 由sinA - sinB + sinC = ，
 2sinA - sinB - sinC
-2．(sinA - sinB + sinC((sinA - sinB - sinC(=(2 - 2(sinAsinB，
-得(sinA - sinB)2- sin2C =(2 - 2(sinAsinB，得sin2A + sin2B - sin2C =
+2．(sinA - sinB + sinC)(sinA - sinB - sinC)=(2 - 2)sinAsinB，
+得(sinA - sinB)2- sin2C =(2 - 2)sinAsinB，得sin2A + sin2B - sin2C =
 【提分秘籍】2sinAsinB，
 基本规律 a2+ b2- c2
 由正弦定理，得a2+ b2- c2=2ab. 由余弦定理，得cosC ==
 2ab
 一般大题规律：第一问正余弦定理求出角度，第二问借助角所对应边长。多用余
 2ab2 π
-弦定理。此类题，特别是文科若考察解三角形，应用较多。 = .∵C ∈(0,π(,∴C = .
+弦定理。此类题，特别是文科若考察解三角形，应用较多。 = .∵C ∈(0,π),∴C = .
 2ab24
-(2) 由sinA( 1 - 2cosC(= 2cosAsinC，得sinA = 2sinAcosC + 2cosAsinC，
-得sinA = 2sin (A + C(，得sinA = 2sinB，由正弦定理，得a = 2b. 又∵b = 4,
+(2) 由sinA( 1 - 2cosC)= 2cosAsinC，得sinA = 2sinAcosC + 2cosAsinC，
+得sinA = 2sin (A + C)，得sinA = 2sinB，由正弦定理，得a = 2b. 又∵b = 4,
 【变式演练】∴a = 8.
 12. 在△ABC 中，角A，B，C 的对边分别为a，b，c，已知(5a - 4c) 1 12
 ∴△ABC 的面积S = absinC = × 8 × 4 × = 8 2.

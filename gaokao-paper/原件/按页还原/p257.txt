@@ -54,7 +54,7 @@ d2- 41.ABCD - ABCDAB = BC =1
 d11112
  d - CO
 ∵△FOC ∼△FOC，∴ = ，∵CO= d - CO，∴1=ECC = λ 0 ≤λ ≤1αAA
-1221\frac{CO_{2}}{21}OF\frac{CO_{1}}{12}OF213 在线段上，\frac{EC}{1}((，平面 过线段的中点以
+1221\frac{CO_{2}}{21}OF\frac{CO_{1}}{12}OF213 在线段上，\frac{EC}{1}()，平面 过线段的中点以
 1CC1
 CO dd2- 16
 1，解得：CO= ，∴CF=OC2- 1 =，∴cos∠OCF=及点B,E，若平面α 截长方体所得截面为平行四边形，则实数λ 的
@@ -63,7 +63,7 @@ d2- 16取值范围是()
 \frac{CF_{2}}{1} =；
 OCd
 1 11 21
-PN = PFPM = PFPM + PN = PF+ PF= 2aA. [0,1[B.[ ,[C.[ ,[D.[ ,1[
+PN = PFPM = PFPM + PN = PF+ PF= 2aA. [0,1]B.[ ,]C.[ ,]D.[ ,1]
 由已知条件，知：，即轴截面42232
 1212
 中AB = 2a，

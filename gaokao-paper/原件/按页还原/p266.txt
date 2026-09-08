@@ -43,7 +43,7 @@ C. 此正三棱锥的内切球半径为r =
 3π【详解】 如图,设AF ⊥平面BCD，球心O 在AF 上，由正四面体的性质可得：
 D. 此正三棱锥的外接球表面积
 2 21 3
-BCDBF = ×12-((2=AF =
+BCDBF = ×12-()2=AF =
 三角形 是正三角形，2 ，
 33
 【答案】 ABC
@@ -61,7 +61,7 @@ OB2= OF 2+ BF 2⇒OA2= - AO+⇒AO = ，
 ABC，连接BG 并延长交AC 于D，FB+ FC+ FD= 03AF= AB+ AC+ ADAO=
 重心，因此，则，因此
 则BD ⊥AC，∴PB ⊥AC，又PB ⊥CM ，AC ∩CM = C，∴PB ⊥平面1⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩ 1 3
- (AB+ AC+ AD(，因此x = y = z = ，则x + y + z = ，故选A.
+ (AB+ AC+ AD)，因此x = y = z = ，则x + y + z = ，故选A.
 PACPA ⊥PBPC ⊥PB444
 ，可得，，
 由三棱锥P - ABC 为正三棱锥，可得PA ⊥PC，故A 正确；

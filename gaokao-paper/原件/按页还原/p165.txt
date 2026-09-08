@@ -4,16 +4,16 @@ sinCsin∠CBMCM π17
 2sinC，所以\frac{1}{1} = sinC，
 CM
 2 2π 3
-则 - = 2sinA - sinC = 2sinA - sin( - A(= sinA -
+则 - = 2sinA - sinC = 2sinA - sin( - A)= sinA -
 AMCM32
 3 
- cosA =3sin (A -\frac{π}{ }(,
+ cosA =3sin (A -\frac{π}{ }),
 26
  2ππ π π
 因为0 < A < ，所以- < A - < ,
 3662
  1 π3 π
-所以- < sin (A -(< 1，则- <3sin (A -(<3 ，
+所以- < sin (A -)< 1，则- <3sin (A -)<3 ，
 2626
 21⟨?⟩3⟨?⟩
 即 - 的取值范围为- , 3. 选A.
@@ -42,14 +42,14 @@ A.B.C.D.
 2 10BD6262
 BC，从而确定 的比值．
 5AC c π
-= 2 3bcsinA + 2bccosA，即 + = 2 3sinA + 2cosA = 4sin (A +(，
+= 2 3bcsinA + 2bccosA，即 + = 2 3sinA + 2cosA = 4sin (A +)，
 cb6
 5⟨?⟩5⟨?⟩2 2 5
 【详解】 ∵cosB =- ∴sinB =1 - -=,sinC = π
-555由，4sin (A +(≤4 再根据k 取最小值时求解.
+555由，4sin (A +)≤4 再根据k 取最小值时求解.
 6
  π210
-sin (B +(= (sinB + cosB) = c31
+sin (B +)= (sinB + cosB) = c31
 4210【详解】 因为sinC = ksinB，所以k = ，因为BC 边上的高为 a，所以
 b62
  1 110
@@ -59,12 +59,12 @@ b62
 定理可知
 由余弦定理得：a2= b2+ c2- 2bccosA，所以b2+ c2= 2 3bcsinA + 2bccosA，
 AC  2 10BD\frac{10}{2 10} 1b c πb c 1
-即 + = 2 3sinA + 2cosA = 4sin (A +(≤4， + ≤4，即k + ≤
+即 + = 2 3sinA + 2cosA = 4sin (A +)≤4， + ≤4，即k + ≤
  =\frac{BC}{sin4}，即AC =BC∴ =\frac{10 BC}{5BC}=cb6cbk
 sinB π5AC4
 4,k2- 4k + 1 ≤0，
 B π
-解得2 -3 ≤k ≤2 +3，所以k 的最小值为2 -3，此时sin (A +(= 1，
+解得2 -3 ≤k ≤2 +3，所以k 的最小值为2 -3，此时sin (A +)= 1，
 6
   7π
 又0 < A < π，\frac{π}{ π} < A +\frac{π}{ π} < ，
@@ -82,7 +82,7 @@ C
 【提分秘籍】
 A. ( 6 -2, 6 +2)
 基本规律
-1. 一般给高，基本就与求面积联系起来B.[6 -2, 6 +2[
+1. 一般给高，基本就与求面积联系起来B.[6 -2, 6 +2]
 2. 高也可以分开构造直角三角形，得出对应的三角函数值6 -26 +2
 C.⟨?⟩,⟨?⟩
 22

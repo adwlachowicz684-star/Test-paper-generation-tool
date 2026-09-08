@@ -30,7 +30,7 @@ A-BDFF-ADB
 ABCD△BCFBD = DF =a+ b = a 1 + λBF =2b
 在矩形 和 中，有222，，
 1  1 
-△BDFBFh =DF 2-( BF(2=a2+ b2- b2=
+△BDFBFh =DF 2-( BF)2=a2+ b2- b2=
 所以在 中， 边上的高22
  1
 a1 + λ2，

@@ -16,7 +16,7 @@ A.B.C.D.
 λ⟨?⟩⟨?⟩⟨?⟩⟨?⟩+⟨?⟩⟨?⟩⟨?⟩⟨?⟩,
 利用垂心的性质，连接CO 并延长交AB 于D，得到CD ⊥AB，把已知条件\frac{A⟨?⟩⟨?⟩B⟨?⟩}{|AB|cosB}\frac{A⟨?⟩⟨?⟩C⟨?⟩}{⟨?⟩|⟨?⟩AC|cosC}
 cosC⟨?⟩⟨?⟩⟨?⟩ cosB⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
-中的式子化简，得到 AB+ AC= 2m ⋅(AD+ DO(，再两边同乘以⟨?⟩⟨?⟩⟨?⟩
+中的式子化简，得到 AB+ AC= 2m ⋅(AD+ DO)，再两边同乘以⟨?⟩⟨?⟩⟨?⟩
 sinCsinB⟨?⟩\frac{A⟨?⟩B}{|AB|cosB⟨?⟩⟨?⟩}\frac{A⟨?⟩⟨?⟩C⟨?⟩}{|AC|cosC⟨?⟩⟨?⟩}⟨?⟩
 ∴AP= λ⟨?⟩⟨?⟩⟨?⟩+⟨?⟩⟨?⟩⟨?⟩
 ⟨?⟩⟨?⟩⟨?⟩3
@@ -24,27 +24,27 @@ AB，利用数量积、正弦定理进行整理化简，得到cosC + cosB =3m �
 2⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
 ∴AP⋅BC= λ⟨?⟩\frac{AB⟨?⟩}{|A⟨?⟩⟨?⟩B⟨?⟩|co⟨?⟩⟨?⟩s⟨?⟩B}⟨?⟩⟨?⟩⟨?⟩+\frac{AC⟨?⟩}{|AC|cosC}⟨?⟩⟨?⟩⟨?⟩⟨?⟩⋅BC=
  5π
-再把cosC 化为cos( - B(，整理后得到m 值.
+再把cosC 化为cos( - B)，整理后得到m 值.
 6
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
 【详解】 在ΔABC 中，sinBsinC ≠0，由sinBcosCAB+ sinCcosBAC=⟨?⟩\frac{A⟨?⟩⟨?⟩B⟨?⟩⋅B⟨?⟩⟨?⟩C⟨?⟩}{|A⟨?⟩⟨?⟩B⟨?⟩|cos⟨?⟩⟨?⟩B⟨?⟩}\frac{AC⋅BC}{|AC|cosC} ⟨?⟩
 ⟨?⟩⟨?⟩⟨?⟩λ⟨?⟩⟨?⟩⟨?⟩+⟨?⟩⟨?⟩⟨?⟩=
 2msinBsinCAO，⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
 cosC⟨?⟩⟨?⟩⟨?⟩ cosB⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
-得 AB+ AC= 2m ⋅AO，连接CO 并延长交AB 于D，因为O 是λ⟨?⟩\frac{|AB|⋅|BC|cos (π - B)}{⟨?⟩⟨?⟩⟨?⟩|⟨?⟩AB|cosB}⟨?⟩⟨?⟩⟨?⟩+\frac{|AC|⋅|BC|cosC}{|AC|cosC}⟨?⟩⟨?⟩⟨?⟩⟨?⟩= λ( -| BC|+ |BC|(= 0,∴
+得 AB+ AC= 2m ⋅AO，连接CO 并延长交AB 于D，因为O 是λ⟨?⟩\frac{|AB|⋅|BC|cos (π - B)}{⟨?⟩⟨?⟩⟨?⟩|⟨?⟩AB|cosB}⟨?⟩⟨?⟩⟨?⟩+\frac{|AC|⋅|BC|cosC}{|AC|cosC}⟨?⟩⟨?⟩⟨?⟩⟨?⟩= λ( -| BC|+ |BC|)= 0,∴
 sinCsinB
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
 ΔABC 的垂心，所以CD ⊥AB，AO= AD+ DO，⟨?⟩⟨?⟩
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩AP⊥BC,
-所以\frac{cosC}{C⟨?⟩⟨?⟩⟨?⟩} AB+\frac{cosB}{ cosB} AC= 2m ⋅(AD+ DO(同乘以AB得，
+所以\frac{cosC}{C⟨?⟩⟨?⟩⟨?⟩} AB+\frac{cosB}{ cosB} AC= 2m ⋅(AD+ DO)同乘以AB得，
 sinCsinB
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩18. ΔABC 的垂心H 在其内部，∠A = 30°，AH =3 ，则3BH +
 cosC
-\frac{cos}{B} AB⋅AB+ AC⋅AB= 2m ⋅(AD+ DO(⋅AB c2+
+\frac{cos}{B} AB⋅AB+ AC⋅AB= 2m ⋅(AD+ DO)⋅AB c2+
 sinCsinBsinCCH 的取值范围是
 cos⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
  bccosA = 2m ⋅AD⋅AB= 2m ⋅bcosA ⋅c1, 3
-sinB【答案】 ((
+sinB【答案】 ()
  πcosC cosB3【分析】 
 因为A = ，所以 c2+ bc =3mbc 由正弦定理可得
 6sinCsinB2
@@ -55,11 +55,11 @@ cosCsinC + cosBsinC =3msinBsinC边成比例得到BC，在ΔBHC 中，∠BHC = 15
 3 5π弦定理可得：
 又sinC ≠0，所以有cosC + cosB =3m ⋅sinB，而C = π - A - B =
 26 π
-3BH + CH = 2sin (α +(即可．
+3BH + CH = 2sin (α +)即可．
 - B6
 ，
  5π3 11【详解】 设AD，BE 是高，H 就是AD、BE 交点，那么AD ⊥BC，∠DAC +
-所以cosC = cos( - B(=- cosB + sinB，所以得到 sinB =
+所以cosC = cos( - B)=- cosB + sinB，所以得到 sinB =
 6222∠ACD = 90°，BE ⊥AC，∠CBE + ∠DCA = 90°，
 3msinB，AH AE
 所以∠DAC = ∠CBE，所以RtΔAHE ∽RtΔBCE，所以 = ，AH =
@@ -73,14 +73,14 @@ BCBHCH
  = = = 2.
 sin∠BHCsin∠BCHsin∠HBC
  π
-∴3BH + CH =3 × 2sin∠BCH + 2sin( - ∠BCH(= 2 3sinα + cosα -
+∴3BH + CH =3 × 2sin∠BCH + 2sin( - ∠BCH)= 2 3sinα + cosα -
 6
 3sinα
  π π π⟨?⟩13⟨?⟩
-=3sinα + cosα = 2sin (α +(∵α ∈(0,(，∴sin (α +(∈ ，，
+=3sinα + cosα = 2sin (α +)∵α ∈(0,)，∴sin (α +)∈ ，，
 66622
  π
-∴2sin (α +(∈(1, 3).
+∴2sin (α +)∈(1, 3).
 6
 【提分秘籍】
 基本规律
@@ -93,7 +93,7 @@ sin∠BHCsin∠BCHsin∠HBC
 16. 点P 为△ABC 所在平面内的动点，满足AP=
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
 ⟨?⟩⟨?⟩【题型七】解三角形应用题
-t⟨?⟩\frac{AB}{|AB|cosB}⟨?⟩⟨?⟩⟨?⟩+\frac{AC}{|AC|cosC}⟨?⟩⟨?⟩⟨?⟩⟨?⟩，t ∈(0,+∞(，则点P 的轨迹通过
+t⟨?⟩\frac{AB}{|AB|cosB}⟨?⟩⟨?⟩⟨?⟩+\frac{AC}{|AC|cosC}⟨?⟩⟨?⟩⟨?⟩⟨?⟩，t ∈(0,+∞)，则点P 的轨迹通过
 【典例分析】
 ⟨?⟩⟨?⟩
 例1. 某城市要在广场中央的圆形地面设计一块浮雕，彰显城市
@@ -102,7 +102,7 @@ t⟨?⟩\frac{AB}{|AB|cosB}⟨?⟩⟨?⟩⟨?⟩+\frac{AC}{|AC|cosC}⟨?⟩⟨?�
 A. 外心B. 重心C. 垂心D. 内心20m⊙OMN10m⊙OO
 径为 的大 上，点 ， 在半径为 的小 上，点，
 【答案】 C π
-点P 在弦MN 的同侧. 设∠MON = 2α (0 < α <(，当△PMN 的面
+点P 在弦MN 的同侧. 设∠MON = 2α (0 < α <)，当△PMN 的面
 2
 【分析】 
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
@@ -110,7 +110,7 @@ CBAP积最大时，对于其它区域中的某材料成本最省，则此时cos�
 对题目的式子两边乘以，得到所在直线为高所在直线，即可．
 【详解】 ()
 ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩ ⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩⟨?⟩
-处理原式得到AP⋅CB= t⟨?⟩\frac{A⟨?⟩⟨?⟩B⟨?⟩⋅C⟨?⟩⟨?⟩B⟨?⟩}{|AB|cosB}⟨?⟩⟨?⟩⟨?⟩+\frac{A⟨?⟩⟨?⟩C⟨?⟩⋅C⟨?⟩⟨?⟩B⟨?⟩}{|AC|cosC}⟨?⟩⟨?⟩⟨?⟩⟨?⟩= t( |BC|- |BC|(= 0
+处理原式得到AP⋅CB= t⟨?⟩\frac{A⟨?⟩⟨?⟩B⟨?⟩⋅C⟨?⟩⟨?⟩B⟨?⟩}{|AB|cosB}⟨?⟩⟨?⟩⟨?⟩+\frac{A⟨?⟩⟨?⟩C⟨?⟩⋅C⟨?⟩⟨?⟩B⟨?⟩}{|AC|cosC}⟨?⟩⟨?⟩⟨?⟩⟨?⟩= t( |BC|- |BC|)= 0
 ⟨?⟩⟨?⟩
 ⟨?⟩⟨?⟩⟨?⟩
 故AP所在的直线与三角形的高重合，故经过垂心，故选C．

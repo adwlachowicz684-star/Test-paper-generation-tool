@@ -2,14 +2,14 @@ a2- ab - bc - c2C. 钝角三角形D. 以上都不对
 = 0，
 abc
 a + c + b【答案】 A
-所以(a - b((b - c((a - c(⋅= 0，所以a = b 或b = c 或a = c，故三
+所以(a - b)(b - c)(a - c)⋅= 0，所以a = b 或b = c 或a = c，故三
 abc(b + c)2> a2= b2+ c2- 2bccosθ > (b - c)2,
 【分析】 由三角函数的有界性得：
 角形为等腰三角形. 故选：A
 由三角形的性质可得a + b > c，设a <b <c，再结合余弦定理可得
 cosC =\frac{a + b - c}{2 a b} > 0, 即可得解.
 【提分秘籍】
-基本规律【详解】 因为存在角θ ∈(0,π(使得：a2= b2+ c2- 2bccosθ, 则(b + c)2> a2=
+基本规律【详解】 因为存在角θ ∈(0,π)使得：a2= b2+ c2- 2bccosθ, 则(b + c)2> a2=
 1. 正余弦定理恒等变形：化边或者化角b2+ c2- 2bccosθ > (b - c)2,
 2. 判断边或者角的大小。即三边长a,b,c 也可构成一个三角形，不妨假设a <b <c，由两边之和
 【变式演练】大于第三边可得：a + b > c，
@@ -28,27 +28,27 @@ D. 等腰三角形或直角三角形
 1，bcosA - cosB = 1，若A，B 变化时，sinB - 2λsin2A 存在最大
 【答案】 C
 值，则正数λ 的取值范围是()
-【分析】 原式可化为(a2+ b2(⋅(sinAcosB - cosAsinB(=
+【分析】 原式可化为(a2+ b2)⋅(sinAcosB - cosAsinB)=
 3 1
-(a2- b2((sinAcosB + cosAsinB(，然后利用正弦定理、余弦定理进行边角互A. ⟨?⟩0,⟨?⟩B. (0,(
+(a2- b2)(sinAcosB + cosAsinB)，然后利用正弦定理、余弦定理进行边角互A. ⟨?⟩0,⟨?⟩B. (0,)
 32
 化，得出a，b，c 的关系.
 321
- C.⟨?⟩ ,⟨?⟩D.( ,1(
-【详解】 由\frac{a^{2}+ b^{2}}{a^{2}- b^{2}} =\frac{sin(A + B)}{sin(A - B)} 得：(a2+ b2(⋅sin(A - B) = (a2- b2(sin(A322
+ C.⟨?⟩ ,⟨?⟩D.( ,1)
+【详解】 由\frac{a^{2}+ b^{2}}{a^{2}- b^{2}} =\frac{sin(A + B)}{sin(A - B)} 得：(a2+ b2)⋅sin(A - B) = (a2- b2)sin(A322
 + B)，且a ≠b，【答案】 A
-∴(a2+ b2(⋅(sinAcosB - cosAsinB(= (a2- b2((sinAcosB + cosAsinB(，【分析】 
+∴(a2+ b2)⋅(sinAcosB - cosAsinB)= (a2- b2)(sinAcosB + cosAsinB)，【分析】 
 且a ≠b，由a = 1，bcosA - cosB = 1 可得bcosA - acosB = a，由正弦定理转化为角
-∴(a2+ b2(⋅(acosB - bcosA(= (a2- b2((acosB + bcosA(，的关系可以得到sin(B - A) = sinA，由此推出B = 2A，又△ABC 为锐角三角形，
+∴(a2+ b2)⋅(acosB - bcosA)= (a2- b2)(acosB + bcosA)，的关系可以得到sin(B - A) = sinA，由此推出B = 2A，又△ABC 为锐角三角形，
  a2+ c2- b2 b2+ c2- a2π π
 ∴a2+ b2⋅⟨?⟩a- b⟨?⟩=可求出 < A < ，将sinB - 2λsin2A 都用角A 表示可以得到
-((2ac2bc62
- a2+ c2- b2 b2+ c2- a21 + λ2sin (2A + φ(- λ，且tanφ = λ，当sinB - 2λsin2A 取最大值时利用tanφ =
-(a2- b2(⟨?⟩a+ b⟨?⟩，
+()2ac2bc62
+ a2+ c2- b2 b2+ c2- a21 + λ2sin (2A + φ)- λ，且tanφ = λ，当sinB - 2λsin2A 取最大值时利用tanφ =
+(a2- b2)⟨?⟩a+ b⟨?⟩，
 2ac2bc π
-tan( - 2A(可求得λ 的范围.
+tan( - 2A)可求得λ 的范围.
 化简整理得：a2+ b2⋅a2- b2= a2- b2c2，即a2+ b2- c2a2- b2= 0，2
-((((((((((
+()()()()()
 【详解】 因为a = 1，bcosA - cosB = 1，所以bcosA - acosB = a，
 ∴a2= b2或a2+ b2= c2，又a ≠b，∴△ABC 是直角三角形但一定不是等腰三
 可得：sinBcosA - sinAcosB = sinA，即sin(B - A) = sinA，∴B = 2A
@@ -57,7 +57,7 @@ tan( - 2A(可求得λ 的范围.
  ⟨?⟩2⟨?⟩2
 5. 在△ABC 中，角A ，B ，C 的对边分别为a ，b ，c ，若c 2=⟨?⟩⟨?⟩
 因为△ABC 为锐角三角形，则有⟨?⟩0 < B <，即⟨?⟩0 < 2A <，解得：
-b( a + b(，则以下结论正确的是()22
+b( a + b)，则以下结论正确的是()22
 ⟨?⟩⟨?⟩
 ⟨?⟩ π⟨?⟩ π
 ⟨?⟩0 < C <⟨?⟩0 < π - 3A <
@@ -67,22 +67,22 @@ A. c > bB. C = 2BC. a > cD. 0 < B <
  < A < .
 62
 【答案】 ABsinB - 2λsin2A = sin2A - 2λsin2A = sin2A - λ 1 - cos2A
-((
+()
 【分析】 对A, 由两边之和大于第三边可得c2> bc，再进一步用不等式的性质
-=1 + λ2sin (2A + φ(- λ(tanφ = λ(，
+=1 + λ2sin (2A + φ)- λ(tanφ = λ)，
 即可判断； π  
 当2A + φ = 时，原式有最大值1 + λ2- λ，此时φ =\frac{π}{π} - 2A，
  c22
 对B，由余弦定理可知cosB = ，再用正弦定理可知sinC = 2sinBcosB，进
 2b π1π 
-则λ = tanφ = tan( - 2A(= ，∵ < 2A < ，∴tan2A >3，即
+则λ = tanφ = tan( - 2A)= ，∵ < 2A < ，∴tan2A >3，即
 一步化简可得B,C 的关系，进而可以得到a,b 的关系；2tan2A32
 CB13⟨?⟩3⟨?⟩
 对，结合 代特值即可判断；0 < < ，所以λ ∈0,.
 tan2A33
 对D，结合B，可以得到A,B 的关系，进而可以判断.
 故选：A.
-【详解】 因为c2= b( a + b(> bc，所以c > b，故A 正确；
+【详解】 因为c2= b( a + b)> bc，所以c > b，故A 正确；
  a2+ c2- b2 a2+ ab a + b c
 由余弦定理得，cosB ==== ，所以c =【提分秘籍】
 2ac2ac2c2b
@@ -104,14 +104,14 @@ B 正确；
 42
 3 313
  πC.⟨?⟩ ,⟨?⟩D.⟨?⟩ ,⟨?⟩
-由B 选项可知C = 2B，故A = π - (B + C(= π - (B + 2B(> 0，即B < ，2222
+由B 选项可知C = 2B，故A = π - (B + C)= π - (B + 2B)> 0，即B < ，2222
 3
 故D 错误．C
 【答案】 
 故选：AB.sinBB.
 【分析】 利用正弦定理化简已知条件，由此求得 进而求得 的大小 根
 据三角恒等变换化简cosB + sinC，由此求得取值范围.
-6. 已知△ABC 的三边长分别为a，b，c，若存在角θ ∈(0,π(
+6. 已知△ABC 的三边长分别为a，b，c，若存在角θ ∈(0,π)
 【详解】 依题意b = 2asinB，由正弦定理得sinB = 2sinAsinB，所以sinA =
 使得：a2= b2+ c2- 2bccosθ, 则△ABC 的形状为()
 13

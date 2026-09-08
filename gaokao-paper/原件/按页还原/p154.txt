@@ -1,5 +1,5 @@
 4 - 2 正余弦定理与解三角形小题1 2 3 π3
-角恒等变换得S =sin (2A +(- ，即可求△ABC 面积的最大
+角恒等变换得S =sin (2A +)- ，即可求△ABC 面积的最大
 △ABC363
 【题型一】解三角形基础：角与对边
 值.
@@ -17,25 +17,25 @@ sinC)2- sin2(B + C) = 3sinBsinC，且a = 2，则ΔABC 的面积的最2
 A.B.3C. 2 3D. 4
 2
  4 3 π π
-\frac{2sin( 3 - A)}{sin3}=sin( - A((0 < A <(.
+\frac{2sin( 3 - A)}{sin3}=sin( - A)(0 < A <).
  2π333
 【答案】 B
 sinB + sinC2- sin B + C= 3sinBsinC
-【分析】 由((2((，根据三角形内角和 1 4 3 π
-S = bcsinA =sin( - A(sinA =
+【分析】 由()2()，根据三角形内角和 1 4 3 π
+S = bcsinA =sin( - A)sinA =
 定理，结合诱导公式可得sin2B + sin2C - sin2A = sinBsinC，再由正弦定理可得△ABC233
  14 3⟨?⟩3 1⟨?⟩ 2 33
 a2+ b2- c2= bc，从而由余弦定理求得cosA = ，再利用基本不等式可得bc ≤ cosA - sinAsinA = 2sinAcosA -sin2A = sin2A - (1
 232233
 4，由三角形面积公式可得结果.3 2 3 π
-- cos2A) = sin2A + cos2A -\frac{3}{ 5π} =sin (2A +(-\frac{3}{π} ，
+- cos2A) = sin2A + cos2A -\frac{3}{ 5π} =sin (2A +)-\frac{3}{π} ，
  33363
-【详解】 ∵sin (B + C(= sinA，且(sinB + sinC(2- sin2(B + C(=
+【详解】 ∵sin (B + C)= sinA，且(sinB + sinC)2- sin2(B + C)=
  ππ π π 
-由0 < A < ，有 < 2A + < ，则sin (2A +(≤sin = 1，
+由0 < A < ，有 < 2A + < ，则sin (2A +)≤sin = 1，
 3sinBsinC，366662
 ∴sin2B + sin2C - sin2A = sinBsinC，由正弦定理可得a2+ b2- c2= bc，2 3 π333
-∴sin (2A +(- ≤ ，即△ABC 面积的最大值是 . 故选：A.
+∴sin (2A +)- ≤ ，即△ABC 面积的最大值是 . 故选：A.
 36333
  b2+ c2- a2 13
 由余弦定理可得cosA == ，sinA = ，又∵a = 2,∴4 = b2
@@ -50,10 +50,10 @@ B.A. (1，9]B. (3，9]C. (5，9]D. (7，9]
 【答案】 D
 基本规律
  2π
-【分析】 由正弦定理求出b = 2sinB,c = 2sin( - B(，再由余弦定理可得b2
+【分析】 由正弦定理求出b = 2sinB,c = 2sin( - B)，再由余弦定理可得b2
 1. 角与角所对应的边长已知3
 2. 2π π
- 一般情况下，对称型多用余弦定理。+ c2+ bc = 8sinBsin( - B(+ 3，化为5 + 4sin (2B -(，结合角的范围，
+ 一般情况下，对称型多用余弦定理。+ c2+ bc = 8sinBsin( - B)+ 3，化为5 + 4sin (2B -)，结合角的范围，
 36
 3. 通法为“正弦定理与外接圆半径代换”
 利用正弦函数的性质可得结论.
@@ -66,31 +66,31 @@ cosB cosC sinA π\frac{c}{sin(3 - B)}，
 ⟨?⟩+⟨?⟩= ，B = ，则a + c 的取值范围是
 bcsinC3
  2π
-()则有b = 2sinB,c = 2sin( - B(，由△ABC 的内角A,B,C 为锐角，可得
+()则有b = 2sinB,c = 2sin( - B)，由△ABC 的内角A,B,C 为锐角，可得
 3
  π
 3√3⟨?⟩0 < B < ,
-A.⟨?⟩ , 3√B.( , 3[2
+A.⟨?⟩ , 3√B.( , 3]2
 2√2⟨?⟩⟨?⟩，
  2π 
 0 < - B <\frac{π}{π} ,
 3332
-C.√ , 3√D.[ , 3[
+C.√ , 3√D.[ , 3]
 √π  π 5π1 π
-√2√2∴ < B <\frac{π}{π} ⇒ < 2B - < ⇒ < sin (2B -(≤1 ⇒2 <
+√2√2∴ < B <\frac{π}{π} ⇒ < 2B - < ⇒ < sin (2B -)≤1 ⇒2 <
 6266626
 A 
-【答案】 4sin (2B -(≤4，
+【答案】 4sin (2B -)≤4，
 6
  cosB cosC
 【分析】 利用三角恒等变换及正弦定理将sin(A + C)⟨?⟩+⟨?⟩=a2= b2+ c2- 2bccosA ⇒3 = b2+ c2- bc,b2+ c2+ bc
 bc由余弦定理可得 因此有
 sinA 2π
- 进行化简，可求出b 的值，再利用边化角将a + c 化成角，然后利用辅助= 2bc + 3 = 8sinBsin( - B(+ 3
+ 进行化简，可求出b 的值，再利用边化角将a + c 化成角，然后利用辅助= 2bc + 3 = 8sinBsin( - B)+ 3
 sinC3
 角公式及角的范围即可得到答案.= 4 3sinBcosB + 4sin2B + 3 = 2 3sin2B - 2cos2B + 5 = 5 +
  cosB cosC sinA π π
-sin(A + C)⟨?⟩+⟨?⟩=B = ∴4sin (2B -(∈(7,9[故选：D.
+sin(A + C)⟨?⟩+⟨?⟩=B = ∴4sin (2B -)∈(7,9]故选：D.
 【详解】 由题知 ，6
 bcsinC3
  cosB cosC sinA【题型二】判断三角形形状
@@ -114,11 +114,11 @@ abc
 ∵B = ∴ = = = 1 ∴a + c = sinA + sinC = sinA +
 3sinAsinBsinC【答案】 A
  2π 33 π【分析】 利用余弦定理将角化为边整理，即可得三角形的边之间的关系，从
-sin( - A(= sinA + cosA =3sin (A +(
+sin( - A)= sinA + cosA =3sin (A +)
 3226
 而可得此三角形的形状.
  2ππ π 5π3 π3
-∵0 < A < ∴ < A + < ∴ <3sin (A +(≤3 即 < aa2+ c2- b2a2+ b2- c2b2+ c2- a2
+∵0 < A < ∴ < A + < ∴ <3sin (A +)≤3 即 < aa2+ c2- b2a2+ b2- c2b2+ c2- a2
 3666262【详解】 由余弦定理，可得a ⋅+ b ⋅+ c ⋅
 2ac2ab2bc
 + c ≤3 故选：A.
@@ -133,14 +133,14 @@ c2- b2+ b2- a2
 3 2 3 4 3= 0，
 A.B.C.D. 2 3b
 333 11 1a + b
-所以(a2- b2(⟨?⟩\frac{1}{ + } -⟨?⟩+ (b2- c2(⟨?⟩ -⟨?⟩= 0，所以(a - b((b - c(⋅
+所以(a2- b2)⟨?⟩\frac{1}{ + } -⟨?⟩+ (b2- c2)⟨?⟩ -⟨?⟩= 0，所以(a - b)(b - c)⋅
 cbabbc
 【答案】 A
 bc
-+ (b - a((b - c(⋅= 0，
++ (b - a)(b - c)⋅= 0，
 【分析】 由已知条件，结合三角形内角性质得1 + 2cosB = 0，进而可得角B，ab
  4 3 π πa + b b + c
-c =sin( - A((0 < A <(所以(a - b((b - c(⟨?⟩-⟨?⟩= 0，所以(a - b((b - c(⋅
+c =sin( - A)(0 < A <)所以(a - b)(b - c)⟨?⟩-⟨?⟩= 0，所以(a - b)(b - c)⋅
 应用正弦定理有，根据三角形面积公式、三bcab
 333
 ·154·

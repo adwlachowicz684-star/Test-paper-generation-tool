@@ -33,11 +33,11 @@ CD，
 又∵点E 为棱PD 的中点，    ∴AE ⎳PF
 【答案】 (1) 证明见解析(2) 存在；M 为AP 中点
 又∵AE ⊂平面AEC，PF ⊄平面AEC    ∴PF ⎳平面AEC
-【分析】 (1(根据题意, 证明P，Q，R 是平面BDEF 和平面BDDB的公共
+【分析】 (1)根据题意, 证明P，Q，R 是平面BDEF 和平面BDDB的公共
 11∵底面ABCD 为矩形，∴AD ⎳BC 且AD = BC
 点, 利用平面的公理3 即可得证;
 又∵点F 为DA 延长线上的点,AF = DA        ∴AF ⎳BC 且AF = BC
-(2(存在点M 为AP 中点, 使平面BDM ∥平面EFBD. 取AD 中点G，AB
+(2)存在点M 为AP 中点, 使平面BDM ∥平面EFBD. 取AD 中点G，AB
 11∴四边形AFBC 为平行四边形        ∴BF ⎳AC
 中点H，连结GH，交AC 于点M ，连结DG，BH, 利用线面平行的判定定理∵AC ⊂AECBF ⊄AEC ∴BF ⎳AEC
 11又平面，平面       平面
