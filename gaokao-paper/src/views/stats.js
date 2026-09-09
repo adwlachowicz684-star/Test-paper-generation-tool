@@ -159,12 +159,13 @@ function renderKpCards(st) {
     });
 
     return `
-      <div class="card">
+      <div class="card kp-card">
         <h3>知识点覆盖 · ${esc(sub)}</h3>
         <p style="font-size:12px;color:#5a6472;margin:-4px 0 10px">
           共 ${l1s.length} 个大知识点、${n2} 个小知识点、${n3} 个题型。
           点名称前的三角可折叠下一层。
         </p>
+        ${kpTools(n2, n3)}
         <table class="grid kp-table">
           <colgroup>
             <col style="width:auto"><col style="width:56px"><col style="width:180px">
@@ -180,11 +181,53 @@ function renderKpCards(st) {
   }).join('');
 }
 
-/** 展开/折叠：只切显示，不重渲染，展开状态自然保留 */
+/**
+ * 批量层级按钮。
+ *
+ * 三级全铺开有 160+ 行，想只看小知识点得一行行点 ——
+ * 所以给一组「一次铺到指定深度」的按钮。
+ *
+ * 没有数据的层级直接禁用：只有大知识点时点「到题型」什么都不会发生，
+ * 与其让用户以为是坏了，不如一开始就点不动。
+ */
+function kpTools(n2, n3) {
+  const b = (lv, label, ok) =>
+    `<button class="kp-lv" data-level="${lv}"${ok ? '' : ' disabled'}`
+    + `${ok ? '' : ` title="该层暂无数据"`}>${label}</button>`;
+  return `
+    <div class="kp-tools">
+      <span class="kp-tools-t">展开层级</span>
+      ${b(1, '仅大知识点', true)}
+      ${b(2, '到小知识点', n2 > 0)}
+      ${b(3, '到题型', n3 > 0)}
+      <span class="kp-cnt"></span>
+    </div>`;
+}
+
+/* ------------------------------------------------------------
+   展开 / 折叠
+   ------------------------------------------------------------
+   两种操作共用一个状态 —— 行上的 style.display：
+     · 点三角：只动某一块
+     · 点层级按钮：整表铺到指定深度
+   每次改完都要同步三角符号和按钮高亮，
+   否则会出现「按钮显示已展开、实际却是收起的」这种自相矛盾的界面。
+   ------------------------------------------------------------ */
+
 function bindToggles() {
   const body = document.querySelector('#st-body');
   if (!body) return;
+
   body.addEventListener('click', e => {
+    // ① 层级按钮
+    const lvBtn = e.target.closest('.kp-lv');
+    if (lvBtn) {
+      if (lvBtn.disabled) return;
+      setLevel(lvBtn.closest('.kp-card'), +lvBtn.dataset.level);
+      return;
+    }
+
+    // ② 单个三角
     const tg = e.target.closest('.kp-tg');
     if (!tg) return;
     const key = tg.dataset.tg || '';
@@ -196,7 +239,77 @@ function bindToggles() {
       // 收大知识点：连小知识点带题型一起藏
       : `.kp-r2.g${key}, .kp-r3.g${key}`;
     body.querySelectorAll(sel).forEach(tr => { tr.style.display = now ? 'none' : ''; });
+
+    // 手动点过之后可能是「半展开」的自定义状态，按钮高亮要重算
+    syncLevelBtns(tg.closest('.kp-card'));
+    updateRowCount(tg.closest('.kp-card'));
   });
+
+  body.querySelectorAll('.kp-card').forEach(c => {
+    syncLevelBtns(c); updateRowCount(c);
+  });
+}
+
+/** 批量铺到指定层级：1=仅大知识点 2=+小知识点 3=+题型 */
+function setLevel(card, level) {
+  if (!card) return;
+  const show2 = level >= 2, show3 = level >= 3;
+
+  card.querySelectorAll('tr.kp-r2')
+    .forEach(tr => { tr.style.display = show2 ? '' : 'none'; });
+  card.querySelectorAll('tr.kp-r3')
+    .forEach(tr => { tr.style.display = show3 ? '' : 'none'; });
+
+  // 三角符号跟着翻，否则「全展开」后图标还是收起的 ▸
+  card.querySelectorAll('.kp-tg').forEach(tg => {
+    if (tg.textContent === '·') return;        // 没有下一层，保持原样
+    const isL2 = (tg.dataset.tg || '').includes('_');
+    tg.textContent = (isL2 ? show3 : show2) ? '▾' : '▸';
+  });
+
+  card.querySelectorAll('.kp-lv').forEach(b => {
+    b.classList.toggle('on', +b.dataset.level === level);
+  });
+  updateRowCount(card);
+}
+
+/**
+ * 由当前实际显示状态反推层级，同步按钮高亮。
+ * 谁都不匹配时（比如手动展开了某几个）全部不高亮 ——
+ * 这时叫「自定义」，硬点亮某个按钮反而是在骗人。
+ */
+function syncLevelBtns(card) {
+  if (!card) return;
+  const vis = tr => tr.style.display !== 'none';
+  // 空列表必须与任何状态**都兼容**：
+  // 某层没数据时它在判断里不提供信息。若按「空 = 任意 want 都成立」，
+  // 只有大知识点时会同时满足 1 级和 3 级，最后算出 lv=3，
+  // 于是被禁用的「到题型」反而高亮 —— 禁用按钮点不动却亮着，自相矛盾。
+  const eq = (list, want) => list.length
+    ? list.every(tr => vis(tr) === want) : true;
+
+  const r2 = [...card.querySelectorAll('tr.kp-r2')];
+  const r3 = [...card.querySelectorAll('tr.kp-r3')];
+
+  let lv = 0;
+  if (eq(r2, false) && eq(r3, false)) lv = 1;
+  else if (eq(r2, true) && eq(r3, false)) lv = 2;
+  else if (eq(r2, true) && eq(r3, true)) lv = 3;
+
+  card.querySelectorAll('.kp-lv').forEach(b => {
+    b.classList.toggle('on', !b.disabled && +b.dataset.level === lv);
+  });
+}
+
+/** 右上角行数：折叠了多少一眼可见 */
+function updateRowCount(card) {
+  if (!card) return;
+  const el = card.querySelector('.kp-cnt');
+  if (!el) return;
+  const all = [...card.querySelectorAll('.kp-table tbody tr')];
+  if (!all.length) { el.textContent = ''; return; }
+  const shown = all.filter(tr => tr.style.display !== 'none').length;
+  el.textContent = `显示 ${shown} / ${all.length} 行`;
 }
 
 function bar(n, max) {
