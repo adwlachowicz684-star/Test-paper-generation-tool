@@ -400,3 +400,17 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   color: #fff; background: #9aa8bd; border-radius: 3px;
   padding: 0 6px; margin-right: 6px;
 }
+
+/* ---------- 统计页：知识点三级明细表 ----------
+   大/小知识点/题型各占一行，靠缩进和字号区分层级，
+   不再把所有知识点拼进一个单元格。 */
+.kp-table td { vertical-align: middle; }
+.kp-cell { white-space: normal; word-break: break-word; }
+.kp-l1 { font-weight: 600; color: #1f2d3d; }
+.kp-l2 { padding-left: 28px !important; color: #3d4a5c; }
+.kp-l3 { padding-left: 52px !important; color: #5a6472; font-size: 12px; }
+.kp-tg {
+  display: inline-block; width: 14px; cursor: pointer;
+  color: var(--brand2); user-select: none;
+}
+.kp-meta { font-weight: 400; font-size: 11px; color: #9aa8bd; margin-left: 8px; }

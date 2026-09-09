@@ -246,6 +246,10 @@ def save_progress(p):
 SUBJ = {'M': '数学', 'P': '物理', 'C': '化学',
         'B': '生物', 'Y': '语文', 'E': '英语'}
 
+# 题目只标了大知识点、没有小知识点时的兜底分组名。
+# 用它占位而不是丢掉，保证「大知识点题数 = 其下小知识点题数之和」。
+UNSPLIT = '（未细分）'
+
 
 def _save_bank(bank):
     """写回题库（原子写 + 备份）。
@@ -444,12 +448,62 @@ def cmd_stats(a):
         for k in q.get('kp_list', []):
             by_kp[sub][k] += 1
 
+    # 三级展开：大知识点 → 小知识点 → 题型。
+    #
+    # 光有 by_kp 不够：它只到一级，且值是 [[名, 题数], ...] 数组，
+    # 前端若按 {名: 题数} 渲染，整个数组会被当字符串塞进一个单元格，
+    # 一科的知识点全挤成一行（统计页就是这么坏的）。
+    # 所以这里直接把三级树算好，前端照着铺行即可。
+    #
+    # 归属以**题型节点的主归属为准**（topic.primary = (一级, 二级)），
+    # 没挂题型的题才退回用 q['kp'] / q['kp2']，避免同一题在两级上错位。
+    pair = defaultdict(Counter)     # (科目, 一级) -> Counter(二级)
+    trio = defaultdict(Counter)     # (科目, 一级, 二级) -> Counter(题型ID)
+    for q in qs:
+        sub = q.get('subject') or ''
+        tops = [t for t in (q.get('topics') or []) if K.topic_node(t)]
+        seen = set()
+        if tops:
+            for tid in tops:
+                l1, l2 = K.topic_node(tid)['primary']
+                if (l1, l2) not in seen:
+                    pair[(sub, l1)][l2] += 1
+                    seen.add((l1, l2))
+                trio[(sub, l1, l2)][tid] += 1
+        else:
+            l2 = (q.get('kp2') or '').strip() or UNSPLIT
+            for l1 in (q.get('kp_list') or []):
+                if (l1, l2) in seen:
+                    continue
+                seen.add((l1, l2))
+                pair[(sub, l1)][l2] += 1
+
+    kp_tree = {}
+    for sub, c1 in by_kp.items():
+        kids_of = []
+        for l1, n1 in c1.most_common():
+            l2s = []
+            for l2, n2 in pair[(sub, l1)].most_common():
+                l2s.append({
+                    'name': l2, 'n': n2,
+                    # 只用 nd['name']：topic_label() 会拼成
+                    # 「一级 / 二级 · 题型」，而这里一二级已经是独立列了，
+                    # 再拼一遍每行都会重复拖得很长。
+                    'topics': [{'id': tid,
+                                'name': (K.topic_node(tid) or {}).get('name', tid),
+                                'n': n}
+                               for tid, n in trio[(sub, l1, l2)].most_common()],
+                })
+            kids_of.append({'name': l1, 'n': n1, 'children': l2s})
+        kp_tree[sub] = kids_of
+
     return _out({
         'ok': True, 'total': len(qs),
         'by_subject': dict(c_sub),
         'by_type': dict(c_type),
         'by_level': dict(c_lv),
         'by_kp': {s: c.most_common() for s, c in by_kp.items()},
+        'kp_tree': kp_tree,
         'subjects': K.SUBJECTS,
     })
 
