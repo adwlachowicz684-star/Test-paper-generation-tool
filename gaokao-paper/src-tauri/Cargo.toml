@@ -25,6 +25,7 @@ tauri-plugin-fs = "2"
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+tauri-plugin-single-instance = "2"
 
 # 注意：panic = "abort" 会与 `cargo test` 冲突（binary crate 不受影响）。
 # 若哪天要加 Rust 单元测试，需改为 "unwind"。
