@@ -8,13 +8,19 @@ import { setPending } from './practice.js';
 let state = {
   subject: '数学',
   kp: new Set(),      // 一级（大知识点）名
-  kp2: new Set(),     // 二级（小知识点）名
-  topics: new Set(),  // 题型标签（三级节点 ID，多对多）
+  // 二级（小知识点）：存 "一级>二级" 而非单存二级名。
+  // 不同大知识点下可能有同名小知识点（如「综合应用」），
+  // 只存名字会串 —— 取消 A 块下的，B 块下同名的也跟着没了。
+  kp2: new Set(),
+  topics: new Set(),  // 题型标签（三级节点 ID，多对多，全局唯一）
   note: { l1: null, l2: null, topic: null },   // 右侧讲解面板当前指向
-  // 三列联动的当前焦点：决定「小知识点」「题型」两列显示谁的内容。
-  // 与「选中」是两件事 —— 选中是筛选条件，焦点只是浏览位置，
-  // 所以可以点开看完再决定要不要勾。
+  // 焦点 = 下方展开区跟随的大知识点，始终等于**最后勾中的那一个**。
+  // 其余已勾的大知识点照常参与组卷，只是这里不展开它们。
   focus: { l1: null, l2: null },
+  // 已做过「默认全选」的大知识点。
+  // 记这个是为了：用户手动取消过某块之后，
+  // 来回切换大知识点不该把他的选择冲掉。
+  seeded: new Set(),
   types: new Set(),
   grades: new Set(),   // 年级（派生字段，见 py/grade_map.py）
   gradeStat: {},       // {年级id: 题数}，来自 stats.by_grade_sub
@@ -75,28 +81,15 @@ export async function mount(root) {
 
       <div class="kp-layout">
         <div class="kp-left">
-          <div class="row" style="align-items:flex-start;margin-bottom:6px">
-            <label style="padding-top:2px">知识点</label>
-            <span class="kp-hint">点开大知识点 → 选小知识点 → 挑题型；
-              三级都能勾，勾中的才参与组卷。</span>
+          <div class="row" style="align-items:flex-start">
+            <label style="padding-top:4px">知识点</label>
+            <div id="f-kp" class="grow" style="max-height:132px;overflow-y:auto">
+              <span style="color:#9aa;font-size:12px">加载中…</span>
+            </div>
           </div>
-          <div class="kp-cols">
-            <div class="kp-col">
-              <div class="kp-col-h">大知识点
-                <span class="kp-col-tip">可多选</span></div>
-              <div id="f-kp" class="kp-col-b">
-                <span style="color:#9aa;font-size:12px">加载中…</span></div>
-            </div>
-            <div class="kp-col">
-              <div class="kp-col-h">小知识点
-                <span id="l2-src" class="kp-col-tip"></span></div>
-              <div id="f-kp2" class="kp-col-b"></div>
-            </div>
-            <div class="kp-col">
-              <div class="kp-col-h">题型
-                <span id="l3-src" class="kp-col-tip"></span></div>
-              <div id="f-topic" class="kp-col-b"></div>
-            </div>
+          <div class="row" style="align-items:flex-start;margin-top:8px">
+            <label style="padding-top:4px"></label>
+            <div id="topic-tree" class="grow"></div>
           </div>
         </div>
         <div class="kp-right">
@@ -133,6 +126,8 @@ export async function mount(root) {
     state.kp2.clear();
     state.types.clear();
     state.grades.clear();
+    // 换科目后知识点全变了，全选记录必须作废
+    state.seeded.clear();
     state.focus = { l1: null, l2: null };
     renderTypes();
     await loadKp();
@@ -161,12 +156,15 @@ export async function mount(root) {
     state.kp.clear(); state.kp2.clear();
     state.types.clear(); state.topics.clear();
     state.grades.clear();
+    // seeded 也要清：否则清空后重新勾同一个大知识点，
+    // 因为「已经全选过」而不再全选，结果下方空空如也。
+    state.seeded.clear();
     state.note = { l1: null, l2: null, topic: null };
     state.focus = { l1: null, l2: null };
     state.diffMin = 0; state.diffMax = 1;
     $('#f-dmin').value = 0; $('#f-dmax').value = 1;
     $('#d-lo').textContent = '0.00'; $('#d-hi').textContent = '1.00';
-    renderTypes(); renderKp(); renderKp2(); renderTopicCol();
+    renderTypes(); renderKp(); renderTopicTree();
     renderGrades(); loadNote();
   };
   $('#btn-compose').onclick = doCompose;
@@ -231,7 +229,7 @@ async function loadKp() {
     // 只显示未隐藏的：隐藏的意义就是「这个年级暂时用不上」
     state.gradeList = (st.grades || []).filter(g => !g.hidden);
 
-    renderKp(); renderKp2(); renderTopicCol(); renderGrades();
+    renderKp(); renderTopicTree(); renderGrades();
   } catch (e) {
     if (box) box.innerHTML = `<span style="color:#c0392b">${e.message}</span>`;
   }
@@ -345,201 +343,287 @@ function renderKp() {
       if (state.kp.has(k)) state.kp.delete(k); else state.kp.add(k);
       c.classList.toggle('on');
 
-      // 焦点跟着最后一次点的走；取消选中就退回任意一个还选着的。
-      // 焦点决定右边两列显示什么，跟「是否已勾选」解耦，
-      // 这样能先点开看内容、再决定勾不勾。
+      // 焦点 = 最后勾中的那个；取消掉当前焦点的，回退到上一个仍选中的。
+      // 回退而不是清空：连着取消几个时下方列表会不停闪空，很干扰。
       if (state.kp.has(k)) state.focus.l1 = k;
-      else if (state.focus.l1 === k) state.focus.l1 = [...state.kp][0] || null;
+      else {
+        // 取消大知识点时，把它下面的小知识点与题型一并清掉。
+        // 不清的话它们会一直留在筛选条件里：
+        // 提交时 kp 只剩 A，kp2 却还混着 B 的小知识点名，
+        // 条件是死的（永远匹配不到），但看着像有东西没清干净。
+        dropL1(k);
+        if (state.focus.l1 === k) {
+          state.focus.l1 = [...state.kp][state.kp.size - 1] || null;
+        }
+      }
       state.focus.l2 = null;
 
+      // 新勾中的大知识点，其下小知识点与题型默认全选。
+      // 否则勾了「不等式」却一道它的题都组不出来，
+      // 用户只会以为这科没题。
+      seedL1(state.focus.l1);
+
       renderKp();                 // 刷新 .cur 高亮
-      renderKp2(); renderTopicCol();
-      state.note = { l1: state.kp.has(k) ? k : null, l2: null, topic: null };
+      renderTopicTree();
+      state.note = { l1: state.focus.l1, l2: null, topic: null };
       loadNote();
     };
   });
 }
 
 /**
- * 第二列：小知识点（二级）。
+ * 把某大知识点下的小知识点与题型**默认全选**。
  *
- * 之前这一层只是题型清单里的小标题，既不能勾、也没有题数，
- * 于是「按小知识点组卷」根本无从下手 —— 只能整块大知识点地选。
+ * 只做一次（记在 state.seeded）：
+ * 用户手动取消过之后，来回切换大知识点不该把他的选择冲掉。
  */
-function renderKp2() {
-  const box = document.querySelector('#f-kp2');
-  const src = document.querySelector('#l2-src');
-  if (!box) return;
-
-  // 勾了多个大知识点时，把它们的小知识点**全列出来**（按大知识点分组）。
-  // 只看最后点开的那个会让人以为另一个大知识点没内容。
-  // 只勾一个、或还没勾时跟随焦点 —— 焦点的意义就是「先点开看看再决定勾不勾」。
-  const picked = [...state.kp];
-  const names = picked.length > 1 ? picked
-    : (state.focus.l1 ? [state.focus.l1] : picked);
-
-  if (!names.length) {
-    box.innerHTML = '<span class="kp-empty">先在左边点开一个大知识点</span>';
-    if (src) src.textContent = '';
-    return;
-  }
-
-  const groups = names.map(n => ({ name: n, item: findL1(n) }))
-    .filter(g => g.item);
-
-  if (!groups.length) {
-    box.innerHTML = '<span class="kp-empty">该大知识点下暂无小知识点</span>';
-    if (src) src.textContent = '';
-    return;
-  }
-
-  if (src) {
-    src.textContent = groups.length === 1
-      ? groups[0].name
-      : `来自 ${groups.length} 个大知识点`;
-  }
-
-  const chip = (l1Name, c) => {
-    const n = state.kp2Stats[l1Name + '>' + c.name] || 0;
-    const nt = (c.topics || []).length;
-    const on = state.kp2.has(c.name);
-    const cur = state.focus.l2 === c.name;
-    return `<span class="chip${on ? ' on' : ''}${cur ? ' cur' : ''}"`
-      + ` data-l1="${esc(l1Name)}" data-k2="${esc(c.name)}"`
-      + ` title="${esc(c.name)}：${nt} 个题型${n ? '，已入库 ' + n + ' 题' : '，暂无题目'}">`
-      + `${esc(c.name)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span>`
-      + `</span>`;
-  };
-
-  // 多个大知识点时分组显示，否则平铺 —— 一级名字已经写在列头了
-  box.innerHTML = groups.map(g => {
-    const kids = g.item.children || [];
-    if (!kids.length) return '';
-    const inner = kids.map(c => chip(g.name, c)).join('');
-    if (groups.length === 1) return inner;
-    return `<div class="kp-gh">${esc(g.name)}</div><div class="kp-gg">${inner}</div>`;
-  }).join('') || '<span class="kp-empty">该大知识点下暂无小知识点</span>';
-
-  box.querySelectorAll('.chip[data-k2]').forEach(c => {
-    c.onclick = () => {
-      const k2 = c.dataset.k2;
-      const l1 = c.dataset.l1;
-      if (state.kp2.has(k2)) state.kp2.delete(k2); else state.kp2.add(k2);
-      c.classList.toggle('on');
-
-      state.focus.l1 = l1;
-      if (state.kp2.has(k2)) state.focus.l2 = k2;
-      else if (state.focus.l2 === k2) {
-        state.focus.l2 = [...state.kp2][0] || null;
-      }
-
-      renderKp2(); renderTopicCol();
-      state.note = { l1, l2: state.kp2.has(k2) ? k2 : null, topic: null };
-      loadNote();
-    };
-  });
-}
-
-/**
- * 第三列：题型（三级节点）。
- *
- * 数据源优先取当前焦点的小知识点；
- * 没勾二级时，退化为「已选大知识点下的全部题型」，
- * 否则用户不勾二级就一列空白，会以为题型加载失败。
- */
-function renderTopicCol() {
-  const box = document.querySelector('#f-topic');
-  const src = document.querySelector('#l3-src');
-  if (!box) return;
-
-  const rows = [];   // {tid, name, nq, l1, l2, cross}
-  const push = (l1Name, l2, nd, tname) => {
-    rows.push({
-      tid: nd ? nd.id : '', name: tname,
-      nq: nd ? (nd.n_qs || 0) : 0,
-      l1: l1Name, l2: l2.name,
-      cross: (nd && nd.cross || []).filter(x => x !== l1Name),
-    });
-  };
-
-  const collect = (l1Name, onlyL2) => {
-    const item = findL1(l1Name);
-    if (!item) return;
-    for (const c of (item.children || [])) {
-      if (onlyL2 && c.name !== onlyL2) continue;
-      (c.topics || []).forEach((t, i) => {
-        const nd = (c.nodes && c.nodes[i]) || null;
-        push(l1Name, c, nd, t);
-      });
+function seedL1(l1) {
+  if (!l1 || state.seeded.has(l1)) return;
+  state.seeded.add(l1);
+  const item = findL1(l1);
+  if (!item) return;
+  for (const c of (item.children || [])) {
+    state.kp2.add(l1 + '>' + c.name);
+    for (const nd of (c.nodes || [])) {
+      // 只全选**已挂题**的题型：没挂题的勾了也匹配不到，
+      // 只会让筛选条件变长，没有收益。
+      if (nd && nd.id && (nd.n_qs || 0) > 0) state.topics.add(nd.id);
     }
-  };
-
-  // 与二级列同样的口径：多选了大知识点就把它们的题型合起来，
-  // 只有一个 / 还没勾时跟着焦点走。
-  const l1s = state.kp.size > 1 ? [...state.kp]
-    : (state.focus.l1 ? [state.focus.l1] : [...state.kp]);
-
-  if (state.focus.l2 && state.focus.l1) {
-    collect(state.focus.l1, state.focus.l2);
-  } else {
-    for (const n of l1s) collect(n, null);
   }
+}
 
-  if (src) {
-    src.textContent = state.focus.l2 ? state.focus.l2
-      : (state.focus.l1 && state.kp.size < 2
-          ? state.focus.l1 + ' · 全部题型'
-          : (state.kp.size > 1 ? `已选 ${state.kp.size} 个大知识点 · 全部题型` : ''));
+/** 该大知识点下的全部小知识点（按目录顺序） */
+function l2List(l1) {
+  const item = findL1(l1);
+  return item ? (item.children || []) : [];
+}
+
+/**
+ * 从筛选条件里摘掉某个大知识点的全部下级。
+ *
+ * 只摘**专属**于它的题型：交叉归属的题型（cross 里还有别的大知识点）
+ * 可能仍被别的已选块用到，一并删会误伤。
+ */
+function dropL1(l1) {
+  for (const c of l2List(l1)) {
+    state.kp2.delete(l1 + '>' + c.name);
+    for (const nd of (c.nodes || [])) {
+      if (!nd || !nd.id) continue;
+      const others = (nd.cross || []).filter(x => x !== l1);
+      if (!others.length) state.topics.delete(nd.id);
+    }
   }
+  // 允许它被重新全选：用户取消后有可能再勾回来，
+  // 那时应当恢复默认全选，而不是保持「上次被清空」的样子。
+  state.seeded.delete(l1);
+}
 
-  if (!rows.length) {
-    box.innerHTML = state.focus.l1 || state.kp.size
-      ? '<span class="kp-empty">这一层暂无题型</span>'
-      : '<span class="kp-empty">先在左边点开大知识点</span>';
+/** 该大知识点下、当前**已勾选**的小知识点 */
+function pickedL2(l1) {
+  return l2List(l1).filter(c => state.kp2.has(l1 + '>' + c.name));
+}
+
+/**
+ * 下方展开区：小知识点 → 题型（三级同屏）。
+ *
+ * 三个层级是**包含关系**，不是并列的三列：
+ *   大知识点 → 小知识点 → 题型
+ * 题型是小知识点下的分支，所以缩进挂在它下面，
+ * 而不是另起一列 —— 分成三列时「这个题型属于哪个小知识点」得靠脑补。
+ *
+ * 跟随**最后勾中**的大知识点：
+ * 其余已勾的大知识点照常参与组卷，只是这里不展开它们，
+ * 否则选了三块之后下方会变成一堵墙。
+ */
+function renderTopicTree() {
+  const box = document.querySelector('#topic-tree');
+  if (!box) return;
+
+  const l1 = state.focus.l1;
+  if (!l1) {
+    box.innerHTML = '<span class="kp-empty">先在上方点一个大知识点</span>';
     return;
   }
 
-  // 已挂题的排前面：能筛的优先，灰的沉底
-  rows.sort((a, b) => (b.nq - a.nq) || a.name.localeCompare(b.name, 'zh'));
+  const kids = l2List(l1);
+  if (!kids.length) {
+    box.innerHTML = '<span class="kp-empty">'
+      + esc(l1) + ' 下暂无小知识点</span>';
+    return;
+  }
 
-  box.innerHTML = rows.map(r => {
-    const sel = r.tid && state.topics.has(r.tid);
-    const cur = r.tid && state.note.topic === r.tid;
-    const showL2 = !state.focus.l2 && rows.some(x => x.l2 !== r.l2);
-    return `<span class="chip tk${r.nq ? ' has' : ''}${sel ? ' on' : ''}${cur ? ' cur' : ''}"`
-      + ` data-tid="${esc(r.tid)}" data-nq="${r.nq}"`
-      + ` data-l1="${esc(r.l1)}" data-l2="${esc(r.l2)}"`
-      + ` data-name="${esc(r.name)}"`
-      + ` title="${esc(r.name)}${r.nq ? '（已挂 ' + r.nq + ' 题，点击加入筛选）'
-                                      : '（暂无题目，只能查看讲解）'}">`
-      + (showL2 ? `<i>${esc(r.l2)} · </i>` : '')
-      + `${esc(r.name)}`
-      + (r.cross.length ? `<b>↔${esc(r.cross.join('+'))}</b>` : '')
-      + (r.nq ? `<span class="n">${r.nq}</span>` : '')
-      + `</span>`;
+  const picked = pickedL2(l1);
+  const nTopAll = kids.reduce((s, c) => s + (c.topics || []).length, 0);
+
+  // 两个「全部」放在顶部：小知识点一组、题型一组。
+  // 塞进每个分组里的话，十几个分组就是十几个「全部」按钮，反而乱。
+  const head = `<div class="tt-bar">
+      <span class="tt-src">${esc(l1)}
+        <i>${kids.length} 个小知识点 · ${nTopAll} 个题型</i></span>
+      <span class="tt-all${picked.length === kids.length ? ' on' : ''}"
+            data-all="l2" title="全选 / 全不选该大知识点下的小知识点">全部小知识点</span>
+      <span class="tt-all${allTopicsOn(l1) ? ' on' : ''}"
+            data-all="topic" title="全选 / 全不选已展开的题型">全部题型</span>
+    </div>`;
+
+  const groups = kids.map(c => {
+    const key = l1 + '>' + c.name;
+    const on = state.kp2.has(key);
+    const n = state.kp2Stats[key] || 0;
+    const tops = c.topics || [];
+    const nodes = c.nodes || [];
+
+    // 未勾选的小知识点，其下的题型**不显示**。
+    // 它都不参与组卷了，列出来的题型点了也没用。
+    const topsHtml = on
+      ? `<div class="tt-tops">`
+        + tops.map((t, i) => topicChip(l1, c.name, t, nodes[i])).join('')
+        + `</div>`
+      : '';
+
+    return `<div class="tt-g">
+        <div class="tt-l2${on ? ' on' : ''}" data-k2="${esc(c.name)}"
+             data-l1="${esc(l1)}"
+             title="${esc(c.name)}：${tops.length} 个题型${n ? '，已入库 ' + n + ' 题' : ''}">
+          <span class="tt-box">${on ? '✓' : ''}</span>
+          <b>${esc(c.name)}</b>
+          <span class="tt-n${n ? '' : ' zero'}">${n}</span>
+          <span class="tt-meta">${tops.length} 个题型</span>
+        </div>
+        ${topsHtml}
+      </div>`;
   }).join('');
 
-  box.querySelectorAll('.chip[data-tid]').forEach(c => {
-    c.onclick = () => {
-      const tid = c.dataset.tid;
-      const nq = Number(c.dataset.nq || 0);
+  box.innerHTML = head + `<div class="tt-body">${groups}</div>`;
+  bindTopicTree();
+}
 
-      // 没挂题的题型勾了也匹配不到题目，只会组出空卷，
-      // 但仍然可以点开看讲解。
+/** 已展开（所属小知识点已勾）的题型是否全选 */
+function allTopicsOn(l1) {
+  let total = 0;
+  for (const c of pickedL2(l1)) {
+    for (const nd of (c.nodes || [])) {
+      if (nd && nd.id && (nd.n_qs || 0) > 0) {
+        total++;
+        if (!state.topics.has(nd.id)) return false;
+      }
+    }
+  }
+  return total > 0;
+}
+
+/** 单个题型标签 */
+function topicChip(l1, l2, tname, nd) {
+  const tid = (nd && nd.id) || '';
+  const nq = (nd && nd.n_qs) || 0;
+  const on = tid && state.topics.has(tid);
+  const cross = ((nd && nd.cross) || []).filter(x => x !== l1);
+  return `<span class="chip tk${nq ? ' has' : ''}${on ? ' on' : ''}"`
+    + ` data-tid="${esc(tid)}" data-nq="${nq}"`
+    + ` data-l1="${esc(l1)}" data-l2="${esc(l2)}" data-name="${esc(tname)}"`
+    + ` title="${esc(tname)}${nq ? '（已挂 ' + nq + ' 题，点击加入筛选）'
+                                : '（暂无题目，只能查看讲解）'}">`
+    + esc(tname)
+    + (cross.length ? `<b>↔${esc(cross.join('+'))}</b>` : '')
+    + (nq ? `<span class="n">${nq}</span>` : '')
+    + `</span>`;
+}
+
+function bindTopicTree() {
+  const box = document.querySelector('#topic-tree');
+  if (!box) return;
+
+  // ---- 顶部「全部」按钮 ----
+  box.querySelectorAll('[data-all]').forEach(el => {
+    el.onclick = () => {
+      const l1 = state.focus.l1;
+      if (!l1) return;
+      if (el.dataset.all === 'l2') {
+        const all = pickedL2(l1).length === l2List(l1).length;
+        for (const c of l2List(l1)) {
+          const key = l1 + '>' + c.name;
+          if (all) state.kp2.delete(key); else state.kp2.add(key);
+        }
+        // 不允许全不选：一个都不勾等于这一块组不出题，
+        // 与其让用户看着空结果猜原因，不如直接回到全选。
+        if (!pickedL2(l1).length) seedAll(l1);
+      } else {
+        const pick = allTopicsOn(l1);
+        for (const c of pickedL2(l1)) {
+          for (const nd of (c.nodes || [])) {
+            if (!nd || !nd.id || !(nd.n_qs || 0)) continue;
+            if (pick) state.topics.delete(nd.id); else state.topics.add(nd.id);
+          }
+        }
+        if (!countTopicsOn(l1)) seedTopics(l1);
+      }
+      renderTopicTree();
+    };
+  });
+
+  // ---- 小知识点：单击切换勾选 ----
+  box.querySelectorAll('.tt-l2').forEach(el => {
+    el.onclick = () => {
+      const l1 = el.dataset.l1;
+      const k2 = el.dataset.k2;
+      const key = l1 + '>' + k2;
+      if (state.kp2.has(key)) state.kp2.delete(key); else state.kp2.add(key);
+
+      // 取消最后一个 → 自动回到全选。
+      // 「至少选一个」用恢复全选兜底，比禁用取消更好：
+      // 用户的意图多半是「我不要这一个」，而不是「我什么都不要」。
+      if (!pickedL2(l1).length) seedAll(l1);
+
+      state.note = { l1, l2: state.kp2.has(key) ? k2 : null, topic: null };
+      renderTopicTree();
+      loadNote();
+    };
+  });
+
+  // ---- 题型：勾选参与筛选；没挂题的仍可点开看讲解 ----
+  box.querySelectorAll('.chip[data-tid]').forEach(el => {
+    el.onclick = (e) => {
+      e.stopPropagation();
+      const tid = el.dataset.tid;
+      const nq = Number(el.dataset.nq || 0);
+      const l1 = el.dataset.l1;
       if (tid && nq > 0) {
         if (state.topics.has(tid)) state.topics.delete(tid);
         else state.topics.add(tid);
-        c.classList.toggle('on');
+        // 同样：取消到 0 个就恢复全选
+        if (!countTopicsOn(l1)) seedTopics(l1);
       }
-
-      state.note = { l1: c.dataset.l1 || null, l2: c.dataset.l2 || null,
-                     topic: tid || null };
-      renderTopicCol();
+      state.note = { l1, l2: el.dataset.l2 || null, topic: tid || null };
+      renderTopicTree();
       loadNote();
     };
   });
 }
 
+/** 全选某大知识点下的小知识点（不动题型） */
+function seedAll(l1) {
+  for (const c of l2List(l1)) state.kp2.add(l1 + '>' + c.name);
+}
+
+/** 全选已展开小知识点下的题型 */
+function seedTopics(l1) {
+  for (const c of pickedL2(l1)) {
+    for (const nd of (c.nodes || [])) {
+      if (nd && nd.id && (nd.n_qs || 0) > 0) state.topics.add(nd.id);
+    }
+  }
+}
+
+/** 当前已展开且已勾选的题型数 */
+function countTopicsOn(l1) {
+  let n = 0;
+  for (const c of pickedL2(l1)) {
+    for (const nd of (c.nodes || [])) {
+      if (nd && nd.id && (nd.n_qs || 0) > 0 && state.topics.has(nd.id)) n++;
+    }
+  }
+  return n;
+}
 /**
  * 右侧讲解面板：按 state.note 指向的层级取内容。
  *
@@ -689,7 +773,14 @@ async function doCompose() {
       subject: state.subject,
       types: [...state.types],
       kp: [...state.kp],
-      kp2: [...state.kp2],
+      // 后端要的是二级**名字**列表，这里存的是 "一级>二级"，取后半段。
+      kp2: [...state.kp2].map(k => k.slice(k.indexOf('>') + 1)),
+      // kp2Full 是**存档专用**：带 "一级>二级" 前缀，用来在下次打开时
+      // 还原「哪个大知识点下取消了哪几个小知识点」。
+      // 少了它，重开后所有块都会被默认全选覆盖 ——
+      // 用户取消过的选择全丢，而且看不出为什么。
+      // 后端不认识这个字段，会直接忽略。
+      kp2Full: [...state.kp2],
       grades: [...state.grades],
       topics: [...state.topics],
       diff_min: state.diffMin,
@@ -862,11 +953,28 @@ function restore() {
     state.diffMin = c.diff_min ?? 0;
     state.diffMax = c.diff_max ?? 1;
     (c.kp || []).forEach(k => state.kp.add(k));
-    (c.kp2 || []).forEach(k => state.kp2.add(k));
     (c.types || []).forEach(t => state.types.add(t));
     (c.grades || []).forEach(g => state.grades.add(g));
-    // 恢复焦点：右侧两列才有内容，否则恢复后看着像没恢复
-    state.focus = { l1: [...state.kp][0] || null, l2: [...state.kp2][0] || null };
+
+    // 优先读 kp2Full（带 "一级>二级" 前缀，能精确定位）。
+    // 旧存档只有二级名、没有一级信息，拼不回来就退回默认全选 ——
+    // 丢了只是回到全选，比拿一个猜错的一级名去匹配（结果筛掉整块）要好。
+    const savedKp2 = new Set(
+      (c.kp2Full || c.kp2 || []).map(String).filter(x => x.includes('>')));
+
+    // 已选的大知识点先全部标记为「已全选过」，
+    // 否则后续任何一次渲染都会把用户上次的选择覆盖掉。
+    // 然后只保留存过的项 —— 即「全选为底，再减掉上次取消的」。
+    for (const l1 of state.kp) {
+      state.seeded.add(l1);
+      for (const c2 of l2List(l1)) {
+        const key = l1 + '>' + c2.name;
+        if (savedKp2.size === 0 || savedKp2.has(key)) state.kp2.add(key);
+      }
+    }
+
+    // 焦点 = 最后一个勾中的大知识点（与点击时保持一致）
+    state.focus = { l1: [...state.kp][state.kp.size - 1] || null, l2: null };
     // 讲解面板跟着落到恢复出来的那一块，否则左侧有勾选、右侧还是空提示
     state.note = { l1: state.focus.l1, l2: state.focus.l2, topic: null };
     const $ = (s2) => document.querySelector(s2);
@@ -880,7 +988,7 @@ function restore() {
     // 年级统计要等 loadKp() 拉完 stats 才有，这里渲染不出内容也没关系：
     // 它会在 loadKp 里再渲染一次。提前渲染是为了恢复出勾选高亮。
     renderGrades();
-    renderKp(); renderKp2(); renderTopicCol(); loadNote();
+    renderKp(); renderTopicTree(); loadNote();
   } catch (e) {}
 }
 
