@@ -7,6 +7,15 @@
 
 ### 解三角形大题
 
+**M-T-218 · 解三角形基础：正弦定理、角与对边**
+
+- `M-H0521` ⚠ 题干还原（根号/分数线丢失）**：ref_bank 存 `2asinAcos B 2 + bcos2A = b`。 我试了两种读法： · 按 $\cos^{2}B$：$\cos^{2}B=\sin B$ ⟹ $\sin^{2}B+\sin B-1=0$ ⟹ $\sin B=\frac{\sqrt5-1}2\approx0.618$ ⟹ $B\approx38.2^\circ\neq\frac\pi3$ ✗ · 按 $\cos\frac B2$：$\cos\frac B2=\sin B$ ⟹ $\sin\frac B2=\frac12$ ⟹ $B=\frac\pi3$ ✓✓ **p183 详解明确写 $\cos\frac B2$**，与后者一致 —— 这就是决定性证据。 **独立验算**： ① $B=\frac\pi3$ 时 $\cos\frac B2=\cos30^\circ=\frac{\sqrt3}2$；$\sin B=\sin60^\circ=\frac{\sqrt3}2$ ✓✓ **相等**
+- `M-H0521` ⚠ 易错**：$\cos\frac B2\neq0$ 这一步必须说明，否则约分无依据。
+- `M-H0523` ⚠ 记忆法**：$a\cos B+b\cos A$ 中，$a$ 配 $\cos B$、$b$ 配 $\cos A$（**交叉配**），结果是 $c$。 （配错成 $a\cos A+b\cos B$ 就没有这个结论了。）
+- `M-H0524` ⚠⚠ 题干还原（本批最关键的一处）**：ref_bank 把第二个因子存成 $\sin A-\sin B-\sin C$。 **按这个读会推出 $\cos C=\frac{4-\sqrt2}2\approx1.293>1$，无解** ✗。 正确应为 $\sin C-\sin A+\sin B$（即 $-(\sin A-\sin B-\sin C)$，**提取时丢了负号**）。 修正后：$\sin^{2}A+\sin^{2}B-\sin^{2}C=\sqrt2\sin A\sin B$ ⟹ $\cos C=\frac{\sqrt2}2$ ⟹ $C=\frac\pi4$ ✓ 与答案完全吻合。**「按字面推会得出 $\cos C>1$」就是最硬的修正依据。** （另：详解里的 `(2 - 2)` 是 $2-\sqrt2$ 的根号丢失。） **独立验算**： ① **构造一个满足条件的三角形反验**：取 $C=45^\circ$、$a=8$、$b=4$（第 2 问的结果）
+- `M-H0524` ⚠ 检查**：由 $a=2b$ 应得 $\sin A=2\sin B$，但 $\sin A=0.9598$、$\sin B=0.4799$ → 比值 $=2.0$ ✓ （我上面算 $B$ 时用了 $73.7^\circ$ 但 $\sin73.7^\circ$ 与 $\sin106.3^\circ$ 相同 —— $A$ 也可能是 $106.3^\circ$，此时 $B=180^\circ-45^\circ-106.3^\circ=28.7^\circ$，$\sin B=0.4801$ ✓✓ **取 $A=106.3^\circ$ 才自洽**（因 $a=8>b=4$，故 $A>B$，且 $a$ 最大 ⟹ $A$ 最大）。） ③ **面积**：$\frac12\cdot8\cdot4\cdot\sin45^\circ=16\cdot0.7071=11.314$；$8\sqrt2=11.3137$ ✓✓✓
+- `M-H0524` ⚠ 易错**：第二问 $\sin A=2\sin B$ ⟹ $a=2b$ 后， **别直接用 $A=2B$**（$\sin$ 相等不代表角相等，本题 $A\approx106^\circ$、$B\approx29^\circ$ 就不是 2 倍关系）。
+
 **M-T-227 · 四边形转化为解三角形**
 
 - `M-H0517` ⚠ **方向要分清**：$D$ 在**劣弧** $AC$ 上 ⟹ $D$ 与 $B$ **异侧** ⟹ $\angle D=180^\circ-\angle B$； $D$ 在**优弧** $AC$ 上 ⟹ $D$ 与 $B$ **同侧** ⟹ $\angle D=\angle B$。 （本题我特意算了两种情形：只有「异侧」给出 $8\sqrt3$，与答案一致 —— 这也是验证手段。） ② 面积拆成 $S_{\triangle ABC}+S_{\triangle ACD}$（$D$ 异侧）或差的绝对值（同侧）。 ③ **$1+\cos B=\sqrt3\sin B$ 型**方程：一律化 $A\sin x+B\cos x$ 成一个角，$\sqrt3\sin B-\cos B=2\sin(B-\frac\pi6)$ —— 比平方好用（平方会引入增根）。
@@ -32,6 +41,12 @@
 
 - `M-H0417` ⚠ 详解提取失真**：原文「即 $3\cos10^\circ\sin\alpha-\sin10^\circ\sin\alpha=\cos10^\circ\cos\alpha-\sin10^\circ\sin\alpha$，即 $3\sin\alpha=\cos\alpha$」两处 $3$ 实为 $\sqrt3$（根号丢失）。 **反证**：若按字面 $3\sin\alpha=\cos\alpha$ 则 $\alpha=\arctan\frac13\approx18.4^\circ$，**四个选项无一符合** —— 必是 $\sqrt3$。 **独立验算**（$\alpha=30^\circ$ 反查）： $\frac{AD}{\sin\alpha}=\frac{k\sin40^\circ}{\sin30^\circ}=\frac{0.6428k}{0.5}=1.2856k$； $\frac{BD}{\sin(80^\circ-30^\circ)}=\frac{k\sin80^\circ}{\sin50^\circ}=\frac{0.9848k}{0.7660}=1.2856k$ ✓ **两式相等，正弦定理成立**
 - `M-H0420` ⚠ 提取失真**：题干 $\sin C=\frac{3\sqrt7}{32}$ 与详解 $\sin\angle CAD=\frac{3\sqrt7}8$ 都被提取成 `3 7 32` 样式，根号丢失。 **独立验算**： ① $8(10-x)=32x$ → $x=2$ ✓；$CD=8$ ✓；$2AC^2-AC-120=0$ → $AC=8$ ✓ ② **角度链条闭合**：$\angle ADB=180^\circ-2B$ → $\angle ADC=2B$；$\triangle ADC$ 内角和 $(A-B)+2B+C=180^\circ$ → $A+B+C=180^\circ$ ✓ **恒等** ③ 数值：$B=\frac12\arcsin\frac{3\sqrt7}8=41.41^\circ$；$A-B=82.82^\circ$ → $A=124.23^\circ$；$C=180-124.23-41.41=14.36^\circ$
+
+**M-T-208 · 四心2：内心**
+
+- `M-H0525` ⚠⚠ 本题最大的坑 —— 我第一遍就选错了**： 我算出 $bc_{\min}=12$，一看 $12$ 在选项里（**D**），差点选 D。 但题干是 $\vec{AB}\cdot\vec{AC}$（**向量点积**），不是边长乘积 $bc$！ $\vec{AB}\cdot\vec{AC}=bc\cos A=12\times\frac12=6$ ✓ **选 A**。 **命题人把 $12$ 放在选项里，就是为「忘记乘 $\cos A$」准备的陷阱** ✓ **独立验算**： ① **验 $A=60^\circ$**：$\cos^{2}30^\circ=\frac34=0.75$；$1-\frac{\sqrt3}6\sin60^\circ=1-\frac{1.732}6(0.866)=1-0.25=0.75$ ✓✓ ② **取等时是等边三角形**：$a=b=c=2\sqrt3$，则 $r=\frac{2\sqrt3}{2\sqrt3}=1$ ✓✓（等边 $r=\frac{a}{2\sqrt3}$）
+- `M-H0525` ⚠ 易错**：二次不等式 $3s^{2}-10\sqrt3s+9\ge0$ 取**两侧**， 小的那个根要代回 $a=s-\sqrt3$ 检验是否为正 —— 本题 $s=\frac{\sqrt3}3$ 被舍掉。
+- `M-H0527` ⚠ 本题的陷阱在选项 D**： 解出 $A=B$ 时若只算 $A=B=45^\circ$，会以为答案是「等腰直角」（D）。 但 $A+B=90^\circ$ 这一支给出的是**任意直角三角形** —— 比如 $A=30^\circ,B=60^\circ,C=90^\circ$ 也满足条件，**它不是等腰的** ✗。 既然存在非等腰的解，就不能选 D，只能选 B ✓ **独立验算**（逐项代入原式）： ① **验 $30^\circ$-$60^\circ$-$90^\circ$**（$a=\sin30^\circ=0.5$、$b=\sin60^\circ=0.866$、$c=1$）： $\tan\frac A2=\tan15^\circ=0.2679$；$\frac a{b+c}=\frac{0.5}{0.866+1}=\frac{0.5}{1.866}=0.2679$ ✓✓ $\tan\frac B2=\tan30^\circ=0.5774$；$\frac b{a+c}=\frac{0.866}{0.5+1}=\frac{0.866}{1.5}=0.5773$ ✓✓ **成立**
 
 **M-T-210 · 四心4：垂心**
 
