@@ -8,6 +8,8 @@ use std::path::PathBuf;
 use std::process::Command;
 use serde::Serialize;
 use serde_json::Value;
+// get_webview_window / path 都来自 Manager trait，必须显式引入，
+// 否则方法调用解析不到（编译期报错，不是运行期）。
 use tauri::Manager;
 
 /// Python 解释器候选。**返回顺序即优先级，不要随意调整**：
@@ -256,6 +258,12 @@ fn py_batch_delete(batch: String) -> Result<Value, String> {
     run_py(&["batch-delete".into(), "--batch".into(), batch])
 }
 
+/// 各年级的题数（含隐藏年级，设置页用它显示「删除会影响多少题」）
+#[tauri::command]
+fn py_grade_usage() -> Result<Value, String> {
+    run_py(&["grade-usage".into()])
+}
+
 /// 读复习参数（记忆曲线阶梯、配比等）
 #[tauri::command]
 fn py_get_config() -> Result<Value, String> {
@@ -397,6 +405,21 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
+        // 单实例：第二次启动时，**这个回调跑在已在运行的那个进程里**
+        // （新进程把自己的参数转发过来后就退出了）。
+        // 所以这里做的是「唤醒已有窗口」，而不是初始化新窗口。
+        .plugin(tauri_plugin_single_instance::init(|app, _argv, _cwd| {
+            if let Some(w) = app.get_webview_window("main") {
+                // 顺序不能反：先还原再聚焦。
+                // 最小化的窗口直接 set_focus 在部分平台上不生效，
+                // 表现是「双击了没反应」，用户会以为程序没起来。
+                let _ = w.unminimize();
+                let _ = w.set_focus();
+                let _ = w.show();
+            }
+            // 前端的 #instance-mask 只在浏览器多标签时用到，
+            // 桌面端走到这里说明已有窗口马上会被提到前台，不需要提示。
+        }))
         .invoke_handler(tauri::generate_handler![
             py_health,
             py_list,
@@ -413,6 +436,7 @@ pub fn run() {
             py_batch_list,
             py_batch_tag,
             py_batch_delete,
+            py_grade_usage,
             py_get_config,
             py_set_config,
             py_topic_list,

@@ -72,15 +72,24 @@ DEFAULT_CONFIG = {
     "mix_wrong_pct": 30,
     # 每日新题上限，避免一次灌太多
     "daily_new_cap": 20,
+    # 年级列表（可在设置页增删改名/隐藏）
+    # 结构见 grade_map.default_grades()：
+    #   id 是稳定标识，改名不影响题目归属；hidden 只是不显示，数据仍在。
+    # 默认值不能写死在这里 —— load_config 会用 grade_map.default_grades() 兜底，
+    # 否则 DEFAULT_CONFIG 会被当成"用户配置"写回文件，日后改默认值不生效。
+    "grades": None,
 }
 
 
 def load_config():
+    import grade_map as _GL
     try:
         with open(CONFIG, encoding='utf-8') as f:
             c = json.load(f)
     except Exception:
-        return dict(DEFAULT_CONFIG)
+        out = dict(DEFAULT_CONFIG)
+        out['grades'] = _GL.default_grades()
+        return out
     # 缺字段用默认补齐（旧版本配置文件也能用）
     out = dict(DEFAULT_CONFIG)
     for k, v in (c or {}).items():
@@ -88,6 +97,9 @@ def load_config():
             out['ladder'] = {str(kk): int(vv) for kk, vv in (v or {}).items()}
         else:
             out[k] = v
+    # grades 为空（旧配置文件没有这个字段）→ 用内置默认值
+    if not out.get('grades'):
+        out['grades'] = _GL.default_grades()
     return out
 
 
@@ -350,6 +362,12 @@ def enrich(qs):
     totals = defaultdict(int)
     for q in qs:
         totals[(q['id'][0], q.get('year'))] += 1
+
+    # 年级配置**只在这里读一次**。
+    # grade_of_question() 内部会 load_grades()（读文件），
+    # 放在逐题循环里 = 463 次磁盘读，实测拖慢到好几秒。
+    import grade_map as _GE
+    _grades = _GE.load_grades()
     for q in qs:
         pre = q['id'][0]
         # 科目：**显式字段优先**，没有才从 ID 前缀推断。
@@ -402,8 +420,7 @@ def enrich(qs):
         # 题目自带 grade 的以自带为准（人工校订过最可信），
         # 其余按知识点映射推断 —— 见 grade_map.py 的设计说明。
         # 必须在 kp_list / kp2 都归完之后才算，否则映射查不到。
-        import grade_map as _G
-        q['grade'] = _G.grade_of_question(q)
+        q['grade'] = _GE.grade_of_question(q, _grades)
     # 双向索引：题型 → 题目，每次从题目上的标签重建。
     # 只存单向（题目→题型）避免双写不一致。
     _K.rebuild_qindex(qs)
@@ -505,13 +522,15 @@ def cmd_stats(a):
         kp_tree[sub] = kids_of
 
     # 年级：派生字段（见 grade_map.py）。
-    # 单独给一份 by_grade，前端加个概览块就能用，不必自己再算一遍。
+    # by_grade 统计**全部**年级（含隐藏的），由前端按配置决定显示哪些 ——
+    # 后端只管给全，显示策略属于界面层。
     c_gd = Counter(q.get('grade') or _G0.UNKNOWN for q in qs)
     # 年级 × 科目：只看单科统计时全局数字会误导
     # （数学的高一题数 ≠ 整个题库的高一题数）。
     grade_by_sub = defaultdict(Counter)
     for q in qs:
         grade_by_sub[q.get('subject') or ''][q.get('grade') or _G0.UNKNOWN] += 1
+    _gc = _G0.load_grades()
 
     return _out({
         'ok': True, 'total': len(qs),
@@ -520,7 +539,8 @@ def cmd_stats(a):
         'by_level': dict(c_lv),
         'by_grade': dict(c_gd),
         'by_grade_sub': {s: dict(c) for s, c in grade_by_sub.items()},
-        'grades': _G0.GRADES,
+        'grades': _G0.ordered(_gc),      # 含 hidden 标记，前端据此过滤
+        'grade_unknown': _G0.UNKNOWN,
         'by_kp': {s: c.most_common() for s, c in by_kp.items()},
         'kp_tree': kp_tree,
         'subjects': K.SUBJECTS,
@@ -1300,9 +1320,70 @@ def _ladder():
 
 
 def cmd_get_config(a):
-    """读复习参数（含默认值说明，供设置页渲染）"""
+    """读复习参数（含默认值说明，供设置页渲染）
+
+    defaults.grades 要返回**真实的内置年级表**，不能是 DEFAULT_CONFIG 里的
+    None —— 设置页的「恢复默认年级」就是拿它当模板重建列表的。
+    """
+    import grade_map as _GD
+    defaults = dict(DEFAULT_CONFIG)
+    defaults['grades'] = _GD.default_grades()
     return _out({'ok': True, 'config': load_config(),
-                 'defaults': DEFAULT_CONFIG})
+                 'defaults': defaults})
+
+
+def _check_grades(grades):
+    """校验年级配置
+
+    只挡真正会出问题的事：
+      - id / 名字为空或重复 → 数据关联会指错对象
+      - 删掉内置年级 → 允许，但那是**不可逆**的（引用它的题会退回「未标注」），
+        所以影响面提示放在前端做（删之前告诉用户有多少题会变），
+        这里不拦，否则想精简年级列表的人永远删不掉。
+    """
+    if grades is None:
+        return []
+    if not isinstance(grades, list):
+        return ['年级配置格式错误']
+    if not grades:
+        return ['年级列表不能为空']
+
+    errs, ids, names = [], set(), set()
+    for x in grades:
+        if not isinstance(x, dict):
+            errs.append('年级项格式错误')
+            continue
+        gid = str(x.get('id') or '').strip()
+        nm = str(x.get('name') or '').strip()
+        if not gid:
+            errs.append('年级缺少标识')
+            continue
+        if gid in ids:
+            errs.append('年级标识重复：%s' % gid)
+        ids.add(gid)
+        if not nm:
+            errs.append('「%s」的名称不能为空' % gid)
+        elif nm in names:
+            errs.append('年级名称重复：%s' % nm)
+        names.add(nm)
+    return errs
+
+
+def cmd_grade_usage(a):
+    """各年级的题数（含隐藏年级，用于设置页显示「删除会影响多少题」）
+
+    必须包含隐藏年级：设置页要管理的正是它们，
+    只统计可见年级的话，删除隐藏年级前看不到影响面。
+    """
+    import grade_map as _GU
+    qs = enrich(load_bank())
+    per = {}
+    for q in qs:
+        g = q.get('grade') or _GU.UNKNOWN
+        per[g] = per.get(g, 0) + 1
+    return _out({'ok': True, 'usage': per,
+                 'grades': _GU.load_grades(),
+                 'unknown': _GU.UNKNOWN})
 
 
 def cmd_set_config(a):
@@ -1326,6 +1407,14 @@ def cmd_set_config(a):
     for k in DEFAULT_CONFIG:
         if k in cfg:
             merged[k] = cfg[k]
+
+    # grades 必须**保留现有值**，不能用 DEFAULT_CONFIG 里的 None 覆盖。
+    # 设置页保存复习参数时不带 grades，一旦被 None 覆盖并落盘，
+    # 用户自定义的年级（新增/改名/隐藏）就全没了 ——
+    # 而且发生在「我只是改了下配比」这种毫不相关的操作之后，极难排查。
+    if 'grades' not in cfg:
+        merged['grades'] = load_config().get('grades')
+
     cfg = merged
 
     errs = []
@@ -1349,6 +1438,8 @@ def cmd_set_config(a):
 
     if int(cfg.get('max_level', 0) or 0) < 1:
         errs.append('等级上限必须 >= 1')
+
+    errs.extend(_check_grades(cfg.get('grades')))
 
     if errs:
         return _fail('；'.join(errs))
@@ -1551,6 +1642,9 @@ def main():
 
     p = sub.add_parser('get-config')
     p.set_defaults(fn=cmd_get_config)
+
+    p = sub.add_parser('grade-usage')
+    p.set_defaults(fn=cmd_grade_usage)
 
     p = sub.add_parser('set-config')
     p.add_argument('--config', required=True)

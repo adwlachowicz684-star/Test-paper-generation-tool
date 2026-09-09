@@ -17,7 +17,8 @@ let state = {
   focus: { l1: null, l2: null },
   types: new Set(),
   grades: new Set(),   // 年级（派生字段，见 py/grade_map.py）
-  gradeStat: {},       // {年级: 题数}，来自 stats.by_grade_sub
+  gradeStat: {},       // {年级id: 题数}，来自 stats.by_grade_sub
+  gradeList: [],       // 未隐藏的年级配置 [{id,name,...}]
   diffMin: 0.0,
   diffMax: 1.0,
   count: 12,
@@ -223,10 +224,12 @@ async function loadKp() {
       }
     }
 
-    // 年级是派生字段，按科目分别统计（by_grade_sub）。
-    // 没这个字段（老后端）就留空，年级筛选整行不显示。
+    // 年级是派生字段，按科目分别统计（by_grade_sub），key 是**年级 id**。
+    // 显示名要从 st.grades 配置里取 —— 直接把 id 打到界面上会显示成 s1 / s2。
     const per = st.by_grade_sub || {};
     state.gradeStat = per[state.subject] || {};
+    // 只显示未隐藏的：隐藏的意义就是「这个年级暂时用不上」
+    state.gradeList = (st.grades || []).filter(g => !g.hidden);
 
     renderKp(); renderKp2(); renderTopicCol(); renderGrades();
   } catch (e) {
@@ -247,7 +250,9 @@ function renderGrades() {
   if (!box) return;
 
   const stat = state.gradeStat || {};
-  const grades = Object.keys(stat);
+  // 用配置里的年级列表（含显示名），而不是统计结果的 key ——
+  // 统计 key 是 id（s1/s2），直接显示用户看不懂。
+  const grades = state.gradeList || [];
   if (!grades.length) {
     // 没有年级数据就把整行藏起来，留个空行会让人以为是加载失败
     box.innerHTML = '';
@@ -255,12 +260,18 @@ function renderGrades() {
     if (row) row.style.display = 'none';
     return;
   }
+  const row0 = box.closest('.row');
+  if (row0) row0.style.display = '';
 
-  box.innerHTML = grades.map(g => {
-    const n = stat[g] || 0;
-    return `<span class="chip${state.grades.has(g) ? ' on' : ''}"`
-      + ` data-g="${esc(g)}" title="${esc(g)}：${n} 题">`
-      + `${esc(g)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span></span>`;
+  // 有题的排前面，没题的沉底灰显（与知识点列一致的处理）
+  const sorted = grades.slice().sort((a, b) =>
+    (stat[b.id] || 0) - (stat[a.id] || 0));
+
+  box.innerHTML = sorted.map(g => {
+    const n = stat[g.id] || 0;
+    return `<span class="chip${state.grades.has(g.id) ? ' on' : ''}"`
+      + ` data-g="${esc(g.id)}" title="${esc(g.name)}：${n} 题">`
+      + `${esc(g.name)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span></span>`;
   }).join('');
 
   if (tip) tip.textContent = '年级按知识点推断，不是原始录入数据';

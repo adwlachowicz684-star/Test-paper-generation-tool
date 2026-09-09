@@ -108,41 +108,52 @@ function renderGradeCard(st) {
   // 老后端没有这份数据，直接不显示 —— 空卡片比「全是0」更少误导
   if (!subs.length) return '';
 
-  // 年级列表：先按后端给的标准顺序，再补上数据里多出来的（如「未标注」）。
-  // 用 Set 去重 —— 直接 concat 会把已存在的年级再拼一遍，
-  // 表头出现「高一 高二 高三 高一 高二 高三」。
-  const grades = [];
-  const seenG = new Set();
-  for (const g of (st.grades || [])) {
-    if (!seenG.has(g)) { seenG.add(g); grades.push(g); }
-  }
-  for (const c of Object.values(per)) {
-    for (const g of Object.keys(c)) {
-      if (!seenG.has(g)) { seenG.add(g); grades.push(g); }
-    }
-  }
+  // 年级列表取**配置**（含显示名与 hidden 标记），只列未隐藏的。
+  // 用统计结果的 key 会把 id（s1/s2）直接打到表头上。
+  const cfg = st.grades || [];
+  const grades = cfg.filter(g => !g.hidden);
+  if (!grades.length) return '';
+  const nameOf = (id) => (cfg.find(g => g.id === id) || {}).name || id;
 
   // 占比条按**全库最大**做基准。
   // 若用每行自己的总数，每行都是 100%，条一样长，看着像数据没变。
   const rowMax = Math.max(1, ...subs.map(s =>
     Object.values(per[s] || {}).reduce((a, b) => a + b, 0)));
 
+  const UNK = st.grade_unknown || '未标注';
+  const shownIds = new Set(grades.map(g => g.id));
+
   const row = (label, counter) => {
     const total = Object.values(counter).reduce((a, b) => a + b, 0);
+    // 隐藏年级 + 未标注 的题不会出现在上面的列里。
+    // 不单列一行的话，各科数字加起来对不上总数，用户会以为统计错了。
+    const rest = Object.entries(counter)
+      .filter(([k]) => k !== UNK && !shownIds.has(k))
+      .reduce((a, [, v]) => a + v, 0);
+    const unk = counter[UNK] || 0;
     return `<tr>
       <td class="kp-cell">${esc(label)}</td>
-      ${grades.map(g => `<td class="kp-num">${counter[g] || 0}</td>`).join('')}
+      ${grades.map(g => `<td class="kp-num">${counter[g.id] || 0}</td>`).join('')}
+      ${rest ? `<td class="kp-num" title="属于已隐藏的年级">${rest}</td>` : ''}
+      ${unk ? `<td class="kp-num" title="映射未覆盖到">${unk}</td>` : ''}
       <td class="kp-num"><b>${total}</b></td>
       <td>${bar(total, rowMax)}</td>
     </tr>`;
   };
+
+  // 「已隐藏」/「未标注」两列按需出现，没有就不占位
+  const hasRest = subs.some(s => Object.entries(per[s] || {})
+    .some(([k, v]) => v && k !== UNK && !shownIds.has(k)));
+  const hasUnk = subs.some(s => (per[s] || {})[UNK]);
 
   return `
     <div class="card">
       <h3>年级分布</h3>
       <table class="grid kp-table">
         <thead><tr>
-          <th>科目</th>${grades.map(g => `<th style="width:64px">${esc(g)}</th>`).join('')}
+          <th>科目</th>${grades.map(g => `<th style="width:64px">${esc(g.name)}</th>`).join('')}
+          ${hasRest ? '<th style="width:64px">已隐藏</th>' : ''}
+          ${hasUnk ? `<th style="width:64px">${esc(UNK)}</th>` : ''}
           <th style="width:56px">合计</th>
           <th style="width:150px">占比</th>
         </tr></thead>
@@ -151,7 +162,8 @@ function renderGradeCard(st) {
       <p style="font-size:12px;color:#5a6472;margin:10px 0 0">
         年级是<b>按知识点推断</b>的，不是原始录入数据 ——
         映射规则见 <code>py/grade_map.py</code>，改完立即生效。
-        个别题目判断不准属正常，可在题目上直接写 <code>grade</code> 字段覆盖。
+        年级的增删改名在<b>设置页</b>操作；个别题目判断不准属正常，
+        可在题目上直接写 <code>grade</code> 字段覆盖。
       </p>
     </div>`;
 }

@@ -536,3 +536,35 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 }
 .kp-lv:disabled { opacity: .4; cursor: not-allowed; }
 .kp-cnt { font-size: 11px; color: #9aa8bd; margin-left: auto; }
+
+/* ---- 设置页：年级管理 ---- */
+.gm { margin-top: 8px; border: 1px solid var(--line); border-radius: 6px; }
+.gm-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 10px; border-top: 1px solid #eef1f6;
+}
+.gm-row:first-child { border-top: 0; }
+.gm-row.off { background: #fafbfc; }
+.gm-row.off .gm-name { color: #9aa8bd; text-decoration: line-through; }
+.gm-name {
+  width: 150px; flex: none; font-size: 13px;
+  border: 1px solid transparent; border-radius: 4px;
+  padding: 3px 6px; background: transparent; color: var(--ink);
+}
+.gm-name:hover { border-color: var(--line); }
+.gm-name:focus { border-color: var(--brand2); background: #fff; outline: none; }
+.gm-seg {
+  font-size: 11px; color: #5a6472; background: #eef1f6;
+  border-radius: 8px; padding: 1px 8px;
+}
+.gm-n {
+  min-width: 42px; text-align: right; font-size: 12px;
+  color: #5a6472; font-variant-numeric: tabular-nums;
+}
+.gm-n::after { content: ' 题'; font-size: 11px; color: #9aa8bd; }
+.gm-n.zero { opacity: .45; }
+.gm-hide {
+  margin-left: auto; font-size: 12px; color: var(--ink2);
+  display: flex; align-items: center; gap: 4px; cursor: pointer;
+}
+.gm-del { padding: 2px 8px; }

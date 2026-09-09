@@ -180,6 +180,7 @@ export const api = {
                            batchId: batchId || null, src: src || null }),
   batchDelete: (batch) => call('py_batch_delete', { batch }),
   // 复习参数（记忆曲线阶梯、组卷配比等）
+  gradeUsage: () => call('py_grade_usage'),
   getConfig: () => call('py_get_config'),
   setConfig: (config) =>
     call('py_set_config', { config: JSON.stringify(config) }),
