@@ -97,10 +97,63 @@ def split_title(t):
     return '', t
 
 
+def kind_of(key):
+    """M-T-374-V2 -> '变式 V2'；M-T-374-E1 -> '例题 E1'"""
+    m = re.search(r'-E(\d+)$', key)
+    if m:
+        return '例题 E%s' % m.group(1)
+    m = re.search(r'-V(\d+)$', key)
+    if m:
+        return '变式 V%s' % m.group(1)
+    return '其他'
+
+
+def topic_title(tid):
+    """带归属的题型标题：M-T-374 · 双曲线特性2：内心（解析几何 › 离心率）"""
+    try:
+        sys.path.insert(0, os.path.join(ROOT, 'py'))
+        import kp_catalog as K
+        info = K.TOPICS.get(tid, {})
+        name = info.get('name') or '?'
+        prim = info.get('primary') or ()
+        where = ' › '.join(prim) if prim else ''
+        return '%s · %s' % (tid, name), where
+    except Exception:      # noqa: BLE001
+        return tid, ''
+
+
+def by_topic(rows, a):
+    """按题型分组输出，结构与 51-insights.md 一致"""
+    groups = {}
+    for r in rows:
+        groups.setdefault(r['topic'], []).append(r)
+    total = 0
+    for tid in sorted(groups):
+        title, where = topic_title(tid)
+        print('\n' + '=' * 70)
+        print('%s%s' % (title, '（%s）' % where if where else ''))
+        print('=' * 70)
+        if a.md:
+            print('| 例题/变式 | 结论 |')
+            print('|---|---|')
+        for r in sorted(groups[tid], key=lambda x: x['key']):
+            total += 1
+            body = clean(r['text'])
+            title2, rest = split_title(body)
+            if a.md:
+                print('| %s | %s |' % (kind_of(r['key']), rest or body))
+            else:
+                print('  [%s] %s' % (kind_of(r['key']), body[:210]))
+    print('\n共 %d 条结论 / %d 个题型' % (total, len(groups)))
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--kp', default=None)
     ap.add_argument('--topic', default=None)
+    ap.add_argument('--by-topic', action='store_true',
+                    help='按题型分组（对齐 51-insights.md 的结构）')
     ap.add_argument('--md', action='store_true', help='输出可粘贴的 Markdown')
     ap.add_argument('--check', action='store_true', help='与 51-insights.md 对账')
     a = ap.parse_args()
@@ -113,22 +166,35 @@ def main():
 
     if a.check:
         doc = open(DOC, encoding='utf-8').read() if os.path.exists(DOC) else ''
-        miss = []
-        for r in rows:
-            # 用题号判断是否已收
-            if r['key'] not in doc:
-                miss.append(r)
+        # 文档结构：#### M-T-xxx · 名称 / 表格首列「例题 E1」「变式 V1」
+        # 于是「小节标题的题型 ID」+「首列的 E/V 编号」= 完整题号
+        covered = set()
+        cur_tid = None
+        for line in doc.split('\n'):
+            m = re.match(r'^####\s+(M-T-\d+)', line)
+            if m:
+                cur_tid = m.group(1)
+                continue
+            if cur_tid:
+                m2 = re.search(r'\|\s*\*{0,2}(?:例题|变式)\s*([EV]\d+)', line)
+                if m2:
+                    covered.add('%s-%s' % (cur_tid, m2.group(1)))
+        miss = [r for r in rows if r['key'] not in covered]
         print('题库中结论 %d 条，51-insights.md 已覆盖 %d 条'
               % (len(rows), len(rows) - len(miss)))
         if miss:
             print('\n未收录 %d 条：' % len(miss))
             for r in miss:
-                print('  [%s] %s' % (r['key'], clean(r['text'])[:80]))
+                print('  [%s] %s' % (r['key'], clean(r['text'])[:90]))
+            print('\n提示：在对应题型的 #### 小节表格里加一行「| 例题 E1 | …」或「| 变式 V1 | …」')
         return 0
 
     if not rows:
         print('没有匹配的结论。')
         return 0
+
+    if a.by_topic:
+        return by_topic(rows, a)
 
     # 按知识点分组
     groups = {}
