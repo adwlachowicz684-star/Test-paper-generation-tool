@@ -365,6 +365,55 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   .kp-right { flex: 1 1 auto; max-width: 100%; width: 100%; }
 }
 
+/* ---- 知识点三列联动（大知识点 / 小知识点 / 题型）----
+   三列并列，点左边决定右边显示什么；三列都能勾选、都能参与组卷。 */
+.kp-hint { font-size: 11px; color: #9aa8bd; line-height: 1.6; }
+.kp-cols {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; align-items: start;
+}
+.kp-col {
+  border: 1px solid #e3e6ec; border-radius: 8px;
+  background: #fbfcfe; min-width: 0; overflow: hidden;
+}
+.kp-col-h {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 6px; padding: 5px 9px; font-size: 12px; font-weight: 600;
+  color: #2c3e50; background: #f4f7fb; border-bottom: 1px solid #e3e6ec;
+}
+.kp-col-tip {
+  font-weight: 400; font-size: 10px; color: #9aa8bd;
+  max-width: 60%; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kp-col-b { padding: 7px 8px; max-height: 210px; overflow-y: auto; }
+.kp-col-b .chip { display: block; margin: 0 0 4px; border-radius: 5px; }
+.kp-col-b .chip:last-child { margin-bottom: 0; }
+/* 当前焦点（右边两列显示的是它的内容）—— 与「已勾选」区分开 */
+.kp-col-b .chip.cur { border-color: var(--brand2); box-shadow: inset 0 0 0 1px var(--brand2); }
+.kp-col-b .chip.on { background: var(--brand2); border-color: var(--brand2); color: #fff; }
+.kp-col-b .chip.on .n { opacity: .8; color: #fff; }
+.kp-empty { font-size: 11px; color: #9aa8bd; }
+.kp-gh {
+  font-size: 11px; font-weight: 600; color: #2b6cb0;
+  padding: 3px 0 2px; border-bottom: 1px dashed #dde3ec; margin-bottom: 4px;
+}
+.kp-gh:first-child { padding-top: 0; }
+.kp-gg { margin-bottom: 7px; }
+/* 题型列：没挂题的灰显但仍可点（讲解对全部题型都有意义） */
+.kp-col-b .chip.tk { color: #6b7a8f; }
+.kp-col-b .chip.tk.has { color: #34506e; }
+.kp-col-b .chip.tk i { font-style: normal; color: #9aa8bd; font-size: 11px; }
+.kp-col-b .chip.tk b {
+  font-weight: 400; font-size: 10px; color: #2b8a6c;
+  background: #e6f5ef; border-radius: 3px; padding: 0 4px; margin-left: 3px;
+}
+.kp-col-b .chip.tk.on b { background: rgba(255,255,255,.25); color: #fff; }
+@media (max-width: 1100px) {
+  .kp-cols { grid-template-columns: 1fr; }
+  .kp-col-b { max-height: 150px; }
+}
+
 /* ---- 讲解面板：典例 / 变式 ---- */
 .kp-qs { margin-top: 12px; border-top: 1px dashed #e2e8f0; padding-top: 8px; }
 .kp-qh {

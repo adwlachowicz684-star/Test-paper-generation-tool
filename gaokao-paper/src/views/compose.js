@@ -7,16 +7,22 @@ import { setPending } from './practice.js';
 
 let state = {
   subject: '数学',
-  kp: new Set(),
-  topics: new Set(),   // 题型标签（三级节点 ID，多对多）
+  kp: new Set(),      // 一级（大知识点）名
+  kp2: new Set(),     // 二级（小知识点）名
+  topics: new Set(),  // 题型标签（三级节点 ID，多对多）
   note: { l1: null, l2: null, topic: null },   // 右侧讲解面板当前指向
+  // 三列联动的当前焦点：决定「小知识点」「题型」两列显示谁的内容。
+  // 与「选中」是两件事 —— 选中是筛选条件，焦点只是浏览位置，
+  // 所以可以点开看完再决定要不要勾。
+  focus: { l1: null, l2: null },
   types: new Set(),
   diffMin: 0.0,
   diffMax: 1.0,
   count: 12,
   seed: null,
   picked: [],
-  kpStats: {},       // 已入库题目里出现过的知识点（按科目分组后取当前科）
+  kpStats: {},       // 一级题数：{一级名: n}
+  kp2Stats: {},      // 二级题数：{"一级名>二级名": n}
   catalog: {},       // 六科完整标准目录
 };
 
@@ -60,15 +66,28 @@ export async function mount(root) {
 
       <div class="kp-layout">
         <div class="kp-left">
-          <div class="row" style="align-items:flex-start">
-            <label style="padding-top:4px">知识点</label>
-            <div id="f-kp" class="grow" style="max-height:132px;overflow-y:auto">
-              <span style="color:#9aa;font-size:12px">加载中…</span>
-            </div>
+          <div class="row" style="align-items:flex-start;margin-bottom:6px">
+            <label style="padding-top:2px">知识点</label>
+            <span class="kp-hint">点开大知识点 → 选小知识点 → 挑题型；
+              三级都能勾，勾中的才参与组卷。</span>
           </div>
-          <div class="row" style="align-items:flex-start;margin-top:8px">
-            <label style="padding-top:4px"></label>
-            <div id="topic-tree" class="grow"></div>
+          <div class="kp-cols">
+            <div class="kp-col">
+              <div class="kp-col-h">大知识点
+                <span class="kp-col-tip">可多选</span></div>
+              <div id="f-kp" class="kp-col-b">
+                <span style="color:#9aa;font-size:12px">加载中…</span></div>
+            </div>
+            <div class="kp-col">
+              <div class="kp-col-h">小知识点
+                <span id="l2-src" class="kp-col-tip"></span></div>
+              <div id="f-kp2" class="kp-col-b"></div>
+            </div>
+            <div class="kp-col">
+              <div class="kp-col-h">题型
+                <span id="l3-src" class="kp-col-tip"></span></div>
+              <div id="f-topic" class="kp-col-b"></div>
+            </div>
           </div>
         </div>
         <div class="kp-right">
@@ -102,7 +121,9 @@ export async function mount(root) {
     // 必须清空：上一科选的知识点在下一科不存在，
     // 留着会作为过滤条件传下去，导致「明明有题却组不出卷」。
     state.kp.clear();
+    state.kp2.clear();
     state.types.clear();
+    state.focus = { l1: null, l2: null };
     renderTypes();
     await loadKp();
   };
@@ -127,12 +148,14 @@ export async function mount(root) {
     $('#d-hi').textContent = state.diffMax.toFixed(2);
   };
   $('#btn-clear').onclick = () => {
-    state.kp.clear(); state.types.clear(); state.topics.clear();
-  state.note = { l1: null, l2: null, topic: null };
+    state.kp.clear(); state.kp2.clear();
+    state.types.clear(); state.topics.clear();
+    state.note = { l1: null, l2: null, topic: null };
+    state.focus = { l1: null, l2: null };
     state.diffMin = 0; state.diffMax = 1;
     $('#f-dmin').value = 0; $('#f-dmax').value = 1;
     $('#d-lo').textContent = '0.00'; $('#d-hi').textContent = '1.00';
-    renderTypes(); renderKp();
+    renderTypes(); renderKp(); renderKp2(); renderTopicCol(); loadNote();
   };
   $('#btn-compose').onclick = doCompose;
   $('#btn-print').onclick = () => window.print();
@@ -178,10 +201,31 @@ async function loadKp() {
     const grouped = st.by_kp || {};
     state.kpStats = {};
     for (const [k, n] of (grouped[state.subject] || [])) state.kpStats[k] = n;
-    renderKp();
+
+    // 二级题数只能从 kp_tree 拿：by_kp 只统计到一级。
+    // 老后端没有这个字段时留空 —— 只是题数显示为 0，不影响点选。
+    state.kp2Stats = {};
+    const tree = (st.kp_tree || {})[state.subject] || [];
+    for (const l1 of tree) {
+      for (const l2 of (l1.children || [])) {
+        state.kp2Stats[l1.name + '>' + l2.name] = l2.n || 0;
+      }
+    }
+
+    renderKp(); renderKp2(); renderTopicCol();
   } catch (e) {
     if (box) box.innerHTML = `<span style="color:#c0392b">${e.message}</span>`;
   }
+}
+
+/** 当前科目的一级目录项（可能含未入库的） */
+function catL1() {
+  return (state.catalog && state.catalog[state.subject]) || [];
+}
+
+/** 按名字取一级目录项 */
+function findL1(name) {
+  return catL1().find(x => x.name === name) || null;
 }
 
 /**
@@ -196,8 +240,7 @@ function renderKp() {
   const box = document.querySelector('#f-kp');
   if (!box) return;
 
-  const sub = state.subject;
-  const cat = (state.catalog && state.catalog[sub]) || [];
+  const cat = catL1();
   const stats = state.kpStats || {};
 
   if (!cat.length) {
@@ -212,14 +255,16 @@ function renderKp() {
 
   const chip = (item, n) => {
     // children 是 [{name, topics}]，不能直接 join —— 会得到 [object Object]。
-    // 二级名后面标题型数，一眼看出哪块内容厚。
+    // 悬停时列出小知识点，一眼看出哪块内容厚。
     const tip = (item.children || []).map(c => {
       const t = (c.topics || []).length;
       return t ? `${c.name}(${t})` : c.name;
     }).join(' / ');
-    return `<span class="chip${state.kp.has(item.name) ? ' on' : ''}"`
-      + ` data-k="${item.name}"${tip ? ` title="${tip}"` : ''}>`
-      + `${item.name}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span>`
+    const on = state.kp.has(item.name);
+    const cur = state.focus.l1 === item.name;
+    return `<span class="chip${on ? ' on' : ''}${cur ? ' cur' : ''}"`
+      + ` data-k="${esc(item.name)}"${tip ? ` title="${esc(tip)}"` : ''}>`
+      + `${esc(item.name)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span>`
       + `</span>`;
   };
 
@@ -232,100 +277,197 @@ function renderKp() {
       const k = c.dataset.k;
       if (state.kp.has(k)) state.kp.delete(k); else state.kp.add(k);
       c.classList.toggle('on');
-      // 选中就顺便把讲解定位到这一块；取消选中则回退到「未选」
+
+      // 焦点跟着最后一次点的走；取消选中就退回任意一个还选着的。
+      // 焦点决定右边两列显示什么，跟「是否已勾选」解耦，
+      // 这样能先点开看内容、再决定勾不勾。
+      if (state.kp.has(k)) state.focus.l1 = k;
+      else if (state.focus.l1 === k) state.focus.l1 = [...state.kp][0] || null;
+      state.focus.l2 = null;
+
+      renderKp();                 // 刷新 .cur 高亮
+      renderKp2(); renderTopicCol();
       state.note = { l1: state.kp.has(k) ? k : null, l2: null, topic: null };
-      renderTopics();
       loadNote();
     };
   });
-
-  renderTopics();
 }
 
 /**
- * 三级题型浏览：选中的大知识点 → 小知识点 → 题型。
+ * 第二列：小知识点（二级）。
  *
- * 目录里的题型来自《2024 高中数学热点题型归纳》，是**备考清单**性质，
- * 与题库里的真题不是一一对应关系（题库只有 216 道真题）。
- * 它的用途是：选题时提醒「这块还有哪些考法没练到」。
+ * 之前这一层只是题型清单里的小标题，既不能勾、也没有题数，
+ * 于是「按小知识点组卷」根本无从下手 —— 只能整块大知识点地选。
  */
-function renderTopics() {
-  const host = document.querySelector('#topic-tree');
-  if (!host) return;
+function renderKp2() {
+  const box = document.querySelector('#f-kp2');
+  const src = document.querySelector('#l2-src');
+  if (!box) return;
 
-  const cat = (state.catalog && state.catalog[state.subject]) || [];
-  const picked = cat.filter(x => state.kp.has(x.name));
+  // 勾了多个大知识点时，把它们的小知识点**全列出来**（按大知识点分组）。
+  // 只看最后点开的那个会让人以为另一个大知识点没内容。
+  // 只勾一个、或还没勾时跟随焦点 —— 焦点的意义就是「先点开看看再决定勾不勾」。
+  const picked = [...state.kp];
+  const names = picked.length > 1 ? picked
+    : (state.focus.l1 ? [state.focus.l1] : picked);
 
-  if (!picked.length || !picked.some(x =>
-        (x.children || []).some(c => (c.topics || []).length))) {
-    host.innerHTML = '';
+  if (!names.length) {
+    box.innerHTML = '<span class="kp-empty">先在左边点开一个大知识点</span>';
+    if (src) src.textContent = '';
     return;
   }
 
-  const blocks = picked.map(l1 => {
-    const kids = (l1.children || []).filter(c => (c.topics || []).length);
+  const groups = names.map(n => ({ name: n, item: findL1(n) }))
+    .filter(g => g.item);
+
+  if (!groups.length) {
+    box.innerHTML = '<span class="kp-empty">该大知识点下暂无小知识点</span>';
+    if (src) src.textContent = '';
+    return;
+  }
+
+  if (src) {
+    src.textContent = groups.length === 1
+      ? groups[0].name
+      : `来自 ${groups.length} 个大知识点`;
+  }
+
+  const chip = (l1Name, c) => {
+    const n = state.kp2Stats[l1Name + '>' + c.name] || 0;
+    const nt = (c.topics || []).length;
+    const on = state.kp2.has(c.name);
+    const cur = state.focus.l2 === c.name;
+    return `<span class="chip${on ? ' on' : ''}${cur ? ' cur' : ''}"`
+      + ` data-l1="${esc(l1Name)}" data-k2="${esc(c.name)}"`
+      + ` title="${esc(c.name)}：${nt} 个题型${n ? '，已入库 ' + n + ' 题' : '，暂无题目'}">`
+      + `${esc(c.name)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span>`
+      + `</span>`;
+  };
+
+  // 多个大知识点时分组显示，否则平铺 —— 一级名字已经写在列头了
+  box.innerHTML = groups.map(g => {
+    const kids = g.item.children || [];
     if (!kids.length) return '';
-    const inner = kids.map(c => {
-      // 题型是**节点**：有 ID、可挂多个题目、可跨多个大知识点。
-      // 挂了题的显示题数并可点击筛选，没挂的灰显。
-      const lis = c.topics.map((t, i) => {
-        const nd = (c.nodes && c.nodes[i]) || {};
-        const ow = (c.owners && c.owners[t]) || [];
-        const cross = ow.length > 1
-          ? ow.filter(x => x[0] !== l1.name).map(x => x[0]).join('+') : '';
-        const nq = nd.n_qs || 0;
-        const cls = nq ? 'tk on' : 'tk';
-        const tip = nd.label || t;
-        return `<i class="${cls}" data-tid="${esc(nd.id || '')}"`
-             + ` data-nq="${nq}"`
-             + ` title="${esc(tip)}${nq ? '（已挂 ' + nq + ' 题，点击加入筛选）'
-                                          : '（暂无题目，点击查看讲解）'}">`
-             + `${esc(t)}`
-             + (cross ? `<b>↔${esc(cross)}</b>` : '')
-             + (nq ? `<u>${nq}</u>` : '')
-             + `</i>`;
-      }).join('');
-      return `<div class="tp-l2"><b class="tp-l2n" data-l1="${esc(l1.name)}"`
-        + ` data-l2="${esc(c.name)}" title="查看「${esc(c.name)}」要点">`
-        + `${esc(c.name)}</b>`
-        + `<span class="tp-n">${c.topics.length}</span>`
-        + `<div class="tp-l3">${lis}</div></div>`;
-    }).join('');
-    return `<div class="tp-l1"><div class="tp-h">${esc(l1.name)}</div>${inner}</div>`;
-  }).join('');
+    const inner = kids.map(c => chip(g.name, c)).join('');
+    if (groups.length === 1) return inner;
+    return `<div class="kp-gh">${esc(g.name)}</div><div class="kp-gg">${inner}</div>`;
+  }).join('') || '<span class="kp-empty">该大知识点下暂无小知识点</span>';
 
-  host.innerHTML =
-    `<div class="topic-box"><div class="topic-h">题型清单`
-    + `<span>（点击已挂题的题型可加入筛选）</span></div>${blocks}</div>`;
+  box.querySelectorAll('.chip[data-k2]').forEach(c => {
+    c.onclick = () => {
+      const k2 = c.dataset.k2;
+      const l1 = c.dataset.l1;
+      if (state.kp2.has(k2)) state.kp2.delete(k2); else state.kp2.add(k2);
+      c.classList.toggle('on');
 
-  // 二级标题：点击 -> 讲解面板切到该小知识点
-  host.querySelectorAll('b.tp-l2n').forEach(el => {
-    el.onclick = () => {
-      state.note = { l1: el.dataset.l1, l2: el.dataset.l2, topic: null };
+      state.focus.l1 = l1;
+      if (state.kp2.has(k2)) state.focus.l2 = k2;
+      else if (state.focus.l2 === k2) {
+        state.focus.l2 = [...state.kp2][0] || null;
+      }
+
+      renderKp2(); renderTopicCol();
+      state.note = { l1, l2: state.kp2.has(k2) ? k2 : null, topic: null };
       loadNote();
     };
   });
+}
 
-  // 题型节点：点击 -> 讲解面板切到该题型
-  // 没挂题的题型不能用来筛题，但**讲解对全部题型都有意义**，
-  // 所以这里不区分 on/off，全部可点。
-  host.querySelectorAll('i.tk[data-tid]').forEach(el => {
-    el.onclick = () => {
-      const tid = el.dataset.tid;
-      if (!tid) return;
-      const nq = Number(el.dataset.nq || 0);
+/**
+ * 第三列：题型（三级节点）。
+ *
+ * 数据源优先取当前焦点的小知识点；
+ * 没勾二级时，退化为「已选大知识点下的全部题型」，
+ * 否则用户不勾二级就一列空白，会以为题型加载失败。
+ */
+function renderTopicCol() {
+  const box = document.querySelector('#f-topic');
+  const src = document.querySelector('#l3-src');
+  if (!box) return;
 
-      // 没挂题的题型：只能看讲解，不能拿去筛题。
-      // 否则会被加进筛选条件，却一题都匹配不到，组出空卷。
-      if (nq > 0) {
+  const rows = [];   // {tid, name, nq, l1, l2, cross}
+  const push = (l1Name, l2, nd, tname) => {
+    rows.push({
+      tid: nd ? nd.id : '', name: tname,
+      nq: nd ? (nd.n_qs || 0) : 0,
+      l1: l1Name, l2: l2.name,
+      cross: (nd && nd.cross || []).filter(x => x !== l1Name),
+    });
+  };
+
+  const collect = (l1Name, onlyL2) => {
+    const item = findL1(l1Name);
+    if (!item) return;
+    for (const c of (item.children || [])) {
+      if (onlyL2 && c.name !== onlyL2) continue;
+      (c.topics || []).forEach((t, i) => {
+        const nd = (c.nodes && c.nodes[i]) || null;
+        push(l1Name, c, nd, t);
+      });
+    }
+  };
+
+  // 与二级列同样的口径：多选了大知识点就把它们的题型合起来，
+  // 只有一个 / 还没勾时跟着焦点走。
+  const l1s = state.kp.size > 1 ? [...state.kp]
+    : (state.focus.l1 ? [state.focus.l1] : [...state.kp]);
+
+  if (state.focus.l2 && state.focus.l1) {
+    collect(state.focus.l1, state.focus.l2);
+  } else {
+    for (const n of l1s) collect(n, null);
+  }
+
+  if (src) {
+    src.textContent = state.focus.l2 ? state.focus.l2
+      : (state.focus.l1 && state.kp.size < 2
+          ? state.focus.l1 + ' · 全部题型'
+          : (state.kp.size > 1 ? `已选 ${state.kp.size} 个大知识点 · 全部题型` : ''));
+  }
+
+  if (!rows.length) {
+    box.innerHTML = state.focus.l1 || state.kp.size
+      ? '<span class="kp-empty">这一层暂无题型</span>'
+      : '<span class="kp-empty">先在左边点开大知识点</span>';
+    return;
+  }
+
+  // 已挂题的排前面：能筛的优先，灰的沉底
+  rows.sort((a, b) => (b.nq - a.nq) || a.name.localeCompare(b.name, 'zh'));
+
+  box.innerHTML = rows.map(r => {
+    const sel = r.tid && state.topics.has(r.tid);
+    const cur = r.tid && state.note.topic === r.tid;
+    const showL2 = !state.focus.l2 && rows.some(x => x.l2 !== r.l2);
+    return `<span class="chip tk${r.nq ? ' has' : ''}${sel ? ' on' : ''}${cur ? ' cur' : ''}"`
+      + ` data-tid="${esc(r.tid)}" data-nq="${r.nq}"`
+      + ` data-l1="${esc(r.l1)}" data-l2="${esc(r.l2)}"`
+      + ` data-name="${esc(r.name)}"`
+      + ` title="${esc(r.name)}${r.nq ? '（已挂 ' + r.nq + ' 题，点击加入筛选）'
+                                      : '（暂无题目，只能查看讲解）'}">`
+      + (showL2 ? `<i>${esc(r.l2)} · </i>` : '')
+      + `${esc(r.name)}`
+      + (r.cross.length ? `<b>↔${esc(r.cross.join('+'))}</b>` : '')
+      + (r.nq ? `<span class="n">${r.nq}</span>` : '')
+      + `</span>`;
+  }).join('');
+
+  box.querySelectorAll('.chip[data-tid]').forEach(c => {
+    c.onclick = () => {
+      const tid = c.dataset.tid;
+      const nq = Number(c.dataset.nq || 0);
+
+      // 没挂题的题型勾了也匹配不到题目，只会组出空卷，
+      // 但仍然可以点开看讲解。
+      if (tid && nq > 0) {
         if (state.topics.has(tid)) state.topics.delete(tid);
         else state.topics.add(tid);
-        el.classList.toggle('sel');
+        c.classList.toggle('on');
       }
 
-      const p = el.closest('.tp-l2')?.querySelector('b.tp-l2n');
-      state.note = { l1: p?.dataset.l1 || null, l2: p?.dataset.l2 || null,
-                     topic: tid };
+      state.note = { l1: c.dataset.l1 || null, l2: c.dataset.l2 || null,
+                     topic: tid || null };
+      renderTopicCol();
       loadNote();
     };
   });
@@ -480,6 +622,7 @@ async function doCompose() {
       subject: state.subject,
       types: [...state.types],
       kp: [...state.kp],
+      kp2: [...state.kp2],
       topics: [...state.topics],
       diff_min: state.diffMin,
       diff_max: state.diffMax,
@@ -651,7 +794,12 @@ function restore() {
     state.diffMin = c.diff_min ?? 0;
     state.diffMax = c.diff_max ?? 1;
     (c.kp || []).forEach(k => state.kp.add(k));
+    (c.kp2 || []).forEach(k => state.kp2.add(k));
     (c.types || []).forEach(t => state.types.add(t));
+    // 恢复焦点：右侧两列才有内容，否则恢复后看着像没恢复
+    state.focus = { l1: [...state.kp][0] || null, l2: [...state.kp2][0] || null };
+    // 讲解面板跟着落到恢复出来的那一块，否则左侧有勾选、右侧还是空提示
+    state.note = { l1: state.focus.l1, l2: state.focus.l2, topic: null };
     const $ = (s2) => document.querySelector(s2);
     $('#f-subject').value = state.subject;
     $('#f-count').value = state.count;
@@ -660,6 +808,24 @@ function restore() {
     $('#d-lo').textContent = state.diffMin.toFixed(2);
     $('#d-hi').textContent = state.diffMax.toFixed(2);
     renderTypes();
-    renderKp();
+    renderKp(); renderKp2(); renderTopicCol(); loadNote();
   } catch (e) {}
+}
+
+/**
+ * HTML 转义。
+ *
+ * 这个文件里到处在用 esc()，但**从来没有定义过** ——
+ * 一调用就抛 ReferenceError。后果不是报错弹窗，而是：
+ *   - renderTopics() 抛错 → 题型 / 小知识点那一整块渲染中断
+ *   - renderNote() 抛错 → 讲解面板永远显示「加载失败」
+ * 所以页面看着是「小知识点看不见」，其实是渲染函数第一行就炸了。
+ *
+ * 另外必须转义引号：这些串要塞进 title="..." / data-x="..." 属性里，
+ * 只转义尖括号的话，遇到含双引号的题型名会把属性提前闭合。
+ */
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }

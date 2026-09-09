@@ -515,6 +515,20 @@ def cmd_kp_catalog(a):
     选物理只出现物理的 16 个，不会杂糅。
     """
     import kp_catalog as K
+    # 题型挂题数（n_qs）来自**运行时反建**的索引 TOPICS[tid]['questions']。
+    #
+    # 这个进程若还没加载过题库，索引就是空的 —— n_qs 会全部返回 0。
+    # 前端据此把题型灰显、禁止勾选（没挂题的题型勾了只会组出空卷），
+    # 于是题型筛选整块失效，460 个题型一个都点不动，还不报错。
+    # 所以出目录前必须先加载题库重建索引。
+    try:
+        K.rebuild_qindex(enrich(load_bank()))
+    except Exception as _e:
+        # 题库打不开不该让目录整个挂掉：没有题数只是显示灰，目录本身还能用
+        try:
+            sys.stderr.write('[kp-catalog] 题库索引重建失败：%s\n' % _e)
+        except Exception:
+            pass
     sub = getattr(a, 'subject', None)
     if sub and sub in K.CATALOG:
         return _out({'ok': True, 'subject': sub,
@@ -550,6 +564,29 @@ def cmd_compose(a):
                      or k == q.get('kp')
                      or k == q.get('kp2')
                      for k in kps)]
+
+    # 二级知识点（小知识点）：与一级是 **AND** —— 先圈大块，再收窄到小块。
+    #
+    # 不能塞进上面的 kps：那里是 OR，选「函数与导数 + 导数含参讨论」
+    # 会被展开成「属于函数与导数 **或** 属于导数含参讨论」= 整个大块，
+    # 收窄失效，用户以为选了小块、出卷却是大块的题。
+    kp2s = set(x for x in (cfg.get('kp2') or []) if x)
+    if kp2s:
+        import kp_catalog as _K2
+        def _l2_of(q):
+            # kp2 字段是主来源；没写的（或只挂了题型标签的）
+            # 再按题型节点的主归属回查，避免漏题。
+            out = set()
+            v = (q.get('kp2') or '').strip()
+            if v:
+                out.add(v)
+            for tid in (q.get('topics') or []):
+                nd = _K2.topic_node(tid)
+                if nd:
+                    out.add(nd['primary'][1])
+            return out
+        qs = [q for q in qs if _l2_of(q) & kp2s]
+
     # 题型标签：多对多，命中任一即可。
     # 与知识点筛选是 AND 关系 —— 「三角函数里、且属于『面积最值』题型的题」。
     tps = cfg.get('topics') or []
