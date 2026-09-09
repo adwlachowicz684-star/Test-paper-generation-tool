@@ -35,6 +35,18 @@
 
 - `M-H0380` ⚠ 关于「取 $b=c$」的说明**：原式关于 $b,c$ 对称，但严格来说需验证极值确实在对称点。这里用「固定 $A$ 时 $\frac{bc}{b^2+c^2-2bc\cos A+2bc}$ 在 $b=c$ 时最大」（因分子固定时分母在 $b=c$ 最小）可严格证明 ✓。
 
+**M-T-202 · 图形2：角平分线**
+
+- `M-H0533` ⚠ 关键技巧**：算 $S^{2}$（而不是 $S$）能避开根号，且 $x^{4}\cos^{2}\theta$ 中 $x^{4}$ 与分母 $16x^{4}$ 正好约掉， 这是题目刻意设计的 —— **看到这种约分就知道路子走对了**。
+- `M-H0534` ⚠ 注意：由 $BP\perp CP$ 应有 $\cos\theta=\frac{CP}{BC}$ 是**在 $\triangle BCP$ 中 $\angle C=\theta$、斜边 $BC$** 的前提下， 即 $\triangle BCP$ 以 $C$ 为顶点、$BC$ 为斜边、直角在 $P$ —— 此时 $\cos\angle BCP=\frac{CP}{BC}$ ✓✓ 成立。 **答案 B（$4\sqrt2$）正确** ✓
+- `M-H0535` ⚠ 易错**：$\sin2\alpha=2\sin\alpha\cos\alpha$ 展开后，约分时注意 $\sin\alpha\neq0$（$\alpha\in(0,\pi)$）, 本题约掉 $\sin\alpha$ 后直接得 $\cos\alpha$，非常快 —— 若展开成 $\sin^2$ 会绕远。
+- `M-H0536` ⚠ 详解的 $AM$ 表达式有一处不一致**：详解写「$AM=2\sin A$」， 但按 $\frac2{\sin A}=\frac{AM}{\sin(\pi/6)}=2AM$ 应得 $AM=\frac1{\sin A}$。 **以我推导的 $\frac1{AM}=\sin A$ 为准** —— 因为后续 $\frac2{AM}-\frac1{CM}=2\sin A-\sin C$ 与之一致，且答案吻合。 （若按详解字面 $AM=2\sin A$，则 $\frac1{AM}=\frac1{2\sin A}$，根本凑不出 $2\sin A-\sin C$。） **独立验算**（逐点代入）： ① **辅助角变换**：$\frac32\sin A-\frac{\sqrt3}2\cos A$，振幅 $=\sqrt{(\frac32)^2+(\frac{\sqrt3}2)^2}=\sqrt{\frac94+\frac34}=\sqrt3$ ✓
+
+**M-T-204 · 图形4：四边形**
+
+- `M-H0532` ⚠⚠ 题干还原（根号丢失 —— 本批最关键的发现）**： ref_bank 存 `BC = 3`，但若按 $BC=3$，则 $AC^{2}=10-6\cos\alpha$（不是原书的 $4-2\sqrt3\cos\alpha$）， 最终也推不出 $7+2\sqrt6$。**按原书中间结果反推，题干必为 $BC=\sqrt3$**（根号在提取时丢失）。 **验证链条**： ① $AB=1$、$BC=\sqrt3$ ⟹ $AC^{2}=1+3-2\sqrt3\cos\alpha=4-2\sqrt3\cos\alpha$ ✓✓ **与原书完全一致** ② $\sin\beta=\frac{\sin\alpha}{AC}=\frac{\sin\alpha}{\sqrt{4-2\sqrt3\cos\alpha}}$ ✓✓ **与原书完全一致** ③ $BD^{2}=7+2\sqrt6\sin(\alpha-\frac\pi4)$ ✓✓ **与原书完全一致**
+- `M-H0532` ⚠ 本题的通用提醒**：当自己推导的中间结果与原书对不上时， **优先怀疑题干有根号丢失**（本项目已出现 N 次），而不是硬凑原书答案。
+
 ### 解三角形小题(二)
 
 **M-T-205 · 图形5：“扩展线”**
