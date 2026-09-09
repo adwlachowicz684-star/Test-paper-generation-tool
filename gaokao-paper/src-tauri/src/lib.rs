@@ -8,6 +8,7 @@ use std::path::PathBuf;
 use std::process::Command;
 use serde::Serialize;
 use serde_json::Value;
+use tauri::Manager;
 
 /// Python 解释器候选。**返回顺序即优先级，不要随意调整**：
 ///
