@@ -16,6 +16,8 @@ let state = {
   // 所以可以点开看完再决定要不要勾。
   focus: { l1: null, l2: null },
   types: new Set(),
+  grades: new Set(),   // 年级（派生字段，见 py/grade_map.py）
+  gradeStat: {},       // {年级: 题数}，来自 stats.by_grade_sub
   diffMin: 0.0,
   diffMax: 1.0,
   count: 12,
@@ -50,6 +52,12 @@ export async function mount(root) {
       <div class="row" style="margin-bottom:8px">
         <label>题型</label>
         <span id="f-types"></span>
+      </div>
+
+      <div class="row" style="margin-bottom:8px">
+        <label>年级</label>
+        <span id="f-grades" class="grow"></span>
+        <span class="kp-hint" id="grade-tip"></span>
       </div>
 
       <div class="row" style="margin-bottom:8px">
@@ -123,6 +131,7 @@ export async function mount(root) {
     state.kp.clear();
     state.kp2.clear();
     state.types.clear();
+    state.grades.clear();
     state.focus = { l1: null, l2: null };
     renderTypes();
     await loadKp();
@@ -150,12 +159,14 @@ export async function mount(root) {
   $('#btn-clear').onclick = () => {
     state.kp.clear(); state.kp2.clear();
     state.types.clear(); state.topics.clear();
+    state.grades.clear();
     state.note = { l1: null, l2: null, topic: null };
     state.focus = { l1: null, l2: null };
     state.diffMin = 0; state.diffMax = 1;
     $('#f-dmin').value = 0; $('#f-dmax').value = 1;
     $('#d-lo').textContent = '0.00'; $('#d-hi').textContent = '1.00';
-    renderTypes(); renderKp(); renderKp2(); renderTopicCol(); loadNote();
+    renderTypes(); renderKp(); renderKp2(); renderTopicCol();
+    renderGrades(); loadNote();
   };
   $('#btn-compose').onclick = doCompose;
   $('#btn-print').onclick = () => window.print();
@@ -212,10 +223,55 @@ async function loadKp() {
       }
     }
 
-    renderKp(); renderKp2(); renderTopicCol();
+    // 年级是派生字段，按科目分别统计（by_grade_sub）。
+    // 没这个字段（老后端）就留空，年级筛选整行不显示。
+    const per = st.by_grade_sub || {};
+    state.gradeStat = per[state.subject] || {};
+
+    renderKp(); renderKp2(); renderTopicCol(); renderGrades();
   } catch (e) {
     if (box) box.innerHTML = `<span style="color:#c0392b">${e.message}</span>`;
   }
+}
+
+/**
+ * 年级筛选。
+ *
+ * 年级是**推断**出来的（按知识点映射），不是录入数据，
+ * 所以每个选项都标出题数，并把来源写在旁边 ——
+ * 用户看到「高二 181」这种数字时，得知道它是算出来的。
+ */
+function renderGrades() {
+  const box = document.querySelector('#f-grades');
+  const tip = document.querySelector('#grade-tip');
+  if (!box) return;
+
+  const stat = state.gradeStat || {};
+  const grades = Object.keys(stat);
+  if (!grades.length) {
+    // 没有年级数据就把整行藏起来，留个空行会让人以为是加载失败
+    box.innerHTML = '';
+    const row = box.closest('.row');
+    if (row) row.style.display = 'none';
+    return;
+  }
+
+  box.innerHTML = grades.map(g => {
+    const n = stat[g] || 0;
+    return `<span class="chip${state.grades.has(g) ? ' on' : ''}"`
+      + ` data-g="${esc(g)}" title="${esc(g)}：${n} 题">`
+      + `${esc(g)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span></span>`;
+  }).join('');
+
+  if (tip) tip.textContent = '年级按知识点推断，不是原始录入数据';
+
+  box.querySelectorAll('.chip[data-g]').forEach(c => {
+    c.onclick = () => {
+      const g = c.dataset.g;
+      if (state.grades.has(g)) state.grades.delete(g); else state.grades.add(g);
+      c.classList.toggle('on');
+    };
+  });
 }
 
 /** 当前科目的一级目录项（可能含未入库的） */
@@ -623,6 +679,7 @@ async function doCompose() {
       types: [...state.types],
       kp: [...state.kp],
       kp2: [...state.kp2],
+      grades: [...state.grades],
       topics: [...state.topics],
       diff_min: state.diffMin,
       diff_max: state.diffMax,
@@ -796,6 +853,7 @@ function restore() {
     (c.kp || []).forEach(k => state.kp.add(k));
     (c.kp2 || []).forEach(k => state.kp2.add(k));
     (c.types || []).forEach(t => state.types.add(t));
+    (c.grades || []).forEach(g => state.grades.add(g));
     // 恢复焦点：右侧两列才有内容，否则恢复后看着像没恢复
     state.focus = { l1: [...state.kp][0] || null, l2: [...state.kp2][0] || null };
     // 讲解面板跟着落到恢复出来的那一块，否则左侧有勾选、右侧还是空提示
@@ -808,6 +866,9 @@ function restore() {
     $('#d-lo').textContent = state.diffMin.toFixed(2);
     $('#d-hi').textContent = state.diffMax.toFixed(2);
     renderTypes();
+    // 年级统计要等 loadKp() 拉完 stats 才有，这里渲染不出内容也没关系：
+    // 它会在 loadKp 里再渲染一次。提前渲染是为了恢复出勾选高亮。
+    renderGrades();
     renderKp(); renderKp2(); renderTopicCol(); loadNote();
   } catch (e) {}
 }

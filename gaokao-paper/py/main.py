@@ -398,6 +398,12 @@ def enrich(qs):
             {'id': t, 'label': _K.topic_label(t)}
             for t in (q.get('topics') or []) if _K.topic_node(t)
         ]
+        # 年级：**派生**字段，不写回题库。
+        # 题目自带 grade 的以自带为准（人工校订过最可信），
+        # 其余按知识点映射推断 —— 见 grade_map.py 的设计说明。
+        # 必须在 kp_list / kp2 都归完之后才算，否则映射查不到。
+        import grade_map as _G
+        q['grade'] = _G.grade_of_question(q)
     # 双向索引：题型 → 题目，每次从题目上的标签重建。
     # 只存单向（题目→题型）避免双写不一致。
     _K.rebuild_qindex(qs)
@@ -434,6 +440,7 @@ def cmd_list(a):
 def cmd_stats(a):
     from collections import Counter, defaultdict
     import kp_catalog as K
+    import grade_map as _G0
     qs = enrich(load_bank())
     c_sub = Counter(q.get('subject') for q in qs)
     c_type = Counter(q.get('type') for q in qs)
@@ -497,11 +504,23 @@ def cmd_stats(a):
             kids_of.append({'name': l1, 'n': n1, 'children': l2s})
         kp_tree[sub] = kids_of
 
+    # 年级：派生字段（见 grade_map.py）。
+    # 单独给一份 by_grade，前端加个概览块就能用，不必自己再算一遍。
+    c_gd = Counter(q.get('grade') or _G0.UNKNOWN for q in qs)
+    # 年级 × 科目：只看单科统计时全局数字会误导
+    # （数学的高一题数 ≠ 整个题库的高一题数）。
+    grade_by_sub = defaultdict(Counter)
+    for q in qs:
+        grade_by_sub[q.get('subject') or ''][q.get('grade') or _G0.UNKNOWN] += 1
+
     return _out({
         'ok': True, 'total': len(qs),
         'by_subject': dict(c_sub),
         'by_type': dict(c_type),
         'by_level': dict(c_lv),
+        'by_grade': dict(c_gd),
+        'by_grade_sub': {s: dict(c) for s, c in grade_by_sub.items()},
+        'grades': _G0.GRADES,
         'by_kp': {s: c.most_common() for s, c in by_kp.items()},
         'kp_tree': kp_tree,
         'subjects': K.SUBJECTS,
@@ -586,6 +605,18 @@ def cmd_compose(a):
                     out.add(nd['primary'][1])
             return out
         qs = [q for q in qs if _l2_of(q) & kp2s]
+
+    # 年级：派生字段，多选取「命中任一」。
+    # 与知识点是 AND —— 「高一 且 在函数与导数里」。
+    #
+    # 「未标注」要能显式筛出来：题库里凡是映射没覆盖到的题都是这个值，
+    # 不让它可选的话，这批题在所有年级筛选下都消失，
+    # 用户只会觉得「题少了」，看不出是筛掉了。
+    grs = [x for x in (cfg.get('grades') or []) if x]
+    if grs:
+        import grade_map as _G3
+        qs = [q for q in qs
+              if (q.get('grade') or _G3.UNKNOWN) in grs]
 
     # 题型标签：多对多，命中任一即可。
     # 与知识点筛选是 AND 关系 —— 「三角函数里、且属于『面积最值』题型的题」。

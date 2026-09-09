@@ -50,6 +50,7 @@ async function load() {
         </p>
       </div>
 
+      ${renderGradeCard(st)}
       ${renderKpCards(st)}`;
 
     bindToggles();
@@ -91,6 +92,68 @@ function kpTree(st) {
     tree[sub] = list.map(([name, n]) => ({ name, n, children: [] }));
   }
   return tree;
+}
+
+/**
+ * 年级分布。
+ *
+ * grade 是**派生字段**：题库里没有这个数据，由 grade_map.py
+ * 按「知识点 → 年级」实时推断，不写回题库。
+ * 好处是改映射立刻生效、错题不会固化；代价是映射改了数字就变。
+ * 所以这里必须说清来源，否则用户会当成权威数据用。
+ */
+function renderGradeCard(st) {
+  const per = st.by_grade_sub || {};
+  const subs = Object.keys(per);
+  // 老后端没有这份数据，直接不显示 —— 空卡片比「全是0」更少误导
+  if (!subs.length) return '';
+
+  // 年级列表：先按后端给的标准顺序，再补上数据里多出来的（如「未标注」）。
+  // 用 Set 去重 —— 直接 concat 会把已存在的年级再拼一遍，
+  // 表头出现「高一 高二 高三 高一 高二 高三」。
+  const grades = [];
+  const seenG = new Set();
+  for (const g of (st.grades || [])) {
+    if (!seenG.has(g)) { seenG.add(g); grades.push(g); }
+  }
+  for (const c of Object.values(per)) {
+    for (const g of Object.keys(c)) {
+      if (!seenG.has(g)) { seenG.add(g); grades.push(g); }
+    }
+  }
+
+  // 占比条按**全库最大**做基准。
+  // 若用每行自己的总数，每行都是 100%，条一样长，看着像数据没变。
+  const rowMax = Math.max(1, ...subs.map(s =>
+    Object.values(per[s] || {}).reduce((a, b) => a + b, 0)));
+
+  const row = (label, counter) => {
+    const total = Object.values(counter).reduce((a, b) => a + b, 0);
+    return `<tr>
+      <td class="kp-cell">${esc(label)}</td>
+      ${grades.map(g => `<td class="kp-num">${counter[g] || 0}</td>`).join('')}
+      <td class="kp-num"><b>${total}</b></td>
+      <td>${bar(total, rowMax)}</td>
+    </tr>`;
+  };
+
+  return `
+    <div class="card">
+      <h3>年级分布</h3>
+      <table class="grid kp-table">
+        <thead><tr>
+          <th>科目</th>${grades.map(g => `<th style="width:64px">${esc(g)}</th>`).join('')}
+          <th style="width:56px">合计</th>
+          <th style="width:150px">占比</th>
+        </tr></thead>
+        <tbody>${subs.map(s => row(s, per[s] || {})).join('')}</tbody>
+      </table>
+      <p style="font-size:12px;color:#5a6472;margin:10px 0 0">
+        年级是<b>按知识点推断</b>的，不是原始录入数据 ——
+        映射规则见 <code>py/grade_map.py</code>，改完立即生效。
+        个别题目判断不准属正常，可在题目上直接写 <code>grade</code> 字段覆盖。
+      </p>
+    </div>`;
 }
 
 function renderKpCards(st) {
@@ -159,7 +222,7 @@ function renderKpCards(st) {
     });
 
     return `
-      <div class="card kp-card">
+      <div class="card kp-card" data-sub="${esc(sub || '默认')}">
         <h3>知识点覆盖 · ${esc(sub)}</h3>
         <p style="font-size:12px;color:#5a6472;margin:-4px 0 10px">
           共 ${l1s.length} 个大知识点、${n2} 个小知识点、${n3} 个题型。
@@ -246,8 +309,41 @@ function bindToggles() {
   });
 
   body.querySelectorAll('.kp-card').forEach(c => {
-    syncLevelBtns(c); updateRowCount(c);
+    const want = savedLevel(c.dataset.sub || '');
+    if (!want) { syncLevelBtns(c); updateRowCount(c); return; }
+
+    // 记住的层级可能已经不成立了（题库变动后某层没了）。
+    // 降级到实际存在的最深一层，否则会停在「按钮全不高亮」的哑状态，
+    // 用户看不出当前到底是几级。
+    const avail = [...c.querySelectorAll('.kp-lv')]
+      .filter(b => !b.disabled).map(b => +b.dataset.level);
+    let lv = want;
+    while (lv > 1 && !avail.includes(lv)) lv--;
+    setLevel(c, lv);
   });
+}
+
+/**
+ * 记住每张卡片上次选的展开层级。
+ *
+ * 按**科目**分别记：数学想看题型、物理只想看大块，是两种合理需求，
+ * 不该因为切了个科就把另一边的偏好冲掉。
+ *
+ * 存 localStorage 而非后端 —— 这只是界面偏好，换台电脑重设一次无妨。
+ * 读写都包在 try 里：隐私模式下 localStorage 可能直接抛异常，
+ * 不能因为记不住偏好就让统计页打不开。
+ */
+const PREF_KEY = 'stats.kpLevel.';
+
+function savedLevel(sub) {
+  try {
+    const v = +(localStorage.getItem(PREF_KEY + sub) || 0);
+    return v >= 1 && v <= 3 ? v : 0;      // 0 = 没记过，走默认
+  } catch (e) { return 0; }
+}
+
+function saveLevel(sub, level) {
+  try { localStorage.setItem(PREF_KEY + sub, String(level)); } catch (e) {}
 }
 
 /** 批量铺到指定层级：1=仅大知识点 2=+小知识点 3=+题型 */
@@ -268,9 +364,10 @@ function setLevel(card, level) {
   });
 
   card.querySelectorAll('.kp-lv').forEach(b => {
-    b.classList.toggle('on', +b.dataset.level === level);
+    b.classList.toggle('on', !b.disabled && +b.dataset.level === level);
   });
   updateRowCount(card);
+  saveLevel(card.dataset.sub || '', level);
 }
 
 /**
