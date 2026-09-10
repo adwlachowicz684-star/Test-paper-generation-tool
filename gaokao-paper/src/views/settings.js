@@ -9,7 +9,11 @@
  * 原来这些数值硬编码在 py/main.py 的 LADDER 字典里，
  * 改一次要动代码并重新打包。现在存 config.json，改完即生效。
  */
-import * as api from '../app/api.js';
+// 必须是**命名导入**：api.js 导出的是 `export const api = {...}`。
+// 用 `import * as api` 的话，方法挂在 api.api.xxx 上，
+// api.getConfig / api.gradeUsage 全是 undefined ——
+// 设置页会整个调不通，且报错信息（is not a function）看不出是 import 写错了。
+import { api } from '../app/api.js';
 
 const LADDER_ROWS = [
   { lv: -2, name: '连错 2 次以上', tip: '压到最低档，最短间隔后就重来' },
@@ -126,6 +130,13 @@ async function load() {
 
 async function loadGrades() {
   const box = document.querySelector('#grade-box');
+  // 后端没这个命令（旧版本）时给个明确提示，
+  // 而不是抛一句 "is not a function" 让人以为是代码坏了。
+  if (typeof api.gradeUsage !== 'function') {
+    if (box) box.innerHTML = '<span class="err sm">'
+      + '当前版本不支持年级管理（缺少 grade-usage 接口）</span>';
+    return;
+  }
   try {
     const r = await api.gradeUsage();
     state.grades = r.grades || [];
