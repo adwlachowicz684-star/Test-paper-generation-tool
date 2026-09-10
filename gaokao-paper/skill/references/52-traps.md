@@ -393,6 +393,24 @@
 
 ### 圆锥曲线小题
 
+**M-T-327 · 第一定义及其应用**
+
+- `M-H0624` ⚠ 答案还原**：ref_bank 存 `2/4`，实为 $\frac{\sqrt2}4$（**根号丢失**）。 判定依据：$\frac{\sqrt2}4=\frac1{2\sqrt2}=0.3536$，而字面 $\frac24=\frac12=0.5$ 与推导不符 ✓✓ **独立验算**： ① **$A$ 是中点**：$\lvert PA\rvert=\lvert AF_1\rvert$ 且 $A$ 在线段 $PF_1$ 上 ⟹ $A$ 为中点 ✓✓ $A=(\frac{c-c}{2},\frac{2c+0}{2})=(0,c)$ ✓✓ ② **$b^{2}=c^{2}$**：$A(0,c)$ 在椭圆上 ⟹ $\frac{c^2}{b^2}=1$ ⟹ $b^2=c^2$ ✓✓✓ ③ **$a=\sqrt2c$**：$a^{2}=b^{2}+c^{2}=2c^{2}$ ✓✓ ④ **离心率**：$e=\frac ca=\frac1{\sqrt2}=\frac{\sqrt2}2$ ✓ 合理（$0<e<1$）
+- `M-H0625` （⚠ 若记成 $\lvert PF_2\rvert-\lvert PM\rvert\le\lvert MF_2\rvert$ 会得到「最小值」方向，本题求**最大值**，方向要对齐）
+
+**M-T-328 · 第二定义及应用**
+
+- `M-H0626` ⚠ 答案还原（本批最有价值的一处）**：ref_bank 存 `3`，**实为 $\sqrt3$（根号丢失）**。 **判定依据（反证）**：若 $e=3$，则 $e^{2}=9$，$MP^{2}=4a^{2}(10-9)=4a^{2}$，$MP=2a$； 但余弦定理给 $MP=2\sqrt7a\approx5.29a\neq2a$ —— **矛盾** ⟹ 必为 $e=\sqrt3$ ✓✓✓ （此时 $e^{2}=3$，$MP^{2}=4a^{2}\cdot7=28a^{2}$ ✓ 与余弦定理吻合） **独立验算**： ① **$\lvert PF_2\rvert=2a,\lvert PF_1\rvert=4a$**：差 $=2a$ ✓ 定义；比 $=2$ ✓ 条件 ✓✓ ② **$t=\frac{3a}e$**：$et+a=4a$ ⟹ $et=3a$ ✓✓（检验：$et-a=3a-a=2a=\lvert PF_2\rvert$ ✓ **自洽**）
+- `M-H0627` ⚠ 一处必须说明的口径问题**： 题干写作 $\vec{PF_1}\cdot\vec{PF_2}=8$（**向量点积**），但原书详解按 $(a+ex_0)(a-ex_0)=8$ 计算， 这是**长度之积** $\lvert PF_1\rvert\cdot\lvert PF_2\rvert=8$。 两者不同：点积 $=\lvert PF_1\rvert\lvert PF_2\rvert\cos\angle F_1PF_2$。 若严格按向量点积，$e^{2}x_0^{2}=a^{2}$ ⟹ $\lvert OP\rvert^{2}=a^{2}+4=R^{2}$ ⟹ $\vec{PM}\cdot\vec{PN}=0$，与答案 $8$ 不符。 ⟹ **原书此处是提取时把长度积写成了向量点积**（或排版笔误），实际应为 $\lvert PF_1\rvert\cdot\lvert PF_2\rvert=8$。
+- `M-H0627` （⚠ 原书写成 $R^{2}-OP^{2}$，与我的 $\lvert OP\rvert^{2}-R^{2}$ **符号相反**；
+- `M-H0627` ⚠ 它与**向量点积** $\vec{PF_1}\cdot\vec{PF_2}$ 不是一回事（差一个 $\cos\angle F_1PF_2$）—— **题干若印成点积而详解按长度积算，以能得出答案为准**（本题已标注）；
+- `M-H0628` ④ ⚠ **$y^{2}=2x$ 中 $p=1$ 而不是 $2$**（$2p=2$），这是最高频的错误，务必先看 $2p$；
+- `M-H0629` （⚠ 原书后半段用 $\lvert PF_1\rvert=2a$ 配 $x_0\le-a$ 推 $e\le3$，中间「$\lvert PF_1\rvert=-ex_0-a$」这一步的符号约定与常规焦半径公式略有出入；
+
+**M-T-329 · 第三定义及其应用**
+
+- `M-H0630` ⚠ 一处需要注意**：原书写的式子是 $\frac1{k_{OD}}=-\frac43k_1$，即 $\frac1{k_{OD}}+\frac1{k_{OE}}+\frac1{k_{OM}}=-\frac43(k_1+k_2+k_3)$， 对应「已知 $k_1+k_2+k_3=1$，求 $\frac1{k_{OD}}+\frac1{k_{OE}}+\frac1{k_{OM}}$」； 而 ref_bank 的题干是「**直线 $OD,OE,OM$ 的斜率之和为 $1$，求 $\frac1{k_1}+\frac1{k_2}+\frac1{k_3}$**」。 两者是**互逆的两道题**，但**答案同为 $-\frac43$**！ 原因：$k_{OD}=-\frac3{4k_1}$ ⟹ $\frac1{k_1}=-\frac43 k_{OD}$， 若 $k_{OD}+k_{OE}+k_{OM}=1$，则 $\frac1{k_1}+\frac1{k_2}+\frac1{k_3}=-\frac43(k_{OD}+k_{OE}+k_{OM})=-\frac43$ ✓✓✓
+
 **M-T-331 · 定比分点**
 
 - `M-H0409` ⚠ 原文笔误（如实标注）**：原文写「$\frac ca=\frac{\lambda-1}{\lambda+3}$」并直接得 $e\in[\frac{\sqrt5}5,\frac{\sqrt3}3]$ —— 但按 $\frac ca=\frac{\lambda-1}{\lambda+3}$，$\lambda=2$ 时应得 $e=\frac15\neq\frac{\sqrt5}5$。 **正确应为 $\frac{c^{2}}{a^{2}}=\frac{\lambda-1}{\lambda+3}$**，即 $e=\sqrt{\frac{\lambda-1}{\lambda+3}}$： $\lambda=2$：$e^{2}=\frac15$ → $e=\frac1{\sqrt5}=\frac{\sqrt5}5$ ✓ $\lambda=3$：$e^{2}=\frac13$ → $e=\frac1{\sqrt3}=\frac{\sqrt3}3$ ✓
