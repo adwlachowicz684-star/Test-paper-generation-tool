@@ -249,6 +249,9 @@ table.grid tr:hover td { background: #fafbfd; }
 
 @media print {
   #sidebar, .no-print { display: none !important; }
+  /* 讲解栏是选卷时的参考，不该出现在试卷上 */
+  .cz-side { display: none !important; }
+  .cz { display: block; }
   main { padding: 0; overflow: visible; }
   .paper-wrap { border: 0; box-shadow: none; padding: 0; margin: 0; }
   .opt.pick.sel, .opt.pick.right, .opt.pick.wrong { background: transparent; }
@@ -323,7 +326,23 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 .muted { color: #8a94a6; }
 .muted.sm, .sm.muted { font-size: 11px; }
 
-/* ---- 知识点讲解：组卷页右侧面板 ---- */
+/* ---- 组卷页：整页两栏（左 筛选+试卷 / 右 讲解） ----
+   讲解独立成栏：它原来是筛选卡片里的一块，
+   把筛选区撑得很高，且生成试卷后被挤到看不见的地方。 */
+.cz { display: flex; gap: 16px; align-items: flex-start; }
+.cz-main { flex: 1 1 auto; min-width: 0; }
+.cz-side {
+  flex: 0 0 330px; max-width: 38%;
+  /* sticky 而非 fixed：跟随滚动但仍在文档流里，
+     不会盖住试卷内容，窄屏下也自然退回堆叠。 */
+  position: sticky; top: 0;
+}
+.kp-note-card { padding: 0; overflow: hidden; }
+.kp-note-card .kp-note-body {
+  max-height: calc(100vh - 160px);
+}
+
+/* ---- 知识点讲解 ---- */
 .kp-layout { display: flex; gap: 14px; align-items: flex-start; }
 .kp-left { flex: 1 1 auto; min-width: 0; }
 .kp-right {
@@ -334,10 +353,10 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 }
 .kp-note-h {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 12px; border-bottom: 1px solid #eef1f6;
+  padding: 10px 14px; border-bottom: 1px solid #eef1f6;
   font-size: 13px; font-weight: 600; color: #2c3e50;
 }
-.kp-note-body { padding: 10px 12px; overflow-y: auto; font-size: 13px; }
+.kp-note-body { padding: 12px 14px; overflow-y: auto; font-size: 13px; }
 .kp-note-t {
   font-size: 14px; font-weight: 600; color: #2c3e50;
   margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #e2e8f0;
@@ -364,6 +383,10 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 @media (max-width: 900px) {
   .kp-layout { flex-direction: column; }
   .kp-right { flex: 1 1 auto; max-width: 100%; width: 100%; }
+  /* 窄屏改成上下堆叠：并排会把主区压得只剩一条缝 */
+  .cz { flex-direction: column; }
+  .cz-side { flex: 1 1 auto; max-width: 100%; width: 100%; position: static; }
+  .kp-note-card .kp-note-body { max-height: 380px; }
 }
 
 /* ---- 知识点三列联动（大知识点 / 小知识点 / 题型）----

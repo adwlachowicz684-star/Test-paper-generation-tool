@@ -36,11 +36,20 @@ let state = {
 };
 
 export async function mount(root) {
+  // 整页两栏：左「筛选 + 试卷」，右「知识点讲解」。
+  //
+  // 讲解原来塞在筛选卡片里，两个问题：
+  //   1. 筛选卡片被撑得很高，改个条件要先滚过一大片讲解
+  //   2. 生成试卷后讲解被挤到卡片最底下，几乎看不见
+  // 挪出来做成独立一栏，并 sticky 跟随滚动 ——
+  // 讲解是「边选边看」的参考，不该需要来回翻。
   root.innerHTML = `
     <h2 class="title">自动组卷</h2>
     <p class="sub">按知识点和难度筛题，生成可直接打印的高考版式试卷。
        筛选条件保存后，下次打开自动恢复。</p>
 
+    <div class="cz">
+    <div class="cz-main">
     <div class="card">
       <h3>筛选条件</h3>
       <div class="row" style="margin-bottom:10px">
@@ -79,29 +88,15 @@ export async function mount(root) {
                style="width:130px">
       </div>
 
-      <div class="kp-layout">
-        <div class="kp-left">
-          <div class="row" style="align-items:flex-start">
-            <label style="padding-top:4px">知识点</label>
-            <div id="f-kp" class="grow" style="max-height:132px;overflow-y:auto">
-              <span style="color:#9aa;font-size:12px">加载中…</span>
-            </div>
-          </div>
-          <div class="row" style="align-items:flex-start;margin-top:8px">
-            <label style="padding-top:4px"></label>
-            <div id="topic-tree" class="grow"></div>
-          </div>
+      <div class="row" style="align-items:flex-start">
+        <label style="padding-top:4px">知识点</label>
+        <div id="f-kp" class="grow" style="max-height:132px;overflow-y:auto">
+          <span style="color:#9aa;font-size:12px">加载中…</span>
         </div>
-        <div class="kp-right">
-          <div class="kp-note-h">
-            <span>知识点讲解</span>
-            <span id="kp-note-cov" class="muted sm"></span>
-          </div>
-          <div id="kp-note" class="kp-note-body">
-            <span class="muted sm">点击左侧任意大知识点 / 小知识点 / 题型，
-              这里显示对应的方法与要点。</span>
-          </div>
-        </div>
+      </div>
+      <div class="row" style="align-items:flex-start;margin-top:8px">
+        <label style="padding-top:4px"></label>
+        <div id="topic-tree" class="grow"></div>
       </div>
 
       <div class="row" style="margin-top:14px">
@@ -114,6 +109,21 @@ export async function mount(root) {
 
     <div id="compose-msg"></div>
     <div id="paper-out"></div>
+    </div>
+
+    <div class="cz-side">
+      <div class="card kp-note-card">
+        <div class="kp-note-h">
+          <span>知识点讲解</span>
+          <span id="kp-note-cov" class="muted sm"></span>
+        </div>
+        <div id="kp-note" class="kp-note-body">
+          <span class="muted sm">点选左侧任意大知识点 / 小知识点 / 题型，
+            这里显示对应的方法与要点。</span>
+        </div>
+      </div>
+    </div>
+    </div>
   `;
 
   // ---- 事件绑定 ----
