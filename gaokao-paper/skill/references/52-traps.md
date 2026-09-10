@@ -411,9 +411,19 @@
 
 - `M-H0630` ⚠ 一处需要注意**：原书写的式子是 $\frac1{k_{OD}}=-\frac43k_1$，即 $\frac1{k_{OD}}+\frac1{k_{OE}}+\frac1{k_{OM}}=-\frac43(k_1+k_2+k_3)$， 对应「已知 $k_1+k_2+k_3=1$，求 $\frac1{k_{OD}}+\frac1{k_{OE}}+\frac1{k_{OM}}$」； 而 ref_bank 的题干是「**直线 $OD,OE,OM$ 的斜率之和为 $1$，求 $\frac1{k_1}+\frac1{k_2}+\frac1{k_3}$**」。 两者是**互逆的两道题**，但**答案同为 $-\frac43$**！ 原因：$k_{OD}=-\frac3{4k_1}$ ⟹ $\frac1{k_1}=-\frac43 k_{OD}$， 若 $k_{OD}+k_{OE}+k_{OM}=1$，则 $\frac1{k_1}+\frac1{k_2}+\frac1{k_3}=-\frac43(k_{OD}+k_{OE}+k_{OM})=-\frac43$ ✓✓✓
 
+**M-T-330 · 焦点三角形与离心率**
+
+- `M-H0633` ⚠ 答案还原**：ref_bank 存 `0, 6 - 2 /2`，实为 $\left(0,\frac{\sqrt6-\sqrt2}2\right)$（**两个根号都丢了**）。 **判定依据**：$\frac{\sqrt6-\sqrt2}2=\frac{2.449-1.414}2=0.5176$；而 $e<\sqrt{2-\sqrt3}=\sqrt{0.2679}=0.5176$ ✓✓✓ **完全吻合** （若按字面「$6-2$ 再除以 $2$」得 $2>1$，不是合法离心率，可直接排除） **独立验算**： ① **$r=\frac{b^{2}}a$**：$\frac{c^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1$ ⟹ $y^{2}=b^{2}(1-\frac{c^{2}}{a^{2}})=b^{2}\cdot\frac{b^{2}}{a^{2}}=\frac{b^{4}}{a^{2}}$ ✓✓✓
+- `M-H0634` ⚠ 题干还原（本批最精彩的一处）**：ref_bank 存「过点 $M(3,0)$」，**实为 $M(\sqrt3,0)$（根号丢失）**。 **判定依据（反证）**： ① 若 $M(3,0)$，由 $x_Ax_B=m^{2}=9$ 与 $x_B=\frac32$ 得 $x_A=6$、$\lvert AF\rvert=6.5$， 比值 $=\frac2{6.5}=\frac4{13}\neq\frac45$ —— **与答案矛盾** ✗ ② 要得 $\frac45$ 需 $\lvert AF\rvert=\frac52$ 即 $x_A=2$，则 $x_Ax_B=2\cdot\frac32=3=m^{2}$ ⟹ $m=\sqrt3$ ✓✓✓ **代回检验**：$B(\frac32,\sqrt3)$（$y_B^{2}=3=2x_B$ ✓）、$A(2,-2)$（$y_A^{2}=4=2x_A$ ✓）。
+
 **M-T-331 · 定比分点**
 
 - `M-H0409` ⚠ 原文笔误（如实标注）**：原文写「$\frac ca=\frac{\lambda-1}{\lambda+3}$」并直接得 $e\in[\frac{\sqrt5}5,\frac{\sqrt3}3]$ —— 但按 $\frac ca=\frac{\lambda-1}{\lambda+3}$，$\lambda=2$ 时应得 $e=\frac15\neq\frac{\sqrt5}5$。 **正确应为 $\frac{c^{2}}{a^{2}}=\frac{\lambda-1}{\lambda+3}$**，即 $e=\sqrt{\frac{\lambda-1}{\lambda+3}}$： $\lambda=2$：$e^{2}=\frac15$ → $e=\frac1{\sqrt5}=\frac{\sqrt5}5$ ✓ $\lambda=3$：$e^{2}=\frac13$ → $e=\frac1{\sqrt3}=\frac{\sqrt3}3$ ✓
+
+**M-T-332 · 焦点三角形与四心**
+
+- `M-H0635` （⚠ 详解中混入了**另一道双曲线题**的片段 —— $\vec{AB}=5\vec{FB}$、斜率 $\sqrt3$、$e=\frac52$ 都属于那道题，
+- `M-H0635` ⚠ 答案还原**：ref_bank 存 `17/17`，实为 $\frac{\sqrt{17}}{17}$（**根号丢失**）。 **判定依据**：我的推导给 $\frac1{\sqrt{17}}=\frac{\sqrt{17}}{17}\approx0.2425$；若按字面 $\frac{17}{17}=1$， 意味着 $\lvert\lvert FA\rvert-\lvert FB\rvert\rvert=\lvert AB\rvert$，与三角形不等式矛盾（两边之差必小于第三边）✓✓✓ **独立验算**： ① **$p=2$、$F(1,0)$**：$y^{2}=2px=4x$ ⟹ $p=2$ ✓✓ ② **$x_A+x_B=\frac12$、$y_A+y_B=1$**：重心 $=\frac{A+B+F}3$ ✓✓✓ ③ **$y_A^{2}+y_B^{2}=2$**：$4(x_A+x_B)=4\cdot\frac12=2$ ✓✓✓
 
 ### 离心率
 
