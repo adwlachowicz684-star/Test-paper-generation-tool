@@ -1,7 +1,9 @@
 /* ============================================================
    组卷视图 —— 按条件筛题并生成可打印试卷
    ============================================================ */
-import { api, call } from '../app/api.js';
+// pickDirectory 必须一并导入：saveHtml / saveDocx 里用到了，
+// 少导入的话一点「导出」就抛 "pickDirectory is not defined"。
+import { api, call, pickDirectory } from '../app/api.js';
 import { renderPaper, renderQuestion, SLICE_BASE } from '../app/render.js';
 import { setPending } from './practice.js';
 
@@ -417,7 +419,7 @@ async function refreshPreview() {
       ${esc(labels.slice(0, 3).join('；'))}${labels.length > 3 ? ` 等 ${labels.length} 个` : ''}
     </div>
     <div class="paper-wrap" style="border:0;box-shadow:none;margin:0;padding:12px 16px">
-      ${items.map(q => renderQuestion(q, { showAnswer: false })).join('')}
+      ${renumber(items).map(q => renderQuestion(q, { showAnswer: false })).join('')}
     </div>
     ${cut > 0 ? `<div style="padding:10px 16px;font-size:12px;color:#8a97ab;
                     border-top:1px solid #eef1f6">
@@ -1029,6 +1031,114 @@ async function loadNoteStats() {
   } catch (e) { el.textContent = ''; }
 }
 
+/**
+ * 试卷内拖动排序（仅正式卷，预览不可拖）。
+ *
+ * 拖完的顺序要带到导出 / 打印 / 在线练习 ——
+ * 所以不只是挪 DOM，还要同步回 state.picked。
+ * 否则拖了半天，一点导出又变回原顺序。
+ *
+ * 用**原生 HTML5 拖放**而不是 pointer 计算坐标：
+ * 不需要 getBoundingClientRect / elementFromPoint，
+ * 靠 dragenter + compareDocumentPosition 判断插入方向即可，
+ * 逻辑更简单，也不会因为元素高度差异出现"拖到一半卡住"。
+ */
+function enablePaperDrag(pw) {
+  if (!pw) return;
+  const qs = [...pw.querySelectorAll('.q')];
+  if (!qs.length) return;
+
+  let dragging = null;
+
+  const clear = () => {
+    qs.forEach(el => el.classList.remove('dragging', 'drop-hint'));
+  };
+
+  qs.forEach(el => {
+    el.draggable = true;
+
+    el.ondragstart = (e) => {
+      dragging = el;
+      el.classList.add('dragging');
+      try {
+        e.dataTransfer.effectAllowed = 'move';
+        // Firefox 不设 data 就不会触发后续的 dragover/drop
+        e.dataTransfer.setData('text/plain', el.dataset.id || '');
+      } catch (err) { /* 某些 webview 下 dataTransfer 可能不可用 */ }
+    };
+
+    el.ondragend = () => {
+      if (!dragging) return;
+      clear();
+      dragging = null;
+      commitPaperOrder(pw);
+    };
+
+    el.ondragenter = (e) => {
+      if (!dragging || dragging === el) return;
+      e.preventDefault();
+      // 被拖的元素在目标**之前** → 插到目标后面；否则插到目标前面。
+      // 这样往下拖时跟手，往上拖时也不会来回跳。
+      //
+      // 用子节点下标比较而不是 compareDocumentPosition + Node 常量：
+      // 后者依赖全局 Node，某些精简 webview / 测试环境里没暴露它。
+      const kids = [...el.parentNode.children];
+      const iD = kids.indexOf(dragging);
+      const iT = kids.indexOf(el);
+      if (iD < 0 || iT < 0) return;
+      if (iD < iT) el.parentNode.insertBefore(dragging, el.nextSibling);
+      else el.parentNode.insertBefore(dragging, el);
+      syncPaperNumbers(pw);      // 实时更新题号，松手前就能看到排好后的样子
+    };
+
+    el.ondragover = (e) => { e.preventDefault(); };
+    el.ondrop = (e) => { e.preventDefault(); };
+  });
+}
+
+/**
+ * 把 DOM 顺序同步回 state.picked，并重排题号。
+ *
+ * 题号按**连续同类分节**重新编号（选择 1、2、3；填空 1、2…）。
+ * 不重排的话，把一道解答题拖到选择题中间，
+ * 卷面会出现「1、2、7、3」这种跳号。
+ */
+function commitPaperOrder(pw) {
+  const ids = [...pw.querySelectorAll('.q')].map(el => el.dataset.id);
+  const byId = new Map((state.picked || []).map(q => [q.id, q]));
+  const ordered = ids.map(id => byId.get(id)).filter(Boolean);
+  // 数量对不上说明 DOM 与数据已经不同步，宁可不动 ——
+  // 静默丢题比顺序不对严重得多。
+  if (!ordered.length || ordered.length !== state.picked.length) return;
+
+  state.picked = renumber(ordered);
+  syncPaperNumbers(pw);
+}
+
+/** 按连续同类分节重排题号（返回新数组，不改原对象） */
+function renumber(items) {
+  const out = [];
+  let n = 0;
+  let lastType;
+  for (const q of items) {
+    if (q.type !== lastType) { n = 0; lastType = q.type; }
+    out.push(Object.assign({}, q, { num: ++n }));
+  }
+  return out;
+}
+
+/** 只改 DOM 里的题号文本，不重建整卷（保住已展开的答案） */
+function syncPaperNumbers(pw) {
+  const items = state.picked || [];
+  const byId = new Map(items.map(q => [q.id, q]));
+  pw.querySelectorAll('.q').forEach(el => {
+    const q = byId.get(el.dataset.id);
+    if (!q) return;
+    const box = el.querySelector('.qnum');
+    if (box) box.textContent = `${q.num}．`;
+  });
+}
+
 async function doCompose() {
   const btn = document.querySelector('#btn-compose');
   const msg = document.querySelector('#compose-msg');
@@ -1062,7 +1172,14 @@ async function doCompose() {
     };
     save(cfg);
     const r = await api.compose(cfg);
-    state.picked = r.items;
+    // 存副本：拖动排序会重排这个数组，直接存 r.items 的话
+    // 后面按 id 回查时原数组已经被改，容易出隐晦的错。
+    //
+    // 同时**重排题号**：题库里 463 道题的 num 全是 0（导入时没写），
+    // 直接用会让整张卷子每题都显示「0．」。
+    // 组出来的卷子本就该按「1、2、3…」重新编号，
+    // 沿用原题号也没意义（跨年份抽的题，原题号拼不成序）。
+    state.picked = renumber(r.items || []);
 
     if (!r.items.length) {
       msg.className = 'msg err show';
@@ -1108,7 +1225,9 @@ async function doCompose() {
     // 卷头用途由后端算好（规则只有一处），前端只消费。
     // 组一份「月考」卷子，卷头就该写月考 —— 否则打出来还得手改。
     state.paperUse = r.paper_use || '综合练习';
-    pw.innerHTML = renderPaper(r.items, {
+    // 用 state.picked（已重排题号），不用 r.items ——
+    // 后者 num 全是 0，卷面会显示一片「0．」
+    pw.innerHTML = renderPaper(state.picked, {
       title: `${cfg.subject} · ${state.paperUse}卷`,
       sub: `${new Date().toLocaleDateString('zh-CN')}　共 ${r.count} 题`,
       rows: [['科目', cfg.subject],
@@ -1120,23 +1239,32 @@ async function doCompose() {
     const bp = document.querySelector('#btn-back-preview');
     if (bp) bp.onclick = backToPreview;
 
+    // 导出/练习都读 state.picked —— 拖完的顺序才能带过去。
+    // 用 r.items 的话，拖动只改了 DOM，导出仍是原顺序。
     document.querySelector('#btn-practice').onclick = () => {
-      setPending(r.items, 'compose');
+      setPending(state.picked, 'compose');
       location.hash = '#/practice';
     };
-    document.querySelector('#btn-save-html').onclick = () => saveHtml(r.items, cfg);
-    document.querySelector('#btn-save-docx').onclick = () => saveDocx(r.items, cfg);
+    document.querySelector('#btn-save-html').onclick =
+      () => saveHtml(state.picked, cfg);
+    document.querySelector('#btn-save-docx').onclick =
+      () => saveDocx(state.picked, cfg);
+
+    enablePaperDrag(pw);   // 正式卷可拖动排序（预览不可）
     const ba = document.querySelector('#btn-ans');
     let shown = false;
     ba.onclick = () => {
       shown = !shown;
       ba.textContent = shown ? '隐藏答案' : '显示答案';
-      pw.innerHTML = renderPaper(r.items, {
+      // 用 state.picked（当前拖动后的顺序），不是 r.items（初始顺序）。
+      // 用后者的话，一点「显示答案」刚排好的顺序就被打回原形。
+      pw.innerHTML = renderPaper(state.picked, {
         title: `${cfg.subject} · ${state.paperUse}卷`,
         sub: `${new Date().toLocaleDateString('zh-CN')}　共 ${r.count} 题`,
         rows: [['科目', cfg.subject], ['题量', `${r.count} 题`]],
         baseUrl: SLICE_BASE,
       });
+      enablePaperDrag(pw);
       if (shown) {
         pw.querySelectorAll('.q').forEach(el => {
           const id = el.dataset.id;

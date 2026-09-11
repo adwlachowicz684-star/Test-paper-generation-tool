@@ -660,3 +660,27 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   display: flex; flex-wrap: wrap; gap: 5px;
   padding: 2px 8px 8px 32px;
 }
+
+/* ---- 试卷内拖动排序（仅正式卷） ----
+   用 outline 而不是 border：border 会改变盒模型，
+   悬浮瞬间整页题目跟着抖一下；outline 不占位。 */
+.paper .q {
+  cursor: grab;
+  outline: 2px solid transparent;
+  outline-offset: 4px;
+  border-radius: 3px;
+  transition: outline-color .12s, background .12s;
+}
+.paper .q:hover {
+  outline-color: #a8cdf2;
+  background: #f8fbff;
+}
+.paper .q:active { cursor: grabbing; }
+.paper .q.dragging {
+  opacity: .45;
+  outline: 2px dashed var(--brand2);
+  background: #eef5ff;
+}
+@media print {
+  .paper .q { outline: 0 !important; background: transparent !important; }
+}
