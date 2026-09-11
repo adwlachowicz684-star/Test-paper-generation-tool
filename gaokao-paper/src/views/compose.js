@@ -364,18 +364,10 @@ async function refreshPreview() {
   // 只按 topics 取的话，调了难度预览却不变，会误以为条件没生效。
   const cfg = buildCfg(null);
 
-  // 一个知识点都没选时不做预览：
-  // 题库 712 道全列出来既慢也没意义，先引导选范围。
-  if (!cfg.kp.length) {
-    box.innerHTML = `<div class="card" style="padding:14px">
-      <div class="card-h">题目预览</div>
-      <div style="padding:26px 14px;text-align:center;color:#9aa8bd;font-size:13px">
-        先在上方的「筛选条件」里点一个大知识点。<br>
-        <span style="font-size:12px">
-          确认范围后点「生成试卷」，按配比抽题并加上卷头。</span>
-      </div></div>`;
-    return;
-  }
+  // 一个知识点都没选时**照常**取题 —— 因为空条件在后端是「不限」，
+  // 此时组卷会抽到全科的题。
+  // 早退掉的话界面写着「请先选大知识点」，点生成却出全科的卷子，
+  // 前后矛盾，比多渲染 200 道题糟糕得多。
 
   // 请求序号：连点时，晚发的请求可能先回来，
   // 后回来的旧结果会把新结果盖掉。只认最后一次发出的。
@@ -430,8 +422,8 @@ async function refreshPreview() {
     </div>
     <div style="padding:6px 12px;border-bottom:1px solid #eef1f6;
                 font-size:12px;color:#8a97ab;background:#fbfcfe">
-      ${esc(cfg.kp.join('、'))}　·　${cfg.topics.length
-        ? cfg.topics.length + ' 个题型' : '不限细分条件'}
+      ${cfg.kp.length ? esc(cfg.kp.join('、')) : '不限知识点（全科）'}
+      　·　${cfg.topics.length ? cfg.topics.length + ' 个题型' : '不限细分条件'}
     </div>
     <div class="paper-wrap" style="border:0;box-shadow:none;margin:0;padding:12px 16px">
       ${renumber(items).map(q => renderQuestion(q, { showAnswer: false })).join('')}
@@ -562,9 +554,33 @@ function renderKp() {
       + `</span>`;
   };
 
-  box.innerHTML =
-    withCount.map(x => chip(x, stats[x.name])).join('')
-    + without.map(x => chip(x, 0)).join('');
+  // 「全部」放最前面：一下全选，再点全不选。
+  // 与小知识点那排的「全部」是同一个语义，位置也对齐。
+  const allOn = kpAllOn();
+  const head = `<span class="chip kp-all${allOn ? ' on' : ''}" data-kp-all="1"`
+    + ` title="全选 / 全不选${esc(state.subject || '')}下的大知识点">全部</span>`;
+
+  box.innerHTML = head
+    + withCount.map(x => chip(x, stats[x.name])).join('')
+    + without.map(x => chip(x, 0)).join('')
+    + (state.kp.size === 0
+       ? `<span class="kp-tip2">未选大知识点 = 不限，会组到${esc(state.subject || '')}全部题</span>`
+       : '');
+
+  // 「全部」按钮：一下全选，再点全不选。
+  // 它带 .chip class，所以下面 .chip 的绑定用了 :not(.kp-all) 排除，
+  // 否则 onclick 会被覆盖掉。
+  box.querySelectorAll('[data-kp-all]').forEach(el => {
+    el.onclick = () => {
+      // 先判后改：kpAllOn 依赖 state.kp，改完就判不准了
+      toggleKpAll(!kpAllOn());
+      renderKp();
+      renderTopicTree();
+      state.note = { l1: state.focus.l1, l2: null, topic: null };
+      loadNote();
+      refreshPreview();
+    };
+  });
 
   // × ：取消选中（与其下所有小知识点 / 题型）
   box.querySelectorAll('.kp-x').forEach(x => {
@@ -590,10 +606,13 @@ function renderKp() {
     };
   });
 
-  box.querySelectorAll('.chip').forEach(c => {
+  // :not(.kp-all) 必须写：.kp-all 也带 .chip class，
+  // 不加排除的话这里的 onclick 会**覆盖**上面绑的全选 handler，
+  // 点「全部」就变成什么都不发生（最难排查的那类问题）。
+  box.querySelectorAll('.chip:not(.kp-all)').forEach(c => {
     c.onclick = () => {
       const k = c.dataset.k;
-      const had = state.kp.has(k);
+      if (!k) return;
       state.kp.add(k);            // 只加不删：取消走 ×
 
       // 点本体 = 把下方列表切到这一块（成为焦点）。
@@ -615,7 +634,6 @@ function renderKp() {
       state.note = { l1: state.focus.l1, l2: null, topic: null };
       loadNote();
       refreshPreview();
-      void had;
     };
   });
 }
@@ -969,6 +987,62 @@ function buildCfg(seed) {
     count: state.count,
     seed: seed === undefined ? null : seed,
   };
+}
+
+/**
+ * 「全部」是否处于全选态：科目下的**每一个**大知识点都勾上了。
+ *
+ * 含暂缺的（题数为 0 的那些）——「全部」就是全部，
+ * 勾上它们无害（匹配不到题），但漏勾的话按钮永远进不了全选态，
+ * 点一下又重新全选一遍，看着像没反应。
+ */
+function kpAllOn() {
+  const cat = catL1();
+  if (!cat.length) return false;
+  return cat.every(x => state.kp.has(x.name));
+}
+
+/**
+ * 全选 / 全不选大知识点。
+ *
+ * 注意两个方向**都不是**"筛掉题"：
+ *   - 全选：所有大知识点都进条件 → 等价于整个科目
+ *   - 全不选：条件为空 → 后端按「不限」处理，同样等价于整个科目
+ * 两者结果一致（都是全科的题），这是数据事实而非 BUG ——
+ * 题库里每道题都归属某个大知识点，圈住全部 = 没圈。
+ * 区别只在细分条件（全选会一并勾上所有题型，见下），
+ * 以及界面上的勾选状态。所以全不选时给提示，避免误解。
+ */
+function toggleKpAll(on) {
+  const cat = catL1();
+  // 两个方向都要清 seeded。
+  // seedL1 靠它防重复（勾过的块不再重新全选题型），
+  // 不清的话：全不选 → 再点全部，seedL1 全部跳过，
+  // 题型一个都没勾回来，结果退化成"不限" ——
+  // 表现为「点了全部，但筛选条件其实是空的」。
+  state.seeded.clear();
+  if (on) {
+    for (const x of cat) {
+      state.kp.add(x.name);
+      // 与单击单个大知识点保持同样的默认行为：其下有题题型自动全选。
+      // 不 seed 的话 topics 为空，虽然结果一样（不限），
+      // 但和"一个个点过去"的筛选条件不一致，后续取消某一块时会算错。
+      seedL1(x.name);
+    }
+    // 焦点落在第一块有题的：下方列表要能立刻看到东西。
+    // 停在最后一个（可能是暂缺块）会显示一片空，像是没生效。
+    const st = state.kpStats || {};
+    const first = cat.find(x => st[x.name] > 0) || cat[0];
+    state.focus.l1 = first ? first.name : null;
+  } else {
+    state.kp.clear();
+    // 大知识点都没了，其下的小知识点 / 题型必须一并清：
+    // 留着的话条件是死的（永远匹配不到），但界面上像还有东西没清干净。
+    state.kp2.clear();
+    state.topics.clear();
+    state.focus.l1 = null;
+  }
+  state.focus.l2 = null;
 }
 
 function allBtnOn(l1) {
