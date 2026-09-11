@@ -591,12 +591,15 @@ def cmd_kp_catalog(a):
                  'catalog': K.catalog_for_frontend()})
 
 
-def cmd_compose(a):
-    """按条件组卷
+def filter_questions(cfg):
+    """按**完整条件**筛题 —— compose 与预览共用。
 
-    支持：科目、题型、知识点、难度区间、题数、排除已练
+    抽出来是为了让「预览」和「正式组卷」走同一套筛选逻辑。
+    早先预览只按题型取题，忽略了难度 / 年级 / 考试类型，
+    用户调完难度后，预览显示的题跟实际会抽的题不是同一批 ——
+    预览说有 269 题，点生成却只出 3 题，而且看不出原因。
+    两处各写一遍筛选迟早会再走偏，所以只留这一份。
     """
-    cfg = json.loads(a.config) if a.config else {}
     qs = enrich(load_bank())
     prog = load_progress()
 
@@ -675,6 +678,18 @@ def cmd_compose(a):
 
     if cfg.get('exclude_done'):
         qs = [q for q in qs if not prog.get(q['id'], {}).get('done')]
+
+    return qs
+
+
+def cmd_compose(a):
+    """按条件组卷
+
+    支持：科目、题型、知识点、难度区间、题数、排除已练
+    """
+    cfg = json.loads(a.config) if a.config else {}
+    qs = filter_questions(cfg)
+    prog = load_progress()
 
     count = cfg.get('count', 10)
     seed = cfg.get('seed')
@@ -1189,6 +1204,32 @@ def cmd_question_topics(a):
                  'topics': [{'id': t, 'label': K.topic_label(t)}
                             for t in (q.get('topics') or [])
                             if K.topic_node(t)]})
+
+
+def cmd_preview_questions(a):
+    """取**完整条件下**的全部候选题（组卷前的中间栏预览）
+
+    与 compose 的区别：
+      compose —— 按配比抽 count 道，带卷头
+      本命令  —— 全量列出候选题，不抽题、不洗牌（只按 limit 截断）
+
+    共用 filter_questions()，条件与正式卷永远一致。
+
+    注意：空条件一律是「不限」而非「不选」，
+    所以「小知识点和题型都没勾」时这里返回**整块**的题 ——
+    与点「生成试卷」的结果一致，不会出现预览空、生成却不空。
+    """
+    cfg = json.loads(a.config) if a.config else {}
+    qs = filter_questions(cfg)
+
+    # 与正式卷同样的排序，避免"预览里看着是一道道排好的，生成后顺序变了"
+    order = {'选择': 0, '填空': 1, '解答': 2}
+    qs.sort(key=lambda q: (order.get(q.get('type'), 3),
+                           q.get('year', ''), q.get('num', 0)))
+    total = len(qs)
+    lim = int(a.limit or 200)
+    return _out({'ok': True, 'items': qs[:lim], 'total': total,
+                 'count': min(lim, total)})
 
 
 def cmd_exam_tag(a):
@@ -1733,6 +1774,11 @@ def main():
     p = sub.add_parser('question-topics')
     p.add_argument('--qid', required=True)
     p.set_defaults(fn=cmd_question_topics)
+
+    p = sub.add_parser('preview-questions')
+    p.add_argument('--config', default='')
+    p.add_argument('--limit', type=int, default=200)
+    p.set_defaults(fn=cmd_preview_questions)
 
     p = sub.add_parser('exam-tag')
     p.add_argument('--ids', default='')

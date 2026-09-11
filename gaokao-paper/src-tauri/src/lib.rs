@@ -303,6 +303,16 @@ fn py_exam_tag(ids: String, exams: String, mode: Option<String>) -> Result<Value
     run_py(&a)
 }
 
+/// 取完整条件下的全部候选题（中间栏预览，不抽题不洗牌）
+#[tauri::command]
+fn py_preview_questions(config: Option<String>,
+                        limit: Option<i64>) -> Result<Value, String> {
+    let mut a: Vec<String> = vec!["preview-questions".into()];
+    if let Some(c) = config { a.push("--config".into()); a.push(c); }
+    if let Some(l) = limit { a.push("--limit".into()); a.push(l.to_string()); }
+    run_py(&a)
+}
+
 /// 取勾选题型下的全部题目（组卷前的中间栏预览，不抽题不洗牌）
 #[tauri::command]
 fn py_topic_questions(topics: Option<String>, subject: Option<String>,
@@ -462,6 +472,7 @@ pub fn run() {
             py_topic_list,
             py_topic_link,
             py_exam_tag,
+            py_preview_questions,
             py_topic_questions,
             py_question_topics,
             py_progress,

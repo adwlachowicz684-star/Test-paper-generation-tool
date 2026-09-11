@@ -360,13 +360,17 @@ async function refreshPreview() {
   // 他在左侧改个题型，中间突然变成预览会很突然。
   if (state.paperMode) return;
 
-  const ids = [...new Set([...state.topics].map(tId))];
+  // 走**完整条件**（含难度 / 年级 / 考试类型），与点「生成试卷」一致。
+  // 只按 topics 取的话，调了难度预览却不变，会误以为条件没生效。
+  const cfg = buildCfg(null);
 
-  if (!ids.length) {
+  // 一个知识点都没选时不做预览：
+  // 题库 712 道全列出来既慢也没意义，先引导选范围。
+  if (!cfg.kp.length) {
     box.innerHTML = `<div class="card" style="padding:14px">
       <div class="card-h">题目预览</div>
       <div style="padding:26px 14px;text-align:center;color:#9aa8bd;font-size:13px">
-        在左侧勾选题型，这里显示这些题型下的全部题目。<br>
+        先在上方的「筛选条件」里点一个大知识点。<br>
         <span style="font-size:12px">
           确认范围后点「生成试卷」，按配比抽题并加上卷头。</span>
       </div></div>`;
@@ -383,7 +387,7 @@ async function refreshPreview() {
 
   let r;
   try {
-    r = await api.topicQuestions(ids, state.subject, 200);
+    r = await api.previewQuestions(cfg, 200);
   } catch (e) {
     if (tick !== state.previewTick || state.paperMode) return;
     box.innerHTML = `<div class="card" style="padding:14px">
@@ -406,25 +410,28 @@ async function refreshPreview() {
   const cut = total - items.length;
 
   if (!items.length) {
+    // 预览与正式卷同源，所以这里"没题"就等于"生成也会是空卷"。
+    // 文案要一致，别让人以为只是预览没加载出来。
+    const nt = cfg.topics.length;
     box.innerHTML = `<div class="card" style="padding:14px">
       <div class="card-h">题目预览</div>
       <div style="padding:26px 14px;text-align:center;color:#9aa8bd;font-size:13px">
-        选中的 ${ids.length} 个题型下暂无题目。<br>
-        <span style="font-size:12px">灰显的题型表示题库里还没有挂题。</span>
+        当前条件下没有题目${nt ? `（选中的 ${nt} 个题型下暂无题目）` : ''}。<br>
+        <span style="font-size:12px">试试放宽难度区间，或勾上带题数的题型。</span>
       </div></div>`;
     return;
   }
 
-  const labels = (r.topics || []).map(t => t.label).filter(Boolean);
   box.innerHTML = `<div class="card" style="padding:0">
     <div class="card-h">题目预览
       <span style="font-weight:400;color:#8a97ab;font-size:12px;margin-left:8px">
         共 ${total} 题${cut > 0 ? `，显示前 ${items.length} 题` : ''}
-        （来自 ${ids.length} 个题型）</span>
+      </span>
     </div>
     <div style="padding:6px 12px;border-bottom:1px solid #eef1f6;
                 font-size:12px;color:#8a97ab;background:#fbfcfe">
-      ${esc(labels.slice(0, 3).join('；'))}${labels.length > 3 ? ` 等 ${labels.length} 个` : ''}
+      ${esc(cfg.kp.join('、'))}　·　${cfg.topics.length
+        ? cfg.topics.length + ' 个题型' : '不限细分条件'}
     </div>
     <div class="paper-wrap" style="border:0;box-shadow:none;margin:0;padding:12px 16px">
       ${renumber(items).map(q => renderQuestion(q, { showAnswer: false })).join('')}
@@ -744,15 +751,19 @@ function renderTopicTree() {
   const picked = pickedL2(l1);
   const nTopAll = kids.reduce((s, c) => s + (c.topics || []).length, 0);
 
-  // 两个「全部」放在顶部：小知识点一组、题型一组。
-  // 塞进每个分组里的话，十几个分组就是十几个「全部」按钮，反而乱。
+  // 一个「全部」按钮管两级：全选 / 取消。
+  // 原来拆成「全部小知识点」「全部题型」两个，功能是重复的 ——
+  // 取消小知识点时其下题型已被连带清掉，题型那个「全部」没有独立作用，
+  // 还容易让人以为两级要分别操作。
   const head = `<div class="tt-bar">
       <span class="tt-src">${esc(l1)}
         <i>${kids.length} 个小知识点 · ${nTopAll} 个题型</i></span>
-      <span class="tt-all${picked.length === kids.length ? ' on' : ''}"
-            data-all="l2" title="全选 / 全不选该大知识点下的小知识点">全部小知识点</span>
-      <span class="tt-all${allTopicsOn(l1) ? ' on' : ''}"
-            data-all="topic" title="全选 / 全不选已展开的题型">全部题型</span>
+      <span class="tt-all${allBtnOn(l1) ? ' on' : ''}"
+            data-all="both"
+            title="全选 / 取消「${esc(l1)}」下的小知识点和题型">全部</span>
+      ${(state.kp.size === 1 && !picked.length)
+        ? '<span class="tt-tip">未选细分条件 = 不限，仍会组到这一块的题</span>'
+        : ''}
     </div>`;
 
   const groups = kids.map(c => {
@@ -822,27 +833,13 @@ function bindTopicTree() {
   const box = document.querySelector('#topic-tree');
   if (!box) return;
 
-  // ---- 顶部「全部」按钮 ----
+  // ---- 顶部「全部」按钮：一下全选，再点取消 ----
   box.querySelectorAll('[data-all]').forEach(el => {
     el.onclick = () => {
       const l1 = state.focus.l1;
       if (!l1) return;
-      if (el.dataset.all === 'l2') {
-        const all = pickedL2(l1).length === l2List(l1).length;
-        for (const c of l2List(l1)) {
-          const key = l1 + '>' + c.name;
-          if (all) state.kp2.delete(key); else state.kp2.add(key);
-        }
-        // 不允许全不选：一个都不勾等于这一块组不出题，
-        // 与其让用户看着空结果猜原因，不如直接回到全选。
-        if (!pickedL2(l1).length) seedAll(l1);
-      } else {
-        const pick = allTopicsOn(l1);
-        for (const k of topicKeys(l1, true)) {
-          if (pick) state.topics.delete(k); else state.topics.add(k);
-        }
-        if (!countTopicsOn(l1)) seedTopics(l1);
-      }
+      // 先判状态再改：allBtnOn 依赖 pickedL2 / topics，改完就判不准了
+      toggleAll(l1, !allBtnOn(l1));
       renderTopicTree();
       refreshPreview();
     };
@@ -921,8 +918,8 @@ function bindTopicTree() {
         } else {
           // 常规路径：就地更新，不碰滚动
           el.classList.toggle('on', state.topics.has(key));
-          const allBtn = box.querySelector('[data-all="topic"]');
-          if (allBtn) allBtn.classList.toggle('on', allTopicsOn(l1));
+          const allBtn = box.querySelector('[data-all="both"]');
+          if (allBtn) allBtn.classList.toggle('on', allBtnOn(l1));
         }
       }
       state.note = { l1, l2: l2 || null, topic: tid || null };
@@ -930,6 +927,85 @@ function bindTopicTree() {
       refreshPreview();
     };
   });
+}
+
+/**
+ * 「全部」按钮是否处于全选态。
+ *
+ * 原来「全部小知识点」「全部题型」是两个按钮，但功能重复：
+ * 题型挂在小知识点下，取消小知识点时其题型已被连带清掉，
+ * 单独再给题型一个「全部」没有独立意义。
+ * 合成一个后，全选态 = 小知识点全勾 **且** 其下有题的题型全勾。
+ */
+/**
+ * 把界面状态拼成后端要的 cfg。
+ *
+ * 抽成函数是因为**预览和正式组卷必须用同一份条件**：
+ * 早先预览只提交 topics（连难度、年级、考试类型都没传），
+ * 结果预览显示的题和点「生成试卷」实际抽的题不是同一批 ——
+ * 调了难度后预览还是老样子，最误导人的那类问题。
+ */
+function buildCfg(seed) {
+  return {
+    subject: state.subject,
+    types: [...state.types],
+    kp: [...state.kp],
+    // 后端要的是二级**名字**列表，这里存的是 "一级>二级"，取后半段。
+    kp2: [...state.kp2].map(k => k.slice(k.indexOf('>') + 1)),
+    // kp2Full 是**存档专用**：带 "一级>二级" 前缀，用来在下次打开时
+    // 还原「哪个大知识点下取消了哪几个小知识点」。
+    // 少了它，重开后所有块都会被默认全选覆盖 ——
+    // 用户取消过的选择全丢，而且看不出为什么。
+    // 后端不认识这个字段，会直接忽略。
+    kp2Full: [...state.kp2],
+    grades: [...state.grades],
+    exams: [...state.exams],
+    // 内部存的是 "一级>二级>题型ID"，后端只认题型 ID —— 取最后一段。
+    // 要去重：交叉归属的题型在多个位置出现，
+    // 每个位置都勾着的话会提交重复的 ID（后端 any() 匹配，重复无害但冗余）。
+    topics: [...new Set([...state.topics].map(tId))],
+    diff_min: state.diffMin,
+    diff_max: state.diffMax,
+    count: state.count,
+    seed: seed === undefined ? null : seed,
+  };
+}
+
+function allBtnOn(l1) {
+  const kids = l2List(l1);
+  if (!kids.length) return false;
+  if (pickedL2(l1).length !== kids.length) return false;
+  const keys = topicKeys(l1, true);
+  // 该块下没有任何「有题题型」时只看小知识点。
+  // 否则这种块永远进不了全选态，点「全部」会一直重复全选。
+  return keys.length ? keys.every(k => state.topics.has(k)) : true;
+}
+
+/**
+ * 全选 / 取消某大知识点下的小知识点与题型。
+ *
+ * 注意「取消」的语义：清空后 kp2 与 topics 都为空，
+ * 而后端对空条件是**不限**（不是「不选」）——
+ * 只勾了这一个大知识点时，取消后的组卷结果与全选相同。
+ * 只有在**还勾着别的大知识点**时，取消才真正收窄范围
+ * （等于「只要其他块的题」）。
+ * 这个反直觉点在界面上用 tt-tip 说明，见 renderTopicTree。
+ */
+function toggleAll(l1, on) {
+  const kids = l2List(l1);
+  if (on) {
+    for (const c of kids) state.kp2.add(l1 + '>' + c.name);
+    // kp2 已全勾，此时 topicKeys 返回的是全部有题题型
+    for (const k of topicKeys(l1, true)) state.topics.add(k);
+  } else {
+    for (const c of kids) state.kp2.delete(l1 + '>' + c.name);
+    // 清掉该大知识点下的**所有**题型，含手动勾的暂缺题型。
+    // 只清 topicKeys 会漏掉暂缺的（它们 n_qs=0，不在 topicKeys 里），
+    // 表现为「点了取消，那几个还亮着」。
+    for (const k of [...state.topics]) {
+      if (k.indexOf(l1 + '>') === 0) state.topics.delete(k);
+    }
+  }
 }
 
 /** 全选某大知识点下的小知识点（不动题型） */
@@ -1382,29 +1458,7 @@ async function doCompose() {
   msg.className = 'msg'; out.innerHTML = '';
 
   try {
-    const cfg = {
-      subject: state.subject,
-      types: [...state.types],
-      kp: [...state.kp],
-      // 后端要的是二级**名字**列表，这里存的是 "一级>二级"，取后半段。
-      kp2: [...state.kp2].map(k => k.slice(k.indexOf('>') + 1)),
-      // kp2Full 是**存档专用**：带 "一级>二级" 前缀，用来在下次打开时
-      // 还原「哪个大知识点下取消了哪几个小知识点」。
-      // 少了它，重开后所有块都会被默认全选覆盖 ——
-      // 用户取消过的选择全丢，而且看不出为什么。
-      // 后端不认识这个字段，会直接忽略。
-      kp2Full: [...state.kp2],
-      grades: [...state.grades],
-      exams: [...state.exams],
-      // 内部存的是 "一级>二级>题型ID"，后端只认题型 ID —— 取最后一段。
-      // 要去重：交叉归属的题型在多个位置出现，
-      // 每个位置都勾着的话会提交重复的 ID（后端 any() 匹配，重复无害但冗余）。
-      topics: [...new Set([...state.topics].map(tId))],
-      diff_min: state.diffMin,
-      diff_max: state.diffMax,
-      count: state.count,
-      seed: state.seed === null ? Date.now() % 100000 : state.seed,
-    };
+    const cfg = buildCfg(state.seed === null ? Date.now() % 100000 : state.seed);
     save(cfg);
     const r = await api.compose(cfg);
     // 存副本：拖动排序会重排这个数组，直接存 r.items 的话
@@ -1435,7 +1489,7 @@ async function doCompose() {
         : noQs
         ? `选中的 ${tids.length} 个题型在题库里都还没有题目`
           + '（灰显虚线框的就是暂缺题型）。'
-          + '勾上带题数的题型，或点「全部题型」。'
+          + '勾上带题数的题型，或点「全部」。'
         : '没有符合条件的题目。'
           + '试试放宽难度区间，或减少知识点/题型的组合条件。';
       document.querySelector('#btn-print').disabled = true;

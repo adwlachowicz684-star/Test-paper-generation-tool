@@ -197,6 +197,11 @@ export const api = {
     call('py_exam_tag', { ids: (ids || []).join(','),
                           exams: (exams || []).join(','),
                           mode: mode || 'replace' }),
+  // 组卷前预览：取**完整条件下**的全部候选题（不抽题、不洗牌）。
+  // 与 compose 共用后端 filter_questions()，条件永远一致。
+  previewQuestions: (cfg, limit) =>
+    call('py_preview_questions', { config: JSON.stringify(cfg || {}),
+                                   limit: limit || 200 }),
   // 组卷前预览：取勾选题型下的**全部**题目（不抽题、不洗牌）
   topicQuestions: (topics, subject, limit) =>
     call('py_topic_questions', { topics: (topics || []).join(','),
