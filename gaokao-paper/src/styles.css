@@ -249,9 +249,10 @@ table.grid tr:hover td { background: #fafbfd; }
 
 @media print {
   #sidebar, .no-print { display: none !important; }
-  /* 讲解栏是选卷时的参考，不该出现在试卷上 */
-  .cz-side { display: none !important; }
-  .cz { display: block; }
+  /* 左右两栏是选卷时的工具，不该印在试卷上 */
+  .cz3-left, .cz3-right { display: none !important; }
+  .cz3 { display: block; }
+  .cz-filter { display: none !important; }
   main { padding: 0; overflow: visible; }
   .paper-wrap { border: 0; box-shadow: none; padding: 0; margin: 0; }
   .opt.pick.sel, .opt.pick.right, .opt.pick.wrong { background: transparent; }
@@ -326,16 +327,30 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 .muted { color: #8a94a6; }
 .muted.sm, .sm.muted { font-size: 11px; }
 
-/* ---- 组卷页：整页两栏（左 筛选+试卷 / 右 讲解） ----
-   讲解独立成栏：它原来是筛选卡片里的一块，
-   把筛选区撑得很高，且生成试卷后被挤到看不见的地方。 */
-.cz { display: flex; gap: 16px; align-items: flex-start; }
-.cz-main { flex: 1 1 auto; min-width: 0; }
-.cz-side {
-  flex: 0 0 330px; max-width: 38%;
-  /* sticky 而非 fixed：跟随滚动但仍在文档流里，
-     不会盖住试卷内容，窄屏下也自然退回堆叠。 */
+/* ---- 组卷页：上「筛选条件」整条 + 下「三栏」 ----
+   左 小知识点与题型 / 中 试卷 / 右 知识点讲解。
+
+   小知识点与题型单挂一栏后不再套内部滚动框：
+   21 个小知识点、138 个题型塞在 300px 小框里滚，
+   看不到全貌、也记不住滚到哪了。整栏铺开跟页面滚更直观。 */
+.cz-filter { margin-bottom: 14px; }
+.cz3 { display: flex; gap: 16px; align-items: flex-start; }
+.cz3-left {
+  flex: 0 0 320px; max-width: 30%;
+  /* 不套滚动框：整栏自然铺开，跟着页面滚。
+     加了 max-height + overflow 就又变回「在小框里翻」，
+     正是用户说的不直观。 */
+}
+.cz3-mid { flex: 1 1 auto; min-width: 0; }
+.cz3-right {
+  flex: 0 0 330px; max-width: 26%;
   position: sticky; top: 0;
+}
+.cz3-card { padding: 0; overflow: hidden; }
+.card-h {
+  padding: 10px 14px; border-bottom: 1px solid #eef1f6;
+  font-size: 13px; font-weight: 600; color: #2c3e50;
+  background: #fbfcfe;
 }
 .kp-note-card { padding: 0; overflow: hidden; }
 .kp-note-card .kp-note-body {
@@ -383,9 +398,12 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 @media (max-width: 900px) {
   .kp-layout { flex-direction: column; }
   .kp-right { flex: 1 1 auto; max-width: 100%; width: 100%; }
-  /* 窄屏改成上下堆叠：并排会把主区压得只剩一条缝 */
-  .cz { flex-direction: column; }
-  .cz-side { flex: 1 1 auto; max-width: 100%; width: 100%; position: static; }
+  /* 窄屏改成上下堆叠：并排会把试卷压得只剩一条缝 */
+  .cz3 { flex-direction: column; }
+  .cz3-left, .cz3-mid, .cz3-right {
+    flex: 1 1 auto; max-width: 100%; width: 100%;
+    position: static; max-height: none;
+  }
   .kp-note-card .kp-note-body { max-height: 380px; }
 }
 
@@ -610,7 +628,7 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 .tt-all:hover { border-color: var(--brand2); color: var(--brand2); }
 .tt-all.on { background: var(--brand2); border-color: var(--brand2); color: #fff; }
 
-.tt-body { max-height: 300px; overflow-y: auto; }
+.tt-body { /* 不设高度上限：整栏铺开，跟页面滚，不再嵌套小滚动框 */ }
 .tt-g { border-bottom: 1px solid #f0f2f6; }
 .tt-g:last-child { border-bottom: 0; }
 

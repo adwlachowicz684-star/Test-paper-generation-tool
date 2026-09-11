@@ -47,21 +47,22 @@ let state = {
 };
 
 export async function mount(root) {
-  // 整页两栏：左「筛选 + 试卷」，右「知识点讲解」。
+  // 版式：上「筛选条件」整条 → 下「三栏」
   //
-  // 讲解原来塞在筛选卡片里，两个问题：
-  //   1. 筛选卡片被撑得很高，改个条件要先滚过一大片讲解
-  //   2. 生成试卷后讲解被挤到卡片最底下，几乎看不见
-  // 挪出来做成独立一栏，并 sticky 跟随滚动 ——
-  // 讲解是「边选边看」的参考，不该需要来回翻。
+  //   左：小知识点 → 题型（三级树）
+  //   中：试卷
+  //   右：知识点讲解
+  //
+  // 小知识点 + 题型单挂一栏后**不再用内部滚动框**：
+  // 21 个小知识点、138 个题型塞进 300px 的小框里滚，
+  // 看不到全貌、也记不住自己滚到哪了。整栏铺开后跟着页面滚，
+  // 一屏能看到十几项，比在小框里翻直观得多。
   root.innerHTML = `
     <h2 class="title">自动组卷</h2>
     <p class="sub">按知识点和难度筛题，生成可直接打印的高考版式试卷。
        筛选条件保存后，下次打开自动恢复。</p>
 
-    <div class="cz">
-    <div class="cz-main">
-    <div class="card">
+    <div class="card cz-filter">
       <h3>筛选条件</h3>
       <div class="row" style="margin-bottom:10px">
         <label>科目</label>
@@ -106,14 +107,10 @@ export async function mount(root) {
       </div>
 
       <div class="row" style="align-items:flex-start">
-        <label style="padding-top:4px">知识点</label>
-        <div id="f-kp" class="grow" style="max-height:132px;overflow-y:auto">
+        <label style="padding-top:4px">大知识点</label>
+        <div id="f-kp" class="grow">
           <span style="color:#9aa;font-size:12px">加载中…</span>
         </div>
-      </div>
-      <div class="row" style="align-items:flex-start;margin-top:8px">
-        <label style="padding-top:4px"></label>
-        <div id="topic-tree" class="grow"></div>
       </div>
 
       <div class="row" style="margin-top:14px">
@@ -125,21 +122,31 @@ export async function mount(root) {
     </div>
 
     <div id="compose-msg"></div>
-    <div id="paper-out"></div>
-    </div>
 
-    <div class="cz-side">
-      <div class="card kp-note-card">
-        <div class="kp-note-h">
-          <span>知识点讲解</span>
-          <span id="kp-note-cov" class="muted sm"></span>
-        </div>
-        <div id="kp-note" class="kp-note-body">
-          <span class="muted sm">点选左侧任意大知识点 / 小知识点 / 题型，
-            这里显示对应的方法与要点。</span>
+    <div class="cz3">
+      <div class="cz3-left">
+        <div class="card cz3-card">
+          <div class="card-h">小知识点与题型</div>
+          <div id="topic-tree"></div>
         </div>
       </div>
-    </div>
+
+      <div class="cz3-mid">
+        <div id="paper-out"></div>
+      </div>
+
+      <div class="cz3-right">
+        <div class="card kp-note-card">
+          <div class="kp-note-h">
+            <span>知识点讲解</span>
+            <span id="kp-note-cov" class="muted sm"></span>
+          </div>
+          <div id="kp-note" class="kp-note-body">
+            <span class="muted sm">点选左侧任意大知识点 / 小知识点 / 题型，
+              这里显示对应的方法与要点。</span>
+          </div>
+        </div>
+      </div>
     </div>
   `;
 
@@ -563,7 +570,9 @@ function renderTopicTree() {
 
   const l1 = state.focus.l1;
   if (!l1) {
-    box.innerHTML = '<span class="kp-empty">先在上方点一个大知识点</span>';
+    // 大知识点在上方的筛选卡片里（不在本栏），文案要指对位置
+    box.innerHTML = '<span class="kp-empty">'
+      + '先在上方的「筛选条件」里点一个大知识点</span>';
     return;
   }
 
