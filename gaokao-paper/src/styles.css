@@ -357,6 +357,17 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   max-height: calc(100vh - 160px);
 }
 
+/* 大知识点上的取消按钮。
+   点 chip 本体 = 切焦点，取消只走这个 × —— 两个动作分开，
+   避免「想回去看看这块，一点就把它取消了」。 */
+.kp-x {
+  display: inline-block; margin-left: 5px; padding: 0 2px;
+  font-style: normal; font-size: 13px; line-height: 1;
+  color: rgba(255, 255, 255, .75); cursor: pointer;
+  border-radius: 3px; vertical-align: 1px;
+}
+.kp-x:hover { color: #fff; background: rgba(255, 255, 255, .25); }
+
 /* ---- 知识点讲解 ---- */
 .kp-layout { display: flex; gap: 14px; align-items: flex-start; }
 .kp-left { flex: 1 1 auto; min-width: 0; }
@@ -617,6 +628,10 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   display: flex; align-items: center; gap: 8px;
   padding: 5px 8px; margin-bottom: 6px;
   background: #f6f8fb; border: 1px solid var(--line); border-radius: 6px;
+  /* 操作条吸顶：往下翻长列表时，「全部小知识点 / 全部题型」始终可点。
+     只吸这一条、不吸整个左栏 —— 左栏内容比视口高得多，
+     整栏 sticky 就必须配内部滚动条，又变回「在小框里翻」了。 */
+  position: sticky; top: 0; z-index: 5;
 }
 .tt-src { font-size: 13px; font-weight: 600; color: var(--brand); }
 .tt-src i { font-style: normal; font-weight: 400; font-size: 11px; color: #8a97ab; margin-left: 6px; }
@@ -681,6 +696,23 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   outline: 2px dashed var(--brand2);
   background: #eef5ff;
 }
+/* 拖拽手柄：触屏上唯一的拖动入口。
+   放在 .qnum 内（.q 是两列 grid，直接加子元素会占掉一格）。
+   touch-action:none 只加在这里 —— 加在 .q 上会让整页在触屏上滚不动。 */
+.q-handle {
+  display: inline-block; margin-right: 4px; padding: 0 2px;
+  color: #b6c2d3; cursor: grab; touch-action: none;
+  font-size: 13px; line-height: 1; user-select: none;
+}
+/* 符号用 ::before 画而不是写进 DOM：
+   写进 DOM 会让 .qnum 的 textContent 变成「⠿1．」，
+   复制题干、另存文本时都带着它。 */
+.q-handle::before { content: '\2807'; }
+.q-handle:hover { color: var(--brand2); }
+.q-handle:active { cursor: grabbing; }
+/* 拖动中禁止选中文字：否则拖一下会把整页题干刷成蓝色 */
+body.q-dragging { user-select: none; -webkit-user-select: none; }
 @media print {
   .paper .q { outline: 0 !important; background: transparent !important; }
+  .q-handle { display: none !important; }
 }

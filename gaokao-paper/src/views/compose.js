@@ -384,14 +384,21 @@ async function refreshPreview() {
   try {
     r = await api.topicQuestions(ids, state.subject, 200);
   } catch (e) {
-    if (tick !== state.previewTick) return;
+    if (tick !== state.previewTick || state.paperMode) return;
     box.innerHTML = `<div class="card" style="padding:14px">
       <div class="card-h">题目预览</div>
       <div style="padding:20px 14px;color:#c0392b;font-size:13px">
         加载失败：${esc(String(e && e.message ? e.message : e))}</div></div>`;
     return;
   }
-  if (tick !== state.previewTick) return;
+  // await 之后**必须再查一次** paperMode。
+  //
+  // 只在开头查是不够的：勾完大知识点会立刻发一次预览请求，
+  // 如果用户在它返回前点了「生成试卷」，这个请求恢复执行时
+  // 会把刚生成的卷子整个覆盖成预览 ——
+  // 表现是"生成的试卷一闪就没了"，且新的 DOM 没有拖拽监听，拖不动。
+  // 越慢的机器越容易撞上（请求耗时越长，窗口越大）。
+  if (tick !== state.previewTick || state.paperMode) return;
 
   const items = r.items || [];
   const total = r.total || 0;
@@ -538,9 +545,12 @@ function renderKp() {
     }).join(' / ');
     const on = state.kp.has(item.name);
     const cur = state.focus.l1 === item.name;
+    // 选中的给一个 × 用于取消。
+    // 点本体只切焦点、不取消 —— 见下面 onclick 的说明。
     return `<span class="chip${on ? ' on' : ''}${cur ? ' cur' : ''}"`
       + ` data-k="${esc(item.name)}"${tip ? ` title="${esc(tip)}"` : ''}>`
       + `${esc(item.name)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span>`
+      + (on ? `<i class="kp-x" data-del="${esc(item.name)}" title="取消选择">×</i>` : '')
       + `</span>`;
   };
 
@@ -548,25 +558,43 @@ function renderKp() {
     withCount.map(x => chip(x, stats[x.name])).join('')
     + without.map(x => chip(x, 0)).join('');
 
+  // × ：取消选中（与其下所有小知识点 / 题型）
+  box.querySelectorAll('.kp-x').forEach(x => {
+    x.onclick = (e) => {
+      e.stopPropagation();          // 否则会冒泡到 chip 的"切焦点"
+      const k = x.dataset.del;
+      state.kp.delete(k);
+      // 取消大知识点时，把它下面的小知识点与题型一并清掉。
+      // 不清的话它们会一直留在筛选条件里：
+      // 提交时 kp 只剩 A，kp2 却还混着 B 的小知识点名，
+      // 条件是死的（永远匹配不到），但看着像有东西没清干净。
+      dropL1(k);
+      // 焦点回退到上一个仍选中的；都不剩则清空
+      if (state.focus.l1 === k) {
+        state.focus.l1 = [...state.kp][state.kp.size - 1] || null;
+      }
+      state.focus.l2 = null;
+      renderKp();
+      renderTopicTree();
+      state.note = { l1: state.focus.l1, l2: null, topic: null };
+      loadNote();
+      refreshPreview();
+    };
+  });
+
   box.querySelectorAll('.chip').forEach(c => {
     c.onclick = () => {
       const k = c.dataset.k;
-      if (state.kp.has(k)) state.kp.delete(k); else state.kp.add(k);
-      c.classList.toggle('on');
+      const had = state.kp.has(k);
+      state.kp.add(k);            // 只加不删：取消走 ×
 
-      // 焦点 = 最后勾中的那个；取消掉当前焦点的，回退到上一个仍选中的。
-      // 回退而不是清空：连着取消几个时下方列表会不停闪空，很干扰。
-      if (state.kp.has(k)) state.focus.l1 = k;
-      else {
-        // 取消大知识点时，把它下面的小知识点与题型一并清掉。
-        // 不清的话它们会一直留在筛选条件里：
-        // 提交时 kp 只剩 A，kp2 却还混着 B 的小知识点名，
-        // 条件是死的（永远匹配不到），但看着像有东西没清干净。
-        dropL1(k);
-        if (state.focus.l1 === k) {
-          state.focus.l1 = [...state.kp][state.kp.size - 1] || null;
-        }
-      }
+      // 点本体 = 把下方列表切到这一块（成为焦点）。
+      //
+      // 原来是 toggle（点已选中的就取消），实际用起来很别扭：
+      // 选了 A、B 两块后想"回去看看 A"，一点 A 就把它取消了，
+      // 得先取消当前的再点回来。切焦点和取消是两件事，
+      // 不该挤在同一个手势里。
+      state.focus.l1 = k;
       state.focus.l2 = null;
 
       // 新勾中的大知识点，其下小知识点与题型默认全选。
@@ -579,6 +607,7 @@ function renderKp() {
       state.note = { l1: state.focus.l1, l2: null, topic: null };
       loadNote();
       refreshPreview();
+      void had;
     };
   });
 }
@@ -1038,62 +1067,149 @@ async function loadNoteStats() {
  * 所以不只是挪 DOM，还要同步回 state.picked。
  * 否则拖了半天，一点导出又变回原顺序。
  *
- * 用**原生 HTML5 拖放**而不是 pointer 计算坐标：
- * 不需要 getBoundingClientRect / elementFromPoint，
- * 靠 dragenter + compareDocumentPosition 判断插入方向即可，
- * 逻辑更简单，也不会因为元素高度差异出现"拖到一半卡住"。
+ * 用 **Pointer Events** 而不是 HTML5 拖放（draggable + dragstart）：
+ * HTML5 拖放在**触屏上完全不触发** —— 平板上根本拖不动。
+ * pointer 事件鼠标 / 触屏 / 触控笔统一，一套代码三端可用。
+ *
+ * 触屏上必须靠手柄启动拖动：
+ * 若整个题目都能拖，则手指在题目上滑动会变成"拖题"而不是"滚页面"，
+ * 页面就滚不动了。手柄上才设 touch-action:none，
+ * 页面其它区域照常滚动。
  */
+const DRAG_THRESHOLD = 6;   // 位移超过这个距离才算"拖"，否则视为点击
+
 function enablePaperDrag(pw) {
   if (!pw) return;
   const qs = [...pw.querySelectorAll('.q')];
   if (!qs.length) return;
 
-  let dragging = null;
+  let pending = null;    // 按下但还没开始拖
+  let dragging = null;   // 已在拖动
+  let dragId = null;     // 拖动中的 pointerId
+  let lastTgt = null;    // 上一次落点，避免同一目标反复触发
+  let lastY = 0;         // 上一次指针 Y，用于判断拖动方向（兜底路径）
 
   const clear = () => {
-    qs.forEach(el => el.classList.remove('dragging', 'drop-hint'));
+    qs.forEach(el => el.classList.remove('dragging'));
+    document.body.classList.remove('q-dragging');
+  };
+
+  const finish = () => {
+    if (!dragging) { pending = null; return; }
+    clear();
+    dragging = null; pending = null; dragId = null; lastTgt = null;
+    commitPaperOrder(pw);
   };
 
   qs.forEach(el => {
-    el.draggable = true;
+    // 手柄：触屏唯一的拖动入口，桌面上也是更明确的抓手。
+    // 塞进 .qnum 内部而不是 .q 下 —— .q 是两列 grid，
+    // 直接加子元素会让手柄占一格，把题号挤到下一行。
+    const numEl = el.querySelector('.qnum');
+    if (numEl && !numEl.querySelector('.q-handle')) {
+      // 符号用 CSS ::before 画，不放文字节点：
+      // 放文字的话 .qnum 的 textContent 会变成「⠿1．」，
+      // 复制题干、另存文本时都带着这个符号。
+      numEl.insertAdjacentHTML('afterbegin',
+        '<span class="q-handle no-print" title="按住拖动排序"></span>');
+    }
 
-    el.ondragstart = (e) => {
-      dragging = el;
-      el.classList.add('dragging');
-      try {
-        e.dataTransfer.effectAllowed = 'move';
-        // Firefox 不设 data 就不会触发后续的 dragover/drop
-        e.dataTransfer.setData('text/plain', el.dataset.id || '');
-      } catch (err) { /* 某些 webview 下 dataTransfer 可能不可用 */ }
-    };
+    el.addEventListener('pointerdown', (e) => {
+      // 触屏：只有按在手柄上才能拖，否则留给页面滚动
+      const onHandle = e.target && e.target.closest
+        && e.target.closest('.q-handle');
+      if (e.pointerType === 'touch' && !onHandle) return;
+      if (e.button != null && e.button !== 0) return;   // 只响应左键
+      pending = { el, x: e.clientX, y: e.clientY, id: e.pointerId };
+    });
 
-    el.ondragend = () => {
-      if (!dragging) return;
-      clear();
-      dragging = null;
-      commitPaperOrder(pw);
-    };
+    el.addEventListener('pointermove', (e) => {
+      if (!dragging) {
+        if (!pending || e.pointerId !== pending.id) return;
+        const dx = e.clientX - pending.x, dy = e.clientY - pending.y;
+        if (Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
+        dragging = pending.el;
+        dragId = e.pointerId;
+        lastTgt = null;
+        lastY = e.clientY;
+        dragging.classList.add('dragging');
+        document.body.classList.add('q-dragging');
+        // 捕获指针：手指移出元素边界也能继续收到事件
+        try { el.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+      } else if (e.pointerId !== dragId) {
+        return;
+      }
 
-    el.ondragenter = (e) => {
-      if (!dragging || dragging === el) return;
       e.preventDefault();
+      const dir = e.clientY - lastY;
+      lastY = e.clientY;
+      let tgt = dropTargetAt(pw, e.clientX, e.clientY, dragging);
+      if (!tgt) {
+        // 兜底：指针落在题目之间的空隙、或环境不支持 elementFromPoint 时
+        // （无布局引擎的测试环境、部分精简 webview 会返回 null），
+        // 退化为「按方向挪一格」。
+        // 宁可一格一格挪，也不能整个拖不动 ——
+        // 后者用户只会以为功能坏了。
+        const kids = [...dragging.parentNode.children]
+          .filter(x => x.classList && x.classList.contains('q'));
+        const i = kids.indexOf(dragging);
+        if (i < 0 || !dir) return;
+        const j = dir > 0 ? Math.min(i + 1, kids.length - 1)
+                          : Math.max(i - 1, 0);
+        tgt = kids[j];
+      }
+      // 同一个目标只处理一次。
+      // pointermove 每几毫秒就来一次，指针停在某个题目上不动时
+      // 会反复"插到它前面 / 再插到它后面"，表现为拖着来回抖。
+      // HTML5 拖放靠 dragenter（进入新元素才触发）天然避开了这点，
+      // pointer 版必须自己记。
+      if (!tgt || tgt === dragging || tgt === lastTgt) return;
+      lastTgt = tgt;
+
       // 被拖的元素在目标**之前** → 插到目标后面；否则插到目标前面。
       // 这样往下拖时跟手，往上拖时也不会来回跳。
       //
       // 用子节点下标比较而不是 compareDocumentPosition + Node 常量：
       // 后者依赖全局 Node，某些精简 webview / 测试环境里没暴露它。
-      const kids = [...el.parentNode.children];
-      const iD = kids.indexOf(dragging);
-      const iT = kids.indexOf(el);
+      const kids = [...dragging.parentNode.children];
+      const iD = kids.indexOf(dragging), iT = kids.indexOf(tgt);
       if (iD < 0 || iT < 0) return;
-      if (iD < iT) el.parentNode.insertBefore(dragging, el.nextSibling);
-      else el.parentNode.insertBefore(dragging, el);
-      syncPaperNumbers(pw);      // 实时更新题号，松手前就能看到排好后的样子
-    };
+      if (iD < iT) dragging.parentNode.insertBefore(dragging, tgt.nextSibling);
+      else dragging.parentNode.insertBefore(dragging, tgt);
+      syncPaperNumbers(pw);   // 实时更新题号，松手前就能看到排好后的样子
+    });
 
-    el.ondragover = (e) => { e.preventDefault(); };
-    el.ondrop = (e) => { e.preventDefault(); };
+    el.addEventListener('pointerup', finish);
+    el.addEventListener('pointercancel', finish);
   });
+
+  // 松手落在题目之外时也要收尾，否则 dragging 一直挂着。
+  // 用**具名函数 + 去重**：直接 addEventListener(finish) 的话，
+  // 每次重新生成试卷都会多挂一个，旧的闭包还引用着已被移除的 DOM，
+  // 既泄漏又会在后续拖动时误触发。
+  if (!enablePaperDrag._bound) {
+    enablePaperDrag._bound = [];
+    document.addEventListener('pointerup', (e) => {
+      enablePaperDrag._bound.forEach(fn => fn(e));
+    });
+    document.addEventListener('pointercancel', (e) => {
+      enablePaperDrag._bound.forEach(fn => fn(e));
+    });
+  }
+  // 旧试卷的监听器先摘掉，只保留当前这一份
+  enablePaperDrag._bound = [finish];
+}
+
+/** 找出指针位置下、属于本试卷的题目元素 */
+function dropTargetAt(pw, x, y, exclude) {
+  let el = null;
+  try {
+    el = document.elementFromPoint(x, y);
+  } catch (err) { /* 某些环境不支持 */ }
+  if (!el || !el.closest) return null;
+  const q = el.closest('.q');
+  if (!q || !pw.contains(q) || q === exclude) return null;
+  return q;
 }
 
 /**
