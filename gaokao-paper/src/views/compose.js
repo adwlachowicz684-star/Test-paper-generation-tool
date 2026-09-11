@@ -223,6 +223,7 @@ export async function mount(root) {
   loadNoteStats();   // 先拿完整目录再渲染，否则目录为空
   await loadKp();
   restore();
+  buildTopicNq();   // 题型挂题数映射（空卷提示要用）
   // restore() 只在有存档时走到底；没存档也要渲染一次，
   // 否则首次打开中间栏是空白，像是没加载出来。
   if (!state.paperMode) refreshPreview();
@@ -674,6 +675,20 @@ const tKey = (l1, l2, tid) => l1 + '>' + l2 + '>' + tid;
 /** 从存储键取题型 ID（提交后端用） */
 const tId = (k) => k.slice(k.lastIndexOf('>') + 1);
 
+/** 题型 ID → 挂题数。用于空卷时判断"是不是只勾了没题的题型" */
+const TOPIC_NQ = new Map();
+
+function buildTopicNq() {
+  TOPIC_NQ.clear();
+  for (const l1 of catL1()) {
+    for (const c of (l1.children || [])) {
+      for (const nd of (c.nodes || [])) {
+        if (nd && nd.id) TOPIC_NQ.set(nd.id, nd.n_qs || 0);
+      }
+    }
+  }
+}
+
 /** 该大知识点下、可参与筛选（已挂题）的题型键列表 */
 function topicKeys(l1, onlyPicked) {
   const out = [];
@@ -791,14 +806,15 @@ function topicChip(l1, l2, tname, nd) {
   const nq = (nd && nd.n_qs) || 0;
   const on = !!tid && state.topics.has(tKey(l1, l2, tid));
   const cross = ((nd && nd.cross) || []).filter(x => x !== l1);
-  return `<span class="chip tk${nq ? ' has' : ''}${on ? ' on' : ''}"`
+  return `<span class="chip tk${nq ? ' has' : ' zero'}${on ? ' on' : ''}"`
     + ` data-tid="${esc(tid)}" data-nq="${nq}"`
     + ` data-l1="${esc(l1)}" data-l2="${esc(l2)}" data-name="${esc(tname)}"`
     + ` title="${esc(tname)}${nq ? '（已挂 ' + nq + ' 题，点击加入筛选）'
-                                : '（暂无题目，只能查看讲解）'}">`
+                                : '（题库暂无此题型的题目，也可勾选；'
+                                  + '只有它被选中时组不出卷）'}">`
     + esc(tname)
     + (cross.length ? `<b>↔${esc(cross.join('+'))}</b>` : '')
-    + (nq ? `<span class="n">${nq}</span>` : '')
+    + `<span class="n"${nq ? '' : ' style="opacity:.45"'}>${nq}</span>`
     + `</span>`;
 }
 
@@ -886,7 +902,14 @@ function bindTopicTree() {
       const l1 = el.dataset.l1;
       const l2 = el.dataset.l2 || '';
       const key = tKey(l1, l2, tid);
-      if (tid && nq > 0) {
+      // 不再要求 nq > 0 才能勾选。
+      //
+      // 原来卡这个条件是为了「防止组出空卷」，但理由不成立：
+      // 后端 topics 是**命中任一**（any），勾一个没题的题型
+      // 只是多加一个候选来源，不会让已有结果变空；
+      // 真全勾了空题型，生成时本来就有明确提示。
+      // 卡住的代价却是：用户点了没反应，以为功能坏了。
+      if (tid) {
         if (state.topics.has(key)) state.topics.delete(key);
         else state.topics.add(key);
         // 同样：取消到 0 个就恢复全选
@@ -1304,10 +1327,19 @@ async function doCompose() {
       // 否则用户会去调一堆无关的条件。
       const exs = [...state.exams];
       const allZero = exs.length && exs.every(e => !(state.examStat[e] || 0));
+      // 只勾了「暂缺」题型是另一种常见的空卷原因，
+      // 而且比"难度没调好"更可能 —— 提示要指对方向，
+      // 否则用户会去拖难度滑块，怎么调都不会有题。
+      const tids = [...new Set([...state.topics].map(tId))];
+      const noQs = tids.length && tids.every(t => !(TOPIC_NQ.get(t) || 0));
       msg.textContent = allZero
         ? `题库里还没有标注为「${exs.join('、')}」的题目，`
           + '所以选不出卷。可以先点「全部」不限类型，'
           + '或先给题目补上考试类型标签。'
+        : noQs
+        ? `选中的 ${tids.length} 个题型在题库里都还没有题目`
+          + '（灰显虚线框的就是暂缺题型）。'
+          + '勾上带题数的题型，或点「全部题型」。'
         : '没有符合条件的题目。'
           + '试试放宽难度区间，或减少知识点/题型的组合条件。';
       document.querySelector('#btn-print').disabled = true;

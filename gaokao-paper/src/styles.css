@@ -676,6 +676,23 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   padding: 2px 8px 8px 32px;
 }
 
+/* 左栏题型：
+   .has = 题库有挂题；.zero = 暂缺。
+   两者**都能勾选**（后端 topics 是命中任一，勾空题型不会让结果变空），
+   所以差别只在视觉：暂缺的用虚线边 + 灰字，提示"勾了也暂时出不了题"。
+   早先做成"禁止勾选"，结果用户点了没反应，只能以为功能坏了。 */
+.tt-tops .chip.tk { font-size: 12px; padding: 2px 8px; }
+.tt-tops .chip.tk.has { color: #34506e; }
+.tt-tops .chip.tk.zero {
+  color: #8a97ab; border-style: dashed; background: #fcfdfe;
+}
+.tt-tops .chip.tk.zero.on {
+  /* 勾中的暂缺题型：实线 + 淡色底，与"有题且勾中"区分开，
+     一眼看出"这些勾了但暂时组不出题" */
+  border-style: solid; background: #c3d3e4;
+  border-color: #9db4cc; color: #fff;
+}
+
 /* ---- 试卷内拖动排序（仅正式卷） ----
    用 outline 而不是 border：border 会改变盒模型，
    悬浮瞬间整页题目跟着抖一下；outline 不占位。 */
