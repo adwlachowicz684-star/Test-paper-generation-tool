@@ -1191,6 +1191,47 @@ def cmd_question_topics(a):
                             if K.topic_node(t)]})
 
 
+def cmd_topic_questions(a):
+    """取**勾选中的题型**下的全部题目（组卷前预览用）
+
+    与 compose 的区别：
+      compose —— 抽题（按配比、随机、限题数）
+      本命令 —— 全量列出，不抽不洗牌，用于「先看看选中了什么」
+
+    --topics   逗号分隔的题型 ID（必填）
+    --subject  科目（可选）
+    --limit    上限，默认 200。超过就截断并回传 total，
+               前端据此提示「还有 N 道未显示」，
+               否则一次塞上千道题会卡死页面。
+    """
+    import kp_catalog as K
+    tids = [x.strip() for x in (a.topics or '').split(',') if x.strip()]
+    if not tids:
+        return _out({'ok': True, 'items': [], 'total': 0, 'count': 0})
+
+    bank = enrich(load_bank())     # enrich 内会重建题型→题目反索引
+    if a.subject:
+        bank = [q for q in bank if q.get('subject') == a.subject]
+
+    want = set(tids)
+    hit = [q for q in bank
+           if any(t in want for t in (q.get('topics') or []))]
+
+    # 与试卷同样的排序：选择 → 填空 → 解答，再按年份题号。
+    # 预览和正式卷顺序不一致的话，生成后会觉得"题目跳来跳去"。
+    order = {'选择': 0, '填空': 1, '解答': 2}
+    hit.sort(key=lambda q: (order.get(q.get('type'), 3),
+                            q.get('year', ''), q.get('num', 0)))
+
+    total = len(hit)
+    lim = int(a.limit or 200)
+    items = hit[:lim]
+    return _out({'ok': True, 'items': items, 'total': total,
+                 'count': len(items),
+                 'topics': [{'id': t, 'label': K.topic_label(t)}
+                            for t in tids if K.topic_node(t)]})
+
+
 def cmd_batch_list(a):
     """列出所有批次及其题数（题数实时统计）"""
     return _out({'ok': True, 'items': batch_stats(),
@@ -1637,6 +1678,12 @@ def main():
     p = sub.add_parser('question-topics')
     p.add_argument('--qid', required=True)
     p.set_defaults(fn=cmd_question_topics)
+
+    p = sub.add_parser('topic-questions')
+    p.add_argument('--topics', default='')
+    p.add_argument('--subject', default=None)
+    p.add_argument('--limit', type=int, default=200)
+    p.set_defaults(fn=cmd_topic_questions)
 
     p = sub.add_parser('kp-notes')
     p.add_argument('--subject'); p.add_argument('--l1')

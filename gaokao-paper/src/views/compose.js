@@ -2,7 +2,7 @@
    组卷视图 —— 按条件筛题并生成可打印试卷
    ============================================================ */
 import { api, call } from '../app/api.js';
-import { renderPaper, SLICE_BASE } from '../app/render.js';
+import { renderPaper, renderQuestion, SLICE_BASE } from '../app/render.js';
 import { setPending } from './practice.js';
 
 let state = {
@@ -33,6 +33,13 @@ let state = {
   examStat: {},        // {类型: 题数}
   examList: [],        // 后端给的枚举（不含「全部」）
   paperUse: '综合练习', // 卷头用途，由 exams 推出
+  // 中间栏当前显示什么：
+  //   false = 预览（选中题型的**全部**题目）
+  //   true  = 正式生成的试卷
+  // 生成前先看预览，是为了让人确认「我选中的是什么范围」，
+  // 再决定抽多少题 —— 而不是盲抽完才发现范围选错了。
+  paperMode: false,
+  previewTick: 0,      // 预览请求序号，用于丢弃过期响应
   grades: new Set(),   // 年级（派生字段，见 py/grade_map.py）
   gradeStat: {},       // {年级id: 题数}，来自 stats.by_grade_sub
   gradeList: [],       // 未隐藏的年级配置 [{id,name,...}]
@@ -200,8 +207,11 @@ export async function mount(root) {
     state.diffMin = 0; state.diffMax = 1;
     $('#f-dmin').value = 0; $('#f-dmax').value = 1;
     $('#d-lo').textContent = '0.00'; $('#d-hi').textContent = '1.00';
+    // 清空后回到「预览」态：条件都没了，当然不该继续显示上一份卷子
+    state.paperMode = false;
     renderTypes(); renderKp(); renderTopicTree();
     renderExams(); renderGrades(); loadNote();
+    refreshPreview();
   };
   $('#btn-compose').onclick = doCompose;
   $('#btn-print').onclick = () => window.print();
@@ -211,6 +221,9 @@ export async function mount(root) {
   loadNoteStats();   // 先拿完整目录再渲染，否则目录为空
   await loadKp();
   restore();
+  // restore() 只在有存档时走到底；没存档也要渲染一次，
+  // 否则首次打开中间栏是空白，像是没加载出来。
+  if (!state.paperMode) refreshPreview();
 }
 
 function renderTypes() {
@@ -320,6 +333,104 @@ function renderGrades() {
       c.classList.toggle('on');
     };
   });
+}
+
+/**
+ * 中间栏：组卷前显示「选中题型的全部题目」，生成后显示正式卷。
+ *
+ * 为什么要有预览态：
+ * 组卷是**抽题**（按配比、随机、限题数），抽完才知道范围对不对。
+ * 先把命中的题目全列出来，确认范围再点生成 ——
+ * 否则每次都要靠"生成出来的卷子看着不对"来反推条件选错了。
+ *
+ * 与正式卷的边界：
+ *   预览 —— 全部题目、不洗牌、不限量（超 200 道截断并提示）
+ *   正式 —— 按配比抽 count 道，带卷头
+ * 两者用 state.paperMode 区分，生成后不再自动回预览
+ * （用户的心理模型是"我已经出好卷了"）。
+ */
+async function refreshPreview() {
+  const box = document.querySelector('#paper-out');
+  if (!box) return;
+
+  // 已生成正式卷就不覆盖 —— 用户正看着卷子，
+  // 他在左侧改个题型，中间突然变成预览会很突然。
+  if (state.paperMode) return;
+
+  const ids = [...new Set([...state.topics].map(tId))];
+
+  if (!ids.length) {
+    box.innerHTML = `<div class="card" style="padding:14px">
+      <div class="card-h">题目预览</div>
+      <div style="padding:26px 14px;text-align:center;color:#9aa8bd;font-size:13px">
+        在左侧勾选题型，这里显示这些题型下的全部题目。<br>
+        <span style="font-size:12px">
+          确认范围后点「生成试卷」，按配比抽题并加上卷头。</span>
+      </div></div>`;
+    return;
+  }
+
+  // 请求序号：连点时，晚发的请求可能先回来，
+  // 后回来的旧结果会把新结果盖掉。只认最后一次发出的。
+  const tick = ++state.previewTick;
+  box.innerHTML = `<div class="card" style="padding:14px">
+    <div class="card-h">题目预览</div>
+    <div style="padding:20px 14px;text-align:center;color:#9aa8bd;font-size:13px">
+      加载中…</div></div>`;
+
+  let r;
+  try {
+    r = await api.topicQuestions(ids, state.subject, 200);
+  } catch (e) {
+    if (tick !== state.previewTick) return;
+    box.innerHTML = `<div class="card" style="padding:14px">
+      <div class="card-h">题目预览</div>
+      <div style="padding:20px 14px;color:#c0392b;font-size:13px">
+        加载失败：${esc(String(e && e.message ? e.message : e))}</div></div>`;
+    return;
+  }
+  if (tick !== state.previewTick) return;
+
+  const items = r.items || [];
+  const total = r.total || 0;
+  const cut = total - items.length;
+
+  if (!items.length) {
+    box.innerHTML = `<div class="card" style="padding:14px">
+      <div class="card-h">题目预览</div>
+      <div style="padding:26px 14px;text-align:center;color:#9aa8bd;font-size:13px">
+        选中的 ${ids.length} 个题型下暂无题目。<br>
+        <span style="font-size:12px">灰显的题型表示题库里还没有挂题。</span>
+      </div></div>`;
+    return;
+  }
+
+  const labels = (r.topics || []).map(t => t.label).filter(Boolean);
+  box.innerHTML = `<div class="card" style="padding:0">
+    <div class="card-h">题目预览
+      <span style="font-weight:400;color:#8a97ab;font-size:12px;margin-left:8px">
+        共 ${total} 题${cut > 0 ? `，显示前 ${items.length} 题` : ''}
+        （来自 ${ids.length} 个题型）</span>
+    </div>
+    <div style="padding:6px 12px;border-bottom:1px solid #eef1f6;
+                font-size:12px;color:#8a97ab;background:#fbfcfe">
+      ${esc(labels.slice(0, 3).join('；'))}${labels.length > 3 ? ` 等 ${labels.length} 个` : ''}
+    </div>
+    <div class="paper-wrap" style="border:0;box-shadow:none;margin:0;padding:12px 16px">
+      ${items.map(q => renderQuestion(q, { showAnswer: false })).join('')}
+    </div>
+    ${cut > 0 ? `<div style="padding:10px 16px;font-size:12px;color:#8a97ab;
+                    border-top:1px solid #eef1f6">
+        还有 ${cut} 道未显示。点「生成试卷」按配比抽
+        ${state.count} 道，这才是正式卷。
+      </div>` : ''}
+  </div>`;
+}
+
+/** 生成后回预览（用户手动点「回到预览」） */
+function backToPreview() {
+  state.paperMode = false;
+  refreshPreview();
 }
 
 /**
@@ -465,6 +576,7 @@ function renderKp() {
       renderTopicTree();
       state.note = { l1: state.focus.l1, l2: null, topic: null };
       loadNote();
+      refreshPreview();
     };
   });
 }
@@ -685,6 +797,7 @@ function bindTopicTree() {
         if (!countTopicsOn(l1)) seedTopics(l1);
       }
       renderTopicTree();
+      refreshPreview();
     };
   });
 
@@ -694,7 +807,25 @@ function bindTopicTree() {
       const l1 = el.dataset.l1;
       const k2 = el.dataset.k2;
       const key = l1 + '>' + k2;
-      if (state.kp2.has(key)) state.kp2.delete(key); else state.kp2.add(key);
+      const wasOn = state.kp2.has(key);
+      if (wasOn) state.kp2.delete(key); else state.kp2.add(key);
+
+      // 取消小知识点 → 连带摘掉它下面的题型。
+      // 不摘的话题型虽然不显示了，却还留在筛选条件和中间栏预览里 ——
+      // 用户看到「这块没勾，怎么还有它的题」，而且找不到原因。
+      // 勾回来时按默认全选恢复（与「新勾中一块」的行为一致）。
+      const c = l2List(l1).find(x => x.name === k2);
+      if (c) {
+        for (const nd of (c.nodes || [])) {
+          if (!nd || !nd.id) continue;
+          const others = (nd.cross || []).filter(x => x !== l1);
+          if (wasOn) {
+            if (!others.length) state.topics.delete(tKey(l1, k2, nd.id));
+          } else if ((nd.n_qs || 0) > 0) {
+            state.topics.add(tKey(l1, k2, nd.id));
+          }
+        }
+      }
 
       // 取消最后一个 → 自动回到全选。
       // 「至少选一个」用恢复全选兜底，比禁用取消更好：
@@ -704,6 +835,7 @@ function bindTopicTree() {
       state.note = { l1, l2: state.kp2.has(key) ? k2 : null, topic: null };
       renderTopicTree();
       loadNote();
+      refreshPreview();
     };
   });
 
@@ -741,6 +873,7 @@ function bindTopicTree() {
       }
       state.note = { l1, l2: l2 || null, topic: tid || null };
       loadNote();
+      refreshPreview();
     };
   });
 }
@@ -948,9 +1081,15 @@ async function doCompose() {
       return;
     }
 
+    // 进入「正式卷」模式：此后左侧改条件不再自动覆盖中间栏，
+    // 否则用户改个题型，刚生成的卷子就没了。
+    state.paperMode = true;
+
     out.innerHTML =
       `<div class="card no-print" style="padding:10px 14px">
          <div class="row">
+           <button id="btn-back-preview" title="回到「选中题型的全部题目」预览"
+                   style="font-size:12px">← 回到预览</button>
            <span style="font-size:13px;color:#5a6472">
              共 <b>${r.count}</b> 题（候选题池 ${r.candidates} 题）
            </span>
@@ -978,6 +1117,9 @@ async function doCompose() {
       baseUrl: SLICE_BASE,
     });
     document.querySelector('#btn-print2').onclick = () => window.print();
+    const bp = document.querySelector('#btn-back-preview');
+    if (bp) bp.onclick = backToPreview;
+
     document.querySelector('#btn-practice').onclick = () => {
       setPending(r.items, 'compose');
       location.hash = '#/practice';
@@ -1141,6 +1283,7 @@ function restore() {
     // 它会在 loadKp 里再渲染一次。提前渲染是为了恢复出勾选高亮。
     renderGrades();
     renderKp(); renderTopicTree(); loadNote();
+    refreshPreview();   // 打开就有内容，中间栏不空着
   } catch (e) {}
 }
 

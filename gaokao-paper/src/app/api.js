@@ -192,6 +192,11 @@ export const api = {
   topicLink: (qid, topics) =>
     call('py_topic_link', { payload: JSON.stringify({ qid, topics }) }),
   questionTopics: (qid) => call('py_question_topics', { qid }),
+  // 组卷前预览：取勾选题型下的**全部**题目（不抽题、不洗牌）
+  topicQuestions: (topics, subject, limit) =>
+    call('py_topic_questions', { topics: (topics || []).join(','),
+                                 subject: subject || null,
+                                 limit: limit || 200 }),
   paths:    () => call('app_paths'),
 };
 
