@@ -12,7 +12,14 @@ let state = {
   // 不同大知识点下可能有同名小知识点（如「综合应用」），
   // 只存名字会串 —— 取消 A 块下的，B 块下同名的也跟着没了。
   kp2: new Set(),
-  topics: new Set(),  // 题型标签（三级节点 ID，多对多，全局唯一）
+  // 题型：存 **"一级>二级>题型ID"** 三元组，不存裸 ID。
+  //
+  // 题库里有 35 个题型是**交叉归属**的（同一个 ID 出现在多个小知识点下，
+  // 如 M-T-062 同时在「不等式/综合与交叉」和「函数与导数/零点与图像交点」）。
+  // 只存 ID 的话：在 A 处勾了，切到 B 处它也显示为已勾；
+  // 取消 B 处的，A 处跟着掉 —— 就是「一打开就错乱」的根源。
+  // 提交后端时再取最后一段（后端只认题型 ID）。
+  topics: new Set(),
   note: { l1: null, l2: null, topic: null },   // 右侧讲解面板当前指向
   // 焦点 = 下方展开区跟随的大知识点，始终等于**最后勾中的那一个**。
   // 其余已勾的大知识点照常参与组卷，只是这里不展开它们。
@@ -471,7 +478,9 @@ function seedL1(l1) {
     for (const nd of (c.nodes || [])) {
       // 只全选**已挂题**的题型：没挂题的勾了也匹配不到，
       // 只会让筛选条件变长，没有收益。
-      if (nd && nd.id && (nd.n_qs || 0) > 0) state.topics.add(nd.id);
+      if (nd && nd.id && (nd.n_qs || 0) > 0) {
+        state.topics.add(tKey(l1, c.name, nd.id));
+      }
     }
   }
 }
@@ -494,7 +503,9 @@ function dropL1(l1) {
     for (const nd of (c.nodes || [])) {
       if (!nd || !nd.id) continue;
       const others = (nd.cross || []).filter(x => x !== l1);
-      if (!others.length) state.topics.delete(nd.id);
+      // 交叉题型（别的块也有它）不能删：那边可能正勾着。
+      // 删了就是「取消 A 块，B 块的同 ID 题型也掉了」。
+      if (!others.length) state.topics.delete(tKey(l1, c.name, nd.id));
     }
   }
   // 允许它被重新全选：用户取消后有可能再勾回来，
@@ -505,6 +516,25 @@ function dropL1(l1) {
 /** 该大知识点下、当前**已勾选**的小知识点 */
 function pickedL2(l1) {
   return l2List(l1).filter(c => state.kp2.has(l1 + '>' + c.name));
+}
+
+/** 题型的存储键：三元组。见 state.topics 的说明 */
+const tKey = (l1, l2, tid) => l1 + '>' + l2 + '>' + tid;
+
+/** 从存储键取题型 ID（提交后端用） */
+const tId = (k) => k.slice(k.lastIndexOf('>') + 1);
+
+/** 该大知识点下、可参与筛选（已挂题）的题型键列表 */
+function topicKeys(l1, onlyPicked) {
+  const out = [];
+  for (const c of (onlyPicked ? pickedL2(l1) : l2List(l1))) {
+    for (const nd of (c.nodes || [])) {
+      if (nd && nd.id && (nd.n_qs || 0) > 0) {
+        out.push(tKey(l1, c.name, nd.id));
+      }
+    }
+  }
+  return out;
 }
 
 /**
@@ -522,6 +552,14 @@ function pickedL2(l1) {
 function renderTopicTree() {
   const box = document.querySelector('#topic-tree');
   if (!box) return;
+
+  // 整块重建会丢滚动位置（容器被换掉，scrollTop 归零）。
+  // 换大知识点时归零是对的（内容全变了），
+  // 但同块内增删小知识点时必须还原，否则用户正看着下面，
+  // 点一下就弹回顶部，还得重新滚。
+  const body = box.querySelector('.tt-body');
+  const keepScroll = (body && state.focus.l1) ? body.scrollTop : 0;
+  const sameL1 = body ? body.dataset.l1 : null;
 
   const l1 = state.focus.l1;
   if (!l1) {
@@ -578,29 +616,28 @@ function renderTopicTree() {
       </div>`;
   }).join('');
 
-  box.innerHTML = head + `<div class="tt-body">${groups}</div>`;
+  box.innerHTML = head
+    + `<div class="tt-body" data-l1="${esc(l1)}">${groups}</div>`;
+
+  // 同一个大知识点内重建（增删小知识点、恢复全选）→ 还原滚动位置。
+  // 换块时不还原：内容完全不同，停在旧位置反而莫名其妙。
+  const nb = box.querySelector('.tt-body');
+  if (nb && sameL1 === l1 && keepScroll) nb.scrollTop = keepScroll;
   bindTopicTree();
 }
 
 /** 已展开（所属小知识点已勾）的题型是否全选 */
 function allTopicsOn(l1) {
-  let total = 0;
-  for (const c of pickedL2(l1)) {
-    for (const nd of (c.nodes || [])) {
-      if (nd && nd.id && (nd.n_qs || 0) > 0) {
-        total++;
-        if (!state.topics.has(nd.id)) return false;
-      }
-    }
-  }
-  return total > 0;
+  const keys = topicKeys(l1, true);
+  if (!keys.length) return false;
+  return keys.every(k => state.topics.has(k));
 }
 
 /** 单个题型标签 */
 function topicChip(l1, l2, tname, nd) {
   const tid = (nd && nd.id) || '';
   const nq = (nd && nd.n_qs) || 0;
-  const on = tid && state.topics.has(tid);
+  const on = !!tid && state.topics.has(tKey(l1, l2, tid));
   const cross = ((nd && nd.cross) || []).filter(x => x !== l1);
   return `<span class="chip tk${nq ? ' has' : ''}${on ? ' on' : ''}"`
     + ` data-tid="${esc(tid)}" data-nq="${nq}"`
@@ -633,11 +670,8 @@ function bindTopicTree() {
         if (!pickedL2(l1).length) seedAll(l1);
       } else {
         const pick = allTopicsOn(l1);
-        for (const c of pickedL2(l1)) {
-          for (const nd of (c.nodes || [])) {
-            if (!nd || !nd.id || !(nd.n_qs || 0)) continue;
-            if (pick) state.topics.delete(nd.id); else state.topics.add(nd.id);
-          }
+        for (const k of topicKeys(l1, true)) {
+          if (pick) state.topics.delete(k); else state.topics.add(k);
         }
         if (!countTopicsOn(l1)) seedTopics(l1);
       }
@@ -665,20 +699,38 @@ function bindTopicTree() {
   });
 
   // ---- 题型：勾选参与筛选；没挂题的仍可点开看讲解 ----
+  //
+  // **只切 class，不整块重建**。
+  // 原来这里调 renderTopicTree()，把 #topic-tree 整个 innerHTML 换掉：
+  // 滚动容器（.tt-body）随之重建，scrollTop 归零 ——
+  // 表现就是「点一下，列表瞬间弹回最上面」，
+  // 而且视觉上跳走了，看起来像"没点中"。
+  // 勾选题型不改变列表结构（题型不会消失），没必要重建。
   box.querySelectorAll('.chip[data-tid]').forEach(el => {
     el.onclick = (e) => {
       e.stopPropagation();
       const tid = el.dataset.tid;
       const nq = Number(el.dataset.nq || 0);
       const l1 = el.dataset.l1;
+      const l2 = el.dataset.l2 || '';
+      const key = tKey(l1, l2, tid);
       if (tid && nq > 0) {
-        if (state.topics.has(tid)) state.topics.delete(tid);
-        else state.topics.add(tid);
+        if (state.topics.has(key)) state.topics.delete(key);
+        else state.topics.add(key);
         // 同样：取消到 0 个就恢复全选
-        if (!countTopicsOn(l1)) seedTopics(l1);
+        if (!countTopicsOn(l1)) {
+          seedTopics(l1);
+          // 恢复全选影响的是**全部**题型的显示，只能整块刷新。
+          // 这时保住滚动位置（见 renderTopicTree 内的 keepScroll）。
+          renderTopicTree();
+        } else {
+          // 常规路径：就地更新，不碰滚动
+          el.classList.toggle('on', state.topics.has(key));
+          const allBtn = box.querySelector('[data-all="topic"]');
+          if (allBtn) allBtn.classList.toggle('on', allTopicsOn(l1));
+        }
       }
-      state.note = { l1, l2: el.dataset.l2 || null, topic: tid || null };
-      renderTopicTree();
+      state.note = { l1, l2: l2 || null, topic: tid || null };
       loadNote();
     };
   });
@@ -691,22 +743,12 @@ function seedAll(l1) {
 
 /** 全选已展开小知识点下的题型 */
 function seedTopics(l1) {
-  for (const c of pickedL2(l1)) {
-    for (const nd of (c.nodes || [])) {
-      if (nd && nd.id && (nd.n_qs || 0) > 0) state.topics.add(nd.id);
-    }
-  }
+  for (const k of topicKeys(l1, true)) state.topics.add(k);
 }
 
 /** 当前已展开且已勾选的题型数 */
 function countTopicsOn(l1) {
-  let n = 0;
-  for (const c of pickedL2(l1)) {
-    for (const nd of (c.nodes || [])) {
-      if (nd && nd.id && (nd.n_qs || 0) > 0 && state.topics.has(nd.id)) n++;
-    }
-  }
-  return n;
+  return topicKeys(l1, true).filter(k => state.topics.has(k)).length;
 }
 /**
  * 右侧讲解面板：按 state.note 指向的层级取内容。
@@ -867,7 +909,10 @@ async function doCompose() {
       kp2Full: [...state.kp2],
       grades: [...state.grades],
       exams: [...state.exams],
-      topics: [...state.topics],
+      // 内部存的是 "一级>二级>题型ID"，后端只认题型 ID —— 取最后一段。
+      // 要去重：交叉归属的题型在多个位置出现，
+      // 每个位置都勾着的话会提交重复的 ID（后端 any() 匹配，重复无害但冗余）。
+      topics: [...new Set([...state.topics].map(tId))],
       diff_min: state.diffMin,
       diff_max: state.diffMax,
       count: state.count,
