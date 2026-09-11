@@ -192,6 +192,11 @@ export const api = {
   topicLink: (qid, topics) =>
     call('py_topic_link', { payload: JSON.stringify({ qid, topics }) }),
   questionTopics: (qid) => call('py_question_topics', { qid }),
+  // 批量设置考试类型（mode: replace / add / remove）
+  examTag: (ids, exams, mode) =>
+    call('py_exam_tag', { ids: (ids || []).join(','),
+                          exams: (exams || []).join(','),
+                          mode: mode || 'replace' }),
   // 组卷前预览：取勾选题型下的**全部**题目（不抽题、不洗牌）
   topicQuestions: (topics, subject, limit) =>
     call('py_topic_questions', { topics: (topics || []).join(','),

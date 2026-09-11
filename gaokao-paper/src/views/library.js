@@ -38,6 +38,24 @@ export async function mount(root) {
         <button class="primary" id="btn-practice-sel">练习选中题目</button>
         <button id="btn-clear-sel">取消选择</button>
       </div>
+
+      <!-- 考试类型批量标注。
+           题库里 712 道题全未标注，组卷页那个筛选器勾任何一项都是空卷。
+           没有这个入口，那个功能等于废的。 -->
+      <div class="row" style="margin-top:8px;display:none;align-items:flex-start"
+           id="exam-bar">
+        <label style="padding-top:4px">考试类型</label>
+        <div class="grow">
+          <div id="exam-chips" style="margin-bottom:6px"></div>
+          <div class="row" style="font-size:12px;color:#5a6472">
+            <button id="btn-exam-set">覆盖为选中</button>
+            <button id="btn-exam-add">追加</button>
+            <button id="btn-exam-del">移除</button>
+            <button id="btn-exam-clear">清空类型</button>
+            <span id="exam-hint" style="margin-left:6px"></span>
+          </div>
+        </div>
+      </div>
       <p style="font-size:12px;color:#5a6472;margin:10px 0 0">
         导入要求：<b>文字版 PDF</b>（浏览器里能选中文字的那种）。
         扫描件和拍照件无法处理 —— 化学式、结构式 OCR 后必然出错。
@@ -95,6 +113,7 @@ export async function mount(root) {
 
   const $ = (s) => root.querySelector(s);
   $('#btn-refresh').onclick = load;
+  bindExamBar();
   await loadKpOptions();
   await loadBatchOptions();
   $('#l-search').onclick = applyFilter;
@@ -286,6 +305,93 @@ function renderBatchBox(items) {
   });
 }
 
+/* ---------------- 考试类型批量标注 ----------------
+ *
+ * 题库里 712 道题全未标注，组卷页那个 9 类筛选器勾任何一项都是空卷。
+ * 没有这个入口，那个功能等于废的。
+ *
+ * 三个动作分开而不是只给一个「覆盖」：
+ * 一道题常常同时适合多个场合（既能单元测试、也能月考）。
+ * 只有覆盖的话，第二次标注会抹掉第一次，用户得记住上次标了什么。
+ */
+
+const EXAM_LIST = ['知识点测验', '单元测试', '周考', '月考',
+                   '期中', '期末', '模考', '真题', '学情考察'];
+const EXAM_PICK = new Set();
+
+function renderExamChips() {
+  const box = document.querySelector('#exam-chips');
+  if (!box || box.dataset.built) return;
+  box.dataset.built = '1';
+  box.innerHTML = EXAM_LIST.map(e =>
+    `<span class="chip" data-exam="${e}">${e}</span>`).join('');
+  box.querySelectorAll('.chip').forEach(c => {
+    c.onclick = () => {
+      const e = c.dataset.exam;
+      if (EXAM_PICK.has(e)) EXAM_PICK.delete(e); else EXAM_PICK.add(e);
+      c.classList.toggle('on', EXAM_PICK.has(e));
+      updExamHint();
+    };
+  });
+}
+
+function updExamHint() {
+  const el = document.querySelector('#exam-hint');
+  if (!el) return;
+  const n = EXAM_PICK.size;
+  el.textContent = n ? `将作用于 ${n} 个类型` : '先点上方选择类型';
+}
+
+/** mode: replace / add / remove */
+async function doExamTag(mode) {
+  const ids = [...S.sel];
+  const exams = [...EXAM_PICK];
+  const msg = (t, k) => {
+    const el = document.querySelector('#lib-msg');
+    if (el) { el.className = 'msg ' + (k || '') + ' show'; el.textContent = t; }
+  };
+  if (!ids.length) { msg('先在下方勾选题目', 'err'); return; }
+  // 「清空类型」是合法操作（exams 为空 + replace），不要求先选类型
+  if (!exams.length && mode !== 'clear') {
+    msg('先点要标注的考试类型', 'err'); return;
+  }
+  const MODE_TXT = { replace: '覆盖为', add: '追加', remove: '移除',
+                     clear: '清空' };
+  if (!confirm(`确定${MODE_TXT[mode]}「${exams.join('、') || '（全部类型）'}」`
+    + `？\n\n将作用于 ${ids.length} 道题。`)) return;
+
+  const btn = document.querySelector(mode === 'clear'
+    ? '#btn-exam-clear' : '#btn-exam-' +
+      ({ replace: 'set', add: 'add', remove: 'del' }[mode]));
+  if (btn) { btn.disabled = true; }
+  try {
+    const r = await api.examTag(ids, exams, mode === 'clear' ? 'replace' : mode);
+    // 清空时不提具体类型：上面 chip 可能还勾着，说「清空『期中』」
+    // 会让人以为只清了期中这一种。
+    const what = mode === 'clear' ? '该批题目的全部考试类型'
+                                  : `「${exams.join('、')}」`;
+    msg(`已${MODE_TXT[mode]}${what}，影响 ${r.updated} 题`, 'ok');
+    await load();
+  } catch (e) {
+    msg('标注失败：' + (e && e.message ? e.message : e), 'err');
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
+function bindExamBar() {
+  renderExamChips();
+  updExamHint();
+  const set = document.querySelector('#btn-exam-set');
+  const add = document.querySelector('#btn-exam-add');
+  const del = document.querySelector('#btn-exam-del');
+  const clr = document.querySelector('#btn-exam-clear');
+  if (set) set.onclick = () => doExamTag('replace');
+  if (add) add.onclick = () => doExamTag('add');
+  if (del) del.onclick = () => doExamTag('remove');
+  if (clr) clr.onclick = () => doExamTag('clear');
+}
+
 function renderTable() {
   const tb = document.querySelector('#l-tbody');
   const items = S.filtered.slice(S.page * S.size, (S.page + 1) * S.size);
@@ -331,6 +437,10 @@ function updSelBar() {
   const n = S.sel.size;
   bar.style.display = n ? 'flex' : 'none';
   if (cnt) cnt.textContent = n;
+  // 标注栏跟着选中栏一起显隐：没选题时它没意义，留着只是干扰
+  const eb = document.querySelector('#exam-bar');
+  if (eb) eb.style.display = n ? 'flex' : 'none';
+  updExamHint();
 }
 
 function showDetail(id) {

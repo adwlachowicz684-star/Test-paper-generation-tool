@@ -1191,6 +1191,61 @@ def cmd_question_topics(a):
                             if K.topic_node(t)]})
 
 
+def cmd_exam_tag(a):
+    """批量设置题目的考试类型
+
+    --ids     逗号分隔的题目 ID（必填）
+    --exams   逗号分隔的类型（必填；空串 = 清空该题的考试类型）
+    --mode    replace（默认，覆盖）/ add（追加）/ remove（移除）
+
+    为什么需要 add/remove 而不只是 replace：
+    一道题常常同时适合多个场合（既可用于单元测试、也可用于月考）。
+    只有 replace 的话，第二次标注会把第一次的覆盖掉 ——
+    用户得记住上次标了什么，或者反复全量重标。
+    """
+    import exam_types as E
+    ids = [x.strip() for x in (a.ids or '').split(',') if x.strip()]
+    if not ids:
+        return _fail('缺少 --ids')
+
+    want = []
+    for x in (a.exams or '').split(','):
+        e = E.norm(x)
+        if e and e not in want:
+            want.append(e)
+    bad = [x.strip() for x in (a.exams or '').split(',')
+           if x.strip() and not E.norm(x)]
+    if bad:
+        return _fail('未知考试类型: %s（可选：%s）' % (bad, '、'.join(E.EXAMS)))
+
+    mode = a.mode or 'replace'
+    if mode not in ('replace', 'add', 'remove'):
+        return _fail('mode 只能是 replace / add / remove')
+
+    bank = load_bank()
+    by_id = {q.get('id'): q for q in bank}
+    missing = [i for i in ids if i not in by_id]
+    if missing:
+        return _fail('找不到题目: %s' % missing[:5])
+
+    for i in ids:
+        q = by_id[i]
+        cur = E.of_question(q)
+        if mode == 'replace':
+            nxt = list(want)
+        elif mode == 'add':
+            nxt = [x for x in cur if x not in want] + want
+        else:                       # remove
+            nxt = [x for x in cur if x not in want]
+        # 只认枚举值，且按 EXAMS 顺序排 ——
+        # 存成乱序的话，同一批题在不同地方显示顺序不一致，像脏数据。
+        q['exams'] = [x for x in E.EXAMS if x in nxt] if nxt else []
+
+    _save_bank(bank)
+    return _out({'ok': True, 'updated': len(ids), 'exams': want,
+                 'mode': mode})
+
+
 def cmd_topic_questions(a):
     """取**勾选中的题型**下的全部题目（组卷前预览用）
 
@@ -1678,6 +1733,12 @@ def main():
     p = sub.add_parser('question-topics')
     p.add_argument('--qid', required=True)
     p.set_defaults(fn=cmd_question_topics)
+
+    p = sub.add_parser('exam-tag')
+    p.add_argument('--ids', default='')
+    p.add_argument('--exams', default='')
+    p.add_argument('--mode', default='replace')
+    p.set_defaults(fn=cmd_exam_tag)
 
     p = sub.add_parser('topic-questions')
     p.add_argument('--topics', default='')

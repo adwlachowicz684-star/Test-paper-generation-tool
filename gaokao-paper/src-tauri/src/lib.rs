@@ -294,6 +294,15 @@ fn py_topic_link(payload: String) -> Result<Value, String> {
     run_py(&["topic-link".into(), "--payload".into(), payload])
 }
 
+/// 批量设置题目的考试类型（add / remove / replace）
+#[tauri::command]
+fn py_exam_tag(ids: String, exams: String, mode: Option<String>) -> Result<Value, String> {
+    let mut a: Vec<String> = vec!["exam-tag".into(), "--ids".into(), ids,
+                                  "--exams".into(), exams];
+    if let Some(m) = mode { a.push("--mode".into()); a.push(m); }
+    run_py(&a)
+}
+
 /// 取勾选题型下的全部题目（组卷前的中间栏预览，不抽题不洗牌）
 #[tauri::command]
 fn py_topic_questions(topics: Option<String>, subject: Option<String>,
@@ -452,6 +461,7 @@ pub fn run() {
             py_set_config,
             py_topic_list,
             py_topic_link,
+            py_exam_tag,
             py_topic_questions,
             py_question_topics,
             py_progress,
