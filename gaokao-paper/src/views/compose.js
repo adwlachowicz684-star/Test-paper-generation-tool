@@ -22,6 +22,10 @@ let state = {
   // 来回切换大知识点不该把他的选择冲掉。
   seeded: new Set(),
   types: new Set(),
+  exams: new Set(),    // 考试类型（题目标签，多值；空=全部/不限）
+  examStat: {},        // {类型: 题数}
+  examList: [],        // 后端给的枚举（不含「全部」）
+  paperUse: '综合练习', // 卷头用途，由 exams 推出
   grades: new Set(),   // 年级（派生字段，见 py/grade_map.py）
   gradeStat: {},       // {年级id: 题数}，来自 stats.by_grade_sub
   gradeList: [],       // 未隐藏的年级配置 [{id,name,...}]
@@ -68,6 +72,12 @@ export async function mount(root) {
       <div class="row" style="margin-bottom:8px">
         <label>题型</label>
         <span id="f-types"></span>
+      </div>
+
+      <div class="row" style="margin-bottom:8px">
+        <label>考试类型</label>
+        <span id="f-exams" class="grow"></span>
+        <span class="kp-hint" id="exam-tip"></span>
       </div>
 
       <div class="row" style="margin-bottom:8px">
@@ -136,6 +146,7 @@ export async function mount(root) {
     state.kp2.clear();
     state.types.clear();
     state.grades.clear();
+    state.exams.clear();
     // 换科目后知识点全变了，全选记录必须作废
     state.seeded.clear();
     state.focus = { l1: null, l2: null };
@@ -166,6 +177,7 @@ export async function mount(root) {
     state.kp.clear(); state.kp2.clear();
     state.types.clear(); state.topics.clear();
     state.grades.clear();
+    state.exams.clear();
     // seeded 也要清：否则清空后重新勾同一个大知识点，
     // 因为「已经全选过」而不再全选，结果下方空空如也。
     state.seeded.clear();
@@ -175,7 +187,7 @@ export async function mount(root) {
     $('#f-dmin').value = 0; $('#f-dmax').value = 1;
     $('#d-lo').textContent = '0.00'; $('#d-hi').textContent = '1.00';
     renderTypes(); renderKp(); renderTopicTree();
-    renderGrades(); loadNote();
+    renderExams(); renderGrades(); loadNote();
   };
   $('#btn-compose').onclick = doCompose;
   $('#btn-print').onclick = () => window.print();
@@ -239,7 +251,10 @@ async function loadKp() {
     // 只显示未隐藏的：隐藏的意义就是「这个年级暂时用不上」
     state.gradeList = (st.grades || []).filter(g => !g.hidden);
 
-    renderKp(); renderTopicTree(); renderGrades();
+    state.examStat = st.by_exam || {};
+    state.examList = st.exams || [];
+
+    renderKp(); renderTopicTree(); renderExams(); renderGrades();
   } catch (e) {
     if (box) box.innerHTML = `<span style="color:#c0392b">${e.message}</span>`;
   }
@@ -289,6 +304,65 @@ function renderGrades() {
       const g = c.dataset.g;
       if (state.grades.has(g)) state.grades.delete(g); else state.grades.add(g);
       c.classList.toggle('on');
+    };
+  });
+}
+
+/**
+ * 考试类型筛选。
+ *
+ * 双重语义，都从这一行读出来：
+ *   ① 筛题 —— 勾中的类型，命中任一即可（与其他条件是 AND）
+ *   ② 卷头用途 —— 只勾一个就用它命名卷子；勾多个/不勾 = 综合练习
+ *
+ * **「全部」不是一个可打在题目上的标签**，它是「不加这个条件」的清空态。
+ * 做成单独一个 chip 而不是第 7 个类型：
+ * 混在一起会出现「某道题属于全部考试」这种无意义的数据。
+ */
+function renderExams() {
+  const box = document.querySelector('#f-exams');
+  const tip = document.querySelector('#exam-tip');
+  if (!box) return;
+
+  const list = state.examList || [];
+  if (!list.length) {
+    // 老后端没有这个字段 → 整行藏起来，留个空行像加载失败
+    box.innerHTML = '';
+    const row = box.closest('.row');
+    if (row) row.style.display = 'none';
+    return;
+  }
+  const row0 = box.closest('.row');
+  if (row0) row0.style.display = '';
+
+  const stat = state.examStat || {};
+  const none = state.exams.size === 0;
+
+  box.innerHTML =
+    `<span class="chip${none ? ' on' : ''}" data-exam="__all__"
+       title="不限类型：所有题都参与组卷">全部</span>`
+    + list.map(e => {
+      const n = stat[e] || 0;
+      return `<span class="chip${state.exams.has(e) ? ' on' : ''}"`
+        + ` data-exam="${esc(e)}" title="${esc(e)}：${n} 题${n ? '' : '（题库暂无标注）'}">`
+        + `${esc(e)}<span class="n"${n ? '' : ' style="opacity:.4"'}>${n}</span>`
+        + `</span>`;
+    }).join('');
+
+  if (tip) {
+    const un = stat['未标注'] || 0;
+    tip.textContent = un
+      ? `有 ${un} 道题未标注类型`
+      : '';
+  }
+
+  box.querySelectorAll('.chip[data-exam]').forEach(el => {
+    el.onclick = () => {
+      const v = el.dataset.exam;
+      if (v === '__all__') state.exams.clear();
+      else if (state.exams.has(v)) state.exams.delete(v);
+      else state.exams.add(v);
+      renderExams();
     };
   });
 }
@@ -792,6 +866,7 @@ async function doCompose() {
       // 后端不认识这个字段，会直接忽略。
       kp2Full: [...state.kp2],
       grades: [...state.grades],
+      exams: [...state.exams],
       topics: [...state.topics],
       diff_min: state.diffMin,
       diff_max: state.diffMax,
@@ -804,8 +879,17 @@ async function doCompose() {
 
     if (!r.items.length) {
       msg.className = 'msg err show';
-      msg.textContent = '没有符合条件的题目。'
-        + '试试放宽难度区间，或减少知识点/题型的组合条件。';
+      // 勾了考试类型却出空卷，八成是题库还没标过这个类型 ——
+      // 而不是「难度/知识点」没调好。按最可能的原因给提示，
+      // 否则用户会去调一堆无关的条件。
+      const exs = [...state.exams];
+      const allZero = exs.length && exs.every(e => !(state.examStat[e] || 0));
+      msg.textContent = allZero
+        ? `题库里还没有标注为「${exs.join('、')}」的题目，`
+          + '所以选不出卷。可以先点「全部」不限类型，'
+          + '或先给题目补上考试类型标签。'
+        : '没有符合条件的题目。'
+          + '试试放宽难度区间，或减少知识点/题型的组合条件。';
       document.querySelector('#btn-print').disabled = true;
       return;
     }
@@ -828,8 +912,11 @@ async function doCompose() {
        <div class="paper-wrap" id="pw"></div>`;
 
     const pw = document.querySelector('#pw');
+    // 卷头用途由后端算好（规则只有一处），前端只消费。
+    // 组一份「月考」卷子，卷头就该写月考 —— 否则打出来还得手改。
+    state.paperUse = r.paper_use || '综合练习';
     pw.innerHTML = renderPaper(r.items, {
-      title: `${cfg.subject} · 自动组卷`,
+      title: `${cfg.subject} · ${state.paperUse}卷`,
       sub: `${new Date().toLocaleDateString('zh-CN')}　共 ${r.count} 题`,
       rows: [['科目', cfg.subject],
              ['题量', `${r.count} 题`],
@@ -849,7 +936,7 @@ async function doCompose() {
       shown = !shown;
       ba.textContent = shown ? '隐藏答案' : '显示答案';
       pw.innerHTML = renderPaper(r.items, {
-        title: `${cfg.subject} · 自动组卷`,
+        title: `${cfg.subject} · ${state.paperUse}卷`,
         sub: `${new Date().toLocaleDateString('zh-CN')}　共 ${r.count} 题`,
         rows: [['科目', cfg.subject], ['题量', `${r.count} 题`]],
         baseUrl: SLICE_BASE,
@@ -906,7 +993,7 @@ async function saveHtml(items, cfg) {
     }
     const r = await api.exportHtml(
       items.map(q => q.id), outdir,
-      `${cfg.subject}_${new Date().toISOString().slice(0, 10)}_${items.length}题`);
+      `${cfg.subject}_${state.paperUse}_${new Date().toISOString().slice(0, 10)}_${items.length}题`);
     msg.className = 'msg ok show';
     msg.textContent = `已导出 ${r.count} 题 → ${r.path}`;
   } catch (e) {
@@ -938,7 +1025,7 @@ async function saveDocx(items, cfg) {
     }
     const r = await api.exportDocx(
       items.map(q => q.id), outdir,
-      `${cfg.subject}_${new Date().toISOString().slice(0, 10)}_${items.length}题`);
+      `${cfg.subject}_${state.paperUse}_${new Date().toISOString().slice(0, 10)}_${items.length}题`);
     msg.className = 'msg ok show';
     msg.textContent = `已导出 Word ${r.count} 题 → ${r.path}`;
   } catch (e) {
@@ -965,6 +1052,7 @@ function restore() {
     (c.kp || []).forEach(k => state.kp.add(k));
     (c.types || []).forEach(t => state.types.add(t));
     (c.grades || []).forEach(g => state.grades.add(g));
+    (c.exams || []).forEach(e => state.exams.add(e));
 
     // 优先读 kp2Full（带 "一级>二级" 前缀，能精确定位）。
     // 旧存档只有二级名、没有一级信息，拼不回来就退回默认全选 ——

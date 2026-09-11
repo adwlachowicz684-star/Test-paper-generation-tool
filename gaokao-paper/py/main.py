@@ -532,6 +532,18 @@ def cmd_stats(a):
         grade_by_sub[q.get('subject') or ''][q.get('grade') or _G0.UNKNOWN] += 1
     _gc = _G0.load_grades()
 
+    # 考试类型题数（含「未标注」）。
+    # 前端据此给每个选项标数字：现在题库全未标注，
+    # 不显示题数的话用户勾了「月考」会得到空卷，还以为功能坏了。
+    import exam_types as _E2
+    c_exam = Counter()
+    for q in qs:
+        es = _E2.of_question(q)
+        if not es:
+            c_exam[_E2.UNLABELED] += 1
+        for e in es:
+            c_exam[e] += 1
+
     return _out({
         'ok': True, 'total': len(qs),
         'by_subject': dict(c_sub),
@@ -541,6 +553,9 @@ def cmd_stats(a):
         'by_grade_sub': {s: dict(c) for s, c in grade_by_sub.items()},
         'grades': _G0.ordered(_gc),      # 含 hidden 标记，前端据此过滤
         'grade_unknown': _G0.UNKNOWN,
+        'by_exam': dict(c_exam),
+        'exams': _E2.EXAMS,
+        'exam_unlabeled': _E2.UNLABELED,
         'by_kp': {s: c.most_common() for s, c in by_kp.items()},
         'kp_tree': kp_tree,
         'subjects': K.SUBJECTS,
@@ -638,6 +653,17 @@ def cmd_compose(a):
         qs = [q for q in qs
               if (q.get('grade') or _G3.UNKNOWN) in grs]
 
+    # 考试类型：多值标签，命中任一即可。与知识点是 AND。
+    #
+    # 空列表 = 不限（界面上的「全部」），不是「筛掉所有题」。
+    # 这个区分很要命：当成"要筛"的话，勾了全部反而一道题都出不来。
+    exs = [x for x in (cfg.get('exams') or []) if x]
+    if exs:
+        import exam_types as _E
+        want = set(y for y in (_E.norm(x) for x in exs) if y)
+        qs = [q for q in qs
+              if set(_E.of_question(q)) & want]
+
     # 题型标签：多对多，命中任一即可。
     # 与知识点筛选是 AND 关系 —— 「三角函数里、且属于『面积最值』题型的题」。
     tps = cfg.get('topics') or []
@@ -668,8 +694,12 @@ def cmd_compose(a):
     order = {'选择': 0, '填空': 1, '解答': 2}
     picked.sort(key=lambda q: (order.get(q.get('type'), 3),
                                q.get('year', ''), q.get('num', 0)))
+    # 卷头用途由勾中的类型推出（只勾一个=它，多个/零个=综合练习）。
+    # 放在后端算而不是前端拼：规则只有一处，改了不会两边不一致。
+    import exam_types as _EU
     return _out({'ok': True, 'count': len(picked),
-                 'candidates': len(qs), 'items': picked})
+                 'candidates': len(qs), 'items': picked,
+                 'paper_use': _EU.use_of(cfg.get('exams'))})
 
 
 def cmd_compose_ref(a):
