@@ -1113,7 +1113,13 @@ function enablePaperDrag(pw) {
   let lastY = 0;         // 上一次指针 Y，用于判断拖动方向（兜底路径）
 
   const clear = () => {
-    qs.forEach(el => el.classList.remove('dragging'));
+    qs.forEach(el => {
+      el.classList.remove('dragging', 'drop-ok');
+      // 清掉 FLIP 残留的 transform/transition。
+      // 留着的话下一次拖动的起点会量到旧 transform，动画抽搐。
+      el.style.transition = '';
+      el.style.transform = '';
+    });
     document.body.classList.remove('q-dragging');
   };
 
@@ -1157,6 +1163,13 @@ function enablePaperDrag(pw) {
         lastY = e.clientY;
         dragging.classList.add('dragging');
         document.body.classList.add('q-dragging');
+        // 标出可放置范围：同题型那一段。
+        // 不给提示的话，用户把题拖到不同题型上"没反应"，
+        // 只会以为功能坏了 —— 得让他看见边界在哪。
+        const r = sameTypeRange(dragging);
+        if (r) for (let i = r.from; i <= r.to; i++) {
+          r.kids[i].classList.add('drop-ok');
+        }
         // 捕获指针：手指移出元素边界也能继续收到事件
         try { el.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
       } else if (e.pointerId !== dragId) {
@@ -1166,6 +1179,11 @@ function enablePaperDrag(pw) {
       e.preventDefault();
       const dir = e.clientY - lastY;
       lastY = e.clientY;
+
+      // 只能在**同题型的连续块内**排序 —— 见 sameTypeRange 的说明。
+      const rng = sameTypeRange(dragging);
+      if (!rng) return;
+
       let tgt = dropTargetAt(pw, e.clientX, e.clientY, dragging);
       if (!tgt) {
         // 兜底：指针落在题目之间的空隙、或环境不支持 elementFromPoint 时
@@ -1173,14 +1191,18 @@ function enablePaperDrag(pw) {
         // 退化为「按方向挪一格」。
         // 宁可一格一格挪，也不能整个拖不动 ——
         // 后者用户只会以为功能坏了。
-        const kids = [...dragging.parentNode.children]
-          .filter(x => x.classList && x.classList.contains('q'));
-        const i = kids.indexOf(dragging);
-        if (i < 0 || !dir) return;
-        const j = dir > 0 ? Math.min(i + 1, kids.length - 1)
-                          : Math.max(i - 1, 0);
-        tgt = kids[j];
+        if (!dir) return;
+        const i = rng.kids.indexOf(dragging);
+        const j = i + (dir > 0 ? 1 : -1);
+        if (j < rng.from || j > rng.to) return;   // 越出本块 = 跨题型，拒绝
+        tgt = rng.kids[j];
       }
+      // 目标不在本块内（不同题型 / 被别的题型隔开）→ 不接受。
+      // 静默忽略比弹提示好：拖动是连续手势，
+      // 每次移到不可放的位置都弹窗会非常烦。
+      const ti = rng.kids.indexOf(tgt);
+      if (ti < rng.from || ti > rng.to) return;
+
       // 同一个目标只处理一次。
       // pointermove 每几毫秒就来一次，指针停在某个题目上不动时
       // 会反复"插到它前面 / 再插到它后面"，表现为拖着来回抖。
@@ -1194,11 +1216,13 @@ function enablePaperDrag(pw) {
       //
       // 用子节点下标比较而不是 compareDocumentPosition + Node 常量：
       // 后者依赖全局 Node，某些精简 webview / 测试环境里没暴露它。
-      const kids = [...dragging.parentNode.children];
-      const iD = kids.indexOf(dragging), iT = kids.indexOf(tgt);
+      const iD = rng.kids.indexOf(dragging), iT = ti;
       if (iD < 0 || iT < 0) return;
-      if (iD < iT) dragging.parentNode.insertBefore(dragging, tgt.nextSibling);
-      else dragging.parentNode.insertBefore(dragging, tgt);
+      // 包一层 flip：DOM 换了位置，视觉上滑过去（0.3s）
+      flip(pw, () => {
+        if (iD < iT) dragging.parentNode.insertBefore(dragging, tgt.nextSibling);
+        else dragging.parentNode.insertBefore(dragging, tgt);
+      });
       syncPaperNumbers(pw);   // 实时更新题号，松手前就能看到排好后的样子
     });
 
@@ -1221,6 +1245,78 @@ function enablePaperDrag(pw) {
   }
   // 旧试卷的监听器先摘掉，只保留当前这一份
   enablePaperDrag._bound = [finish];
+}
+
+/**
+ * FLIP 动画：让题目"滑"到新位置（0.3s），而不是瞬间跳过去。
+ *
+ * 瞬间跳的坏处是**看不出发生了什么** ——
+ * 拖动时列表一闪就变了，用户不确定自己拖到了哪。
+ * 滑动动画能明确展示"这道题从这里移到了那里"。
+ *
+ * FLIP = First, Last, Invert, Play：
+ *   先量旧位置 → 改 DOM → 量新位置 →
+ *   用 transform 把元素**倒推**回旧位置 → 再动画回 0。
+ * 直接 transition top/left 会触发重排，几十道题会很卡；
+ * transform 走合成层，不掉帧。
+ */
+const FLIP_MS = 300;
+
+function flip(pw, mutate) {
+  const items = [...pw.querySelectorAll('.q')];
+  if (!items.length) { mutate(); return; }
+
+  // 先清掉上一轮可能残留的 transform / transition。
+  // 连续快速拖动时上一轮动画还没跑完，
+  // 不清的话 getBoundingClientRect 量到的是动画**中间态**，
+  // 起点算错，动画就会抽搐。
+  items.forEach(el => {
+    el.style.transition = 'none';
+    el.style.transform = '';
+  });
+
+  const before = new Map();
+  items.forEach(el => before.set(el, el.getBoundingClientRect().top));
+
+  mutate();
+
+  items.forEach(el => {
+    const dy = (before.get(el) || 0) - el.getBoundingClientRect().top;
+    if (!dy) return;
+    el.style.transform = `translateY(${dy}px)`;
+  });
+
+  // 强制一次重排，让上面的 transform 真正生效。
+  // 少了这行，浏览器会把"设置 transform"和"清除 transform"合并成一次计算，
+  // 等于什么都没做 —— 动画不会出现。
+  void pw.offsetHeight;
+
+  items.forEach(el => {
+    if (!el.style.transform) { el.style.transition = ''; return; }
+    el.style.transition = `transform ${FLIP_MS}ms cubic-bezier(.2,.8,.3,1)`;
+    el.style.transform = '';
+  });
+}
+
+/**
+ * 与 el 同题型、且在 DOM 上**连续**的兄弟范围 [from, to]。
+ *
+ * 只比 data-type 是不够的：万一同种题型被别的题型隔成两段
+ * （后端顺序变动时理论上可能），跨段拖动会破坏分节结构。
+ * 限制在同一个连续块内，才能保证"一、选择题"始终是一整块。
+ */
+function sameTypeRange(el) {
+  const parent = el.parentNode;
+  if (!parent) return null;
+  const kids = [...parent.children]
+    .filter(x => x.classList && x.classList.contains('q'));
+  const i = kids.indexOf(el);
+  if (i < 0) return null;
+  const t = el.dataset.type;
+  let from = i, to = i;
+  while (from > 0 && kids[from - 1].dataset.type === t) from--;
+  while (to < kids.length - 1 && kids[to + 1].dataset.type === t) to++;
+  return { kids, from, to, type: t };
 }
 
 /** 找出指针位置下、属于本试卷的题目元素 */

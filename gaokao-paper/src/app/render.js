@@ -641,7 +641,11 @@ export function renderQuestion(q, opt = {}) {
 
   const tag = `<span class="no-print" style="font-size:11px;color:#9aa;font-weight:400">`
     + `${esc(q.id)}　${esc(q.level || '')}</span>`;
-  return `<div class="q" data-id="${esc(q.id)}">${body}${tag}</div>`;
+  // data-type：拖动排序时用来限制"只能在同题型内移动"。
+  // 卷面是按题型分节的（一、选择题 二、填空题…），
+  // 跨题型拖动会把分节结构搅乱，也会让题号重排失去意义。
+  return `<div class="q" data-id="${esc(q.id)}" data-type="${esc(q.type || '')}">`
+    + `${body}${tag}</div>`;
 }
 
 /** 渲染整卷（按题型分节）

@@ -729,6 +729,18 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 .q-handle:active { cursor: grabbing; }
 /* 拖动中禁止选中文字：否则拖一下会把整页题干刷成蓝色 */
 body.q-dragging { user-select: none; -webkit-user-select: none; }
+
+/* 拖动中标出「可放置范围」= 同题型的那一段。
+   跨题型不允许移动（会打乱一、选择题 / 二、填空题 的分节），
+   不给提示的话用户拖过去没反应，只会以为功能坏了。 */
+.paper .q.drop-ok { background: #f4f9ff; }
+.paper .q.drop-ok::after {
+  content: ''; position: absolute; left: -10px; top: 4px; bottom: 4px;
+  width: 3px; border-radius: 2px; background: #c8dcf2;
+}
+.paper .q { position: relative; }   /* ::after 定位需要 */
+/* 不在范围内的（其他题型）：拖动时压暗，明确"放不进去" */
+body.q-dragging .paper .q:not(.drop-ok):not(.dragging) { opacity: .4; }
 @media print {
   .paper .q { outline: 0 !important; background: transparent !important; }
   .q-handle { display: none !important; }
