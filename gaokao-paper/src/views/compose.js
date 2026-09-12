@@ -86,6 +86,16 @@ export async function mount(root) {
         <input type="text" id="f-seed" placeholder="留空=每次不同" style="width:120px">
       </div>
 
+      <!-- 年级紧跟科目，排第二。
+           它是仅次于科目的粗筛条件（先定"哪个学段"，再谈题型/考型），
+           放在后面会被前面的细粒度条件抢走注意力；
+           且年级有 12 个 chip，独占一行才放得开。 -->
+      <div class="row" style="margin-bottom:8px">
+        <label>年级</label>
+        <span id="f-grades" class="grow"></span>
+        <span class="kp-hint" id="grade-tip"></span>
+      </div>
+
       <div class="row" style="margin-bottom:8px">
         <label>题型</label>
         <span id="f-types"></span>
@@ -95,12 +105,6 @@ export async function mount(root) {
         <label>考试类型</label>
         <span id="f-exams" class="grow"></span>
         <span class="kp-hint" id="exam-tip"></span>
-      </div>
-
-      <div class="row" style="margin-bottom:8px">
-        <label>年级</label>
-        <span id="f-grades" class="grow"></span>
-        <span class="kp-hint" id="grade-tip"></span>
       </div>
 
       <div class="row" style="margin-bottom:8px">
