@@ -475,7 +475,17 @@
 
 - `M-H0679` （⚠ 详解中「解得 $r=$」后的数值破碎，由我反解出 $r=1$）
 
+### 截面问题
+
+**M-T-286 · 垂直关系确定的截面**
+
+- `M-H0779` （⚠ 选项 A、B 在提取中都显示 `3 2`。我按「答案为 A 且值为 $\frac{\sqrt3}2$」定 A $=\frac{\sqrt3}2$，B 取 $\frac32$）
+
 ### 空间角与距离
+
+**M-T-305 · 求二面角的平面角**
+
+- `M-H0775` ⚠ **题干的 $AD=2$ 实为 $\sqrt2$**（提取丢根号）。**反证**：若 $AD=2$，则由 $A,E,C$ 共线、$DE\perp AC$、$AE=1$ 应得 $AD^2=AE^2+DE^2=1+1=2$，即 $AD=\sqrt2\ne2$ —— 矛盾。取 $\sqrt2$ 后全链条闭合（见下）。 原书详解：「若 $E$ 为 $AC$ 中点…$BE=\sqrt3$，$AE=DE=CE=1$，而 $BD=2$，$\therefore DE^2+BE^2=BD^2$，即 $DE\perp BE$… $DC=\sqrt2$，则 $DC^2+AD^2=AC^2$，故 $\triangle ADC$ 为等腰直角三角形…四面体 $ABCD$ 的球心 $O$ 为 $\triangle ABC$ 的中心，即 $BE$ 靠近 $E$ 的三等分点。 若 $F$ 为 $DC$ 中点，连 $EF,OF$，易知 $\angle EFO$ 即为二面角 $A-CD-O$ 的平面角…$BE\perp$ 面 $ADC$，又 $EF\subset$ 面 $ADC$，则 $BE\perp EF$，即 $OE\perp EF$。
 
 **M-T-306 · 翻折中的角度**
 
