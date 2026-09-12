@@ -39,6 +39,19 @@
 
 ### 解三角形大题
 
+**M-T-216 · Asin(ωx+φ)图像与性质3:恒等变形(“打散”-重组-辅助角)**
+
+- `M-H0914` ④ ⚠ **平移与伸缩的顺序**：先右移 $\frac\pi{12}$ 得 $2\sin(2x+\frac\pi6)$，
+- `M-H0915` ③ ⚠ **分母为负时解不等式要变号**：$2(s-1)<0$，故 $\frac s{2(s-1)}\le1$ 变号成 $s\ge2s-2$ ✓✓✓
+
+**M-T-217 · Asin(ωx+φ)图像与性质4:零点求参**
+
+- `M-H0916` ④ ⚠ **选①的平移量很大（$\frac{3\pi}2$）**：$\sin(x+\frac{5\pi}3)=\sin(x+\frac\pi6+\frac{3\pi}2)=-\cos(x+\frac\pi6)$，
+- `M-H0917` ④ ⚠ **$\lvert\varphi\rvert<\frac\pi2$ 用来定 $k$**：$\varphi=-\frac\pi3+k\pi$，$k=0$ 给 $-\frac\pi3$ ✓，$k=1$ 给 $\frac{2\pi}3$（超范围）✗ ✓✓✓
+- `M-H0918` ② ⚠ **(2) 的关键是 $0$ 落在区间内**：因此递增区间只能取含 $0$ 的那一支 $\left[-\frac\pi2,\frac\pi2\right]$，
+- `M-H0918` ④ ⚠ **$n$ 个零点跨 $n-1$ 个间距**（不是 $n$ 个）—— 这是最容易错的一步 ✓✓✓
+- `M-H0919` ④ ⚠ **相邻对称轴距离 $=\frac T2=\frac\pi\omega$**（不是 $T$）⟹ $\frac\pi\omega=\frac\pi2$ ⟹ $\omega=2$ ✓✓✓
+
 **M-T-218 · 解三角形基础：正弦定理、角与对边**
 
 - `M-H0521` ⚠ 题干还原（根号/分数线丢失）**：ref_bank 存 `2asinAcos B 2 + bcos2A = b`。 我试了两种读法： · 按 $\cos^{2}B$：$\cos^{2}B=\sin B$ ⟹ $\sin^{2}B+\sin B-1=0$ ⟹ $\sin B=\frac{\sqrt5-1}2\approx0.618$ ⟹ $B\approx38.2^\circ\neq\frac\pi3$ ✗ · 按 $\cos\frac B2$：$\cos\frac B2=\sin B$ ⟹ $\sin\frac B2=\frac12$ ⟹ $B=\frac\pi3$ ✓✓ **p183 详解明确写 $\cos\frac B2$**，与后者一致 —— 这就是决定性证据。 **独立验算**： ① $B=\frac\pi3$ 时 $\cos\frac B2=\cos30^\circ=\frac{\sqrt3}2$；$\sin B=\sin60^\circ=\frac{\sqrt3}2$ ✓✓ **相等**
@@ -56,6 +69,12 @@
 **M-T-222 · 解三角形3：边长最值**
 
 - `M-H0894` ⑤ ⚠ **原书详解写「$f(b)=b^2+2b-1$ 在 $(\frac12,1)$ 上单调递减」，这是笔误**：
+
+**M-T-224 · 解三角形5：中线**
+
+- `M-H0908` 比记 $m_a=\frac12\sqrt{2b^2+2c^2-a^2}$ 更不易错 ✓✓✓
+- `M-H0909` ⑥ ⚠ **题设说锐角三角形，但条件②可推出 $C=\frac\pi2$（直角）**，二者不完全相容；
+- `M-H0910` ③ ⚠ **两式相加时常数项不同**：$\cos\angle ADB$ 的分子是 $\frac{129}4+\frac{a^2}4-\mathbf{25}$（减 $AB^2$，
 
 **M-T-225 · 解三角形6：角平分线**
 
