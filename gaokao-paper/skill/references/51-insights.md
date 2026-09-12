@@ -1625,3 +1625,35 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 | 变式 V1 | ⭐⭐ **$a+b$ 为定值 ⟹ 令 $b=s-a$，把 $c^2$ 化为 $a$ 的二次函数，配方法求值域** ⭐⭐ **更快的写法：$c^2=(a+b)^2-2ab(1+\cos C)$，配 $ab\in(0,\frac{s^2}4]$ 直接得值域，省一半计算** ⭐⭐ **$ab$ 的范围由 $a+b=s$ 与基本不等式给出：$0<ab\le\frac{s^2}4$，上界在 $a=b$ 取到** ⭐ **$c$ 的范围要对 $c^2$ 开方，且 $c>0$ 保序** ⚠ **退化端点（$a\to0$ 或 $b\to0$）对应开区间，而 $a=b$ 对应闭区间** |
 | 变式 V2 | ⭐⭐ **$a-b=b\cos C$ ⟹ $\cos C=\frac{a-b}b$，直接代回余弦定理消去角变量 —— 本题最省力的做法** ⭐⭐ **同一条件两种用法：(1) 证角的关系用正弦定理；(2) 解出 $\cos C$ 用代数变形** ⭐⭐ **$\cos B\sin C=\sin B$ ⟹ 同除以 $\cos B$ 得 $\sin C=\tan B$，**先由符号确认 $\cos B>0$** ⭐⭐ **「$C$ 为锐角」⟹ $\cos C\in(0,1)$ ⟹ $b=\frac1{1+\cos C}\in(\frac12,1)$ —— 把角的条件翻译成变量范围** ⚠ **原书详解写「$f(b)=b^2+2b-1$ 在 $(\frac12,1)$ 上单调递减」是笔误，实为递增**（$f'=2b+2>0$；结论 $c^2\in(\frac14,2)$ 无误） |
 | 变式 V3 | ⭐⭐ **降幂公式 $2\cos^2x=1+\cos2x$、$2\sin^2x=1-\cos2x$ —— 凡出现 $\cos^2x$ 先降幂，与 $\cos(2x+\varphi)$ 同频才好合并** ⭐⭐ **$p\cos\theta+q\sin\theta=\sqrt{p^2+q^2}\cos(\theta-\varphi)$，$\tan\varphi=\frac qp$** ⭐⭐ **由 $f(A)=$ 常数解 $A$ 时，先写出整体角 $2A+\varphi$ 的范围再挑解，端点值（对应 $A=0$ 或 $\pi$）必须舍去** ⭐⭐ **$b+c$ 已知、求 $a$ ⟹ $a^2=(b+c)^2-2bc(1+\cos A)$ 再配 $bc\le\frac{(b+c)^2}4$** ⭐⭐ **$A$ 为钝角时 $a^2=(b+c)^2-bc$，$-bc$ 项最大时 $a$ 最小 ⟹ **最小值在 $b=c$ 取到** ⚠ **最后要检验三角形存在**（$b+c>a$） |
+
+#### M-T-225 · 解三角形（角平分线 · 三选一 · 倒数和最值）
+
+| 变式 | 结论 |
+|---|---|
+| 例题 E1 | ⭐⭐ **角平分线长公式 $AD^{2}=bc\left[1-\frac{a^{2}}{(b+c)^{2}}\right]$** —— 向量法 3 行可推：$\vec{AD}=\frac{b\vec{AB}+c\vec{AC}}{b+c}$ 平方后配 $1+\cos A=\frac{(b+c)^{2}-a^{2}}{2bc}$ ✓。⭐⭐ **引入比值参数 $\lambda=\frac{AB}{BD}=\frac{AC}{CD}$**，四段一起表示，最后整体约掉（本题 $\frac a{b+c}=\frac1\lambda$）。⭐⭐ **角平分线定理 $\frac{AB}{AC}=\frac{BD}{CD}$ 用两次**：第(1)问直接解边长，第(2)问作参数。⚠ **$BC=BD+CD$ 必须相加**，这是最容易漏的一步。⚠ **$3,4,5$ 出现立刻查勾股**，直角是解出来的不是已知的 |
+| 变式 V1 | ⭐⭐ **题干含 $f(x)$ 时先用 $f(A)$ 定角 $A$**，再由余弦定理写出 $b,c$ 的关系式作公共中间量（本题 $b^{2}+c^{2}-bc=3$）。⭐⭐ **中线的处理：$\cos\angle ADB+\cos\angle ADC=0$（互补角）配 $BD=CD=\frac a2$ ⟹ $b^{2}+c^{2}=2AD^{2}+\frac{a^{2}}2$（可直接记）**。⭐⭐ **角平分线用面积拆分**：$AD\cdot\frac{b+c}2\cdot\sin\frac A2=\frac12bc\sin A$。⭐⭐ **$\frac{\sqrt3}4\sin x-\frac14\cos x$ 振幅 $=\frac12$** ⟹ $f(x)=\frac12\sin(x-\frac\pi6)-\frac14$。⚠ **题面 $\frac34\sin x$ 是根号丢失**（振幅 $\frac{\sqrt{10}}4\ne\frac12$）。⚠ **$f(A)=0$ 的两根要舍去 $A=\pi$** |
+| 变式 V2 | ⭐⭐ **正弦定理代入后 $\sin A\sin C$ 是公因子，直接提出约去** ⟹ $2\cos B+1=0$。⭐⭐ **角平分线的面积拆分 $S=S_1+S_2$**：$\frac12\cdot BD\cdot\sin\frac B2\cdot(a+c)=S$，一次给出 $a+c$。⭐⭐ **两个条件各给一个对称式**（面积给 $ac$、角平分线给 $a+c$）⟹ **凑成韦达定理的两根，不必解出 $a,c$**。⚠ **钝角交叉项变号**：$b^{2}=(a+c)^{2}-ac$（因 $\cos\frac{2\pi}3=-\frac12$），写成 $(a+c)^2-3ac$ 就错了 |
+| 变式 V3 | ⭐⭐ **$\sin A\cos C+\cos A\sin C=\sin(A+C)=\sin B$** —— 把含 $A$ 的两项合成 $\sin B$，与另一项凑公因子。⭐⭐ **在两个小三角形中各用一次正弦定理**，把 $c$ 表成 $\frac{\sqrt3}{\sin A}+\frac{\sqrt3}{\sin B}$，再用 $\frac1{\sin A}=\frac{2c}{\sqrt3a}$ 换成边，**$c$ 两边约掉** ⟹ $\frac1a+\frac1b=\frac12$。⭐⭐ **得到「倒数和」约束立刻用 $\frac1a+\frac1b\ge\frac2{\sqrt{ab}}$** ⟹ $ab\ge16$。⭐⭐ **$S=\frac12ab\sin C$ 中 $C$ 已定 ⟹ $S$ 的最值 ⟺ $ab$ 的最值**。⚠ **取等时检验三角形存在**（$a=b=4$、$C=120^\circ$ ⟹ $c=4\sqrt3<8$ ✓） |
+
+#### M-T-226 · 解三角形（三选一的个数判定 · 含参边长）
+
+| 变式 | 结论 |
+|---|---|
+| 例题 E1 | ⭐⭐ **$b^{2}-bc+c^{2}=a^{2}$ ⟺ $b^{2}+c^{2}-a^{2}=bc$ ⟺ $\cos A=\frac12$ ⟺ $A=\frac\pi3$**，三选一题都拿它当方程用。⭐⭐ **判定三角形是否唯一：把边的关系式当方程，用判别式 + 韦达定理判根的个数** —— $\Delta<0$ 不存在；$\Delta>0$ 且两根都正则不唯一。⭐⭐ **高 $BH=c\sin A$**（$AC$ 边上的高由 $AB$ 与 $\angle A$ 决定）。⭐⭐ **$A$ 已知时 $\sin B$ 型条件最简**，正弦定理直接给 $b$。⚠ **「唯一确定」要同时排除「不存在」和「两个」**，三个条件都算完才能下结论 |
+| 变式 V1 | ⭐⭐ **$b\cos C+c\cos B=a$（射影定理）**，换成角形式即 $\sin(B+C)=\sin A$，与右边约去 $\sin A$。⭐⭐ **$\sin B=\frac{b\sin A}a$ 后必用「大边对大角」定唯一性**：$b>a$ ⟹ $B>A$ ⟹ 可能两解；$b<a$ ⟹ $B<A$ ⟹ 唯一。⭐⭐ **给 $\cos B<0$ 时与 $-\frac{\sqrt3}2$ 比较**锁定 $B$ 的范围。⭐⭐ **$\sin C=\sin(A+B)=\sin A\cos B+\cos A\sin B$，最后 $c=\frac{a\sin C}{\sin A}$**。⚠ **题面 `3(bcosC+ccosB)` 是 $\sqrt3$ 丢失**（否则 $\cos A=\frac32>1$ 无解） |
+| 变式 V2 | ⭐⭐ **射影定理 $a\cos C+c\cos A=b$** —— 见到「$a\cos C+c\cos A$」直接换成 $b$。⭐⭐ **$S=k(a^{2}+c^{2}-b^{2})$ 型 ⟹ 换成 $2ac\cos B$，与 $S=\frac12ac\sin B$ 相除得 $\tan B$**（$ac$ 必被约掉）。⭐⭐ **$b\cos A+(\cdots)a=c$ 型 ⟹ 全部化正弦、用 $\sin C=\sin(A+B)$ 展开，$\cos A\sin B$ 恰好抵消**。⭐⭐ **$b\sin A=a\cos(B-\varphi)$ 型 ⟹ 提 $\sin A$ 后化为 $\sin B$ 与 $\cos B$ 的齐次式 ⟹ $\tan B$**。⚠ **最后必须判 $\sin A$ 与 $1$ 的大小**：$<1$ 且两解 ⟹ $2$ 个；$=1$ ⟹ $1$ 个；$>1$ ⟹ $0$ 个 |
+| 变式 V3 | ⭐⭐ **钝角 ⟺ $\cos C<0$ ⟺ $a^{2}+b^{2}-c^{2}<0$ —— 只看分子**（分母 $2ab>0$ 恒成立）。⭐⭐ **三边都是 $t$ 的一次式时，$a^{2}+b^{2}-c^{2}$ 展开后二次项往往部分抵消**，务必逐项核对。⭐⭐ **整数参数要列全约束**（$t>1$、正整数、$0<t<3$），交集常只剩一个值。⚠ **求出 $t$ 后必须检验三角形不等式**。⚠ **$S=\frac12ab\sin C$ 用的是夹角 $C$ 的两边 $a,b$**，不是 $a,c$ |
+
+#### M-T-229 · 解三角形（四边形 · 和差化积 · 正弦相等证互补）
+
+| 变式 | 结论 |
+|---|---|
+| 例题 E1 | ⭐⭐ **等腰（$\angle CBD=\angle BDC$ ⟹ $BC=CD$）+ 平行（内错角）是两个「角搬运」工具**，配合可把四边形的角全部求出。⭐⭐ **比较两个边长 ⟹ 把两个余弦定理写成「只差一个角」的形式**（因 $BC=CD$、$AC$ 公共），再比较该角的余弦。⭐⭐ **余弦在 $(0^\circ,180^\circ)$ 单调递减**：角小 ⟹ 余弦大 ⟹ 对边小。⚠ **$\angle ACB-\angle ACD=180^\circ-2(\alpha+\beta)$ 是 $2(\alpha+\beta)$ 不是 $\alpha+\beta$**。⚠ **题面 `3AC+2CD=5` 是双重根号丢失**，应为 $\sqrt3AC+\sqrt2CD=5$ |
+| 变式 V1 | ⭐⭐ **$a+c=mb$ ⟹ $\sin A+\sin C=m\sin B$ ⟹ 和差化积 ⟹ $\cos\frac{A-C}2=m\cos\frac{A+C}2$**（固定流水线）。⭐⭐ **$\sin\frac{A+C}2=\cos\frac B2$、$\sin\frac B2=\cos\frac{A+C}2$** —— 让两边同时约去 $\cos\frac B2$。⭐⭐ **$\cos\frac{A-C}2=\cos\frac A2\cos\frac C2+\sin\frac A2\sin\frac C2$、$\cos\frac{A+C}2=\cos\frac A2\cos\frac C2-\sin\frac A2\sin\frac C2$，符号一正一负别记反** ⟹ $\tan\frac A2\tan\frac C2=\frac{m-1}{m+1}$。⭐⭐ **含 $\cos A,\cos C$ 的对称式 ⟹ 设 $X=\cos A+\cos C$、$Y=\cos A\cos C$**，转成二元线性方程。⚠ **$B$ 最大 ⟺ $\cos B$ 最小**，用 $a^{2}+c^{2}\ge2ac$ 时注意方向。⚠ **原书末行定值写 $-1$，实为 $0$** |
+| 变式 V3 | ⭐⭐ **已知式含非内角的 $\sin$ 时，先用补角把它换成三角形内角**（$\sin\angle EHG=\sin\angle EHF$），正弦定理才用得上。⭐⭐ **$S$ 的两种「两边夹角」写法相等 ⟹ 正弦相等**，这是证角相等/互补的通用手法。⭐⭐ **$\sin\alpha=\sin\beta$ 且 $\alpha\ne\beta$ ⟹ 互补**，必须说明两角不等（$H$ 在 $FG$ 上 ⟹ $\angle HEG<\angle FEG$）。⭐⭐ **共线点的外角 $=\pi-$ 内角**，凡出现「延长线上一点」即用此。⚠ **题面 `3\sin F` 就是 $3\sin F$ 不是 $\sqrt3$**（否则 $\cos\angle EHF=\frac76>1$ 无解）。⚠ **余弦定理求的是内角，若求补角记得取负** |
+
+#### M-T-230 · 解三角形（含一条垂线的两三角形联立）
+
+| 变式 | 结论 |
+|---|---|
+| 变式 V1 | ⭐⭐ **$\sin2A=2\sin A\cos A$ 降角**：条件含 $\sin2A$ 又含 $\sin A$ ⟹ 必可提公因子 $\sin A$。⭐⭐ **垂线 ⟹ 直角 ⟹ 勾股 + 余弦可用**：${\rm Rt}\triangle ACD$ 给 $CD=5$、$\cos\angle ADC=\frac35$（3-4-5）。⭐⭐ **互补角余弦相反**：$\angle ADB=\pi-\angle ADC$ ⟹ $\cos$ 取负，这是连接两个三角形的桥。⭐⭐ **两个未知量（$AB=c$、$BD=x$）列两个余弦定理**（$\triangle ABD$ 与 $\triangle ABC$），消去 $c^{2}$ 后得线性关系 $c=\frac85x$，这是能解出来的原因。⭐⭐ **$\angle BAD=A-\frac\pi2$**（$AD$ 在 $\angle BAC$ 内部，相减不是相加）。⚠ **$x>0$ 是唯一取根依据**，负根必舍 |
