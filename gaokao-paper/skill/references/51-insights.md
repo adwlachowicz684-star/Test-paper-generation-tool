@@ -2170,3 +2170,43 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 | 变式 V3 | ⭐⭐ **「侧面展开图是正方形」同时给出底面边长和高**：宽 $=$ 底面周长 $=4a$、高 $=h$，都等于 $4$ ⟹ $a=1$、$h=4$。**只读出一个是最常见失误**（不知道 $h=4$ 就写不出 $E,F$ 坐标）。⭐ 线面平行 ⟹ $\overrightarrow{EF}\cdot\vec n=0$，$\overrightarrow{EF}=(1,1,f-e)$、$\vec n=(1,1,1)$ 一步得 $e-f=2$，与 $e+f=4$ 联立。⚠ $\overrightarrow{EF}$ 的前两个分量都是 $1$（$E$ 在 $AA_1$ 即 $x=y=0$，$F$ 在 $CC_1$ 即 $x=y=1$） |
 
 **通法**：① 把每个条件翻译成动点所在平面内的一个轨迹方程；② 两条轨迹都求出后问题降维；③ 「曲线上一点到直线的最短距离」用与已知直线平行的切线（导数法）或换元配方；④ 验证最近点落在有效范围内；⑤ 展开图是正方形 ⟹ 底面周长 = 高 = 边长。
+
+#### M-T-010 · 基本不等式「和积互消」型
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V1 | ⭐⭐ **题眼是同除以 $xy$**：$xy=4x+2y$ ⟹ $\dfrac4y+\dfrac2x=1$。**凡「$xy$ 与 $x,y$ 一次式同现且无常数项」，就同除以 $xy$ 凑出 $=1$**，再用乘「$1$」法。⭐ 展开时别漏常数项：$(2x)\cdot\dfrac2x=4$、$y\cdot\dfrac4y=4$，合计 $8$（干扰项 $8+4\sqrt2$ 就是记错常数项的结果）。取等 $y=2x$ ⟹ $x=4,y=8$ |
+| 变式 V2 | ⭐⭐ **「有常数 + 有和 + 有积」⟹ 把积放大成和的平方**：$6xy=\dfrac13(2x)(9y)\le\dfrac1{12}(2x+9y)^2$，得到关于 $t=2x+9y$ 的一元二次不等式 $t^2+12t-108\ge0$ ⟹ $t\ge6$。⭐ **系数 $\dfrac13$ 是凑出来的**（$\dfrac13\cdot2\cdot9=6$），目的是让两因子恰好是所求式的两项。⚠ 解出 $t\ge6$ 或 $t\le-18$ 后要用 $t>0$ 舍支 |
+| 变式 V3 | ⭐⭐ **判别式法求 $x+y$ 型最值**：令 $m=x+y$、$y=m-x$ 代入条件得 $x^2+(1-m)x+6-2m=0$，$\Delta=m^2+6m-23\ge0$ ⟹ $m\ge4\sqrt2-3$。⚠ **最大陷阱：A、B 的取等点相同（$x=2,y=1$），但 C、D 的取等点不同** —— 由 A、B 成立易误判 $x+y$ 最小值是 $3$，实际是 $2.6569$，取等点 $x=2\sqrt2-2,\ y=2\sqrt2-1$ |
+
+**通法**：① 无常数项 ⟹ 同除以 $xy$ 凑 $=1$；有常数项 ⟹ 把积换成和的平方（求积则把和换成 $2\sqrt{积}$）；② 求 $x\pm y$ 型用判别式法；③ 解出范围后用正性舍支；④ **务必检查各问取等点是否相同**。
+
+#### M-T-011 · 「1」的代换与「分母为主元」
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V1 | ⭐⭐ **所求式要写成与分母对齐的形式**：$x+2y-1=(x-1)+2y$，两加数恰是条件中两个分母的分子，**不对齐就展开不出常数项**。⭐ $x>1$ 不是装饰：保证 $x-1>0$（「一正」），也是取等时 $(x-1)^2=y^2$ ⟹ $x-1=y$ 的依据。取等 $y=3,x=4$ |
+| 变式 V2 | ⭐⭐ **分母在 $a+b=1$ 时恰好等于另一个字母**：$1-a=b$、$1-b=a$ ⟹ 式子化成 $\dfrac{4a}b+\dfrac ba$。⭐ **$k\cdot\dfrac uv+\dfrac vu$ 型最小值就是 $2\sqrt k$**（$k=4$ ⟹ $4$），可直接用于选择填空。取等 $b=2a$ ⟹ $a=\dfrac13,b=\dfrac23$ |
+| 变式 V3 | ⭐⭐ **核心拆法：$x=\dfrac12(x+y)+\dfrac12(x-y)$**（由 $(x+y)+(x-y)=2x$ 反解）。拆完每个分式只含一个变量，两组分别用基本不等式得 $2\sqrt2+\sqrt2=3\sqrt2$。⭐ **两组可分别取等**：给定任意 $u=x+y>v=x-y>0$ 总有 $x=\dfrac{u+v}2,y=\dfrac{u-v}2$。⚠ 干扰项 $\dfrac{3\sqrt{10}}2\approx4.743$ 是「只对两个分式用不等式、漏拆 $x$」的结果 |
+
+**通法**：① 分母是 $x\pm y$ ⟹ 用 $x=\dfrac{(x+y)\pm(x-y)}2$ 拆孤立项；② 按 $x+y$、$x-y$ 分组，每组化成 $at+\dfrac bt$；③ 分别取最小后验证取等点可同时满足。
+
+#### M-T-033 · 柯西「分母分子配对」型
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ **系数在根号下开方**：柯西配 $\left[(\sqrt a)^2+(\sqrt{2b})^2+(\sqrt c)^2\right]\left[\dfrac1a+\dfrac1b+\dfrac1c\right]$，中间项是 $1+\sqrt2+1$（$\sqrt2$ 来自 $\sqrt{2b}\cdot\dfrac1{\sqrt b}$）。⭐⭐ **$(a+kb+c)\left(\dfrac1a+\dfrac1b+\dfrac1c\right)\ge(2+\sqrt k)^2$** —— 见到这个结构就该想到答案含 $4\sqrt k$ 倍结构。⭐ 另法：展开 $9$ 项提出 $2$ 个 $1$，剩下 $6$ 项**按倒数配三组**用均值。取等 $a=c=\sqrt2\,b$ |
+| 变式 V2 | ⭐⭐ **平方和 ⟹ 柯西配 $(1,1,1)$**：$S\cdot3\ge(\sum a_i)^2$，把三个平方压成一个和。⭐⭐ **第三步的整体代换是题眼**：$\dfrac3x=\dfrac{x+2y+3z}x=1+\dfrac{2y}x+\dfrac{3z}x$，把倒数写成「条件 ÷ 字母」，展开后自然出现倒数对，每组 $\ge2$。取等链 $x=2y=3z$ ⟹ $x=1,y=\dfrac12,z=\dfrac13$，$S=\dfrac{27}4$ |
+| 变式 V3 | ⭐⭐ **（1）「有解」⟺ $t\le$ 最大值，「恒成立」⟺ $t\le$ 最小值**（极易记反）。⭐ $\lvert A\rvert-\lvert B\rvert\le\lvert A-B\rvert$ 求最大值最快，**但必须验证等号可取到**（本题 $x\ge\dfrac12$ 时两绝对值内都非负）。⭐⭐ **（2）的题眼：$m+2n+3p=(m+p)+2(n+p)$** —— 把 $3p$ 拆成 $p+2p$ 与所求分母对齐。⭐ $\dfrac2{n+p}$ 改写成 $\dfrac4{2n+2p}$ 才能配成柯西 $(1+2)^2$ |
+
+**通法**：① 倒数和 × 一次和 ⟹ 柯西，中间项的 $\sqrt{\text{系数}}$ 是根号来源；② 平方和 ⟹ 配 $(1,1,\dots,1)$；③ 倒数项用「条件 ÷ 字母」展开凑倒数对；④ 分母形如「字母 + 公共量」时，先在条件里拆出同样结构。
+
+#### M-T-239 · 向量极化恒等式
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ **极化恒等式：$\overrightarrow{XB}\cdot\overrightarrow{XC}=\lvert XD\rvert^2-\lvert DB\rvert^2$**（$D$ 为 $BC$ 中点）。三个数量积的公共部分是 $-\lvert\overrightarrow{DB}\rvert^2$，**作差即可消去**。⚠ $\overrightarrow{BA}\cdot\overrightarrow{CA}=\overrightarrow{AB}\cdot\overrightarrow{AC}$（两因子同时取反，数量积不变），极化恒等式标准形是 $\overrightarrow{AB}\cdot\overrightarrow{AC}$。⚠ **$E,F$ 谁离 $D$ 近**：$\lvert DE\rvert=2\lvert DF\rvert$ ⟹ $ED=\dfrac23AD$（不是 $\dfrac13AD$），搞反会得负值 |
+| 变式 V1 | ⭐⭐ **「$AB$ 是圆 $C$ 的直径」⟹ $\overrightarrow{PA}\cdot\overrightarrow{PB}=\lvert PC\rvert^2-r^2$**（可当二级结论直接记）：因 $\overrightarrow{CB}=-\overrightarrow{CA}$，展开成 $(\overrightarrow{PC}+\overrightarrow{CA})\cdot(\overrightarrow{PC}-\overrightarrow{CA})$ 得平方差。问题退化为圆心到直线的距离。⚠ 别忘了减 $r^2$ |
+| 变式 V2 | ⭐⭐ **球面上三点 ⟹ 全部用 $\overrightarrow{OP},\overrightarrow{OA},\overrightarrow{OB}$ 表示**：$\overrightarrow{PA}\cdot\overrightarrow{PB}=\overrightarrow{OA}\cdot\overrightarrow{OB}-(\overrightarrow{OA}+\overrightarrow{OB})\cdot\overrightarrow{OP}+R^2$。⭐ $\overrightarrow{OA}\cdot\overrightarrow{OB}=R^2-\dfrac{AB^2}2$（本题 $=-\dfrac12$），$\lvert\overrightarrow{OA}+\overrightarrow{OB}\rvert=\sqrt{2R^2+2\overrightarrow{OA}\cdot\overrightarrow{OB}}=1$。⭐ 只剩方向余弦在 $[-1,1]$ 变化 ⟹ 范围 $[\text{const}-M,\ \text{const}+M]$ |
+
+**通法**：① 判据：数量积两向量**共起点**，且终点中点已知或易求；② 圆/球情形把动端点消掉，只剩「中心到动点距离」；③ 多个数量积共线排列时作差消公共项；④ 端点能否取到由方向是否可达决定（球面上任意方向都可达 ⟹ 闭区间）。
