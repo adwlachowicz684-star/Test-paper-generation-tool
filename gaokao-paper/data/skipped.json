@@ -499,6 +499,30 @@
    "ref_answer": "C",
    "reason": "印刷错误",
    "note": "选项行 OCR 重叠：A/D 均提取为 e，B/C 均提取为 e/2，无法确定原始四个选项；答案 e/2 与详解自洽"
+  },
+  {
+   "key": "M-T-110-V1",
+   "page": 76,
+   "topic": "M-T-110",
+   "topic_name": "导数·已知单调性求参",
+   "kp1": "导数",
+   "kp2": "单调性",
+   "kind": "变式",
+   "ref_answer": "(1)见原文",
+   "reason": "提取破碎",
+   "note": "solution 字段整体自我循环（『若 f(x)=x(x+a)-ln x，即 f(x)=x(x+a)-ln x…』），导数、区间、结论全被题干文本覆盖，无法还原"
+  },
+  {
+   "key": "M-T-144-V2",
+   "page": 75,
+   "topic": "M-T-144",
+   "topic_name": "导数·恒成立求范围",
+   "kp1": "导数",
+   "kp2": "恒成立",
+   "kind": "变式",
+   "ref_answer": "a/e^(a-b) > e^(2-e^2)",
+   "reason": "提取破碎",
+   "note": "答案明确，但详解中 g(x)=e^x-ax 的极小值点写作 (ln a)/2、极小值 a(1-ln a/2)；按 g=e^x-ax 严格计算驻点应为 x=ln a、极小值 a(1-ln a)，与后续『1-ln a/2<0 ⟺ a>e^2』矛盾，关键符号存疑"
   }
  ],
  "reason_desc": {
