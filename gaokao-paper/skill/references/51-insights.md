@@ -140,6 +140,25 @@ $$f(x)>c\ \text{恒成立}\iff f_{\min}>c$$
 |---|---|
 | **例题 E1** | **射影定理提速**：$a\cos C+c\cos A=b$ 一步到位，比正弦定理化 $\sin(A+C)$ 再转 $\sin B$ 快得多，两者等价 |
 
+#### M-T-199 · 建系设点求最值（阿波罗尼斯圆）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ **$DB:DC=k\ (k\ne1)$ 且 $D$ 在平面内 ⟹ 阿波罗尼斯圆**。建系后 $(x+1)^2+y^2=4[(x-1)^2+y^2]$ ⟹ 圆心 $\left(\frac53,0\right)$、半径 $\frac43$。⭐⭐ **底边固定时「面积最大 ⟺ 到该直线的距离最大 $=d+r$」**（$d$ 为圆心到直线的距离）。⚠ 干扰项 $\frac{4\sqrt3}3$ 就是 $d$ 本身——**忘了加半径** |
+| 变式 V3 | ⭐⭐ **等腰直角顶点 $A=E\pm$「垂直于 $BC$ 的向量」**：$B(b,0)$、$C(0,c)$ 时 $A=\left(\frac{b+c}2,\frac{b+c}2\right)$，故 $\lvert OA\rvert=\frac{b+c}{\sqrt2}$。⭐⭐ **$b^2+c^2$ 固定 ⟹ 用 $(b+c)^2=b^2+c^2+2bc$ 把问题转成 $bc$ 的范围**（$b,c\ge0$ 时 $bc\in[0,16]$）。⚠ 取「$-$」号时两坐标异号，与「第一象限」矛盾；比原书按 $\theta$ 分五种情况讨论干净得多 |
+
+#### M-T-201 · 中线（等腰三角形）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ **中线题的固定动作：在「半个三角形」$\triangle ABD$ 里再写一次余弦定理**，$\cos A$ 由原三角形给出 $\cos A=\frac{2b^2-a^2}{2b^2}$，代入即得 $BD^2=\frac{b^2}4+\frac{a^2}2$（$b$、$a$ 分别是腰与底）。⭐⭐ 得到 $b^2+2a^2=$ 常数后，把 $S$ 写成 $a$ 的一元函数 $S^2=-\frac9{16}a^4+81a^2$，**顶点处取最大**。⚠ 「以 $BC$ 为底边的等腰三角形」⟹ 两腰是 $AB=AC=b$，别读反 |
+
+#### M-T-203 · 高（边角互化与两头夹）
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V2 | ⭐⭐ **给「某边上的高」⟹ 用两种面积公式把 $a^2$ 写成 $2\sqrt3\,bc\sin A$**，再与余弦定理**相加**得 $\frac bc+\frac cb=2\sqrt3\sin A+2\cos A=4\sin\left(A+\frac\pi6\right)$。⭐⭐ **左边 $\ge2$（基本不等式）、右边 $\le4$（正弦有界）——两头夹才锁定 $k$ 的范围** $k+\frac1k\le4$ ⟹ $k\in[2-\sqrt3,\,2+\sqrt3]$。⚠ 求 $k$ 最小时必须令 $\sin\left(A+\frac\pi6\right)=1$ 才得 $A=\frac\pi3$ |
+
 ### 解三角形小题(二)
 
 #### M-T-205 · 图形5："扩展线"
@@ -163,6 +182,26 @@ $$\vec{AP}=t\left(\frac{\vec{AB}}{\lvert AB\rvert\cos B}+\frac{\vec{AC}}{\lvert 
 
 ---
 
+#### M-T-207 · 四心 1：外心
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V3 | ⭐⭐ **外心 ⟹ $\vec{AO}$ 在 $\vec{AB}$ 上的投影 $=\frac c2$**（$O$ 在 $AB$ 的中垂线上），即 $\cos\angle BAO=\frac c{2AO}$。⭐⭐ 题面把系数写成 $\frac{AC}{AB}$、$\frac{AB}{AC}$，**正是为了让 $c$、$b$ 分别约掉**，两项合并成 $bc=2m\,AO^2$。⭐⭐ $\sin B+\sin C=\frac{b+c}{2AO}$（正弦定理），**先靠它把 $AO$ 换成 $b+c$，再用基本不等式**。⚠ $AO$ 也是变量，不能当常数处理 |
+
+### 解三角形大题
+
+#### M-T-220 · 面积最值
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V1 | ⭐⭐ **余弦定理 + 均值不等式**给上界：$a^2+c^2+ac=6$ 与 $a^2+c^2\ge2ac$ ⟹ $ac\le2$ ⟹ $S=\frac{\sqrt3}4ac\le\frac{\sqrt3}2$。⭐⭐ **边化角**给完整变化：$S=\sqrt3\sin\left(2A+\frac\pi6\right)-\frac{\sqrt3}2$。⚠ **下界是开的**（$ac>0$ 但可趋近 $0$），值域写 $\left(0,\frac{\sqrt3}2\right]$。⚠ 已知 $B=\frac{2\pi}3$ 时 $A+C=\frac\pi3$，这是 $\sin2C=\frac12$ 在区间内只有一解的原因 |
+
+#### M-T-227 · 四边形转化为解三角形
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V3 | ⭐⭐ **等角转移**：$\angle B=\angle CED$ 且 $A,E,B$ 共线 ⟹ $\angle DEA=\angle BCE$（两者都等于 $\frac\pi3-\angle CEB$）——这是四边形里「把角搬走」的标准手法。⭐⭐ 直角 $\triangle AED$ 中 $\cos\angle DEA=\frac{AE}{ED}$ 一步给出 $ED$。⚠ $AE=2BE$ 与 $BE=2AE$ **只差一个字**，后者使 $\sin\angle BCE=\frac{2\sqrt{21}}7>1$（无解），可据此反推 |
+
 ## 平面向量
 
 ### 向量小题
@@ -177,6 +216,18 @@ $$\vec{AP}=t\left(\frac{\vec{AB}}{\lvert AB\rvert\cos B}+\frac{\vec{AC}}{\lvert 
 | 变式 V3 | ⚠ 题干写 `ON ⋅ MN` 若按向量点积因 $ON\perp MN$ 恒为 $0$，而答案非零 —— 必是**长度乘积** $\lvert ON\rvert\cdot\lvert MN\rvert$ |
 
 ---
+
+#### M-T-236 · 数量积最值
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ **$\vec{BC}\cdot\vec{CA}=\vec{CA}\cdot\vec{AB}$ ⟹ $\vec{CA}\cdot(\vec{BC}+\vec{BA})=0$ ⟹ 平行四边形 $BCDA$ 的两条对角线垂直 ⟹ 菱形**。⭐⭐ $\lvert\vec{BA}+\vec{BC}\rvert=\lvert\vec{BD}\rvert=2$ 定腰长：直角三角形中 $x=\frac1{\cos\frac B2}$（对角线平分顶角）。⭐⭐ $\vec{BA}\cdot\vec{BC}=x^2\cos B=\frac{2\cos B}{1+\cos B}$，**对 $\cos B$ 单调递增**（$y'=\frac2{(1+t)^2}>0$）。⚠ **两端都能取到 ⟹ 闭区间**，C 项（右端开）是唯一陷阱 |
+
+#### M-T-237 · 向量模
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V2 | ⭐⭐ **$\lambda\vec a+\vec b=\vec0$ ⟹ $\vec a\parallel\vec b$，取模直接定 $\lvert\lambda\rvert=\frac{\lvert\vec b\rvert}{\lvert\vec a\rvert}$**，符号由 $\lambda<0$ 定——**完全不必设 $\vec a=(x,y)$ 解方程组**。⭐⭐ 得出 $\vec b=\sqrt5\,\vec a$ 后 $\lvert\sqrt5\vec a+\vec b\rvert=2\lvert\vec b\rvert=2\sqrt5$。⚠ 符号决定一切：$\lambda>0$ 时答案为 $0$ |
 
 ## 立体几何
 
@@ -221,6 +272,12 @@ $$(2R)^{2}=a^{2}+b^{2}+c^{2}$$
 | 例题/变式 | 结论 |
 |---|---|
 | 变式 V2 | **命门**：一看「距离和为常数」就选椭圆是错的 —— 必须**先比较常数与两定点距离**，$\lvert ZA\rvert+\lvert ZB\rvert=\lvert AB\rvert$ 时轨迹是**线段** |
+
+#### M-T-342 · 向量与轨迹（四心的向量刻画）
+
+| 例题/变式 | 结论 |
+|---|---|
+| 变式 V3 | ⭐⭐ **四心的向量刻画（可当公式表背）**：重心 $\vec{AP}\parallel(\vec{AB}+\vec{AC})$（中线方向）；内心 $\vec{AO}\cdot\left(\frac{\vec{AB}}{\lvert\vec{AB}\rvert}-\frac{\vec{AC}}{\lvert\vec{AC}\rvert}\right)=0$（**单位向量之差 ⟂ 内角平分线**，因 $(\vec u+\vec v)\cdot(\vec u-\vec v)=\lvert\vec u\rvert^2-\lvert\vec v\rvert^2=0$）；垂心：$\vec{OA}+\vec{OB}+\vec{OC}=\vec{OM}$ ⟹ $\vec{CM}=2\vec{OD}\perp AB$ ⟹ $M$ 为垂心；外心 $(\vec{OA}+\vec{OB})\cdot\vec{AB}=0$。⭐⭐ **「和向量 · 差向量 = 模方之差」**：$(\vec{OA}+\vec{OB})\cdot(\vec{OB}-\vec{OA})=\lvert\vec{OB}\rvert^2-\lvert\vec{OA}\rvert^2$，判断等距最快。⚠ A 项里是 $\lvert\vec{AB}\rvert\vec{AB}$（**带模长**），靠正弦定理 $\frac{\lvert\vec{AB}\rvert}{\sin C}=2R$ 约成同一个常数后才合并成中线；若改成单位向量，结论就变成内心了 |
 
 ### 离心率
 
@@ -1112,6 +1169,8 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 |---|---|
 | 变式 V1 | ⭐⭐ **「绕」的核心：$\vec{BE}=\vec{AE}-\vec{AB}$** —— 把起点统一到 $A$ 再代入。⚠ $AE=2ED$ ⟹ $\vec{AE}=\frac23\vec{AD}$（**不是 $\frac12$**） |
 | 变式 V2 | ⭐⭐ **直角梯形 = 现成的坐标系**（$AD\perp AB$ 且 $AB\parallel DC$），建系比向量绕行快 3 倍。⚠ $\vec{CD}=-\frac12\vec{AB}$ 别写成 $+$；**选项 A 与 C、B 与 D 互为相反数，最后一步正负号必须验** |
+| **例题 E1** | ⭐⭐ **赵爽弦图：$B,E,F$ 三点共线**，且 $BE=q$、$BF=p$、$EF=p-q$（$p,q$ 为直角三角形的两条直角边，$p^2+q^2=c^2$）。以 $B$ 为原点时 $E=\left(\frac{pq}c,\frac{q^2}c\right)$、$F=\left(\frac{p^2}c,\frac{pq}c\right)$，**两坐标成比例 ⟹ 共线**。⭐⭐ **$\vec{BF}$ 出现在等式两边时「自己解自己」**：$\vec{BF}=\vec{BC}+\frac qp\vec{EA}=\vec{BC}+\frac qp(\vec{EB}+\vec{BA})=\vec{BC}+\frac qp\left(-\frac qp\vec{BF}+\vec{BA}\right)$；由 $BE=3EF$ 得 $\frac qp=\frac34$ ⟹ $\vec{BF}=\frac{16}{25}\vec a+\frac{12}{25}\vec b$。⭐ 坐标验证 $p=4,q=3,c=5$：$E(2.4,1.8)$、$F(3.2,2.4)$。⚠ 若取 $q>p$ 会得 $\frac4{13}\vec a+\frac6{13}\vec b$（不在选项中），由选项反推应取 $p>q$ |
+| 变式 V3 | ⭐⭐ **先把三个条件翻译成「谁是谁的中点／几等分点」，再统一用 $\vec{EF}=\vec{AF}-\vec{AE}$ 拆到 $\vec{AB}$、$\vec{AC}$ 上**（起点统一到 $A$，符号最不容易错）。⭐⭐ 中点链：$\vec{AD}=\frac12(\vec{AB}+\vec{AC})$、$\vec{AF}=\frac12\vec{AD}$、$\vec{AE}=\frac23\vec{AC}$。⚠ $\vec{AE}=2\vec{EC}$ 是向量等式 ⟹ $\vec{AE}=\frac23\vec{AC}$（**不是 $\frac12$ 也不是 $2\vec{AC}$**）；$\frac14-\frac23=-\frac5{12}$ 是最高频的通分错误 |
 
 #### M-T-233 · 平面向量基本定理
 
@@ -1119,6 +1178,8 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 |---|---|
 | 变式 V1 | ⭐⭐ **选基底要让所有向量都能「绕」出来**。关键一步是 $\vec{CN}=-\frac12\vec{AB}$（正方形 $\vec{CD}=-\vec{AB}$）。⚠ 选项 C 的 $\frac65$ 恰是 $\lambda$ —— **中间量被放进选项** |
 | 变式 V3 | ⭐⭐ **重心 ⟹ 系数各 $\frac13$**：$\vec{AG}=\frac13(\vec{AB}+\vec{AC})$，与形状无关。⚠ 选项 B $(\frac23,\frac23)$ 是「重心分中线之比」不是基底系数（差一个 $\frac12$）；C $(\frac12,\frac12)$ 是 $BC$ 中点 |
+| **例题 E1** | ⭐⭐ **两次比对系数**：先用 $\vec{BC}=\vec{AC}-\vec{AB}$ 把题设统一成 $\vec{AB}$、$\vec{AC}$ 的线性组合，再用「$P\in BN$」写 $\vec{AP}=\vec{AB}+t\vec{BN}$，两次的系数一一对应即可解出 $t$ 与 $m$（**全程不需要坐标**）。⚠ $\vec{AN}=\frac13\vec{NC}$ 是向量等式 ⟹ $AN:NC=1:3$ ⟹ $\vec{AN}=\frac14\vec{AC}$、$\vec{CN}=-\frac34\vec{AC}$ |
+| 变式 V2 | ⭐⭐ **平行四边形的标准基底**：$\vec{AB}=\vec a$、$\vec{AD}=\vec b$ ⟹ $\vec{DC}=\vec a$、$\vec{BC}=\vec b$、$\vec{BD}=\vec b-\vec a$——这三条是全部起点。⭐ $\lambda$、$\mu$ 异号是常态（$\vec{BD}$ 落在 $\vec{AE}$、$\vec{AF}$ 夹角之外），但**它们的和可以很小**（本题 $\frac15$）。⚠ $\vec{DF}=\frac13\vec{DC}$ ⟹ $\vec{AF}=\vec b+\frac13\vec a$（是 $\frac13$ 不是 $\frac23$） |
 
 #### M-T-283 · 正方体截面
 
@@ -1502,6 +1563,7 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 | 例题 E1 | ⭐⭐ **$\lvert k\vec a-\vec b\rvert=r$ ⟹ $\vec b$ 终点在以 $k\vec a$ 终点为圆心、$r$ 为半径的圆上**（「向量差 = 两点连线」）。⭐⭐ **「投影最小 ⟺ 夹角最大 ⟺ 切线位置」**（半径 $\perp$ 切线）。⭐ 直角 $\triangle$ 中 $\cos=\frac{|OB|}{|OC|}$（勾股 + 余弦定义）。⚠ 投影 $=|\vec e_1|\cos\theta$ 要先确认 $\vec e_1$ 对应哪条射线 |
 | 变式 V1 | ⭐⭐ **投影 $=\frac{\vec a\cdot\vec b}{\lvert\vec b\rvert}$，分母是「被投影到」的那个向量的模**。⭐⭐ **投影是数量可正可负**；**「投影向量」$=\frac{\vec a\cdot\vec b}{\lvert\vec b\rvert^2}\vec b$（分母是平方）**。⭐ $\vec{AB}=B-A$（终点减起点）。⚠ $\frac{15}{5\sqrt2}=\frac{3\sqrt2}2$ 要分母有理化 |
 | 变式 V2 | ⭐⭐ **见到 $\lvert\vec a-k\vec b\rvert\le m$ 就两边平方**（把模长条件转成点积条件）。⭐⭐ **投影到 $\vec a$ 上时分母是 $\lvert\vec a\rvert$**。⭐ **「下界来自题设、上界来自柯西」**是求范围的常见结构。⚠ **投影的上界是 $\lvert\vec b\rvert$ 不是 $\lvert\vec a\rvert$**。⚠ 边界能否取到要构造验证 |
+| 变式 V3 | ⭐⭐ **投影 $=\frac{(2\vec a+3\vec b)\cdot(2\vec a+\vec b)}{\lvert2\vec a+\vec b\rvert}$：分子一次展开即可，完全不必先算 $\lvert2\vec a+3\vec b\rvert=\sqrt{61}$**（原书先算模再乘 $\cos$ 是绕远路，还多一次开方）。⭐⭐ 展开共四项，两个交叉项要**合并**成 $8\,\vec a\cdot\vec b$。⚠ 分母是「被投影到」的那个向量的模；只算一次 $\vec a\cdot\vec b$ 会得分子 $40$ |
 
 #### M-T-341 · 立体几何中的动点轨迹
 

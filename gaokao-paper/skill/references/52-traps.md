@@ -157,6 +157,7 @@
 **M-T-199 · 最值与范围6：建系设点**
 
 - `M-H0380` ⚠ 关于「取 $b=c$」的说明**：原式关于 $b,c$ 对称，但严格来说需验证极值确实在对称点。这里用「固定 $A$ 时 $\frac{bc}{b^2+c^2-2bc\cos A+2bc}$ 在 $b=c$ 时最大」（因分子固定时分母在 $b=c$ 最小）可严格证明 ✓。
+- `M-H1256` ④ ⚠ **B 项存疑**：原书选项行 OCR 只剩「$3$」，按同页「$\sqrt3x-y+\sqrt3=0$」被提取为「$3x-y+3=0$」的规律，根号常丢失，故判定为 $\sqrt3$；答案 C 不受影响 ✓
 
 **M-T-200 · 最值与范围7：求正切的最值范围**
 
@@ -196,6 +197,7 @@
 **M-T-207 · 四心1：外心**
 
 - `M-H0757` ⚠ **答案需说明**：原书给 D $=\frac{10-5\sqrt2}{6}\approx0.4882$，我按标准外心-重心距离公式算得 $\frac{5(\sqrt2-1)}6\approx0.3452$。 （原书中间式出现 $\frac{25(3-2\sqrt2)}{9}$ 与 $|\vec{OG}|^{2}$ 的写法，其最终取根后为 $\frac{10-5\sqrt2}6$。） **按原书标答 D 录入，review 中如实标注两种算法的差异，建议复核。** **独立验算（数值，完全独立）**： ① **$C=\frac\pi4$ 的推导**：$\frac{a}{c}=\sqrt2\sin(B+\frac\pi4)=\sqrt2(\sin B\frac{\sqrt2}2+\cos B\frac{\sqrt2}2)=\sin B+\cos B$ ✓ 又 $\frac{a}{c}=\frac{\sin A}{\sin C}=\frac{\sin(B+C)}{\sin C}=\frac{\sin B\cos C+\cos B\sin C}{\sin C}$。
+- `M-H1263` ④ ⚠ **$m=\dfrac{bc}{2AO^{2}}$ 中 $AO$ 也是变量**：不能把 $AO$ 当常数，必须靠 $b+c=2\sqrt3 AO$ 把它换成 $b+c$ 后才能用基本不等式 ✓
 
 **M-T-208 · 四心2：内心**
 
@@ -531,6 +533,7 @@
 
 - `M-H0501` ⚠ 答案还原说明**：ref_bank 中 `ans='2 2'` 是根号丢失后的形式（分子 2 分母 2 排版），实为 $\sqrt2$；我独立算得 $\sqrt2$ ✓ 与答案一致。 **独立验算**： ① 取 $x=-2$、$y=1$：$\vec a=(-2,2)$、$\vec b=(-3,1)$、$\vec c=(-1,-2)$ $\vec a-\vec c=(-1,4)$；$\vec b+\vec c=(-4,-1)$；点积 $=4-4=0$ ✓✓ **垂直成立** $\vec a-\vec b=(1,1)$，$\lvert\vec a-\vec b\rvert=\sqrt2$ ✓✓ ② 换 $x=0$（则 $y=3$）：$\vec a=(0,2)$、$\vec b=(-3,3)$ $\vec a-\vec c=(1,4)$；$\vec b+\vec c=(-4,1)$；点积 $=-4+4=0$ ✓
 - `M-H0503` ⚠ 答案还原**：ref_bank 中 `ans='8 3\\n3'` 即 $\frac{8\sqrt3}3$（根号丢失）。 **独立验算**： ① **取 $t=-\frac13$ 直接代入**： $\lvert\vec a+\vec b\rvert=\sqrt{2-\frac23}=\sqrt{\frac43}=\frac2{\sqrt3}\approx1.1547$ $\lvert\vec a-3\vec b\rvert=\sqrt{10+2}=\sqrt{12}=2\sqrt3\approx3.4641$ 和 $=1.1547+3.4641=4.6188$ $\frac{8\sqrt3}3=\frac{8\times1.7321}3=\frac{13.8564}3=4.6188$ ✓✓ **完全吻合** ② **代数化简核对**：$\sqrt{\frac43}+\sqrt{12}=\frac{2\sqrt3}3+2\sqrt3=\frac{2\sqrt3+6\sqrt3}3=\frac{8\sqrt3}3$ ✓✓
+- `M-H1268` ④ ⚠ **$\lambda<0$ 不可省**：若 $\lambda=+\sqrt5$ 则 $\vec b=-\sqrt5\vec a$，此时 $\sqrt5\vec a+\vec b=\vec0$，答案会是 $0$——符号决定一切
 
 **M-T-238 · 投影向量**
 
@@ -936,6 +939,7 @@
 **M-T-342 · 向量与轨迹**
 
 - `M-H0644` ⚠ 答案还原**：ref_bank 存 `π/6 + 3/4`，实为 $\frac\pi6+\frac{\sqrt3}4$（**$\sqrt3$ 丢了根号变成 $3$**）。 **判定依据**：我独立算出 $\frac\pi6+\frac{\sqrt3}4=\frac{3.1416}6+\frac{1.732}4=0.5236+0.4330=0.9566$； 若按字面 $\frac\pi6+\frac34=0.5236+0.75=1.2736$，与几何直觉（区域在半径为 $\frac12$ 的圆附近）不符 ✓✓✓ **独立验算**： ① **$Q$ 在射线 $EP$ 上且在 $P$ 外侧**：$\vec{OQ}=\lambda\vec{OP}+(1-\lambda)\vec{OE}=\vec{OE}+\lambda(\vec{OP}-\vec{OE})=\vec{OE}+\lambda\vec{EP}$ ✓✓✓
+- `M-H1267` ⑤ ⚠ 原书在 p314（选题工具定位成 p207，已核对更正）
 
 **M-T-343 · 复数中的轨迹(新高考)**
 
