@@ -487,6 +487,18 @@
    "kind": "变式",
    "ref_answer": "8",
    "stem": "已知a,b,c ∈[-4,4]，则\n|a - b| +\n|b - c| +\n2|c - a| 的最大\n值为\n."
+  },
+  {
+   "key": "M-T-145-E1",
+   "page": 110,
+   "topic": "M-T-145",
+   "topic_name": "导数恒成立与存在性",
+   "kp1": "导数",
+   "kp2": "恒成立",
+   "kind": "典例",
+   "ref_answer": "C",
+   "reason": "印刷错误",
+   "note": "选项行 OCR 重叠：A/D 均提取为 e，B/C 均提取为 e/2，无法确定原始四个选项；答案 e/2 与详解自洽"
   }
  ],
  "reason_desc": {
