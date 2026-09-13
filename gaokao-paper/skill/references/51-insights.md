@@ -325,6 +325,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 |---|---|
 | **例题 E1** | ⚠ 两个面**同时翻折**（$A'$ 与 $D'$ 都动）比单一翻折复杂得多，建议向量法硬算。恒定的是动点到**转轴**的距离，不是到远处定点的距离（我第一遍就写错了） |
 | 变式 V2 | ⭐ **核心技巧**：$\sin\theta=\frac{\text{动点到平面的距离}}{\text{该线长度}}$ —— 分子对所有线**相同**，所以比较角的大小就是比较**线长**：**线越短，角越大**。不变量：$B'D$、$B'A$（$AD\perp DB'$ 恒成立的勾股）；变量：$B'C$。选项为「2 倍关系」型时，用**极端位置代入排除**最快 |
+| 变式 V3 | ⭐⭐ **两个空间角共用同一条垂线段 $MO$**：翻折后 $MA=ME=2$、$AE=2\sqrt2$ ⟹ $\angle AME=90^\circ$ ⟹ 斜边中线 $MH=\frac{AE}2=\sqrt2$。$\sin\alpha=\frac{MO}{MH}$、$\sin\beta=\frac{MO}{ME}$ ⟹ **$\sin\alpha=\sqrt2\sin\beta$**（不是 $2\sin\beta$）。再令 $2\cos\alpha=\cos\beta$ ⟹ $OE=2\sqrt2\,OH$，配 $OE^{2}=OH^{2}+HE^{2}=OH^{2}+2$ 得 $OH=\sqrt{2/7}\in(0,MH)$ ⟹ 存在。⚠ 原书 OCR 把两处 $\sqrt2$ 都丢了（写成「$\sin\alpha=2\sin\beta$」「$OE=2OH$」） |
 
 #### M-T-309 · 球中的角度
 
@@ -340,6 +341,15 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 |---|---|
 | **例题 E1** | ⭐ 与一双对棱（$AB=CD=a$）都平行的截面，周长**恒为 $2a$**，与位置无关：$\frac{2a}{1+k}+\frac{2ak}{1+k}=2a$。若两对棱不等长，周长就依赖 $k$ 了 |
 | 变式 V2 | ⭐ **截面是平行四边形 ⟺ 截面平行于某一双对棱** ⟹ 恰有 **$2$ 条**棱与截面平行。推理链：平行四边形 ⟹ 对边平行 ⟹ 线面平行 ⟹ 线线平行（**必须借助两平面交线**才能升级） |
+| 变式 V1 | ⭐⭐ **「与 $AC$ 平行且过三个顶点」**：由 $AA_1\parallel CC_1$ 且相等得 $AC\parallel A_1C_1$，于是第三个顶点只能取 $B$ 或 $D$（取 $A,C,B_1,D_1$ 会与 $A_1C_1$ 共面，不构成截面）⟹ 平面 $A_1C_1D$、平面 $A_1C_1B$ |
+| 变式 V3 | ⭐⭐ **被斜截的直棱柱：过 $AB$ 中点作 $OD\parallel AA_1$，用梯形中位线** $OD=\frac12(AA_1+BB_1)$；若 $OD=CC_1$ 则 $ODC_1C$ 为平行四边形 ⟹ $OC\parallel C_1D$ ⟹ $OC\parallel$ 平面 $A_1B_1C_1$。⭐ 题给 $AA_1=4,BB_1=2,CC_1=3$ 是刻意让 $CC_1$ 为另两者的算术平均 ⟹ **只有取中点才成立** |
+
+#### M-T-283 · 截面与空间角（三点定平面 ⟹ 建系最稳）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ **「三点定平面 $\to$ 求与直线的交点 $\to$ 向量夹角」三步，全程建系**：$E(1,0,0)$、$F(0,0,1)$、$C_1(2,3,2)$，$\vec n=\vec{EF}\times\vec{EC_1}=(-3,3,-3)\parallel(1,-1,1)$ ⟹ $\alpha:x-y+z=1$；直线 $A_1D_1$ 参数式 $(0,t,2)$ 代入得 $t=1$ ⟹ $P(0,1,2)$；$\cos=\frac{\vec{BP}\cdot\vec{CD_1}}{\lvert\vec{BP}\rvert\lvert\vec{CD_1}\rvert}=\frac{8}{3\cdot2\sqrt2}=\frac{2\sqrt2}3$。⚠ **必须检验交点参数落在线段内**（本题 $t=1\in[0,3]$），越界则交点在延长线上、答案完全不同。⚠ 原书详解只有「如图，计算可得」一句，过程需自己补出 |
+| 通法 | ⭐⭐ ① 法向量算完先**化简成最简整数比**再写平面方程，并把三个已知点代回验证；② 与棱（线段）求交时把参数式写出来，显式检查范围；③ 两条异面直线的夹角取**方向向量夹角的绝对值**（$\lvert\cos\rvert$） |
 
 #### M-T-294 · 长方体模板2：构造长方体3个模型
 
@@ -379,6 +389,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 |---|---|
 | **例题 E1** | ⭐⭐ **翻折后仍是等边三角形 ⟹ 外心即重心**，重心到边中点 $=\frac13$ 高。**球心在二面角的平分面上**：两外心方向角取平均（本题 $60^\circ$ 与 $180^\circ$ 的平均 $120^\circ$），$OM=O'M\tan\frac{\text{二面角}}2$。截面最小 ⟺ $OE'\perp\alpha$，$S=\pi(R^2-OE'^2)$ |
 | 变式 V1 | ⭐⭐ **通用于任意「两面夹角已知」的四面体**：分别求两面外接圆半径 $r_1,r_2$，过外心作面垂线交于球心。**自检：$R^2=\lvert OO_1\rvert^2+r_1^2=\lvert OO_2\rvert^2+r_2^2$ 两边必相等**。外心到公共边中点 $=\sqrt{r^2-(\frac{\text{边}}2)^2}$ |
+| 变式 V3 | ⭐⭐ **$PA=PB=PC$ ⟹ 顶点射影即底面外心**，球心被钉死在一条直线上。本题 $\triangle ABC$ 为直角三角形（$10^{2}=8^{2}+6^{2}$）⟹ 外心是 $AB$ 中点 $D$，$PD=\sqrt{PA^{2}-AD^{2}}=\sqrt{50-25}=5=AD$ ⟹ **球心恰与 $D$ 重合**（$R=5$，$OD=0$），四点 $P,A,B,C$ 共球，$S=4\pi\cdot25=100\pi$。⭐ 见到「$PD=AD$」就该意识到球心落在底面上 |
 
 #### M-T-292 · 截面的体积与周长最值
 
@@ -386,6 +397,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 |---|---|
 | 变式 V2 | ⭐⭐ **$\frac12xy=\frac12\cdot DE\cdot AF$ ⟹ $\frac1{x^2}+\frac1{y^2}=\frac1{AF^2}$**（直角三角形斜边高）。$DE\perp$ 平面 $AA_1F$ 由「$AA_1\perp$ 底面 + $AF\perp DE$」凑出 |
 | 变式 V3 | ⭐⭐ **周长有对称的两对**（$\lvert BE\rvert=\lvert D_1F\rvert$、$\lvert FB\rvert=\lvert ED_1\rvert$）⟹ $L=2(\cdots)$。⭐⭐ $\sqrt{t^2+a^2}+\sqrt{(c-t)^2+b^2}$ 用**反射法**，最小 $=\sqrt{c^2+(a+b)^2}$。⚠ **两定点在同侧时必须反射**（我第一遍就错在这） |
+| 变式 V1 | ⭐⭐ **「过定点且垂直于动直线」的平面，先找一条天然垂直的定直线**：$\vec{DP}\cdot\vec{A_1C}=1+(t-1)-t\equiv0$ ⟹ $A_1C$ 恒在截面内，问题降为「过定直线 $A_1C$ 的动平面」。再逐棱试探求交点（交 $DD_1$ 得 $z=\frac1t>1$ 舍去，交 $AB$ 得 $x=t$）⟹ 平行四边形 $A_1MCN$，$S=\sqrt{2t^{2}-2t+2}=\sqrt{2(t-\frac12)^{2}+\frac32}\ge\frac{\sqrt6}2$。⚠ $t=0,1$ 必须单独讨论：此时 $P$ 与顶点重合，截面退化为矩形 $AA_1C_1C$，$S=\sqrt2$（比最小值大） |
 
 #### M-T-302 · 圆锥外接球
 
@@ -400,6 +412,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | 例题/变式 | 结论 |
 |---|---|
 | 变式 V3 | ⭐ **正四面体四心合一**（外心 = 重心 = 内心 = 垂心）。以 $A$ 为原点：$\vec{AO}=\frac{\vec{AB}+\vec{AC}+\vec{AD}}4$（**分母 = 顶点数 $4$**）。遇「$\vec{AO}=x\vec{AB}+y\vec{AC}+z\vec{AD}$ 求 $x+y+z$」直接用，$=\frac34$，不必算任何长度 |
+| 例题 E1 | ⭐⭐ **过定点 $E$ 的球截面圆面积范围 $=\bigl[\pi(R^{2}-OE^{2}),\ \pi R^{2}\bigr]$**：最小在「截面 $\perp OE$」处取到，最大在「截面过球心」处取到。正三棱锥中 $O_1D=3\sin60^\circ\times\frac23=\sqrt3$、$AO_1=\sqrt{AD^{2}-DO_1^{2}}=3$，由 $R^{2}=3+(3-R)^{2}$ 得 $R=2$、$OO_1=1$；由 $BD=3BE$ 得 $DE=2$，$O_1E=\sqrt{DE^{2}-DO_1^{2}}=1$，$OE=\sqrt{O_1E^{2}+OO_1^{2}}=\sqrt2$ ⟹ 范围 $[\pi(4-2),\,4\pi]=[2\pi,\,4\pi]$ |
 
 #### M-T-258 · 特殊数列4：「求和公式换元」型
 
@@ -417,6 +430,8 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | 变式 V1 | ⭐⭐ **圆锥截线判据**：半顶角 $\alpha$、轴与截面夹角 $\beta$。$\beta>\alpha$ ⟹ **椭圆**；$\beta=\alpha$ ⟹ **抛物线**（截面平行母线）；$\beta<\alpha$ ⟹ **双曲线**。**记忆**：$\beta$ 越大越封闭，$\beta=90^\circ$ 得圆 |
 | 变式 V1 补充 | ⚠⚠ **最易错**：$\beta$ 用 $\sin\beta=\frac{\lvert\vec n\cdot\vec v\rvert}{\lvert\vec n\rvert\lvert\vec v\rvert}$ 算。我曾把法向量取成 $(\cos\beta,0,\sin\beta)$ 导致 $\sin$ / $\cos$ 反了，算出抛物线；后又误改成「$\alpha+\beta$ 与 $90^\circ$ 比较」——**那是错的**，判据永远是 $\beta$ 与 $\alpha$ 比大小 |
 | 变式 V2 | 「$\angle(PB,l)=\theta$ 定值」⟹ $P$ 在**圆锥面**上（顶点 $B$、轴 $l$、半顶角 $\theta$）。本题 $\alpha=\arccos\frac2{\sqrt5}$、$\beta=\arcsin\frac2{\sqrt5}$ 恰好互补，但**判据仍用 $\beta>\alpha$** ⟹ 椭圆 |
+| 例题 E1 | ⭐⭐ **等角 ⟹ 双圆锥面，再用「$\beta$ 与 $\alpha$ 比大小」判截线**：$\angle(MN,AN)=\angle(MN,NQ)$ ⟹ $Q$ 在以 $N$ 为顶点、直线 $MN$ 为轴、$NA$ 为母线的**双圆锥**上（轴 $|NM|=a$，母线端点 $A$ 到轴的水平距离 $|MA|=\frac a2$ ⟹ $\tan\alpha=\frac12$、$\sin\alpha=\frac1{\sqrt5}$）。截面法向量 $\vec n=a^{2}\left(-1,-(1-u),\frac12\right)$，$\sin\beta=\frac{1/2}{\sqrt{5/4+(1-u)^{2}}}$ 随 $P$ 从 $D_1$ 移到 $C_1$ 由 $\frac13$ 增到 $\frac1{\sqrt5}=\sin\alpha$ ⟹ **双曲线 $\to$ 抛物线**。⚠ 必须是**双叶**锥：只取单叶会误判成椭圆 |
+| 变式 V3 | ⭐⭐ **等角 ⟹ 正切相等 ⟹ 距离成比例 ⟹ 阿波罗尼斯圆**：先找两条**已垂直于该侧面**的线段（$AD\perp$ 面 $DCC_1D_1$，$CM\parallel BC\parallel AD$ 故 $CM\perp$ 同面），则 $\tan\angle APD=\frac{AD}{PD}$、$\tan\angle MPC=\frac{MC}{PC}$，等角给 $PD=2PC$。在该面内建系得 $(x-5)^{2}+y^{2}=16$（圆心 $(5,0)$、半径 $4$）。⚠ **必须检验左右两支哪支落在矩形内**（右支 $x\in[9,10]$ 整支在外）；弧所对圆心角由 $\cos\angle EFN=\frac{8\sqrt3}{4\cdot4}=\frac{\sqrt3}2$ 得 $\frac\pi6$ |
 
 #### M-T-282 · 翻折与动点求轨迹(难点)
 
@@ -431,6 +446,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | **例题 E1** | 「垂直 + 求模长最值」：垂直条件给出坐标的**线性约束**，消元后模长平方必是二次函数，配方即可。本题 $\lvert\vec a-\vec b\rvert^{2}=2(x+2)^{2}+2$ → 最小 $\sqrt2$ |
 | 变式 V1 | ⭐⭐ **柯西消参法**：$\lvert\vec a\pm k\vec b\rvert^{2}=1+k^{2}\pm2kt$（$t=\cos\theta$）。对 $f(t)=\sqrt{A_0+pt}+\sqrt{B_0+qt}$（$p,q$ 异号），取权重 $\alpha:\beta=\lvert p\rvert:\lvert q\rvert$，则 $f^{2}\le(\alpha+\beta)(\frac{A_0+pt}\alpha+\frac{B_0+qt}\beta)$，**$t$ 自动消净**。本题权重 $2:1$ → $\frac{3\sqrt6}2$，取等 $t=-\frac14$ |
 | 变式 V3 | 同构题，权重 $=2:6=1:3$ → $\frac{8\sqrt3}3$，取等 $t=-\frac13$。**比求导快且不易错**，等号条件直接给出取等时的 $\cos\theta$ |
+| 变式 V3 | ⭐⭐ **不变量 $MS=MA$ 定出圆弧，射影范围定出圆心角**：$AM=\frac{AB\cdot AE}{BE}=\frac{\sqrt6}3$（等面积法）、$BM=\frac{AB^{2}}{BE}=\frac{\sqrt3}3$（射影定理）。射影 $N\in$ 四边形 $BCDE$ $\iff$ $N\in$ 线段 $MG$，而 $MG=\frac{\sqrt6}6<\frac{\sqrt6}3=MS$。圆心角 $=\frac\pi2-\frac\pi3=\frac\pi6$（$N=M$ 时 $MS\perp$ 平面给 $\frac\pi2$；$N=G$ 时 $\cos\angle SMG=\frac{MG}{MS}=\frac12$ 给 $\frac\pi3$）⟹ 弧长 $\frac{\sqrt6}3\times\frac\pi6=\frac{\sqrt6\pi}{18}$。⚠ **圆心角是两角之差**，不是 $\frac\pi3$ |
 
 #### M-T-240 · 向量技巧2：等和线
 
@@ -812,6 +828,7 @@ eq0$ |
 |---|---|
 | 变式 V2 | 与三条两两垂直的直线成等角的平面：线面角正弦 $=\frac{\lvert\vec n\cdot\vec e\rvert}{\lvert\vec n\rvert}$ ⟹ 法向量三分量绝对值相等 ⟹ $\vec n\propto(\pm1,\pm1,\pm1)$，**$2^{3}/2=4$ 个** |
 | 变式 V3 | **线面角正弦 $=\frac{\text{点到平面距离}}{\text{线段长}}$**，分子固定 ⟹ **分母最小处角最大**；$VA\perp$ 平面 $VBC$ 要用两次 |
+| 变式 V1 | ⭐⭐ **先找「射影」，再看三角形形状**：由 $AH\perp CD$、$BH\perp CD$ 得 $CD\perp$ 平面 $ABH$，故作 $AM\perp BH$ 便有 $AM\perp$ 平面 $BCD$ ⟹ $AB$ 的射影是 $BH$，所求角即 $\angle ABH$。由侧面积 $=2\sqrt3\times$ 底面积得 $h=\sqrt3\,r$，于是 $AH=BH=\sqrt{r^{2}+h^{2}}=2r=AB$ ⟹ **$\triangle ABH$ 为正三角形**，$\angle ABH=\frac\pi3$。⭐ 认出等边比算余弦快得多 |
 
 #### M-T-307 · 求线面角
 
@@ -819,6 +836,8 @@ eq0$ |
 |---|---|
 | 变式 V1 | **作二面角平面角三步**：$A\to C\perp\beta$；$C\to D\perp l$；连 $AD$ 由三垂线定理得 $AD\perp l$ |
 | 变式 V3 | **取 $AB$ 中点 $D$ 时 $D$ 未必是射影**！$D$ 与真射影在异侧 ⟹ 取到补角。**$\cos$ 为负先查补角** |
+| 例题 E1 | ⭐⭐ **「两个等角圆锥求公共母线」判据**：设两轴夹角 $\theta$、半顶角 $\alpha,\beta$，公共母线数为 $2\iff|\alpha-\beta|<\theta<\alpha+\beta$。本题 $P$ 为 $DD_1$ 中点，$PO_2\perp$ 平面 $ACC_1A_1$、$PO\parallel BD_1$，$\cos\theta=\frac{1/2}{(\sqrt2/2)(\sqrt3/2)}=\frac{\sqrt6}3$ ⟹ $\theta=35.26^\circ$；两个半顶角都是 $40^\circ$（「与平面成 $50^\circ$」要译成「与法向成 $40^\circ$」）⟹ 恰 $2$ 条。⚠ 原书把 $PO$ 与 $PO_2$ 的角色写反了 |
+| 变式 V2 | ⭐⭐ **$\cos^{2}\alpha_{1}+\cos^{2}\alpha_{2}\le1$（当两条已知直线互相垂直）**：取 $l$ 的单位方向 $(x,y,z)$ 即得。反证：若 $\alpha_1+\alpha_2<\frac\pi2$ 则 $\cos\alpha_2>\sin\alpha_1$ ⟹ 平方和 $>1$，矛盾 ⟹ $\alpha_1+\alpha_2\ge\frac\pi2$（等号在 $l\perp AD$ 时取到）。⚠ 排除 $\beta$ 类选项用「$l\parallel$ 平面 $ABCD$ 时 $\beta_1=0$ 而 $\beta_2$ 可取遍 $[0,\frac\pi2]$」 |
 
 #### M-T-308 · 三种角度比大小
 
@@ -826,6 +845,7 @@ eq0$ |
 |---|---|
 | 变式 V1 | **最小角定理：线面角 $\le$ 斜线与平面内任一直线夹角**；**比较两个线面角用等体积**：$S_1\sin\theta_1=S_2\sin\theta_2$，角与面积反相关 |
 | 变式 V2 | **二面角 $\ge$ 线面角**：沿棱建系 $\sin\theta_1=\frac{v\sin\theta}{\lvert DA\rvert}\le\sin\theta$，等号当斜线垂直棱 |
+| 例题 E1 | ⭐⭐ **$\vec{EF}=\frac12(\vec{BA}+\vec{CD})$（$E,F$ 为 $BC,AD$ 中点）** ⟹ $|EF|=\frac12\sqrt{a^{2}+m^{2}+2am\cos\varphi}$；又 $\vec{CD}$ 在平面 $BCD$ 内，只有 $\vec{BA}$ 对法向有贡献：$|\vec{BA}\cdot\vec n|=a\sin\varphi$ ⟹ $\sin\theta_3=\frac{a\sin\varphi}{\sqrt{a^{2}+m^{2}+2am\cos\varphi}}$。⭐ **$a>m$ 只在放缩这一步用上**：分母 $<\sqrt{2a^{2}(1+\cos\varphi)}=2a\cos\frac\varphi2$ ⟹ $\sin\theta_3>\sin\frac\varphi2$ ⟹ $2\theta_3>\theta_1$。又 $\sin\theta_1=\frac{AH}{AB}$、$\sin\theta_2=\frac{AH}{AC}$ 且 $AC>AB$ ⟹ $\theta_2<\theta_1$ |
 
 #### M-T-310 · 翻折与正四面体
 
