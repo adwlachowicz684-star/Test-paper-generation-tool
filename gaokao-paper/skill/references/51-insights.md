@@ -1110,6 +1110,9 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 | 例题/变式 | 结论 |
 |---|---|
 | **例题 E1** | ⭐⭐ **移项通式：$x\vec{OA}+y\vec{OB}+z\vec{OC}=\vec 0 \Rightarrow (x+y+z)\vec O=x\vec A+y\vec B+z\vec C$** —— ⚠ **右边是 $+x\vec A$ 不是 $-x\vec A$**（我第一遍写反了）。重心坐标 $\alpha=\frac{S_{BOC}}{S_{ABC}}$（带符号，$\alpha<0$ 表示 $O$ 与 $A$ 在 $BC$ 两侧） |
+| 变式 V1 | ⭐⭐ **共底三角形的面积比 ⟹ 高之比 ⟹ 同线段的比**：$\frac{S_{PAG}}{S_{QAG}}=\frac{PD}{QE}=\frac{PG}{GQ}$，于是 $PG=\frac25 PQ$ ✓✓✓ 三级转化一气呵成。⭐⭐⭐ **$\vec{AG}=\frac{GQ}{PQ}\vec{AP}+\frac{PG}{PQ}\vec{AQ}$** —— 系数和 $=1$，**系数与「对端的那段」成正比**（记忆法：$\frac35$ 配 $\vec{AP}$、$\frac25$ 配 $\vec{AQ}$）。⭐⭐ **待定系数法对比 $\vec{AB}$、$\vec{AC}$ 的系数**（因两向量不共线）。⚠ 已知式 $\vec{AG}=\frac13\vec{AB}+\vec{AC}$ 系数和 $\frac43\ne1$，**不能**读成「$G$ 在 $BC$ 上」，但不影响对比系数 |
+| 变式 V2 | ⭐⭐ **$\vec{CB}=\vec{OB}-\vec{OC}$ 是唯一需要拆的一步**，拆完移项得 $a\vec{OA}+(b-1)\vec{OB}+(1+c)\vec{OC}=\vec0$ ✓✓ 全题题眼。⭐⭐⭐ **系数和为 $0$ ⟹ 该点是某三角形的重心**（把系数吸收进向量造新三角形），配套结论：**重心分三个小三角形面积相等**。⭐⭐ **夹角相同（共线不改变夹角）⟹ 面积比 $=\frac{OA\cdot OB}{OA_1\cdot OB_1}$**（只剩两邻边乘积之比）。⭐⭐ **最后同乘 $a(b-1)(1+c)$ 通分**得 $(1+c):(b-1):a$。⚠ **选项 $\frac1a:\frac1{b-1}:\frac1{c+1}$ 是「忘记通分」的陷阱** |
+| 变式 V3 | ⭐⭐⭐ **延长 $AM$ 交底边于 $G$** ⟹ $\vec{AG}=\lambda\vec{AB}+(1-\lambda)\vec{AC}=t\vec{AM}$（系数和 1）。⭐⭐ **两式相除直接消 $t$**：$\frac\lambda{1-\lambda}=\frac\alpha\beta$ ⟹ $\lambda=\frac\alpha{\alpha+\beta}=\frac8{11}$。⭐⭐ **由 $\lambda$ 得底边比**（$\vec{CG}=\frac8{11}\vec{CB}$ ⟹ $BG:GC=3:8$），**由 $t=\alpha+\beta=\frac{11}{12}$ 得 $\frac{GM}{AM}=\frac1{11}$**。⭐⭐⭐ **求两个非共线三角形面积比：找一个中转三角形 $\triangle BGM$**，两级同高比相除即得。⚠ 三个干扰项 $\frac38$（$=BG:GC$）、$\frac13$（方向反了）、$\frac83$（$=\frac\lambda{1-\lambda}$）**全来自中间量** |
 
 #### M-T-191 · 三角形形状判定
 
@@ -1457,6 +1460,9 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 | 变式 | 结论 |
 |---|---|
 | 变式 V3 | ⭐⭐ **外心 ⟺ $\vec{AB}\cdot\vec{AO}=\dfrac{\lvert\vec{AB}\rvert^2}2$**（$O$ 在 $AB$ 中垂线上）—— **这是把「外心」翻译成向量方程的通用钥匙**。⭐⭐ **给 $\vec{AO}$ 的表达式求参数：分别点乘两邻边**，两个未知量配两个方程。⭐⭐ **「$t\in\mathbb R^+$」不是废话**（保证可除以 $t$）。⭐ **验证外心：算 $\lvert OA\rvert,\lvert OB\rvert,\lvert OC\rvert$ 是否相等**。⚠ $\cos A=\frac12$ 配 $\lvert AB\rvert=\lvert AC\rvert$ ⟹ 等边，可秒算面积 |
+| **例题 E1** | ⭐⭐⭐ **$\sin B=\cos A\sin C$ ⟹ $\cos C=0$**：把 $\sin B$ 写成 $\sin(A+C)$ 展开后 $\cos A\sin C$ 项恰好相消，只剩 $\sin A\cos C=0$ ✓✓✓ 这是本题题眼。⭐⭐ **$\tan A=\frac{2S}{\vec{AB}\cdot\vec{AC}}$**（两式相除时 $\frac12$ 与 $2$ 抵消）可直接记。⭐⭐⭐ **$C=\frac\pi2$ 时 $\frac{\vec{CA}}{\lvert\vec{CA}\rvert}$、$\frac{\vec{CB}}{\lvert\vec{CB}\rvert}$ 就是两个坐标轴方向的单位向量，系数 $x,y$ 即 $P$ 的坐标** ✓✓✓。⭐⭐⭐ **「乘 1 法」求 $\frac1x+\frac1y$ 最小值**：乘上 $(4x+3y)=12$ 展开，交叉项用基本不等式，常数项 $4+3=7$ 单独留下 |
+| 变式 V1 | ⭐⭐ **正弦定理把 $(\sin A-\sin C)$ 换成 $(a-c)$**，$(a+c)(a-c)$ 平方差一步到位得 $a^{2}+b^{2}-c^{2}=ab$ ⟹ $\cos C=\frac12$ ✓✓✓。⭐⭐⭐ **$\vec{CD}=\frac13\vec{CA}+\frac23\vec{CB}$ 系数和 $=1$** —— 「$AD:DB=2:1$」的直接翻译（系数与对端距离成正比）。⭐⭐⭐ **配方要朝已知条件的方向配**：本题配 $\frac19(b+2a)^{2}-\frac29 ab$，因为条件给的正是 $b+2a=4$ ✓✓✓。⭐⭐ **用 $b\cdot(2a)\le(\frac{b+2a}2)^{2}=4$ 得 $ab\le2$**（必须是 $b$ 与 $2a$ 这两个量，直接用 $ab\le(\frac{a+b}2)^2$ 反而凑不上） |
+| 变式 V2 | ⭐⭐⭐ **单位向量等式 $\vec e_1+2\vec e_2=\lambda\vec e_3$ 两边平方即得 $\cos A=\frac{\lambda^{2}-5}4$**（$\lvert\vec e_i\rvert=1$，平方后只剩一个点积）—— 这是「单位向量线性组合」题的通用入口 ✓✓✓。⭐⭐ **「单位向量 + 线性组合」题：设 $AB=1$、$AD=2$，则 $\vec e_1+2\vec e_2$ 恰好是 $\vec{AC}$**。⭐⭐⭐ **换元 $t=\sqrt{10-\lambda^{2}}=BD$ 后 $\cos\angle ABD=\frac t2-\frac3{2t}$ 严格递增**（导数 $\frac12+\frac{3}{2t^2}>0$），端点直接给值域 ✓✓✓ 看似复杂的分式换元后是单调函数。⚠ **$\lambda$ 增大时 $t$ 减小**，端点对应关系别写反 |
 
 #### M-T-203 · 解三角形中的高与最值
 
@@ -1844,3 +1850,21 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 | **例题 E1** | ⭐⭐⭐ **$2x^{2}+4xy+2y^{2}=2(x+y)^{2}$**，条件即 $2(x+y)^{2}+(xy)^{2}=9$ ⟹ 令 $x+y=\frac3{\sqrt2}\sin\theta$、$xy=3\cos\theta$。⭐⭐ **换元后必须补 $(x+y)^{2}\ge4xy$**，得 $0\le\cos\theta\le\frac13$（否则会得出虚幻的 $3\sqrt5$）。⭐⭐⭐ **要先判 $\theta+\varphi$ 是否越过 $\frac\pi2$**：本题 $\theta+\varphi<\frac\pi2$，故最值在 $\theta$ 最大处取 $4\sqrt2+1$ |
 | 变式 V1 | ⭐⭐⭐ **$4^{x}$ 与 $2^{x}$ 同现 ⟹ 换元 $u=2^{x}$**，条件变 $u^{2}+v^{2}=1$。⭐⭐ **$u,v>0$ 决定 $\theta\in(0,\frac\pi2)$ 是开区间**，故下界 $2$ 取不到、上界 $\sqrt{13}$ 可取。⭐⭐ **端点值 = $\theta\to0$ 的极限 $\sqrt{13}\sin\varphi=2$**，可快速写下界。⚠ 题干指数在提取中丢失（`4x+9y=1`） |
 | 变式 V2 | ⭐⭐⭐ **椭圆域参数化 $x=a\cos\theta,y=b\sin\theta$**（$a$ 是 $x$ 方向半轴）。⭐⭐ **第一项化简极漂亮**：$2\cos^{2}\theta+\sin^{2}\theta-2=-\sin^{2}\theta\le0$。⭐⭐ **第二项要先证恒正**：$(\cos\theta-3\sqrt2)^{2}-10$ 最小 $0.515>0$。⭐⭐⭐ **两项相加时 $\sin^{2}+\cos^{2}=1$ 把角度消掉**，只剩 $9-6\sqrt2\cos\theta$ |
+
+#### M-T-231 · 解三角形应用题（海岸围垦 · 网箱收益 · 花圃观赏亭）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ **$\angle D=2\angle B$ 的作用只有一个：把 $\cos D$ 用 $\cos B$ 表示** —— $\cos D=2\cos^{2}B-1=-\frac13$ ✓✓ 这是全题入口。⭐⭐ **两个三角形共用一条已知对角线 $AC$：先在一个三角形里求出它，再代入另一个** —— 四边形题的标准流程 ✓✓✓。⭐⭐ **解 $AB$ 得到 $3\sqrt2$ 与 $-\sqrt2$ 两根，负根必舍**。⚠ 题干前置条件（$AD=1$、$CD=3$、$\cos B=\frac{\sqrt3}3$）由详解反推补全 |
+| 变式 V1 | ⭐⭐ **$\angle APB=\frac{2\pi}3$ 与 $\angle AOB=\frac\pi3$ 互补 ⟹ $A,O,B,P$ 四点共圆**（本题不需要用，直接正弦定理更快）。⭐⭐⭐ **把 $PA$、$PB$ 都表成同一个角 $\theta$ 的函数**：正弦定理的分母 $\sin\frac{2\pi}3$ 是常数，这一步极自然。⭐⭐ **收益函数必是 $A\cos\theta+B\sin\theta$ 型，用辅助角公式**。⭐⭐⭐ **最后必须检验取最大值时的 $\theta$ 落在允许区间内**（$\theta=\frac\pi2-\arctan2\sqrt3\approx16.1^\circ\in(0,60^\circ)$ ✓）。⚠ 振幅是 $\sqrt{12+1}=\sqrt{13}$，别口算错 |
+| 变式 V2 | ⭐⭐ **$\angle AQO=\pi-\angle AQC=\frac\pi3$**（因 $C$ 在 $OQ$ 延长线上，两角互补），漏掉就求不出 $OQ$。⭐⭐⭐ **$\sqrt3\sin\alpha=\cos(\alpha-\theta)$ 展开后合并 $\sin\alpha$ 项** ⟹ $\tan\alpha=\frac{\cos\theta}{\sqrt3-\sin\theta}$ ✓✓✓ 这是全题核心式。⭐⭐⭐ **求导后分子是 $1-\sqrt3\sin\theta$**（$\sin^2+\cos^2=1$ 把二次项消成常数），令其为零直接得 $\sin\theta=\frac{\sqrt3}3$，**正是题目所问**。⭐⭐ $\alpha$ 为锐角时 $\alpha$ 与 $\tan\alpha$ 同向变化，故 $f$ 最大即 $\alpha$ 最大 |
+| 变式 V3 | ⭐⭐ **$\angle POQ=\frac{2\pi}{3}$ 时余弦定理给出 $x^{2}+y^{2}+xy=36$**（是 $+xy$，因 $\cos\frac{2\pi}3=-\frac12$）。⭐⭐⭐ **$x^{2}+y^{2}\ge2xy$ 把 $36\ge3xy$ 一步到位**，取等 $x=y=2\sqrt3$。⭐⭐⭐ **「$MP+MQ=10>PQ=6$」⟹ 椭圆定义**（把「和固定」翻译成圆锥曲线的标准动作），$a=5$、$c=3$、$b=4$。⭐⭐ **面积 $S=\frac12\cdot PQ\cdot\lvert y_0\rvert$ 只依赖纵坐标**，故最大即短半轴 $b$。⚠ 需确认短轴顶点落在两海岸线之间 |
+
+#### M-T-228 · 四边形综合（公共边 · 四点共圆 · 三选一）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⚠ **原书题干 $CD=3$ 实为 $CD=\sqrt3$**（判据：详解 $BD^{2}=4-2\sqrt3\cos C$ 需 $CD^{2}=3$，且 $S=\frac{\sqrt3\sin C}2$ 需 $CD=\sqrt3$）。⭐⭐⭐ **对公共边 $BD$ 在两个三角形里各写一次余弦定理并联立** ⟹ $\cos A=\sqrt3\cos C-1$ ✓✓✓ 这是所有「四边形给四边求角关系」题的标准入口。⭐⭐ **$S^{2}+T^{2}=-\frac32\cos^{2}C+\frac{\sqrt3}2\cos C+\frac34$**（$(\sqrt3\cos C-1)^{2}$ 展开后常数项与外面的相消）。⭐⭐⭐ **顶点 $\cos C=\frac{\sqrt3}6$ 必须落在允许区间 $[0,\frac{\sqrt3}2]$ 内**，$\frac78$ 才取得到 |
+| 变式 V1 | ⭐⭐⭐ **$\angle BAD+\angle BCD=180^\circ$ ⟹ 四点共圆**（所有「对角互补」题的第一步）。⭐⭐⭐ **托勒密定理的相似证明**：在 $AC$ 上取 $E$ 使 $\angle CBE=\angle DBA$，则 $\triangle CBE\backsim\triangle DBA$、$\triangle ABE\backsim\triangle DBC$，两式相加得 $AD\cdot BC+AB\cdot CD=BD\cdot AC$ ✓✓✓。⭐⭐ **$2R=\frac{BD}{\sin\angle BAD}$**（注意 $BD$ 所对圆周角是 $\angle BAD$）。⭐⭐ **$AC$ 最大即直径**，把问题彻底终结 |
+| 变式 V2 | ⭐⭐⭐ **三个条件殊途同归都得 $B=\frac{2\pi}3$**：① 正弦定理化角后用 $\sin(B+C)=\sin A$ 合并；② 得 $a^{2}+ac=b^{2}-c^{2}$ 再配余弦定理；③ 由 $2S=-\sqrt3\,ca\cos B$ 与 $S=\frac12 ca\sin B$ 得 $\tan B=-\sqrt3$。⭐⭐ **$\angle CDA=\theta+\frac\pi6$**（$\pi-\frac\pi3-(\frac\pi2-\theta)$）。⭐⭐⭐ **两次正弦定理串起 $AC$ 与 $BC$** —— 「两个三角形拼四边形」的标准链路。⭐⭐ **降幂 + 辅助角得 $\frac{2\sqrt3}3\sin(2\theta-\frac\pi3)+1$**。⭐⭐⭐ **端点开闭：$\theta\in(0,\frac\pi3)$ 开 ⟹ $BC\in(0,2)$ 两端都开** ✓✓ |
+| 变式 V3 | ⚠ **原书详解分母 `2 7 × 3 3` 实为 $2\sqrt7\cdot BD$**（按 $2\sqrt7\,BD$ 得 $BD^{2}+BD-20=0$ ⟹ $BD=4$ ✓，与详解「$BD=4$ 或 $-5$」吻合）。⭐⭐ **$\angle CBD$ 钝角 ⟹ $\angle BDC$ 锐角**（三角形最多一个钝角），故 $\angle BDC=\frac\pi6$ 唯一。⭐⭐⭐ **$(x+y)^{2}-16=3xy$ 配 $xy\le\frac{(x+y)^{2}}4$** ⟹ $(x+y)^{2}\le64$，**完全不需要解出 $x,y$** ✓✓✓。⭐⭐ 取等 $x=y=4$ 即 $\triangle ABD$ 为等边，自洽 |
