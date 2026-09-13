@@ -135,6 +135,8 @@ def main():
     ap.add_argument('--dump', action='store_true',
                     help='把命中页的原文存到 /tmp/pick_batch/ 下')
     ap.add_argument('--all', action='store_true', help='列出全部可录题（忽略 --n）')
+    ap.add_argument('--strategy', default='pages', choices=('pages', 'topic'),
+                    help='选批策略：pages=跨页最少（默认）；topic=同题型优先（旧）')
     a = ap.parse_args()
 
     rb = json.load(open(os.path.join(ROOT, 'data', 'ref_bank.json'),
@@ -142,10 +144,24 @@ def main():
     done = load_todo()
     levels = set(x.strip().upper() for x in a.level.split(','))
 
-    # 1. 过滤：未录 + 级别符合
+    # 已登记跳过（提取破碎/印刷错误等）的题不再进清单，避免每批重复评估
+    skip_keys = set()
+    _sp = os.path.join(ROOT, 'data', 'skipped.json')
+    if os.path.exists(_sp):
+        try:
+            _d = json.load(open(_sp, encoding='utf-8'))
+            skip_keys = {it.get('key') for it in _d.get('items', []) if it.get('key')}
+        except Exception:
+            skip_keys = set()
+    if skip_keys:
+        print('  已跳过登记 %d 题，本次不再列出' % len(skip_keys))
+
+    # 1. 过滤：未录 + 级别符合 + 未登记跳过
     cand = []
     for k, q in rb.items():
         if k in done:
+            continue
+        if k in skip_keys:
             continue
         if a.topic and not k.startswith(a.topic):
             continue
@@ -199,8 +215,8 @@ def main():
     elif a.all:
         for items in by_topic.values():
             picked.extend(items)
-    else:
-        # 每个题型按页分组
+    elif a.strategy == 'topic':
+        # 旧策略：按 (题型, 页) 贪心
         from collections import defaultdict as _dd
         topic_pages = {}
         for t, items in by_topic.items():
@@ -213,12 +229,10 @@ def main():
         while len(picked) < a.n:
             best = None
             for t, g in topic_pages.items():
-                # 该题型还剩的、页未被选走的题
                 avail = [it for pg, its in g.items()
                          if pg not in used for it in its]
                 if not avail:
                     continue
-                # 找该题型当前最密集的一页
                 best_pg = max((pg for pg in g if pg not in used),
                               key=lambda pg: len(g[pg]))
                 score = (len(g[best_pg]), t)
@@ -230,21 +244,50 @@ def main():
             take = g[pg][:a.n - len(picked)]
             picked.extend(take)
             used.add(pg)
-            # 同题型同页取完，若还有剩余且仍需要，下一轮会换页/换题型
             if len(g[pg]) > len(take):
                 topic_pages[t][pg] = g[pg][len(take):]
             else:
                 del topic_pages[t][pg]
+    else:
+        # ---------------------------------------------------------------
+        # 新策略（默认）pages：以「页」为单位贪心，让整批跨页数最少
+        #
+        # 为什么换策略：旧策略把「题型」当第一优先级，且 used 是全局页码
+        # 集合——某页一旦被任一题型取走就永久排除。结果是：同一页上属于
+        # 其它题型的题永远取不到，14 题要跨 7 页，读原文来回翻。
+        #
+        # 实际上「读一页原文」的成本远大于「换个题型思考」，所以第一优先
+        # 级应该是页数。做法：反复取「剩余可录题最多」的页，直到凑够 n。
+        # ---------------------------------------------------------------
+        from collections import defaultdict as _dd
+        heap = _dd(list)          # (页, 题型) -> 题目列表
+        for _t, items in by_topic.items():
+            for it in items:
+                heap[(it[4], it[0].rsplit('-', 1)[0])].append(it)
+        for key in heap:
+            heap[key].sort(key=lambda x: int(x[1].get('orig_num') or 999))
+        rem = dict(heap)
+        while len(picked) < a.n and rem:
+            # 先进入「堆最大」的那一页：既保证题多，又保证同题型成堆
+            pg, t = max(sorted(rem), key=lambda k: len(rem[k]))
+            picked.extend(rem.pop((pg, t)))
+            # 页已经打开了，顺手把同页其它堆也取走 —— 边际成本几乎为零
+            while len(picked) < a.n:
+                same = [k for k in rem if k[0] == pg]
+                if not same:
+                    break
+                k2 = max(sorted(same), key=lambda k: len(rem[k]))
+                picked.extend(rem.pop(k2))
+        picked.sort(key=lambda x: (x[4] or '', x[0]))
 
-    # 5. 输出
+    # 5. 输出（按页分组 —— 页码就是接下来要读的文件，这样最顺手）
     print()
-    cur_topic = None
+    cur_pg = None
     pgset = []
     for k, q, lv, why, pg, flag in picked:
-        t = k.rsplit('-', 1)[0]
-        if t != cur_topic:
-            print('  ── %s ──' % t)
-            cur_topic = t
+        if pg != cur_pg:
+            print('  ── %s ──' % (pg or '??'))
+            cur_pg = pg
         stem = q.get('stem') or ''
         if isinstance(stem, list):
             stem = '\n'.join(str(x) for x in stem)
