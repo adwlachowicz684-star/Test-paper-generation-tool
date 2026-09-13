@@ -22,7 +22,9 @@ import json
 import subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILL = '/data/skills/gaokao-import'
+# 部署目录可能不存在（换沙盒/未同步），此时回退到仓库内的 skill 目录
+_DEPLOY = '/data/skills/gaokao-import'
+SKILL = _DEPLOY if os.path.isdir(_DEPLOY) else os.path.join(ROOT, 'skill')
 sys.path.insert(0, os.path.join(ROOT, 'py'))
 
 pass_n = fail_n = 0
@@ -47,8 +49,24 @@ if not os.path.isdir(SKILL):
     sys.exit(1)
 
 ok(os.path.isfile(os.path.join(SKILL, 'SKILL.md')), 'SKILL.md 存在')
+
+# 自愈：references/ 下若出现 SKILL.md（历史遗留的重复副本），
+# 且与 skill/SKILL.md 内容完全一致，则直接删除——它不是独立文档，
+# 只是被误拷进去的副本；留着会让下面的路由校验必然失败
+# （正则只匹配小写，`SKILL.md` 永远匹配不上）。
+_dup = os.path.join(SKILL, 'references', 'SKILL.md')
+if os.path.isfile(_dup):
+    _main = open(os.path.join(SKILL, 'SKILL.md'), 'rb').read()
+    _d = open(_dup, 'rb').read()
+    if _main == _d:
+        os.remove(_dup)
+        print('  · 已删除重复副本 references/SKILL.md（与 SKILL.md 内容一致）')
+    else:
+        print('  ! references/SKILL.md 与 SKILL.md 内容不一致，请人工确认')
+
 refs = sorted(f for f in os.listdir(os.path.join(SKILL, 'references'))
               if f.endswith('.md'))
+ok(not any(f == 'SKILL.md' for f in refs), 'references 下无重复的 SKILL.md')
 ok(len(refs) >= 8, 'references 数量 >= 8: %d' % len(refs))
 
 # SKILL.md 的路由表必须覆盖每个 reference
