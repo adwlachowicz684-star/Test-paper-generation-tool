@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-13",
+ "updated": "2026-09-14",
  "items": [
   {
    "key": "M-T-006-V2",
@@ -523,6 +523,34 @@
    "ref_answer": "a/e^(a-b) > e^(2-e^2)",
    "reason": "提取破碎",
    "note": "答案明确，但详解中 g(x)=e^x-ax 的极小值点写作 (ln a)/2、极小值 a(1-ln a/2)；按 g=e^x-ax 严格计算驻点应为 x=ln a、极小值 a(1-ln a)，与后续『1-ln a/2<0 ⟺ a>e^2』矛盾，关键符号存疑"
+  },
+  {
+   "key": "M-T-143-V1",
+   "page": 109,
+   "topic": "M-T-143",
+   "topic_name": "双变量存在性",
+   "kp1": "导数",
+   "kp2": "导数的综合应用",
+   "kind": "变式",
+   "ref_answer": "A",
+   "reason": "提取破碎",
+   "note": "题干提取为 x^2 ln y - ln x - a y^2 = 0，而详解走的是 e^{y-x} - a e^{2y-x} = 0、a = -(1/2) t e^t（t = 2(x-y)），题干与详解是两道不同的题，提取发生错位",
+   "stem_raw": "对任意的正数x，都存在两个不同的正数y，使x2 lny - lnx - ay2= 0 成立",
+   "has_solution": true
+  },
+  {
+   "key": "M-T-155-V2",
+   "page": 120,
+   "topic": "M-T-155",
+   "topic_name": "导数解答",
+   "kp1": "导数",
+   "kp2": "导数的综合应用",
+   "kind": "变式",
+   "ref_answer": "(1)...(2)...(3)略",
+   "reason": "解析截断",
+   "note": "题干只有两问（求 a 与极值；证 x>0 时 x^2<e^x），但 ans 给出三段（含 (3) 略），详解只有 (1)(2)，第三问内容缺失",
+   "stem_raw": "已知函数f(x)= ex - ax(a 为常数) 的图像与y 轴交于点A，曲线y=f(x) 在点A 处的切线斜率为-1.",
+   "has_solution": true
   }
  ],
  "reason_desc": {
