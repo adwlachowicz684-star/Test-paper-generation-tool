@@ -1901,3 +1901,35 @@ $$P=1-\frac{(\text{边长}-d)^{2}}{\text{边长}^{2}}$$
 |---|---|
 | **例题 E1** | ⭐⭐⭐ **$P_n=pP_{n-1}+qP_{n-2}$ 作差后公比恒为 $-q$**：$P_n-P_{n-1}=-q\left(P_{n-1}-P_{n-2}\right)$（因 $p+q=1$），**公比只由「走 2 步的概率」决定**。⭐⭐⭐ **稳态值 $=\frac1{1+q}$**：本题 $\frac34$，恰是平均步长 $1\cdot\frac23+2\cdot\frac13=\frac43$ 的倒数 ✓✓✓。⭐⭐ $P_0=1$ 是隐含初始条件。⭐⭐ $P_n=\frac34+\frac14\left(-\frac13\right)^n$，代 $n=0,1,2$ 三个值即可自检验 |
 | 变式 V1 | ⭐⭐ **$\bar x$ 用组中值加权**，权重和须为 $1$（$0.2+0.35+0.25+0.1+0.05+0.05=1$）。⭐⭐⭐ **$P(\mu-\sigma<Z\le\mu+2\sigma)$ 的两种算法**：$\frac{0.6827}2+\frac{0.9545}2$ 或 $0.9545-\frac{0.9545-0.6827}2$，都得 $0.8186$。⭐⭐⭐ **$P_{60}=\frac12P_{58}$ 而不是 $\frac12P_{58}+\frac12P_{59}$** —— 到 $59$ 格游戏已结束，不能再前进；**「游戏是否已在中间状态结束」是写递推前必须先确认的** ✓✓✓。⭐⭐ 与 E1 完全同构（$p=q=\frac12$，公比 $-\frac12$，稳态 $\frac23$）。⭐⭐ 通分时注意 $\frac1{2^{59}}=\frac2{2^{60}}$ |
+
+#### M-T-152 · 零点个数与单调性（分段讨论 · 导函数零点存在性）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐⭐ **题干 $g\left(x\right)=x\ln x-\frac a2x^2$ 的分数线被吞**：若按 $ax^2$，分离参数得 $a=\frac{\ln x}x$，最大值 $\frac1e$ 与答案 $\frac2e$ 不符；且 $a=1$ 时 $g'\left(x\right)=\ln x+1-x$ 恰是 $\frac a2$ 版的导数——**两处同时指向同一个还原**。⭐⭐ 由 $x>0$ 把 $g\left(x\right)=0$ 化为 $h\left(x\right)=\ln x-\frac a2x=0$，分离参数 $a=\frac{2\ln x}{x}$，最大值 $=2\times\frac1e=\frac2e$。⭐⭐ $\ln x\le x-1$ 一步给出 $g'\le0$，比硬解 $g'=0$ 快。⚠ $a\le0$ 时 $h$ 至多一个零点，**必须单独排除** |
+| 变式 V1 | ⭐⭐⭐ **证明「恰有 $n$ 个零点」的标准流程**：按**导数的符号变化点**分段 ⟹ 每段单调 ⟹ 至多一个零点；再用端点值异号保证**存在**。⚠「异号」只保证存在，**唯一性必须由单调性给出**。⭐⭐ 分段点取三角函数的关键值：$2x=0,\ \frac\pi2,\ \frac{3\pi}2$。⭐⭐⭐ **压轴题的固定结构：前一问服务后一问**——（1）的结论要包装成不等式 $\sin2x>x\left(0<x\le\frac\pi4\right)$ 供（2）使用。⚠ 「先增后减」只能说明最小值在**端点**，必须分别验 $g\left(0\right)$ 与 $g\left(\frac\pi4\right)$ |
+| 变式 V2 | ⭐⭐⭐ 原书单调区间写成 $\left(1,4\right)$ 实为 $\left(-1,4\right)$：$f'\left(x\right)=a\left(x-4\right)\left(x+1\right)$，与 $1$ 无关。⭐⭐⭐ 「两根距离不小于 $\sqrt3$」被吞成 $3$：**硬判据**是取 $3$ 得 $\frac ba\ge-2+\sqrt7\approx0.646$，与 $\left(-3,-\frac34\right)$ **无交集、题目无解**。⭐⭐ 两根距离 $|m-n|=\frac{\sqrt\Delta}{|a|}$，本题化为 $\sqrt{\left(\frac ba+2\right)^2+2}$；⚠ **原书就漏了这个根号**，把 $|m-n|$ 当成了它的平方。⭐⭐ 存在性分情况按 $c$ 的符号二分：$c>0$ 用 $\left(0,1\right)$、$c\le0$ 用 $\left(1,2\right)$，**两种情形恰好覆盖全部可能** |
+
+#### M-T-164 · 三个极值点（显式根定位 · 比值代换 · 对称化辅助函数）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐ 化简 $G\left(x\right)=\frac{x\left(x-2m\right)^2}{x\ln x}=\frac{\left(x-2m\right)^2}{\ln x}$：分子分母同有的 $x$ **必须先约掉**，否则求导冗长到做不下去。⭐⭐⭐ **「一显两隐」结构**：$G'=0$ 的一根是显式的 $x=2m$，另两根来自 $h\left(x\right)=2\ln x+\frac{2m}x-1$。⭐⭐⭐ **夹隐式根要在四处取符号**：$x\to0^+$（$+\infty$）、$x=m$（极小值 $<0$）、$x=1$（$2m-1<0$）、$x\to+\infty$（$+\infty$）——**少取一个就夹不住**。⭐⭐ 条件 $0<m<\frac12$ 有两个用处：$h\left(1\right)<0$ 与 $x_2=2m<1$。⚠ 极值点须排除使分母为 $0$ 的点（本题 $x\ne1$） |
+| 变式 V1 | ⭐⭐⭐ **因式分解是入口**：$-3x^2+6x=-3x\left(x-2\right)$ 与 $3me^x\left(x-2\right)$ 凑出公因子 $\left(x-2\right)$——**看到 $x-3$ 与 $x^2$ 项就要往 $\left(x-2\right)$ 上凑**。⭐⭐⭐ **「$3$ 个不同零点」必须排除重合**：$m=\frac2{e^2}$ 时 $x=2$ 与 $g$ 的某根重合，个数降为 $2$。⭐⭐⭐ **比值代换**：由 $\frac{x_1}{e^{x_1}}=\frac{x_2}{e^{x_2}}$ 取对数得 $\ln\frac{x_1}{x_2}=x_1-x_2$，令 $t=\frac{x_1}{x_2}\in\left(0,1\right)$ 得 $x_1=\frac{t\ln t}{t-1}$、$x_2=\frac{\ln t}{t-1}$，**两变量化一参数**。⭐⭐ $h'\left(t\right)=\frac{\left(t-1\right)^2}{t\left(t+1\right)^2}>0$ 的**分子是完全平方**，是「$\ln t$ 减帕德分式」的固定结果，可直接记 |
+| 变式 V2 | ⭐⭐⭐ $f'\left(x\right)=\frac{x\left[e^x-a\left(x+2\right)\right]}{\left(1+x\right)^2}$：$a$ 的部分配成 $a\left(x+2\right)$ 而非 $a\left(x+1\right)$——这是 $x^2+2x=x\left(x+2\right)$ 的对应，**算错全盘皆错**。⭐⭐ $a\ne\frac12$ 来自 $g\left(0\right)\ne0$，与 V1 排除 $m=\frac2{e^2}$ 同理。⭐⭐⭐ **双根之和的对称化证明**：要证 $x_1+x_2>-2$ 即 $x_1>-2-x_2$，利用 $g$ 在 $\left(-\infty,\ln a\right)$ 递减转成证 $g\left(-2-x_2\right)>0$，**再代入 $a=\frac{e^{x_2}}{x_2+2}$ 消去参数**。⭐⭐⭐ 辅助函数 $H\left(x\right)=xe^x+\left(x+2\right)e^{-x-2}$ 满足 $H\left(-1\right)=0$ 且 $H'=\left(x+1\right)\left(e^x-e^{-x-2}\right)$——「$x$ 与 $-x-2$ 配对」在对称型证明中反复出现 |
+
+#### M-T-169 · 隐零点与指数对数不等式
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐⭐ **隐零点四步**：① 用 $f'$ 单调 $+$ 端点异号定出 $x_0$ 的**范围**；② 由 $f'\left(x_0\right)=0$ 写替换式；③ 代入 $f\left(x_0\right)$ 消去超越部分；④ 配成完全平方。本题 $e^{x_0}=\frac1{x_0+2}$ 同时给出 $e^{x_0}$ 与 $\ln\left(x_0+2\right)=-x_0$ 两个替换式，代入得 $\frac{\left(x_0+1\right)^2}{x_0+2}>0$——**配成完全平方不是巧合，是命题人刻意让 $f_{\min}\to0$ 但取不到**。⭐⭐ 由 $f'\left(0\right)=0$ 求出 $m$ 后**必须验证确为极值点**（本题 $f'$ 严格递增 ⟹ 必变号） |
+| 变式 V1 | ⭐⭐⭐ 题干系数还原为 $\frac a2$：**硬判据**是 $f'\left(x\right)=\left(x-1\right)\left(e^x-a\right)$ 与详解的分类节点 $x=\ln a$ 一致；若系数为 $a$ 则节点应是 $\ln\left(2a\right)$。⭐⭐ 分类标准是 **$\ln a$ 与 $1$ 比（即 $a$ 与 $e$ 比）**，不是 $a$ 与 $0$ 比——**两个驻点的大小关系决定单调区间的排列**。⭐⭐ 化简 $\left(x-2\right)e^x+2e^x=xe^x$ 让不等式两边各只留一个超越块。⭐⭐⭐ 隐零点处 $x_0e^{x_0}=1$、$-\ln x_0=x_0$，三项恰好抵消使 $h_{\min}=0$：**「恰好为 0」是设计出来的，算出来不是 0 说明代换错了** |
+| 变式 V2 | ⭐⭐ $f\left(x\right)=\frac{e^{ax}}x$ 的定义域在 $0$ 处断开，**单调区间不能跨过 $0$ 写成连通区间**。⭐⭐ $a<0$ 时 $\frac1a<0$，递增区间 $\left(-\infty,\frac1a\right)$ 完全在负半轴，**不能照抄 $a>0$ 的结论**。⭐⭐⭐ 题干 $g\left(x\right)$ 末项 OCR 成「$1\ x$」，按 $\ln x+2x+1$ 录入：**硬判据**是取 $\frac1x$ 时 $x=0.1$ 给出反例（$1.2214<7.897$），**「算出反例」是判定还原是否正确的第一手段**。⭐⭐⭐ 证 $e^{2x}\ge\ln x+2x+1$ 用 **$e^{2x}\ge1+2x+2x^2$（$e^t\ge1+t+\frac{t^2}2$ 取 $t=2x$）配 $\ln x\le x-1$**，作差得 $2x^2-x+1$，判别式 $-7<0$ 恒正 |
+
+#### M-T-172 · 极值点偏移（对数平均 · 对称化构造 · 倒数比较）
+
+| 例题/变式 | 结论 |
+|---|---|
+| **例题 E1** | ⭐⭐⭐ **出现 $x_1f\left(x_2\right)+x_2f\left(x_1\right)$ 这类交叉乘积，先同除以 $x_1x_2$**：立刻得到 $\frac{f\left(x\right)}x=\ln x+ax$，与 $g\left(x\right)=\ln x+1+2ax$ 呼应。⭐⭐⭐ **由 $g\left(x_1\right)=g\left(x_2\right)=0$ 写「相加」与「相减」两式是固定动作**：相加得 $a=-\frac{\ln\left(x_1x_2\right)+2}{2\left(x_1+x_2\right)}$，相减得 $-\frac1{2a}=\frac{x_2-x_1}{\ln x_2-\ln x_1}$（**对数平均**）。⭐⭐⭐ 对数平均不等式 $\frac{b-a}{\ln b-\ln a}>\sqrt{ab}$（另一方向 $<\frac{a+b}2$）是极值点偏移的核心工具。⚠ 前提 $-\frac12<a<0$ 比结论 $-\frac1{2e}<a<0$ 弱，**最后要取交集** |
+| 变式 V1 | ⭐⭐ $f'\left(x\right)=\left(\ln x+1\right)^2\ge0$ 是**完全平方**，提示关键点是 $x=\frac1e$。⭐⭐⭐ **和型极值点偏移的通法**：要证 $x_1+x_2>2x_0$，构造 $g\left(x\right)=f\left(x\right)+f\left(2x_0-x\right)-2f\left(x_0\right)$，证 $g$ 在 $\left(0,x_0\right)$ 上**递增**且 $g\left(x_0\right)=0$，则 $g\left(x_1\right)<0$ ⟹ $f\left(2x_0-x_1\right)<f\left(x_2\right)$ ⟹ 结论成立（证 $<$ 时对称地构造并证递减）。⭐⭐ 先排除两侧情形定出 $x_1<x_0<x_2$，否则无从判断 $2x_0-x_1$ 的落点。⭐⭐⭐ 第二个因子的放缩用 $ab\le\left(\frac{a+b}2\right)^2$，**前提是 $x+\left(\frac2e-x\right)=\frac2e$ 为常数** |
+| 变式 V2 | ⭐⭐ **入口是因式分解** $f\left(x\right)=x\left(e^{x-a}-x\right)$：$x=0$ 恒为零点，问题降为研究 $x-\ln x=a$ 的解数；注意取对数须 $x>0$，而 $x<0$ 时 $e^{x-a}>0>x$ 无零点。⭐⭐ $h\left(x\right)=x-\ln x$ 的最小值恰为 $1$（**整数最值是刻意设计，可作自检信号**）。⭐⭐⭐ **倒数比较法证 $x_1x_2<1$**：构造 $\varphi\left(x\right)=h\left(x\right)-h\left(\frac1x\right)$（$0<x<1$），$\varphi'\left(x\right)=\frac{\left(x-1\right)^2}{x^2}>0$ ⟹ $\varphi<0$ ⟹ $h\left(m\right)<h\left(\frac1m\right)$；又 $h\left(m\right)=h\left(n\right)$ 且 $n,\frac1m$ 同在 $h$ 的递增区间 ⟹ $n<\frac1m$。⚠ **分子是完全平方**——与 M-T-164-V1 的 $h'\left(t\right)$ 同源，都是「$x$ 与 $\frac1x$ 配对」的必然结果 |
