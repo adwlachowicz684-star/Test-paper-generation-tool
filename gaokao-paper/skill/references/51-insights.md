@@ -236,6 +236,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | 例题/变式 | 结论 |
 |---|---|
 | 变式 V1 | **核心结论**：双曲线上一点 $P$ 与两焦点构成的 $\triangle PF_{1}F_{2}$，**内切圆与 $x$ 轴的切点必是顶点**。推导只用切线长定理 + 双曲线定义：设切点 $C(t,0)$，则 $PF_{1}-PF_{2}=F_{1}C-F_{2}C=2t=2a$ → $t=a$ |
+| **例题 E1** | ⭐⭐ **内心分角平分线的比例式 $\dfrac{\lvert EG\rvert}{\lvert GA\rvert}=\dfrac{\lvert ED\rvert+\lvert EB\rvert}{\lvert BD\rvert}$**（$G$ 在从 $E$ 出发的角平分线上，$\lvert BD\rvert=2\lvert DA\rvert$ 因 $A$ 为中点）⟹ 化简成 $\dfrac{\lvert ED\rvert}{\lvert DA\rvert}=2$ ⟹ $\mathrm{Rt}\triangle EAD$ 中 $\lvert EA\rvert=\sqrt3\lvert DA\rvert$ ⟹ $a=3b$ ⟹ $e=\dfrac{\sqrt{10}}3$。⚠ 原书「$\frac{\lvert EA\rvert}{\lvert DA\rvert}=3$」的 $3$ 是 $\sqrt3$（根号丢失）；⚠ $\overrightarrow{DA}=\overrightarrow{AB}$ 是**向量**等式（$A$ 为 $BD$ 中点），不是长度相等 |
 | 变式 V2 | **通用公式** $r=\frac{b(e-1)}{e+1}$，只要题干是「过 $F_2$ 作渐近线平行线」就可直接套用，不必重算 |
 | 变式 V3 | 对照规律：$r=\frac b3\to e=2$；$r=\frac b4\to e=\frac53$。一般地 $r=\frac bk$ 时 $e=\frac{k+1}{k-1}$，内切圆越扁离心率越接近 $1$ |
 
@@ -262,6 +263,8 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | 例题/变式 | 结论 |
 |---|---|
 | 变式 V1 | 抛物线上动点到两定点距离之比求最值：**参数化 + 取对数求导**最省事。互为倒数的两个比值**极值点相同**（所以「最大/最小」写反也不影响答案） |
+| **例题 E1** | ⭐⭐ **$\dfrac1m=\dfrac{\lvert PF\rvert}{\lvert PA\rvert}=\sin\alpha$**（$\alpha$ 为 $PA$ 的倾斜角；准线水平、$\lvert PN\rvert$ 是竖直距离）⟹ **比值最大 ⟺ 直线与抛物线相切** ⟹ 切点 $P(2,1)$，$2a^{\prime}=\lvert PA\rvert-\lvert PF\rvert=2(\sqrt2-1)$、$2c^{\prime}=\lvert AF\rvert=2$ ⟹ $e=\sqrt2+1$ |
+| 变式 V2 | ⭐ **用导数求切点定焦点**：$x^{2}=12y$ 求导得 $y^{\prime}=\dfrac x6$（不是 $\dfrac x{12}$）；切线过椭圆焦点 ⟹ 令 $y=0$ 即得 $c=3$。⟹ 由 $\lvert AF\rvert=\sqrt2$ 与倾斜角 $45^\circ$ 得 $\lvert FH\rvert=\lvert AH\rvert=1$，$A(4,1)$；代入椭圆配 $a^{2}=b^{2}+9$ 解 $b^{2}=9$ ⟹ $e=\dfrac{\sqrt2}2$。⚠ 条件 $\lvert AF\rvert<\lvert BF\rvert$ 用来定位 $A$ 是**较近**的那个交点（另一交点 $B(0,-3)$） |
 | 变式 V3 | 共焦点 + 准线截弦成正三角形：$\sqrt{a^{2}-b^{2}}=\frac p2$、半弦 $d=\frac p{\sqrt3}$，代入椭圆方程解 $\frac{b^{2}}{a^{2}}$。**注意椭圆长轴在哪根轴**（本题 $y^{2}$ 在前，焦点在 $y$ 轴） |
 
 #### M-T-344 · 五个方程题型框架
@@ -296,6 +299,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 |---|---|
 | **例题 E1** | ⭐ **「过定点作两条切线」不必先求切点** —— 把「切线过该点」翻译成**关于切点参数的二次方程**，两个切点就是它的两根，之后一切用韦达。抛物线 $x^{2}=2py$ 在 $(x_0,y_0)$ 处切线：$x_0x=p(y+y_0)$（「一半代入、一半保留」法则） |
 | 变式 V1 | 相似椭圆设成 $=1$ 与 $=m^{2}$（半轴放大 $m$ 倍）只需一个参数。外椭圆左顶点向内作切线：$k^{2}=\frac{b^{2}}{a^{2}(m^{2}-1)}$；上顶点向内：$k_2^{2}=\frac{b^{2}(m^{2}-1)}{a^{2}}$。**两者之积 $=\pm\frac{b^{2}}{a^{2}}$，与 $m$ 无关** |
+| 变式 V2 | ⭐⭐ **过 $F_1$ 作圆 $x^{2}+y^{2}=a^{2}$ 的切线 ⟹ 切线长 $\lvert F_1A\rvert=\sqrt{c^{2}-a^{2}}=b$**；又 $\triangle OAF_1\backsim\triangle F_2BF_1$（共角 + 直角），**相似比 $=2$** ⟹ $\lvert F_2B\rvert=2a$、$\lvert F_1B\rvert=2b$，之后全是解直角三角形。⚠ $\lvert F_1B\rvert$ 是沿直线的线段长，不是点到直线距离（$F_1$ 就在直线上，距离为 $0$） |
 | 变式 V3 | 抛物线 $x^{2}=4py$ 上点 $A(a,\cdot)$ 处切线与两轴截距 $\frac a2$、$-\frac{a^{2}}{4p}$，三角形面积 $=\frac{\lvert a\rvert^{3}}{16p}$。求焦半径**优先用 $\lvert AF\rvert=y_A+p$** |
 
 #### M-T-336 · 直接法求轨迹
@@ -674,6 +678,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | **例题 E1** | ⭐ 判断张角锐钝 ⟹ **用 $\overrightarrow{AM}\cdot\overrightarrow{AN}$ 的符号**，比斜率法可靠（斜率法符号极易弄反）。数值扫描验证：$e$ 越大 $\alpha$ 越小，恒 $<\frac\pi2$ |
 | 变式 V2 | ⭐⭐ **$OA\perp OB$ 时，$\frac1{\lvert OA\rvert^{2}}+\frac1{\lvert OB\rvert^{2}}$ 与位置无关**：双曲线为 $\frac1{a^{2}}-\frac1{b^{2}}$（减号），椭圆为 $\frac1{a^{2}}+\frac1{b^{2}}$（加号）。⟹ 「恒成立」退化成一个不等式。⚠ 最后 $e^{2}\le\frac{3+\sqrt5}2$ **要开方**得 $e\le\frac{1+\sqrt5}2$（选项 B 是没开方的结果） |
 | 变式 V3 | ⭐ $\overrightarrow{FA}=\overrightarrow{AC}$ ⟺ **$A$ 是 $FC$ 中点**。已知一个交点时用**韦达**求另一交点，比重新解方程快 |
+| 变式 V1 | ⭐⭐ **反射 ⟹ 反射光线所在直线都过镜像点 $P^{\prime}$**，于是「只有一条相切」= 关于 $k$ 的方程恰一根，须分两种情形：① $\Delta_k=0$（$P^{\prime}$ 恰在椭圆上，被「$P$ 是外一点」排除）；② **二次项系数为零**（$a^{2}=4$，退化成一次方程）。⚠ 问的是**切线（反射光线）的斜率 $-k$**，与入射斜率 $k$ 互为相反数（恰为选项 A 与 D） |
 
 #### M-T-373 · 渐近线上的几何
 
@@ -682,6 +687,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | **例题 E1** | ⭐⭐ **$P$ 在渐近线上时 $\bigl\lvert\lvert PF_1\rvert-\lvert PF_2\rvert\bigr\rvert$ 的上确界是 $2a$ 且取不到**（对比：双曲线上的点恒等于 $2a$）。⟹ 存在 $P$ 使 $=2b$ $\iff b<a\iff e<\sqrt2$。⚠ 原书标 $(1,\sqrt2]$，严格应为开区间 |
 | 变式 V1 | ⭐ **焦点到渐近线的距离 $=b$**，垂足 $P(\frac{a^{2}}c,\frac{ab}c)$。⭐⭐ 「$XX$ 平分 $\angle$」⟹ **角平分线上的点到两边距离相等**（比用夹角余弦快得多）⟹ $e^{2}-e-2=0$ ⟹ $e=2$ |
 | 变式 V2 | ⭐⭐ **以 $F_1F_2$ 为直径的圆（$x^{2}+y^{2}=c^{2}$）与渐近线的交点必是 $(\pm a,\pm b)$** —— 可直接记。$A$ 是左顶点时 $\vec{AQ}=(0,-b)$ 是**竖直**向量，计算大幅简化 |
+| 变式 V3 | ⭐⭐ **以 $OF_1$ 为直径的圆与渐近线交于 $M\left(-\dfrac{a^{2}}c,\dfrac{ab}c\right)$**；直径所对圆周角为直角 ⟹ $k_{MF_1}=\dfrac ab$ ⟹ $\cos\angle MF_1F_2=\dfrac bc$。配 $\lvert PF_2\rvert=5\lvert PF_1\rvert$ 与左支定义得 $\lvert PF_1\rvert=\dfrac a2$，余弦定理 ⟹ $2b^{2}-ab-a^{2}=0$ ⟹ $b=a$ ⟹ $e=\sqrt2$。⚠ $P$ 在**左支**，用 $\lvert PF_2\rvert-\lvert PF_1\rvert=2a$ |
 
 #### M-T-369 · 中点型与四点共圆
 
@@ -707,6 +713,7 @@ $$r=\frac{2S}{\text{周长}}=\frac{b(e-1)}{e+1}\qquad\Big(\text{周长}=a(e+1)^{
 | 例题/变式 | 结论 |
 |---|---|
 | 变式 V1 | ⭐ 过原点的弦 ⟹ $B=-A$ ⟹ $\lvert AB\rvert=2\lvert OA\rvert$、$\lvert BF_1\rvert=\lvert AF_2\rvert$。⚠ **看清问最小值还是最大值**（选项 C 是另一端） |
+| **例题 E1** | ⭐⭐ **$\lvert MN\rvert=\lvert F_1F_2\rvert$ 且两条对角线互相平分 ⟹ 矩形** ⟹ $\lvert MF_1\rvert^{2}+\lvert MF_2\rvert^{2}=4c^{2}$，配和为 $2a$ 得 $x^{2}-2ax+2b^{2}=0$。**$\Delta>0$ 给下界 $e>\dfrac{\sqrt2}2$（开），比值条件给上界 $e\le\sqrt3-1$（闭）**。⚠ 两根取**较小**者（$x=\lvert MF_2\rvert<a$） |
 | 变式 V2 | ⭐⭐ **$A,B$ 关于原点对称 + $\vec{FA}\cdot\vec{FB}=0$ ⟹ $x^{2}+y^{2}=c^{2}$**，联立椭圆得 $\lvert y\rvert=\frac{b^{2}}c$。$\lvert FA\rvert^{2}=2c^{2}\mp2cx$ |
 | 变式 V3 | ⭐ 斜率 $\frac12$ ⟹ $Q$ 落在 $(0.6c,0.8c)$（$3$-$4$-$5$ 勾股点）。⚠ $e^{2}$ 两根都要检查 |
 
@@ -760,6 +767,7 @@ eq0$ |
 |---|---|
 | **例题 E1** | ⭐⭐ **「$\lvert PA\rvert=\lvert AF_1\rvert$」就是「$A$ 是 $PF_1$ 中点」** —— 取中点代入曲线方程一次定出 $a,b$。本题 $A(0,c)$ ⟹ $b=c$、$a=\sqrt2c$ |
 | 变式 V1 | ⭐⭐ **通径半长 $=\frac{b^{2}}a$**；⭐ **$y$ 轴平分 $[-c,c]$ ⟹ 交点是中点** ⟹ $PQ$ 为中位线 ⟹ 周长 $=2a+\frac{2b^{2}}a$ |
+| 变式 V2 | ⭐⭐ **抛物线焦点弦外一点对弦张直角**：设 $\lvert AF\rvert=a$、$\lvert BF\rvert=b$，则 $\lvert MN\rvert=\dfrac{a+b}2$（梯形中位线）、$\lvert AB\rvert=\sqrt{a^{2}+b^{2}}$ ⟹ $\dfrac{\lvert AB\rvert}{\lvert MN\rvert}=\dfrac{2\sqrt{a^{2}+b^{2}}}{a+b}\ge\sqrt2$。⚠ **原书答案印成 $2$，实为 $\sqrt2$**（详解的「$\ge\frac12(a+b)$」漏了根号，应为 $\frac{\sqrt2}2(a+b)$） |
 | 变式 V3 | ⭐⭐ **$\lvert PF_1\rvert$ 随时换成 $2a-\lvert PF_2\rvert$**；**求最大用「差 $\le\lvert MF_2\rvert$」，求最小用「和 $\ge\lvert MF_2\rvert$」**。⚠ 必须验证等号可达 |
 
 #### M-T-329 · 第三定义（中点弦）
@@ -778,6 +786,7 @@ eq0$ |
 | **例题 E1** | ⭐⭐ **$\frac{\lvert PA\rvert}{\lvert PF\rvert}=\frac1{\sin\alpha}$**（$\alpha$ 为 $PA$ 与准线夹角）⟹ **比值最大 ⟺ 直线与抛物线相切** |
 | 变式 V1 | ⭐ **抛物线上 $\lvert PF_1\rvert=y+1$，另一距离用 $x^{2}=4y$ 消元**成单变量函数求导。⚠ $b>a$ ⟹ 长轴在 $y$ 轴，$e=\frac cb$ |
 | 变式 V3 | ⭐⭐ **抛物线焦点与 $F_2$ 重合 ⟹ $n=m\cos\angle PF_1F_2$**；联立 $m+n=2a$ 与余弦定理得 $e$ 的二次方程，**两根都要** |
+| 变式 V2 | ⭐⭐ **$F_2$ 是公共焦点 ⟹ 抛物线准线 $x=-c$ 恰过左焦点 $F_1$** ⟹ $\lvert PM\rvert$ 与 $\lvert PF_1\rvert$ 共用水平投影 $x_0+c$，故 $\cos\angle MPF_1=\cos\angle PF_1F_2$，一步得 $\lvert PF_1\rvert=\frac54(x_0+c)$ ⟹ $x_0+c=8a$；余弦定理 $64a^{2}=100a^{2}+4c^{2}-32ac$ ⟹ $e^{2}-8e+9=0$ ⟹ $e=4+\sqrt7$。⚠⚠ **原书答案 $4+2\sqrt2$ 有误**（详解的 $c^{2}+8ac+8a^{2}=0$ 三项同号，不可能为 $0$） |
 
 #### M-T-338 · 轨迹判断
 
@@ -861,6 +870,7 @@ eq0$ |
 |---|---|
 | **例题 E1** | ⭐⭐ **弦端点到近焦点距离恰为 $2a$ 时，$\triangle ABF_1$ 必等腰**（因 $\lvert AB\rvert=\lvert AF_2\rvert+\lvert BF_2\rvert=\lvert BF_1\rvert$）。⭐ 等腰直角 $S=\frac{\text{斜边}^2}4$ |
 | 变式 V1 | ⭐⭐ **「圆与 $x$ 轴相切于焦点」⟹ 圆心在 $F$ 正上方、半径 $=\frac{b^{2}}a$**。⭐ 等腰三角形钝角只能在**顶点** ⟹ 半顶角 $>45^\circ$ ⟹ $\lvert PN\rvert>c$。$\sqrt{2-\sqrt3}=\frac{\sqrt6-\sqrt2}2$ |
+| 变式 V2 | ⭐⭐ **两个直角三角形共用斜边 $\lvert PF_1\rvert=m$**：先用 $\sin$ 分解出 $\lvert PQ\rvert=\frac35m$、$\lvert QF_1\rvert=\frac45m$，再在 $\mathrm{Rt}\triangle F_1QF_2$ 中勾股得 $m^{2}-2ma+5a^{2}-5c^{2}=0$；「在区间内有根」$f\bigl(5(c-a)\bigr)<0<f(5a)$ ⟺ $a<c<2a$ ⟹ $e\in(1,2)$。⚠ $Q$ 在 $PF_2$ **延长线**上，$\lvert QF_2\rvert=\lvert PQ\rvert-\lvert PF_2\rvert$ 是**相减** |
 | 变式 V3 | ⭐⭐ **弦与准线交于 $C$ 时 $\triangle CBB^{\prime}\sim\triangle CAA^{\prime}$** ⟹ 面积比 $=\frac{\lvert BF\rvert}{\lvert AF\rvert}$。⭐ **过 $(m,0)$ 的弦：$x_Ax_B=m^{2}$** |
 
 #### M-T-332 · 三角形内心与内切圆
@@ -877,6 +887,8 @@ eq0$ |
 |---|---|
 | **例题 E1** | ⭐⭐ **核心公式 $\frac{\sin^{2}\theta}{e_1^{2}}+\frac{\cos^{2}\theta}{e_2^{2}}=1$（$2\theta=\angle F_1PF_2$）**。记忆：椭圆 $e_1<1$ 配 $\sin^2$，双曲线 $e_2>1$ 配 $\cos^2$。⭐ $m=a_1+a_2$、$n=a_1-a_2$ |
 | 变式 V1 | ⭐ $\angle=\frac\pi3$ 时快捷式 $a_1^{2}+3a_2^{2}=4c^{2}$。⚠ **$\theta$ 是半角**，别把 $2\theta$ 当 $\theta$ |
+| 变式 V2 | ⭐⭐ $\angle=\frac\pi3$ 型恒等式 $a_1^{2}+3a_2^{2}=4c^{2}$（即 $\frac1{e_1^{2}}+\frac3{e_2^{2}}=4$）；柯西 $\left(\frac1{e_1}+\frac{\sqrt3}{e_2}\right)^{2}\le2\left(\frac1{e_1^{2}}+\frac3{e_2^{2}}\right)=8$ ⟹ 最大值 $2\sqrt2$，取等 $e_2=\sqrt3e_1$。⚠ 题干的 $\frac{\sqrt3}{e_2}$ 极易被提取成 $\frac3{e_2}$（按后者最大值应为 $4$，与选项不符） |
+| 变式 V3 | ⭐⭐ $\angle=\frac{2\pi}3$ 型恒等式 $3a_1^{2}+a_2^{2}=4c^{2}$（**系数 $3$ 换到 $a_1$ 上**，因 $\cos\frac{2\pi}3=-\frac12$ 使交叉项变 $+mn$）。求 $e_1e_2$ 范围：令 $t=e_1^{2}\in(\frac34,1)$，$u^{2}=\frac{t^{2}}{4t-3}$ 关于 $t$ **严格递减** ⟹ $u\in(1,+\infty)$ |
 
 #### M-T-327 · 第一定义及其应用
 
