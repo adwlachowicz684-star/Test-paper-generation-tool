@@ -52,6 +52,14 @@ lfloor rfloor lceil rceil
 langle rangle lvert rvert lVert rVert
 %  , ; ! :
 mid nmid leqslant geqslant subsetneq supsetneq subseteq supseteq complement setminus varnothing emptyset cup cap bigcup bigcap geqslant leqslant nleq ngeq perp parallel angle measuredangle triangle square diamond star bullet circ star ast dagger ell wp Re Im aleph top bot vdash models bmod pmod mod binom dbinom overrightarrow overleftarrow overleftrightarrow underrightarrow xrightarrow xleftarrow lbrace rbrace notagnonumber tag mathop mathbin mathrel mathopen mathclose mathpunct limits noalign arraystretch
+% 2026-09 补：全库扫描后确认的合法命令（原白名单漏收，造成 2000+ 误报）
+therefore because iff implies impliedby Longleftrightarrow Longleftarrow Longrightarrow
+longrightarrow longleftarrow leftrightarrow bigl bigr biggl biggr Bigl Bigr Biggl Biggr bigm Bigm
+underbrace overbrace vphantom phantom boxed
+frown backsim searrow nearrow swarrow nwarrow lnot neg land lor dots ddotsb
+rm bf it sf tt boldsymbol triangleq odot oplus ominus oslash circledast
+nRightarrow nLeftarrow nleftrightarrow surj inj
+shortmid shortparallel nshortparallel nparallel smallsmile smallfrown
 '''.split())
 
 # 一元参数命令（必须紧跟参数）
@@ -143,9 +151,19 @@ def check_formula(fml):
     if d > 0:
         issues.append(('{ 未闭合', '%d 个' % d, ''))
 
-    # E. 公式内中文（$ 未闭合吞正文的典型症状）
-    if CJK_IN_MATH.search(fml) and len(fml) > 60:
-        issues.append(('公式内含中文(疑 $ 未闭合)', fml[:40], ''))
+    # E. 公式内中文 —— 分两级：
+    #    【严重】连续 >=2 个汉字 ⇒ 几乎一定是 $ 未闭合把正文吞进了公式，
+    #            渲染时中文会挤成一行、丢换行，学生看到的是乱码段。
+    #    【轻微】只有全角标点或单个汉字（如 $V_{球}$）⇒ 风格问题，不影响阅读。
+    #    注：\text{...} / \mbox{...} 内放中文是合法用法（表头、单位、说明），先剥掉。
+    stripped = re.sub(r'\\[a-zA-Z]*text\s*\{[^{}]*\}', '', fml)
+    stripped = re.sub(r'\\mbox\s*\{[^{}]*\}', '', stripped)
+    stripped = re.sub(r'\\(?:mathrm|mathbf|operatorname)\s*\{[^{}]*\}', '', stripped)
+    if len(fml) > 60:
+        if re.search(r'[\u4e00-\u9fff]{2,}', stripped):
+            issues.append(('【严重】公式吞正文(疑 $ 未闭合)', fml[:50], ''))
+        elif CJK_IN_MATH.search(stripped):
+            issues.append(('【轻微】公式内含中文标点/单字', fml[:50], ''))
 
     return issues
 
