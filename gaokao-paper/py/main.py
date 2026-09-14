@@ -72,24 +72,15 @@ DEFAULT_CONFIG = {
     "mix_wrong_pct": 30,
     # 每日新题上限，避免一次灌太多
     "daily_new_cap": 20,
-    # 年级列表（可在设置页增删改名/隐藏）
-    # 结构见 grade_map.default_grades()：
-    #   id 是稳定标识，改名不影响题目归属；hidden 只是不显示，数据仍在。
-    # 默认值不能写死在这里 —— load_config 会用 grade_map.default_grades() 兜底，
-    # 否则 DEFAULT_CONFIG 会被当成"用户配置"写回文件，日后改默认值不生效。
-    "grades": None,
 }
 
 
 def load_config():
-    import grade_map as _GL
     try:
         with open(CONFIG, encoding='utf-8') as f:
             c = json.load(f)
     except Exception:
-        out = dict(DEFAULT_CONFIG)
-        out['grades'] = _GL.default_grades()
-        return out
+        return dict(DEFAULT_CONFIG)
     # 缺字段用默认补齐（旧版本配置文件也能用）
     out = dict(DEFAULT_CONFIG)
     for k, v in (c or {}).items():
@@ -97,9 +88,6 @@ def load_config():
             out['ladder'] = {str(kk): int(vv) for kk, vv in (v or {}).items()}
         else:
             out[k] = v
-    # grades 为空（旧配置文件没有这个字段）→ 用内置默认值
-    if not out.get('grades'):
-        out['grades'] = _GL.default_grades()
     return out
 
 
@@ -258,10 +246,6 @@ def save_progress(p):
 SUBJ = {'M': '数学', 'P': '物理', 'C': '化学',
         'B': '生物', 'Y': '语文', 'E': '英语'}
 
-# 题目只标了大知识点、没有小知识点时的兜底分组名。
-# 用它占位而不是丢掉，保证「大知识点题数 = 其下小知识点题数之和」。
-UNSPLIT = '（未细分）'
-
 
 def _save_bank(bank):
     """写回题库（原子写 + 备份）。
@@ -362,12 +346,6 @@ def enrich(qs):
     totals = defaultdict(int)
     for q in qs:
         totals[(q['id'][0], q.get('year'))] += 1
-
-    # 年级配置**只在这里读一次**。
-    # grade_of_question() 内部会 load_grades()（读文件），
-    # 放在逐题循环里 = 463 次磁盘读，实测拖慢到好几秒。
-    import grade_map as _GE
-    _grades = _GE.load_grades()
     for q in qs:
         pre = q['id'][0]
         # 科目：**显式字段优先**，没有才从 ID 前缀推断。
@@ -416,11 +394,6 @@ def enrich(qs):
             {'id': t, 'label': _K.topic_label(t)}
             for t in (q.get('topics') or []) if _K.topic_node(t)
         ]
-        # 年级：**派生**字段，不写回题库。
-        # 题目自带 grade 的以自带为准（人工校订过最可信），
-        # 其余按知识点映射推断 —— 见 grade_map.py 的设计说明。
-        # 必须在 kp_list / kp2 都归完之后才算，否则映射查不到。
-        q['grade'] = _GE.grade_of_question(q, _grades)
     # 双向索引：题型 → 题目，每次从题目上的标签重建。
     # 只存单向（题目→题型）避免双写不一致。
     _K.rebuild_qindex(qs)
@@ -457,7 +430,6 @@ def cmd_list(a):
 def cmd_stats(a):
     from collections import Counter, defaultdict
     import kp_catalog as K
-    import grade_map as _G0
     qs = enrich(load_bank())
     c_sub = Counter(q.get('subject') for q in qs)
     c_type = Counter(q.get('type') for q in qs)
@@ -472,92 +444,12 @@ def cmd_stats(a):
         for k in q.get('kp_list', []):
             by_kp[sub][k] += 1
 
-    # 三级展开：大知识点 → 小知识点 → 题型。
-    #
-    # 光有 by_kp 不够：它只到一级，且值是 [[名, 题数], ...] 数组，
-    # 前端若按 {名: 题数} 渲染，整个数组会被当字符串塞进一个单元格，
-    # 一科的知识点全挤成一行（统计页就是这么坏的）。
-    # 所以这里直接把三级树算好，前端照着铺行即可。
-    #
-    # 归属以**题型节点的主归属为准**（topic.primary = (一级, 二级)），
-    # 没挂题型的题才退回用 q['kp'] / q['kp2']，避免同一题在两级上错位。
-    pair = defaultdict(Counter)     # (科目, 一级) -> Counter(二级)
-    trio = defaultdict(Counter)     # (科目, 一级, 二级) -> Counter(题型ID)
-    for q in qs:
-        sub = q.get('subject') or ''
-        tops = [t for t in (q.get('topics') or []) if K.topic_node(t)]
-        seen = set()
-        if tops:
-            for tid in tops:
-                l1, l2 = K.topic_node(tid)['primary']
-                if (l1, l2) not in seen:
-                    pair[(sub, l1)][l2] += 1
-                    seen.add((l1, l2))
-                trio[(sub, l1, l2)][tid] += 1
-        else:
-            l2 = (q.get('kp2') or '').strip() or UNSPLIT
-            for l1 in (q.get('kp_list') or []):
-                if (l1, l2) in seen:
-                    continue
-                seen.add((l1, l2))
-                pair[(sub, l1)][l2] += 1
-
-    kp_tree = {}
-    for sub, c1 in by_kp.items():
-        kids_of = []
-        for l1, n1 in c1.most_common():
-            l2s = []
-            for l2, n2 in pair[(sub, l1)].most_common():
-                l2s.append({
-                    'name': l2, 'n': n2,
-                    # 只用 nd['name']：topic_label() 会拼成
-                    # 「一级 / 二级 · 题型」，而这里一二级已经是独立列了，
-                    # 再拼一遍每行都会重复拖得很长。
-                    'topics': [{'id': tid,
-                                'name': (K.topic_node(tid) or {}).get('name', tid),
-                                'n': n}
-                               for tid, n in trio[(sub, l1, l2)].most_common()],
-                })
-            kids_of.append({'name': l1, 'n': n1, 'children': l2s})
-        kp_tree[sub] = kids_of
-
-    # 年级：派生字段（见 grade_map.py）。
-    # by_grade 统计**全部**年级（含隐藏的），由前端按配置决定显示哪些 ——
-    # 后端只管给全，显示策略属于界面层。
-    c_gd = Counter(q.get('grade') or _G0.UNKNOWN for q in qs)
-    # 年级 × 科目：只看单科统计时全局数字会误导
-    # （数学的高一题数 ≠ 整个题库的高一题数）。
-    grade_by_sub = defaultdict(Counter)
-    for q in qs:
-        grade_by_sub[q.get('subject') or ''][q.get('grade') or _G0.UNKNOWN] += 1
-    _gc = _G0.load_grades()
-
-    # 考试类型题数（含「未标注」）。
-    # 前端据此给每个选项标数字：现在题库全未标注，
-    # 不显示题数的话用户勾了「月考」会得到空卷，还以为功能坏了。
-    import exam_types as _E2
-    c_exam = Counter()
-    for q in qs:
-        es = _E2.of_question(q)
-        if not es:
-            c_exam[_E2.UNLABELED] += 1
-        for e in es:
-            c_exam[e] += 1
-
     return _out({
         'ok': True, 'total': len(qs),
         'by_subject': dict(c_sub),
         'by_type': dict(c_type),
         'by_level': dict(c_lv),
-        'by_grade': dict(c_gd),
-        'by_grade_sub': {s: dict(c) for s, c in grade_by_sub.items()},
-        'grades': _G0.ordered(_gc),      # 含 hidden 标记，前端据此过滤
-        'grade_unknown': _G0.UNKNOWN,
-        'by_exam': dict(c_exam),
-        'exams': _E2.EXAMS,
-        'exam_unlabeled': _E2.UNLABELED,
         'by_kp': {s: c.most_common() for s, c in by_kp.items()},
-        'kp_tree': kp_tree,
         'subjects': K.SUBJECTS,
     })
 
@@ -569,20 +461,6 @@ def cmd_kp_catalog(a):
     选物理只出现物理的 16 个，不会杂糅。
     """
     import kp_catalog as K
-    # 题型挂题数（n_qs）来自**运行时反建**的索引 TOPICS[tid]['questions']。
-    #
-    # 这个进程若还没加载过题库，索引就是空的 —— n_qs 会全部返回 0。
-    # 前端据此把题型灰显、禁止勾选（没挂题的题型勾了只会组出空卷），
-    # 于是题型筛选整块失效，460 个题型一个都点不动，还不报错。
-    # 所以出目录前必须先加载题库重建索引。
-    try:
-        K.rebuild_qindex(enrich(load_bank()))
-    except Exception as _e:
-        # 题库打不开不该让目录整个挂掉：没有题数只是显示灰，目录本身还能用
-        try:
-            sys.stderr.write('[kp-catalog] 题库索引重建失败：%s\n' % _e)
-        except Exception:
-            pass
     sub = getattr(a, 'subject', None)
     if sub and sub in K.CATALOG:
         return _out({'ok': True, 'subject': sub,
@@ -591,15 +469,12 @@ def cmd_kp_catalog(a):
                  'catalog': K.catalog_for_frontend()})
 
 
-def filter_questions(cfg):
-    """按**完整条件**筛题 —— compose 与预览共用。
+def cmd_compose(a):
+    """按条件组卷
 
-    抽出来是为了让「预览」和「正式组卷」走同一套筛选逻辑。
-    早先预览只按题型取题，忽略了难度 / 年级 / 考试类型，
-    用户调完难度后，预览显示的题跟实际会抽的题不是同一批 ——
-    预览说有 269 题，点生成却只出 3 题，而且看不出原因。
-    两处各写一遍筛选迟早会再走偏，所以只留这一份。
+    支持：科目、题型、知识点、难度区间、题数、排除已练
     """
+    cfg = json.loads(a.config) if a.config else {}
     qs = enrich(load_bank())
     prog = load_progress()
 
@@ -621,52 +496,6 @@ def filter_questions(cfg):
                      or k == q.get('kp')
                      or k == q.get('kp2')
                      for k in kps)]
-
-    # 二级知识点（小知识点）：与一级是 **AND** —— 先圈大块，再收窄到小块。
-    #
-    # 不能塞进上面的 kps：那里是 OR，选「函数与导数 + 导数含参讨论」
-    # 会被展开成「属于函数与导数 **或** 属于导数含参讨论」= 整个大块，
-    # 收窄失效，用户以为选了小块、出卷却是大块的题。
-    kp2s = set(x for x in (cfg.get('kp2') or []) if x)
-    if kp2s:
-        import kp_catalog as _K2
-        def _l2_of(q):
-            # kp2 字段是主来源；没写的（或只挂了题型标签的）
-            # 再按题型节点的主归属回查，避免漏题。
-            out = set()
-            v = (q.get('kp2') or '').strip()
-            if v:
-                out.add(v)
-            for tid in (q.get('topics') or []):
-                nd = _K2.topic_node(tid)
-                if nd:
-                    out.add(nd['primary'][1])
-            return out
-        qs = [q for q in qs if _l2_of(q) & kp2s]
-
-    # 年级：派生字段，多选取「命中任一」。
-    # 与知识点是 AND —— 「高一 且 在函数与导数里」。
-    #
-    # 「未标注」要能显式筛出来：题库里凡是映射没覆盖到的题都是这个值，
-    # 不让它可选的话，这批题在所有年级筛选下都消失，
-    # 用户只会觉得「题少了」，看不出是筛掉了。
-    grs = [x for x in (cfg.get('grades') or []) if x]
-    if grs:
-        import grade_map as _G3
-        qs = [q for q in qs
-              if (q.get('grade') or _G3.UNKNOWN) in grs]
-
-    # 考试类型：多值标签，命中任一即可。与知识点是 AND。
-    #
-    # 空列表 = 不限（界面上的「全部」），不是「筛掉所有题」。
-    # 这个区分很要命：当成"要筛"的话，勾了全部反而一道题都出不来。
-    exs = [x for x in (cfg.get('exams') or []) if x]
-    if exs:
-        import exam_types as _E
-        want = set(y for y in (_E.norm(x) for x in exs) if y)
-        qs = [q for q in qs
-              if set(_E.of_question(q)) & want]
-
     # 题型标签：多对多，命中任一即可。
     # 与知识点筛选是 AND 关系 —— 「三角函数里、且属于『面积最值』题型的题」。
     tps = cfg.get('topics') or []
@@ -678,18 +507,6 @@ def filter_questions(cfg):
 
     if cfg.get('exclude_done'):
         qs = [q for q in qs if not prog.get(q['id'], {}).get('done')]
-
-    return qs
-
-
-def cmd_compose(a):
-    """按条件组卷
-
-    支持：科目、题型、知识点、难度区间、题数、排除已练
-    """
-    cfg = json.loads(a.config) if a.config else {}
-    qs = filter_questions(cfg)
-    prog = load_progress()
 
     count = cfg.get('count', 10)
     seed = cfg.get('seed')
@@ -709,12 +526,8 @@ def cmd_compose(a):
     order = {'选择': 0, '填空': 1, '解答': 2}
     picked.sort(key=lambda q: (order.get(q.get('type'), 3),
                                q.get('year', ''), q.get('num', 0)))
-    # 卷头用途由勾中的类型推出（只勾一个=它，多个/零个=综合练习）。
-    # 放在后端算而不是前端拼：规则只有一处，改了不会两边不一致。
-    import exam_types as _EU
     return _out({'ok': True, 'count': len(picked),
-                 'candidates': len(qs), 'items': picked,
-                 'paper_use': _EU.use_of(cfg.get('exams'))})
+                 'candidates': len(qs), 'items': picked})
 
 
 def cmd_compose_ref(a):
@@ -1206,128 +1019,6 @@ def cmd_question_topics(a):
                             if K.topic_node(t)]})
 
 
-def cmd_preview_questions(a):
-    """取**完整条件下**的全部候选题（组卷前的中间栏预览）
-
-    与 compose 的区别：
-      compose —— 按配比抽 count 道，带卷头
-      本命令  —— 全量列出候选题，不抽题、不洗牌（只按 limit 截断）
-
-    共用 filter_questions()，条件与正式卷永远一致。
-
-    注意：空条件一律是「不限」而非「不选」，
-    所以「小知识点和题型都没勾」时这里返回**整块**的题 ——
-    与点「生成试卷」的结果一致，不会出现预览空、生成却不空。
-    """
-    cfg = json.loads(a.config) if a.config else {}
-    qs = filter_questions(cfg)
-
-    # 与正式卷同样的排序，避免"预览里看着是一道道排好的，生成后顺序变了"
-    order = {'选择': 0, '填空': 1, '解答': 2}
-    qs.sort(key=lambda q: (order.get(q.get('type'), 3),
-                           q.get('year', ''), q.get('num', 0)))
-    total = len(qs)
-    lim = int(a.limit or 200)
-    return _out({'ok': True, 'items': qs[:lim], 'total': total,
-                 'count': min(lim, total)})
-
-
-def cmd_exam_tag(a):
-    """批量设置题目的考试类型
-
-    --ids     逗号分隔的题目 ID（必填）
-    --exams   逗号分隔的类型（必填；空串 = 清空该题的考试类型）
-    --mode    replace（默认，覆盖）/ add（追加）/ remove（移除）
-
-    为什么需要 add/remove 而不只是 replace：
-    一道题常常同时适合多个场合（既可用于单元测试、也可用于月考）。
-    只有 replace 的话，第二次标注会把第一次的覆盖掉 ——
-    用户得记住上次标了什么，或者反复全量重标。
-    """
-    import exam_types as E
-    ids = [x.strip() for x in (a.ids or '').split(',') if x.strip()]
-    if not ids:
-        return _fail('缺少 --ids')
-
-    want = []
-    for x in (a.exams or '').split(','):
-        e = E.norm(x)
-        if e and e not in want:
-            want.append(e)
-    bad = [x.strip() for x in (a.exams or '').split(',')
-           if x.strip() and not E.norm(x)]
-    if bad:
-        return _fail('未知考试类型: %s（可选：%s）' % (bad, '、'.join(E.EXAMS)))
-
-    mode = a.mode or 'replace'
-    if mode not in ('replace', 'add', 'remove'):
-        return _fail('mode 只能是 replace / add / remove')
-
-    bank = load_bank()
-    by_id = {q.get('id'): q for q in bank}
-    missing = [i for i in ids if i not in by_id]
-    if missing:
-        return _fail('找不到题目: %s' % missing[:5])
-
-    for i in ids:
-        q = by_id[i]
-        cur = E.of_question(q)
-        if mode == 'replace':
-            nxt = list(want)
-        elif mode == 'add':
-            nxt = [x for x in cur if x not in want] + want
-        else:                       # remove
-            nxt = [x for x in cur if x not in want]
-        # 只认枚举值，且按 EXAMS 顺序排 ——
-        # 存成乱序的话，同一批题在不同地方显示顺序不一致，像脏数据。
-        q['exams'] = [x for x in E.EXAMS if x in nxt] if nxt else []
-
-    _save_bank(bank)
-    return _out({'ok': True, 'updated': len(ids), 'exams': want,
-                 'mode': mode})
-
-
-def cmd_topic_questions(a):
-    """取**勾选中的题型**下的全部题目（组卷前预览用）
-
-    与 compose 的区别：
-      compose —— 抽题（按配比、随机、限题数）
-      本命令 —— 全量列出，不抽不洗牌，用于「先看看选中了什么」
-
-    --topics   逗号分隔的题型 ID（必填）
-    --subject  科目（可选）
-    --limit    上限，默认 200。超过就截断并回传 total，
-               前端据此提示「还有 N 道未显示」，
-               否则一次塞上千道题会卡死页面。
-    """
-    import kp_catalog as K
-    tids = [x.strip() for x in (a.topics or '').split(',') if x.strip()]
-    if not tids:
-        return _out({'ok': True, 'items': [], 'total': 0, 'count': 0})
-
-    bank = enrich(load_bank())     # enrich 内会重建题型→题目反索引
-    if a.subject:
-        bank = [q for q in bank if q.get('subject') == a.subject]
-
-    want = set(tids)
-    hit = [q for q in bank
-           if any(t in want for t in (q.get('topics') or []))]
-
-    # 与试卷同样的排序：选择 → 填空 → 解答，再按年份题号。
-    # 预览和正式卷顺序不一致的话，生成后会觉得"题目跳来跳去"。
-    order = {'选择': 0, '填空': 1, '解答': 2}
-    hit.sort(key=lambda q: (order.get(q.get('type'), 3),
-                            q.get('year', ''), q.get('num', 0)))
-
-    total = len(hit)
-    lim = int(a.limit or 200)
-    items = hit[:lim]
-    return _out({'ok': True, 'items': items, 'total': total,
-                 'count': len(items),
-                 'topics': [{'id': t, 'label': K.topic_label(t)}
-                            for t in tids if K.topic_node(t)]})
-
-
 def cmd_batch_list(a):
     """列出所有批次及其题数（题数实时统计）"""
     return _out({'ok': True, 'items': batch_stats(),
@@ -1487,70 +1178,9 @@ def _ladder():
 
 
 def cmd_get_config(a):
-    """读复习参数（含默认值说明，供设置页渲染）
-
-    defaults.grades 要返回**真实的内置年级表**，不能是 DEFAULT_CONFIG 里的
-    None —— 设置页的「恢复默认年级」就是拿它当模板重建列表的。
-    """
-    import grade_map as _GD
-    defaults = dict(DEFAULT_CONFIG)
-    defaults['grades'] = _GD.default_grades()
+    """读复习参数（含默认值说明，供设置页渲染）"""
     return _out({'ok': True, 'config': load_config(),
-                 'defaults': defaults})
-
-
-def _check_grades(grades):
-    """校验年级配置
-
-    只挡真正会出问题的事：
-      - id / 名字为空或重复 → 数据关联会指错对象
-      - 删掉内置年级 → 允许，但那是**不可逆**的（引用它的题会退回「未标注」），
-        所以影响面提示放在前端做（删之前告诉用户有多少题会变），
-        这里不拦，否则想精简年级列表的人永远删不掉。
-    """
-    if grades is None:
-        return []
-    if not isinstance(grades, list):
-        return ['年级配置格式错误']
-    if not grades:
-        return ['年级列表不能为空']
-
-    errs, ids, names = [], set(), set()
-    for x in grades:
-        if not isinstance(x, dict):
-            errs.append('年级项格式错误')
-            continue
-        gid = str(x.get('id') or '').strip()
-        nm = str(x.get('name') or '').strip()
-        if not gid:
-            errs.append('年级缺少标识')
-            continue
-        if gid in ids:
-            errs.append('年级标识重复：%s' % gid)
-        ids.add(gid)
-        if not nm:
-            errs.append('「%s」的名称不能为空' % gid)
-        elif nm in names:
-            errs.append('年级名称重复：%s' % nm)
-        names.add(nm)
-    return errs
-
-
-def cmd_grade_usage(a):
-    """各年级的题数（含隐藏年级，用于设置页显示「删除会影响多少题」）
-
-    必须包含隐藏年级：设置页要管理的正是它们，
-    只统计可见年级的话，删除隐藏年级前看不到影响面。
-    """
-    import grade_map as _GU
-    qs = enrich(load_bank())
-    per = {}
-    for q in qs:
-        g = q.get('grade') or _GU.UNKNOWN
-        per[g] = per.get(g, 0) + 1
-    return _out({'ok': True, 'usage': per,
-                 'grades': _GU.load_grades(),
-                 'unknown': _GU.UNKNOWN})
+                 'defaults': DEFAULT_CONFIG})
 
 
 def cmd_set_config(a):
@@ -1574,14 +1204,6 @@ def cmd_set_config(a):
     for k in DEFAULT_CONFIG:
         if k in cfg:
             merged[k] = cfg[k]
-
-    # grades 必须**保留现有值**，不能用 DEFAULT_CONFIG 里的 None 覆盖。
-    # 设置页保存复习参数时不带 grades，一旦被 None 覆盖并落盘，
-    # 用户自定义的年级（新增/改名/隐藏）就全没了 ——
-    # 而且发生在「我只是改了下配比」这种毫不相关的操作之后，极难排查。
-    if 'grades' not in cfg:
-        merged['grades'] = load_config().get('grades')
-
     cfg = merged
 
     errs = []
@@ -1605,8 +1227,6 @@ def cmd_set_config(a):
 
     if int(cfg.get('max_level', 0) or 0) < 1:
         errs.append('等级上限必须 >= 1')
-
-    errs.extend(_check_grades(cfg.get('grades')))
 
     if errs:
         return _fail('；'.join(errs))
@@ -1775,23 +1395,6 @@ def main():
     p.add_argument('--qid', required=True)
     p.set_defaults(fn=cmd_question_topics)
 
-    p = sub.add_parser('preview-questions')
-    p.add_argument('--config', default='')
-    p.add_argument('--limit', type=int, default=200)
-    p.set_defaults(fn=cmd_preview_questions)
-
-    p = sub.add_parser('exam-tag')
-    p.add_argument('--ids', default='')
-    p.add_argument('--exams', default='')
-    p.add_argument('--mode', default='replace')
-    p.set_defaults(fn=cmd_exam_tag)
-
-    p = sub.add_parser('topic-questions')
-    p.add_argument('--topics', default='')
-    p.add_argument('--subject', default=None)
-    p.add_argument('--limit', type=int, default=200)
-    p.set_defaults(fn=cmd_topic_questions)
-
     p = sub.add_parser('kp-notes')
     p.add_argument('--subject'); p.add_argument('--l1')
     p.add_argument('--l2'); p.add_argument('--topic')
@@ -1826,9 +1429,6 @@ def main():
 
     p = sub.add_parser('get-config')
     p.set_defaults(fn=cmd_get_config)
-
-    p = sub.add_parser('grade-usage')
-    p.set_defaults(fn=cmd_grade_usage)
 
     p = sub.add_parser('set-config')
     p.add_argument('--config', required=True)

@@ -75,7 +75,6 @@ nav a .badge {
   border-top: 1px solid rgba(255, 255, 255, .1);
 }
 
-#content { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
 main { flex: 1; overflow-y: auto; padding: 22px 26px 60px; }
 .view { display: none; max-width: 1080px; margin: 0 auto; }
 .view.active { display: block; }
@@ -249,10 +248,6 @@ table.grid tr:hover td { background: #fafbfd; }
 
 @media print {
   #sidebar, .no-print { display: none !important; }
-  /* 左右两栏是选卷时的工具，不该印在试卷上 */
-  .cz3-left, .cz3-right { display: none !important; }
-  .cz3 { display: block; }
-  .cz-filter { display: none !important; }
   main { padding: 0; overflow: visible; }
   .paper-wrap { border: 0; box-shadow: none; padding: 0; margin: 0; }
   .opt.pick.sel, .opt.pick.right, .opt.pick.wrong { background: transparent; }
@@ -327,63 +322,7 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 .muted { color: #8a94a6; }
 .muted.sm, .sm.muted { font-size: 11px; }
 
-/* ---- 组卷页：上「筛选条件」整条 + 下「三栏」 ----
-   左 小知识点与题型 / 中 试卷 / 右 知识点讲解。
-
-   小知识点与题型单挂一栏后不再套内部滚动框：
-   21 个小知识点、138 个题型塞在 300px 小框里滚，
-   看不到全貌、也记不住滚到哪了。整栏铺开跟页面滚更直观。 */
-.cz-filter { margin-bottom: 14px; }
-.cz3 { display: flex; gap: 16px; align-items: flex-start; }
-.cz3-left {
-  flex: 0 0 320px; max-width: 30%;
-  /* 不套滚动框：整栏自然铺开，跟着页面滚。
-     加了 max-height + overflow 就又变回「在小框里翻」，
-     正是用户说的不直观。 */
-}
-.cz3-mid { flex: 1 1 auto; min-width: 0; }
-.cz3-right {
-  flex: 0 0 330px; max-width: 26%;
-  position: sticky; top: 0;
-}
-.cz3-card { padding: 0; overflow: hidden; }
-.card-h {
-  padding: 10px 14px; border-bottom: 1px solid #eef1f6;
-  font-size: 13px; font-weight: 600; color: #2c3e50;
-  background: #fbfcfe;
-}
-.kp-note-card { padding: 0; overflow: hidden; }
-.kp-note-card .kp-note-body {
-  max-height: calc(100vh - 160px);
-}
-
-/* 大知识点排头的「全部」按钮。
-   与小知识点那排的「全部」同语义，视觉上也用同一套 chip 样式，
-   只加深底色区分它是操作项而不是一个知识点。 */
-.chip.kp-all {
-  background: #eef3fa; border-color: #c9daf0; color: var(--brand);
-  font-weight: 600;
-}
-.chip.kp-all.on { background: var(--brand2); border-color: var(--brand2); color: #fff; }
-/* 全不选时提示：空条件 = 不限，不是「组不出题」 */
-.kp-tip2 {
-  font-size: 11px; color: #a6791f; background: #fff8e6;
-  border: 1px solid #ffe0a3; border-radius: 10px;
-  padding: 2px 9px; margin-left: 2px;
-}
-
-/* 大知识点上的取消按钮。
-   点 chip 本体 = 切焦点，取消只走这个 × —— 两个动作分开，
-   避免「想回去看看这块，一点就把它取消了」。 */
-.kp-x {
-  display: inline-block; margin-left: 5px; padding: 0 2px;
-  font-style: normal; font-size: 13px; line-height: 1;
-  color: rgba(255, 255, 255, .75); cursor: pointer;
-  border-radius: 3px; vertical-align: 1px;
-}
-.kp-x:hover { color: #fff; background: rgba(255, 255, 255, .25); }
-
-/* ---- 知识点讲解 ---- */
+/* ---- 知识点讲解：组卷页右侧面板 ---- */
 .kp-layout { display: flex; gap: 14px; align-items: flex-start; }
 .kp-left { flex: 1 1 auto; min-width: 0; }
 .kp-right {
@@ -394,10 +333,10 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 }
 .kp-note-h {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 14px; border-bottom: 1px solid #eef1f6;
+  padding: 8px 12px; border-bottom: 1px solid #eef1f6;
   font-size: 13px; font-weight: 600; color: #2c3e50;
 }
-.kp-note-body { padding: 12px 14px; overflow-y: auto; font-size: 13px; }
+.kp-note-body { padding: 10px 12px; overflow-y: auto; font-size: 13px; }
 .kp-note-t {
   font-size: 14px; font-weight: 600; color: #2c3e50;
   margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #e2e8f0;
@@ -424,62 +363,6 @@ button.sm { font-size: 12px; padding: 3px 9px; }
 @media (max-width: 900px) {
   .kp-layout { flex-direction: column; }
   .kp-right { flex: 1 1 auto; max-width: 100%; width: 100%; }
-  /* 窄屏改成上下堆叠：并排会把试卷压得只剩一条缝 */
-  .cz3 { flex-direction: column; }
-  .cz3-left, .cz3-mid, .cz3-right {
-    flex: 1 1 auto; max-width: 100%; width: 100%;
-    position: static; max-height: none;
-  }
-  .kp-note-card .kp-note-body { max-height: 380px; }
-}
-
-/* ---- 知识点三列联动（大知识点 / 小知识点 / 题型）----
-   三列并列，点左边决定右边显示什么；三列都能勾选、都能参与组卷。 */
-.kp-hint { font-size: 11px; color: #9aa8bd; line-height: 1.6; }
-.kp-cols {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 8px; align-items: start;
-}
-.kp-col {
-  border: 1px solid #e3e6ec; border-radius: 8px;
-  background: #fbfcfe; min-width: 0; overflow: hidden;
-}
-.kp-col-h {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 6px; padding: 5px 9px; font-size: 12px; font-weight: 600;
-  color: #2c3e50; background: #f4f7fb; border-bottom: 1px solid #e3e6ec;
-}
-.kp-col-tip {
-  font-weight: 400; font-size: 10px; color: #9aa8bd;
-  max-width: 60%; overflow: hidden; text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.kp-col-b { padding: 7px 8px; max-height: 210px; overflow-y: auto; }
-.kp-col-b .chip { display: block; margin: 0 0 4px; border-radius: 5px; }
-.kp-col-b .chip:last-child { margin-bottom: 0; }
-/* 当前焦点（右边两列显示的是它的内容）—— 与「已勾选」区分开 */
-.kp-col-b .chip.cur { border-color: var(--brand2); box-shadow: inset 0 0 0 1px var(--brand2); }
-.kp-col-b .chip.on { background: var(--brand2); border-color: var(--brand2); color: #fff; }
-.kp-col-b .chip.on .n { opacity: .8; color: #fff; }
-.kp-empty { font-size: 11px; color: #9aa8bd; }
-.kp-gh {
-  font-size: 11px; font-weight: 600; color: #2b6cb0;
-  padding: 3px 0 2px; border-bottom: 1px dashed #dde3ec; margin-bottom: 4px;
-}
-.kp-gh:first-child { padding-top: 0; }
-.kp-gg { margin-bottom: 7px; }
-/* 题型列：没挂题的灰显但仍可点（讲解对全部题型都有意义） */
-.kp-col-b .chip.tk { color: #6b7a8f; }
-.kp-col-b .chip.tk.has { color: #34506e; }
-.kp-col-b .chip.tk i { font-style: normal; color: #9aa8bd; font-size: 11px; }
-.kp-col-b .chip.tk b {
-  font-weight: 400; font-size: 10px; color: #2b8a6c;
-  background: #e6f5ef; border-radius: 3px; padding: 0 4px; margin-left: 3px;
-}
-.kp-col-b .chip.tk.on b { background: rgba(255,255,255,.25); color: #fff; }
-@media (max-width: 1100px) {
-  .kp-cols { grid-template-columns: 1fr; }
-  .kp-col-b { max-height: 150px; }
 }
 
 /* ---- 讲解面板：典例 / 变式 ---- */
@@ -516,255 +399,4 @@ button.sm { font-size: 12px; padding: 3px 9px; }
   display: inline-block; text-decoration: none; font-size: 11px;
   color: #fff; background: #9aa8bd; border-radius: 3px;
   padding: 0 6px; margin-right: 6px;
-}
-
-/* ---------- 统计页：知识点三级明细表 ----------
-   大/小知识点/题型各占一行，靠缩进和字号区分层级，
-   不再把所有知识点拼进一个单元格。 */
-.kp-table td { vertical-align: middle; }
-.kp-cell { white-space: normal; word-break: break-word; }
-.kp-l1 { font-weight: 600; color: #1f2d3d; }
-.kp-l2 { padding-left: 28px !important; color: #3d4a5c; }
-.kp-l3 { padding-left: 52px !important; color: #5a6472; font-size: 12px; }
-.kp-tg {
-  display: inline-block; width: 14px; cursor: pointer;
-  color: var(--brand2); user-select: none;
-}
-.kp-meta { font-weight: 400; font-size: 11px; color: #9aa8bd; margin-left: 8px; }
-
-/* ---- 启动验证提示条 ----
-   挂在内容区顶部、不随页面切换消失：环境问题要一直看得见，
-   否则用户切两页就忘了，回头只会觉得功能不好用。 */
-.boot-banner {
-  flex: none; margin: 14px 26px 0; padding: 10px 14px;
-  border-radius: var(--radius); font-size: 13px;
-  border: 1px solid #e8d5a8; background: #fdf8ec; color: #6b5316;
-}
-.boot-banner.err { border-color: #e8b4a8; background: #fdf3f1; color: #8a2c20; }
-.boot-banner .bb-h {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 6px;
-}
-.boot-banner .bb-h b { font-size: 13px; }
-.boot-banner .bb-x {
-  border: 0; background: transparent; cursor: pointer;
-  font-size: 16px; line-height: 1; padding: 0 4px; color: inherit; opacity: .6;
-}
-.boot-banner .bb-x:hover { opacity: 1; }
-.boot-banner .bb-i { padding: 5px 0; border-top: 1px dashed rgba(0, 0, 0, .1); }
-.boot-banner .bb-i:first-child { border-top: 0; }
-.boot-banner .bb-t { font-weight: 600; }
-.boot-banner .bb-lv {
-  font-weight: 400; font-size: 11px; margin-left: 6px;
-  border-radius: 8px; padding: 1px 7px;
-  background: rgba(0, 0, 0, .07); color: inherit;
-}
-.boot-banner .bb-d { color: #5a6472; margin-top: 2px; line-height: 1.6; }
-.boot-banner .bb-f {
-  margin-top: 3px; font-size: 12px; color: #2e75b6;
-  font-family: ui-monospace, Menlo, Consolas, monospace;
-}
-
-/* ---- 单实例遮罩 ---- */
-#instance-mask {
-  position: fixed; inset: 0; z-index: 999;
-  background: rgba(244, 246, 249, .96);
-  display: flex; align-items: center; justify-content: center;
-}
-#instance-mask .mask-card {
-  max-width: 460px; padding: 24px 26px; text-align: left;
-  background: #fff; border: 1px solid var(--line);
-  border-radius: 10px; box-shadow: var(--shadow);
-}
-#instance-mask h3 { margin: 0 0 10px; font-size: 17px; color: var(--brand); }
-#instance-mask p { margin: 0 0 10px; font-size: 13px; color: var(--ink2); line-height: 1.7; }
-#instance-mask .mask-why {
-  background: #fdf8ec; border: 1px solid #e8d5a8; border-radius: 6px;
-  padding: 8px 11px; color: #6b5316;
-}
-#instance-mask .mask-tip { font-size: 12px; color: #9aa8bd; margin: 10px 0 0; }
-#instance-mask .row { margin-top: 4px; }
-
-/* ---- 统计页：批量层级按钮 ---- */
-.kp-tools {
-  display: flex; align-items: center; gap: 6px;
-  flex-wrap: wrap; margin: 0 0 10px;
-}
-.kp-tools-t { font-size: 12px; color: #5a6472; }
-.kp-lv {
-  font-size: 12px; padding: 3px 11px; cursor: pointer;
-  border: 1px solid var(--line); border-radius: 14px;
-  background: #fff; color: var(--ink2);
-}
-.kp-lv:hover:not(:disabled) { border-color: var(--brand2); color: var(--brand2); }
-.kp-lv.on {
-  background: var(--brand2); border-color: var(--brand2);
-  color: #fff; font-weight: 600;
-}
-.kp-lv:disabled { opacity: .4; cursor: not-allowed; }
-.kp-cnt { font-size: 11px; color: #9aa8bd; margin-left: auto; }
-
-/* ---- 设置页：年级管理 ---- */
-.gm { margin-top: 8px; border: 1px solid var(--line); border-radius: 6px; }
-.gm-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 6px 10px; border-top: 1px solid #eef1f6;
-}
-.gm-row:first-child { border-top: 0; }
-.gm-row.off { background: #fafbfc; }
-.gm-row.off .gm-name { color: #9aa8bd; text-decoration: line-through; }
-.gm-name {
-  width: 150px; flex: none; font-size: 13px;
-  border: 1px solid transparent; border-radius: 4px;
-  padding: 3px 6px; background: transparent; color: var(--ink);
-}
-.gm-name:hover { border-color: var(--line); }
-.gm-name:focus { border-color: var(--brand2); background: #fff; outline: none; }
-.gm-seg {
-  font-size: 11px; color: #5a6472; background: #eef1f6;
-  border-radius: 8px; padding: 1px 8px;
-}
-.gm-n {
-  min-width: 42px; text-align: right; font-size: 12px;
-  color: #5a6472; font-variant-numeric: tabular-nums;
-}
-.gm-n::after { content: ' 题'; font-size: 11px; color: #9aa8bd; }
-.gm-n.zero { opacity: .45; }
-.gm-hide {
-  margin-left: auto; font-size: 12px; color: var(--ink2);
-  display: flex; align-items: center; gap: 4px; cursor: pointer;
-}
-.gm-del { padding: 2px 8px; }
-
-/* ---- 组卷页：知识点三级树（大知识点 → 小知识点 → 题型） ----
-   缩进表达包含关系，而不是并排三列 ——
-   分三列时「这个题型属于哪个小知识点」只能靠脑补。 */
-.tt-bar {
-  display: flex; align-items: center; gap: 8px;
-  padding: 5px 8px; margin-bottom: 6px;
-  background: #f6f8fb; border: 1px solid var(--line); border-radius: 6px;
-  /* 操作条吸顶：往下翻长列表时，「全部小知识点 / 全部题型」始终可点。
-     只吸这一条、不吸整个左栏 —— 左栏内容比视口高得多，
-     整栏 sticky 就必须配内部滚动条，又变回「在小框里翻」了。 */
-  position: sticky; top: 0; z-index: 5;
-}
-.tt-src { font-size: 13px; font-weight: 600; color: var(--brand); }
-.tt-src i { font-style: normal; font-weight: 400; font-size: 11px; color: #8a97ab; margin-left: 6px; }
-.tt-all {
-  font-size: 12px; padding: 2px 10px; cursor: pointer; user-select: none;
-  border: 1px solid var(--line); border-radius: 12px;
-  background: #fff; color: var(--ink2);
-}
-.tt-all:hover { border-color: var(--brand2); color: var(--brand2); }
-.tt-all.on { background: var(--brand2); border-color: var(--brand2); color: #fff; }
-/* 只勾了一个大知识点、且它的细分条件被清空时提示：
-   空条件 = 不限，不是「不选」，组卷结果跟全选一样。
-   不说明的话用户会以为「什么都没勾 = 不会出题」。 */
-.tt-tip {
-  font-size: 11px; color: #a6791f; background: #fff8e6;
-  border: 1px solid #ffe0a3; border-radius: 10px;
-  padding: 1px 8px; margin-left: auto; white-space: nowrap;
-}
-
-.tt-body { /* 不设高度上限：整栏铺开，跟页面滚，不再嵌套小滚动框 */ }
-.tt-g { border-bottom: 1px solid #f0f2f6; }
-.tt-g:last-child { border-bottom: 0; }
-
-.tt-l2 {
-  display: flex; align-items: center; gap: 7px;
-  padding: 5px 8px; cursor: pointer; user-select: none;
-  border-left: 3px solid transparent;
-}
-.tt-l2:hover { background: #f8fafc; }
-.tt-l2.on { border-left-color: var(--brand2); }
-.tt-box {
-  width: 14px; height: 14px; flex: none;
-  border: 1px solid #c3ccd9; border-radius: 3px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; line-height: 1; color: #fff;
-}
-.tt-l2.on .tt-box { background: var(--brand2); border-color: var(--brand2); }
-.tt-l2 b { font-size: 13px; font-weight: 600; }
-.tt-n {
-  font-size: 11px; color: #5a6472; min-width: 26px;
-  font-variant-numeric: tabular-nums;
-}
-.tt-n::after { content: ' 题'; font-size: 10px; color: #9aa8bd; }
-.tt-n.zero { opacity: .4; }
-.tt-meta { font-size: 11px; color: #9aa8bd; margin-left: auto; }
-
-/* 题型缩进挂在小知识点下面 */
-.tt-tops {
-  display: flex; flex-wrap: wrap; gap: 5px;
-  padding: 2px 8px 8px 32px;
-}
-
-/* 左栏题型：
-   .has = 题库有挂题；.zero = 暂缺。
-   两者**都能勾选**（后端 topics 是命中任一，勾空题型不会让结果变空），
-   所以差别只在视觉：暂缺的用虚线边 + 灰字，提示"勾了也暂时出不了题"。
-   早先做成"禁止勾选"，结果用户点了没反应，只能以为功能坏了。 */
-.tt-tops .chip.tk { font-size: 12px; padding: 2px 8px; }
-.tt-tops .chip.tk.has { color: #34506e; }
-.tt-tops .chip.tk.zero {
-  color: #8a97ab; border-style: dashed; background: #fcfdfe;
-}
-.tt-tops .chip.tk.zero.on {
-  /* 勾中的暂缺题型：实线 + 淡色底，与"有题且勾中"区分开，
-     一眼看出"这些勾了但暂时组不出题" */
-  border-style: solid; background: #c3d3e4;
-  border-color: #9db4cc; color: #fff;
-}
-
-/* ---- 试卷内拖动排序（仅正式卷） ----
-   用 outline 而不是 border：border 会改变盒模型，
-   悬浮瞬间整页题目跟着抖一下；outline 不占位。 */
-.paper .q {
-  cursor: grab;
-  outline: 2px solid transparent;
-  outline-offset: 4px;
-  border-radius: 3px;
-  transition: outline-color .12s, background .12s;
-}
-.paper .q:hover {
-  outline-color: #a8cdf2;
-  background: #f8fbff;
-}
-.paper .q:active { cursor: grabbing; }
-.paper .q.dragging {
-  opacity: .45;
-  outline: 2px dashed var(--brand2);
-  background: #eef5ff;
-}
-/* 拖拽手柄：触屏上唯一的拖动入口。
-   放在 .qnum 内（.q 是两列 grid，直接加子元素会占掉一格）。
-   touch-action:none 只加在这里 —— 加在 .q 上会让整页在触屏上滚不动。 */
-.q-handle {
-  display: inline-block; margin-right: 4px; padding: 0 2px;
-  color: #b6c2d3; cursor: grab; touch-action: none;
-  font-size: 13px; line-height: 1; user-select: none;
-}
-/* 符号用 ::before 画而不是写进 DOM：
-   写进 DOM 会让 .qnum 的 textContent 变成「⠿1．」，
-   复制题干、另存文本时都带着它。 */
-.q-handle::before { content: '\2807'; }
-.q-handle:hover { color: var(--brand2); }
-.q-handle:active { cursor: grabbing; }
-/* 拖动中禁止选中文字：否则拖一下会把整页题干刷成蓝色 */
-body.q-dragging { user-select: none; -webkit-user-select: none; }
-
-/* 拖动中标出「可放置范围」= 同题型的那一段。
-   跨题型不允许移动（会打乱一、选择题 / 二、填空题 的分节），
-   不给提示的话用户拖过去没反应，只会以为功能坏了。 */
-.paper .q.drop-ok { background: #f4f9ff; }
-.paper .q.drop-ok::after {
-  content: ''; position: absolute; left: -10px; top: 4px; bottom: 4px;
-  width: 3px; border-radius: 2px; background: #c8dcf2;
-}
-.paper .q { position: relative; }   /* ::after 定位需要 */
-/* 不在范围内的（其他题型）：拖动时压暗，明确"放不进去" */
-body.q-dragging .paper .q:not(.drop-ok):not(.dragging) { opacity: .4; }
-@media print {
-  .paper .q { outline: 0 !important; background: transparent !important; }
-  .q-handle { display: none !important; }
 }

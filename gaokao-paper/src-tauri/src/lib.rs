@@ -8,9 +8,6 @@ use std::path::PathBuf;
 use std::process::Command;
 use serde::Serialize;
 use serde_json::Value;
-// get_webview_window / path 都来自 Manager trait，必须显式引入，
-// 否则方法调用解析不到（编译期报错，不是运行期）。
-use tauri::Manager;
 
 /// Python 解释器候选。**返回顺序即优先级，不要随意调整**：
 ///
@@ -258,12 +255,6 @@ fn py_batch_delete(batch: String) -> Result<Value, String> {
     run_py(&["batch-delete".into(), "--batch".into(), batch])
 }
 
-/// 各年级的题数（含隐藏年级，设置页用它显示「删除会影响多少题」）
-#[tauri::command]
-fn py_grade_usage() -> Result<Value, String> {
-    run_py(&["grade-usage".into()])
-}
-
 /// 读复习参数（记忆曲线阶梯、配比等）
 #[tauri::command]
 fn py_get_config() -> Result<Value, String> {
@@ -292,36 +283,6 @@ fn py_topic_list(subject: Option<String>, l1: Option<String>,
 #[tauri::command]
 fn py_topic_link(payload: String) -> Result<Value, String> {
     run_py(&["topic-link".into(), "--payload".into(), payload])
-}
-
-/// 批量设置题目的考试类型（add / remove / replace）
-#[tauri::command]
-fn py_exam_tag(ids: String, exams: String, mode: Option<String>) -> Result<Value, String> {
-    let mut a: Vec<String> = vec!["exam-tag".into(), "--ids".into(), ids,
-                                  "--exams".into(), exams];
-    if let Some(m) = mode { a.push("--mode".into()); a.push(m); }
-    run_py(&a)
-}
-
-/// 取完整条件下的全部候选题（中间栏预览，不抽题不洗牌）
-#[tauri::command]
-fn py_preview_questions(config: Option<String>,
-                        limit: Option<i64>) -> Result<Value, String> {
-    let mut a: Vec<String> = vec!["preview-questions".into()];
-    if let Some(c) = config { a.push("--config".into()); a.push(c); }
-    if let Some(l) = limit { a.push("--limit".into()); a.push(l.to_string()); }
-    run_py(&a)
-}
-
-/// 取勾选题型下的全部题目（组卷前的中间栏预览，不抽题不洗牌）
-#[tauri::command]
-fn py_topic_questions(topics: Option<String>, subject: Option<String>,
-                      limit: Option<i64>) -> Result<Value, String> {
-    let mut a: Vec<String> = vec!["topic-questions".into()];
-    if let Some(t) = topics { a.push("--topics".into()); a.push(t); }
-    if let Some(s) = subject { a.push("--subject".into()); a.push(s); }
-    if let Some(l) = limit { a.push("--limit".into()); a.push(l.to_string()); }
-    run_py(&a)
 }
 
 /// 查某题挂了哪些题型
@@ -435,21 +396,6 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
-        // 单实例：第二次启动时，**这个回调跑在已在运行的那个进程里**
-        // （新进程把自己的参数转发过来后就退出了）。
-        // 所以这里做的是「唤醒已有窗口」，而不是初始化新窗口。
-        .plugin(tauri_plugin_single_instance::init(|app, _argv, _cwd| {
-            if let Some(w) = app.get_webview_window("main") {
-                // 顺序不能反：先还原再聚焦。
-                // 最小化的窗口直接 set_focus 在部分平台上不生效，
-                // 表现是「双击了没反应」，用户会以为程序没起来。
-                let _ = w.unminimize();
-                let _ = w.set_focus();
-                let _ = w.show();
-            }
-            // 前端的 #instance-mask 只在浏览器多标签时用到，
-            // 桌面端走到这里说明已有窗口马上会被提到前台，不需要提示。
-        }))
         .invoke_handler(tauri::generate_handler![
             py_health,
             py_list,
@@ -466,14 +412,10 @@ pub fn run() {
             py_batch_list,
             py_batch_tag,
             py_batch_delete,
-            py_grade_usage,
             py_get_config,
             py_set_config,
             py_topic_list,
             py_topic_link,
-            py_exam_tag,
-            py_preview_questions,
-            py_topic_questions,
             py_question_topics,
             py_progress,
             py_due,

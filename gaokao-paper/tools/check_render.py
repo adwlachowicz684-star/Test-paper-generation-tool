@@ -54,6 +54,11 @@ def load_texts(html_path, docx_path):
     # Word：公式内容在 m:t 里，w:t 提取出来天然为空
     wtext = norm(''.join(
         re.findall(r'<w:t[^>]*>([^<]*)</w:t>', allx)))
+    # ⚠ 半角 ____ 在两端**都保留为纯文本**（并非都渲染成 <u> 元素），
+    # 而 anchor_of 会把 [＿_]{2,} 去掉。两端文本不做同样处理的话，
+    # 锚点跨越填空位的题（如「…各点____得到函数…」）永远匹配不上。
+    htext = re.sub(r'[＿_]{2,}', '', htext)
+    wtext = re.sub(r'[＿_]{2,}', '', wtext)
     return htext, wtext
 
 
