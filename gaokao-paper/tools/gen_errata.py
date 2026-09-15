@@ -36,6 +36,24 @@ A_MANUAL = [
      r'① $\\ln3=1.098612<\\sqrt3\\ln2=1.200566$；'
      r'③ $2^{\\sqrt{15}}=14.651570<15$；'
      r'④ $3\\mathrm e\\ln2=5.652508<4\\sqrt2=5.656854$。四个全真，选 D'),
+    ('M-H1392', 'M-T-361-V1', '（2）存在，$a=-2$', '**（2）不存在**',
+     r'联立得 $(3-a^2)x^2-2ax-2=0$，$\Delta=24-4a^2>0\Rightarrow a^2<6$；'
+     r'韦达 $x_1+x_2=\frac{2a}{3-a^2}$，$x_1x_2=\frac2{a^2-3}$。'
+     r'共线条件 $\overrightarrow{OA}+\overrightarrow{OB}=\lambda(2,1)$ 等价于'
+     r'$\frac{y_1+y_2}{x_1+x_2}=\frac12$，而由 $y_1+y_2=a(x_1+x_2)+2$ 与韦达得'
+     r'$\frac{y_1+y_2}{x_1+x_2}=a+\frac2{x_1+x_2}=\frac3a$，故 $a=6$，'
+     r'此时 $a^2=36>6$ 使直线与双曲线不相交；'
+     r'等长条件 $|\overrightarrow{OA}|=|\overrightarrow{OB}|$ 化简为'
+     r'$(x_1-x_2)\cdot\frac{8a}{3-a^2}=0$，故 $a=0$，'
+     r'此时 $\overrightarrow{OA}+\overrightarrow{OB}=(0,2)$ 与 $(2,1)$ 不共线。'
+     r'两条件不能同时成立，故不存在。'
+     r'原书详解由等长得 $\frac{y_1-y_2}{x_1-x_2}=-\frac{x_1+x_2}{y_1+y_2}$，'
+     r'又由共线得 $\frac{x_1+x_2}{y_1+y_2}=2$，于是 $a=\frac{y_1-y_2}{x_1-x_2}=-2$，'
+     r'但从未把 $\frac{y_1+y_2}{x_1+x_2}=\frac3a$ 代回检验：$a=-2$ 时该比值为 $-\frac32\ne\frac12$。'
+     r'数值验证 $a=-2$：$x=2\pm\sqrt2$，$|\overrightarrow{OA}|^2=23+16\sqrt2\approx45.63$、'
+     r'$|\overrightarrow{OB}|^2=23-16\sqrt2\approx0.37$ 不相等，'
+     r'且 $\overrightarrow{OA}+\overrightarrow{OB}=(4,-6)$ 与 $(2,1)$ 不共线，两个条件均不满足。'
+     r'（第（1）问 $a=\pm1$ 原书正确）'),
     ('M-H0101', 'M-T-075-V1', '$(2,3)$', '**$(2,3]$**',
      r'$a=3$ 时确有三个 $t$ 解（$t=0$ 与 $t=\\frac{3\\pm\\sqrt5}2$），'
      r'三解均 $>-1$，各给两个 $x$，共 $6$ 个不同零点，故右端点 $3$ 可以取到。'
