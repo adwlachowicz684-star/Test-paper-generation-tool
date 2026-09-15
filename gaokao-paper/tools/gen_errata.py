@@ -125,6 +125,29 @@ A_MANUAL = [
      r'若按 $e^{2}$，则 $h(x)=e^{2}+\ln x-e$ 恒正但 $h(1)=e^{2}-e\approx4.67\ne0$，'
      r'与详解「$h(x)>h(1)$」的用法矛盾。数值复核：$x=1.01$ 时 $e^{x}+\ln x-e=0.0373>0$，'
      r'$x\to1^{+}$ 时趋于 $0$（取不到），故严格 $>$ 成立'),
+    ('M-H1387', 'M-T-181-E1', 'B（最小值为 $-1$）', '**C（最小值为 $-2$）**',
+     r'分母 $=3-2\sin x-2\cos x=(1-\sin x)^2+(1-\cos x)^2$，分子 $=-(1-\sin x)$，'
+     r'故 $f=-\dfrac u{u^2+v^2}$（$u=1-\sin x,\ v=1-\cos x$）。'
+     r'求导令分子为零得 $2-\cos x-2\sin x=0$（$\sin x\cos x$ 项恰好抵消），'
+     r'即 $\cos x+2\sin x=2$，与 $\sin^2x+\cos^2x=1$ 联立得 $5\sin^2x-8\sin x+3=0$，'
+     r'根为 $\sin x=1$（此时 $f=0$）与 $\sin x=\dfrac35$。'
+     r'取 $\sin x=\dfrac35,\ \cos x=\dfrac45$，则 $u=\dfrac25,\ v=\dfrac15,\ u^2+v^2=\dfrac15$，'
+     r'$f=-\dfrac{2/5}{1/5}=-2$。'
+     r'$2\times10^6$ 点数值扫描得最小值 $-1.99999999999$，取等处 $\sin x=0.600001,\ \cos x=0.800000$ ✓。'
+     r'原书详解令 $g=\dfrac{1-\cos x}{1-\sin x}$ 后写 $f=-\dfrac1{1+g^2}$，'
+     r'正确应为 $f=-\dfrac1{(1-\sin x)(1+g^2)}$，即**丢了因子 $(1-\sin x)$**；'
+     r'在 $x=0$（即 $u=1$）处两者碰巧同为 $-1$，详解遂误判那为最小值'),
+    ('M-H1388', 'M-T-190-V1', r'A（$\left(\dfrac{\sqrt3}2,\sqrt3\right)$）',
+     r'**B（$\left(\dfrac{\sqrt3}2,\sqrt3\right]$）**',
+     r'由射影定理 $c\cos B+b\cos C=a$ 得 $\dfrac{\cos B}b+\dfrac{\cos C}c=\dfrac a{bc}$，'
+     r'条件化为 $\sin B\cdot\dfrac a{bc}=\dfrac{\sin A}{\sin C}=\dfrac ac$，'
+     r'故 $\dfrac{\sin B}b=1$，即 $b=\dfrac{\sqrt3}2$ 且 $2R=1$。'
+     r'于是 $a+c=\sin A+\sin\left(\dfrac{2\pi}3-A\right)=\sqrt3\sin\left(A+\dfrac\pi6\right)$，'
+     r'$A\in\left(0,\dfrac{2\pi}3\right)$ ⟹ $a+c\in\left(\dfrac{\sqrt3}2,\sqrt3\right]$。'
+     r'**硬判据**：$A=B=C=\dfrac\pi3$（等边）时 $a=b=c=\dfrac{\sqrt3}2$，'
+     r'代入条件左边 $=\sin\dfrac{2\pi}3\cdot\dfrac{2\cos(\pi/3)}{\sqrt3/2}=1$、右边 $=1$，'
+     r'条件成立且 $a+c=\sqrt3$ 精确取到，右端必闭。'
+     r'数值扫描 $2\times10^5$ 点得 $[0.866027,1.732051]$，即 $\left(\dfrac{\sqrt3}2,\sqrt3\right]$ ✓'),
 ]
 
 # ── B / C 类：题号清单，说明从 review 抽 ──────────────
@@ -182,9 +205,27 @@ D_KEYS = []
 # 按原书答案 A 录入，留待复核。
 D_KEYS += ['M-H0252']
 
+# 2026-09 复核裁定：疑点已算清，结论记在下面 D_NOTE 里，答案维持原书。
+D_NOTE = {
+    'M-H0252': (
+        '**2026-09 复核定论（已算清，不再存疑）**：零点集可完全解出'
+        r'—— $\{-1\}\cup\{\pm x_n:n=1,2,3,\cdots\}$，'
+        r'其中 $x_n=\dfrac{(2n+1)+\sqrt{(2n+1)^{2}+8}}{4}\in(n,n+1)$。'
+        '**配对是精确的、有代数证明**：若 $x\\in(n,n+1)$ 为零点则 $2(x-n)=1+\\frac1x$；'
+        '取 $y=-x\\in(-n-1,-n)$，则 $[y]=-n-1$、$\\{y\\}=n+1-x$，'
+        '故 $2\\{y\\}=2n+2-2x=1-\\frac1x=1+\\frac1y$，$y$ 亦为零点。'
+        '即除 $x=-1$ 外全部零点严格成对、互为相反数（$x=-1$ 落单是因为整数点处 '
+        '$\\{x\\}$ 跳跃、对称性失效）。'
+        '**结论**：零点无穷多，$x_n\\sim n+\\frac12$，'
+        '“所有零点之和”作为级数发散、无严格定义——这是原书命题瑕疵；'
+        '但在对称和约定下各对恰好抵消、仅余 $-1$，与答案 A 一致。**维持原书答案 A**。'
+    ),
+}
+
 # 第14批 T041-V3：数值验证显示四个命题全真（应为 D），原书答案 C 判②为假，
 # 但详解「f(e) < f(π)」不等号写反（1/e 是 f 的最大值，必有 f(e) > f(π)）。
 # 因③的上标含矢量绘制的根号、无法百分百确认，按原书 C 录入并留待复核。
+# → 2026-09 已核实：四个命题全真，改为 A 类并更正答案为 D（见 A_MANUAL）。
 
 
 def src_short(q):
@@ -287,6 +328,21 @@ def main():
     L.append('')
     L.append('**D 类共 %d 题。** 发现可疑但证据不足以推翻原书，'
              '按原书录入并把疑点记在 review 里，留待复核。' % nd)
+    for qid in D_KEYS:
+        if qid in idx and qid in D_NOTE:
+            L.append('')
+            L.append('### %s 复核裁定' % qid)
+            L.append('')
+            L.append(D_NOTE[qid])
+    L.append('')
+    L.append('## 附：录入与排版修正（E 类）')
+    L.append('')
+    L.append('这一类**不是原书的问题**，而是录入/排版环节产生的修正'
+             '（控制字符错码、命令粘连、`$` 未闭合、字面 `\\n`、区间括号等），'
+             '已由 `tools/build_fix_registry.py` 登记。')
+    L.append('')
+    L.append('完整清单见 **《已修正题目清单.md》**；'
+             '题库中这些题带 `fix.cls = "E"` 字段，可按该字段检索复核。')
 
     open(OUT, 'w', encoding='utf-8').write('\n'.join(L) + '\n')
     print('  已生成 %s' % OUT)
